@@ -1,0 +1,142 @@
+/*!
+ * Start Bootstrap - One Page Wonder v4.0.0-beta.2 (https://startbootstrap.com/template-overviews/one-page-wonder)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-one-page-wonder/blob/master/LICENSE)
+ */
+body {
+  font-family: 'Lato';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Catamaran';
+  font-weight: 800 !important;
+}
+
+.btn-xl {
+  text-transform: uppercase;
+  padding: 1.5rem 3rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
+.img-circle{
+    border-radius: 50%;
+	width: 200px;
+	height: 200px;
+}
+
+.rounded-pill {
+  border-radius: 5rem;
+}
+
+.rounded-pill-contact {
+  text-transform: uppercase;
+  border-radius: 2rem;
+  font-size: 0.85rem;
+}
+.rounded-pill-logo {
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  color: white;
+}
+.navbar-custom {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.navbar-custom .navbar-brand {
+  font-size: 1.4rem;
+  letter-spacing: 0.13rem;
+  font-weight: 700;
+}
+.nav-item{
+    padding-top: 2px;
+}
+
+.navbar-custom .navbar-nav .nav-item .nav-link{
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.13rem;
+}
+header.masthead {
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(7rem + 72px);
+  padding-bottom: 7rem;
+  background: linear-gradient(180deg, #3498db 0%, #34495e 100%);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+header.masthead .masthead-content {
+  z-index: 1;
+  position: relative;
+}
+
+header.masthead .masthead-content .masthead-heading {
+  font-size: 4rem;
+  color: #ecf0f1;
+}
+
+header.masthead .masthead-content .masthead-subheading {
+  font-size: 2rem;
+  color: #ecf0f1;
+}
+
+.fab{
+  color: #3498db;
+}
+.fab:active, .fab:focus, .fab:hover {
+  color: #2980b9;
+}
+.fas{
+  color: #3498db;
+}
+.fas:active, .fas:focus, .fas:hover {
+  color: #2980b9;
+}
+
+@media (min-width: 992px) {
+  header.masthead {
+    padding-top: calc(10rem + 55px);
+    padding-bottom: 10rem;
+  }
+  header.masthead .masthead-content .masthead-heading {
+    font-size: 4rem;
+  }
+  header.masthead .masthead-content .masthead-subheading {
+    font-size: 2rem;
+  }
+}
+
+.btn-primary {
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+.btn-primary:active, .btn-primary:focus, .btn-primary:hover {
+  background-color: #2980b9 !important;
+  border-color: #2980b9 !important;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(238, 9, 121, 0.5);
+}
+
+.footer{
+  background-color: rgba(0, 0, 0, 0.5);
+}
