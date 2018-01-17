@@ -1,6 +1,7 @@
 from tkinter import *
 from PIL import ImageTk
 from PIL import Image
+from tkinter import messagebox
 import time
 
 class GUI():
@@ -59,9 +60,9 @@ class GUI():
         i = None
         if condition == "good":
             i = self.canvas.create_image(x+w-70,y+h-50,image=self.green_cross_img)
-        elif condition == "neutral":
-            i = self.canvas.create_image(x+w-70,y+h-50,image=self.yellow_cross_img)
         elif condition == "bad":
+            i = self.canvas.create_image(x+w-70,y+h-50,image=self.yellow_cross_img)
+        elif condition == "critical":
             i = self.canvas.create_image(x+w-70,y+h-50,image=self.red_cross_img)
         self.canvas_conditions.append(i)
 
@@ -100,6 +101,17 @@ class GUI():
         self.team.update_player(gui_index=i, on_field= on_field)
         self.canvas.itemconfig(self.canvas_on_fields[i],fill=fill)
 
+
+    def alert(self, gui_index):
+        player = self.team.get_player(gui_index=gui_index)
+        if player["condition"] == "bad":
+            messagebox.showwarning("Warning","Player: {} Number: {} was injured at {} and is now in: {} state".format(player["name"],player["number"],player["injury_time"],player["condition"]))
+        if player["condition"] == "critical":
+            messagebox.showerror("Critical Warning","Player: {} Number: {} was injured at {} and is now in: {} state".format(player["name"],player["number"],player["injury_time"],player["condition"]))
+
+        self.update()
+        return True
+
     def __tick(self):
         t = time.strftime('%H:%M:%S')
         if self.current_time != t:
@@ -107,9 +119,15 @@ class GUI():
             self.canvas.itemconfig(self.clock,text=self.current_time)
         self.canvas.after(200, self.__tick)
 
+    def callback(self):
+        self.root.quit()
+
     def loop(self):
-        self.__tick()
         self.root.mainloop()
 
-    def update(self):
+    def update(self, f_handle = None):
+        if f_handle is not None:
+            self.canvas.after(1000, f_handle)
+        self.canvas.after(200, self.__tick)
+        self.__draw_players()
         self.canvas.pack()

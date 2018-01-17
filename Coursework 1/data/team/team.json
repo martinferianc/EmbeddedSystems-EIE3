@@ -13,7 +13,7 @@
     },
     "3":{
         "name": "Ben Burton",
-        "condition" : "bad",
+        "condition" : "critical",
         "number":23
     },
     "4":{
@@ -23,7 +23,7 @@
     },
     "5":{
         "name": "Rufus Knight",
-        "condition" : "neutral",
+        "condition" : "bad",
         "number":18
     },
     "6":{
@@ -38,7 +38,7 @@
     },
     "8":{
         "name": "Clifton Sanchez",
-        "condition" : "bad",
+        "condition" : "critical",
         "number":12
     },
     "9":{
@@ -53,7 +53,7 @@
     },
     "11":{
         "name": "Walter Spencer",
-        "condition" : "neutral",
+        "condition" : "bad",
         "number":89
     },
     "12":{
@@ -63,7 +63,7 @@
     },
     "13":{
         "name": "Gary King",
-        "condition" : "neutral",
+        "condition" : "bad",
         "number":15
     },
     "14":{
@@ -83,7 +83,7 @@
     },
     "17":{
         "name": "Van Anderson",
-        "condition" : "neutral",
+        "condition" : "bad",
         "number":8
     },
     "18":{
@@ -98,7 +98,7 @@
     },
     "20":{
         "name": "Jonathan Little",
-        "condition" : "bad",
+        "condition" : "critical",
         "number":0
     }
 }

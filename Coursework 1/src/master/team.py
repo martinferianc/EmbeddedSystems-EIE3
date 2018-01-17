@@ -17,22 +17,22 @@ class Team:
             player = Player(data[str(i)]["name"], data[str(i)]["condition"], data[str(i)]["number"])
             self.players.append(player)
 
-    def update_player(self, gui_index=None ,name=None, number=None, on_field=None, condition=None):
+    def update_player(self, gui_index=None ,name=None, number=None, on_field=None, condition=None, injury_time=None):
         if name is None and number is None and gui_index is None:
             raise Exception("No player selected!")
 
         if name is not None:
             for i in range(self.size):
                 if self.players[i].get_name() == name:
-                    return self.players[i].update_player(on_field, condition)
+                    return self.players[i].update_player(on_field, condition,injury_time)
 
         if gui_index is not None:
-            return self.players[gui_index].update_player(on_field, condition)
+            return self.players[gui_index].update_player(on_field, condition,injury_time)
 
         if number is not None:
             for i in range(self.size):
                 if self.players[i].get_number() == number:
-                    return self.players[i].update_player(on_field, condition)
+                    return self.players[i].update_player(on_field, condition,injury_time)
 
     def get_name(self):
         return self.name
