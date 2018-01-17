@@ -1,0 +1,104 @@
+{
+    "team":"HCIC: Embedded Systems",
+    "size":20,
+    "1":{
+        "name": "Luther Jackson",
+        "condition" : "good",
+        "number":12
+    },
+    "2":{
+        "name": "Rudolph Stevenson",
+        "condition" : "good",
+        "number":13
+    },
+    "3":{
+        "name": "Ben Burton",
+        "condition" : "bad",
+        "number":23
+    },
+    "4":{
+        "name": "Harry Sandoval",
+        "condition" : "good",
+        "number":14
+    },
+    "5":{
+        "name": "Rufus Knight",
+        "condition" : "neutral",
+        "number":18
+    },
+    "6":{
+        "name": "Randolph Mccarthy",
+        "condition" : "good",
+        "number":88
+    },
+    "7":{
+        "name": "Tim Ferguson",
+        "condition" : "good",
+        "number":92
+    },
+    "8":{
+        "name": "Clifton Sanchez",
+        "condition" : "bad",
+        "number":12
+    },
+    "9":{
+        "name": "Edmund Luna",
+        "condition" : "good",
+        "number":77
+    },
+    "10":{
+        "name": "Courtney Guerro",
+        "condition" : "good",
+        "number":1
+    },
+    "11":{
+        "name": "Walter Spencer",
+        "condition" : "neutral",
+        "number":89
+    },
+    "12":{
+        "name": "Luther Jackson",
+        "condition" : "good",
+        "number":44
+    },
+    "13":{
+        "name": "Gary King",
+        "condition" : "neutral",
+        "number":15
+    },
+    "14":{
+        "name": "Thomas Hudson",
+        "condition" : "good",
+        "number":19
+    },
+    "15":{
+        "name": "Max Gardner",
+        "condition" : "good",
+        "number":9
+    },
+    "16":{
+        "name": "Abraham Figuearo",
+        "condition" : "good",
+        "number":10
+    },
+    "17":{
+        "name": "Van Anderson",
+        "condition" : "neutral",
+        "number":8
+    },
+    "18":{
+        "name": "Caroll Coleman",
+        "condition" : "good",
+        "number":1
+    },
+    "19":{
+        "name": "Luis Burnsn",
+        "condition" : "good",
+        "number":74
+    },
+    "20":{
+        "name": "Jonathan Little",
+        "condition" : "bad",
+        "number":0
+    }
+}
