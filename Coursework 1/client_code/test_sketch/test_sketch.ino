@@ -1,7 +1,9 @@
 /*  
  *  Code to be run on the Adafruit Feather. This code will monitor the accelerometer and transmitt 
  *  the data in real-time over WiFi to the server who will alert the user if a large shock is detected.
- * 
+ *            
+ *            
+ *                 **** THIS MAY ALL BE SUPERSEDED IF WE HAVE TO USE PYTHON ****
  */
 
 #include <ESP8266WiFi.h>
@@ -12,6 +14,7 @@
 #define WIFI_SSID ssid
 #define WIFI_PASSWORD password
 #define SERVER server
+#define PLAYER_NUMBER 1
 
 const char* ssid = "WIFI_SSID";
 const char* password = "WIFI_PASSWORD";
@@ -42,6 +45,8 @@ void loop() {
 
 //################## Function Definitions ##################
 
+// Setup the WiFi.
+
 bool setupWifi()
 {
   WiFi.begin(ssid, password);
@@ -50,7 +55,7 @@ bool setupWifi()
   }
 }
 
-// Setup the accelerometer
+// Setup the accelerometer.
 
 void setupAccel()
 {
@@ -62,7 +67,7 @@ void setupAccel()
 }
 
 /* 
- *  Takes an array of 7 16 bit numbers used to store the values.
+ *  Takes a pointer to an array of seven 16 bit numbers used to store the values.
  *  Reads in all of the value registers from the MPU and updates the array.
  */
 
