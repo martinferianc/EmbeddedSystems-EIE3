@@ -1,5 +1,4 @@
 from flask import Flask
-from config import config
 from flask import url_for, render_template
 from werkzeug.contrib.fixers import ProxyFix
 from raven.contrib.flask import Sentry
@@ -18,6 +17,28 @@ logger.addHandler(handler)
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.DEBUG)
 log.addHandler(handler)
+
+import os
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+class Config(object):
+    DEBUG = False
+    TESTING = False
+    CSRF_ENABLED = True
+    SECRET_KEY = 'this-is-a-secret'
+    #SQLALCHEMY_DATABASE_URI = 'postgresql://webui:testpass@localhost:51001/webui'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    CLIENT_API_KEYS = [
+        ["foo", "bar"]
+    ]
+
+class DevelopmentConfig(Config):
+    DEVELOPMENT = True
+    DEBUG = True
+
+config = {
+    'dev': DevelopmentConfig
+}
 
 def has_no_empty_params(rule):
     defaults = rule.defaults if rule.defaults is not None else ()
