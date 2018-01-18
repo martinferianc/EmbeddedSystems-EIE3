@@ -50,6 +50,8 @@ bool setupWifi()
   }
 }
 
+// Setup the accelerometer
+
 void setupAccel()
 {
   Wire.begin();
@@ -58,6 +60,11 @@ void setupAccel()
   Wire.write(0);
   Wire.endTransmission(true); 
 }
+
+/* 
+ *  Takes an array of 7 16 bit numbers used to store the values.
+ *  Reads in all of the value registers from the MPU and updates the array.
+ */
 
 void updateAccelValues(int16_t *vals)
 {
