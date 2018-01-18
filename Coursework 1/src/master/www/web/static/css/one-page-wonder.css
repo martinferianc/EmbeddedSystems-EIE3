@@ -35,6 +35,10 @@ h6 {
 	height: 200px;
 }
 
+.player-label{
+    padding-left: : 10px;
+}
+
 .rounded-pill {
   border-radius: 5rem;
 }
