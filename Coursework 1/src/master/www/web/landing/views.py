@@ -4,6 +4,7 @@ import os
 import datetime
 import flask
 import logging
+import json
 
 from flask import (
     #Flask,
@@ -15,7 +16,7 @@ from flask import (
     Response,
     session
 )
-
+data = json.load(open("../../data/team/team.json"))
 logger = logging.getLogger("web.landing.views")
 
 def make_error_response(description):
@@ -31,4 +32,9 @@ def index():
 
 @landing.route('/demo', methods=['GET','POST'])
 def demo():
-    return render_template('demo.html', page_title='Demo')
+    data = json.load(open("../../data/team/team.json"))
+    size = data["size"]
+    parsed = []
+    for i in range(1,size+1):
+        parsed.append(data[str(i)])
+    return render_template('demo.html',players=parsed,page_title='Demo')

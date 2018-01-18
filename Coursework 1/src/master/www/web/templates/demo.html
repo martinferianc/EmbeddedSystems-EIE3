@@ -60,116 +60,19 @@
     <section>
         <div class="container" style="padding-top:100px">
             <div class="row" style="padding-bottom:30px">
+                {% for player in players %}
                 <div class="player" style="padding-right:40px">
                     <img src="/static/img/player.jpg"/>
                     <div class="row" style="padding-top:10px">
-                        <h6 style="padding-left:20px">23</h6>
-                        <h6 style="padding-left:10px">Martin Ferianc</h6>
+                        <h6 style="padding-left:20px">{{player['number']}}</h6>
+                        <h6 style="padding-left:10px">{{player['name']}}</h6>
                     </div>
                     <div class="row">
-                        <img src="/static/img/normal.gif" style="padding-left:25px"/>
-                        <img src="/static/img/on_field.png" style="padding-left:25px"/>
+                        <img src="/static/img/{{player['condition']}}.gif" style="padding-left:25px"/>
+                        <img src="/static/img/{{player['on_field']}}.png" style="padding-left:25px"/>
                     </div>
                 </div>
-                <div class="player" style="padding-right:40px">
-                    <img src="/static/img/player.jpg"/>
-                    <div class="row" style="padding-top:10px">
-                        <h6 style="padding-left:20px">23</h6>
-                        <h6 style="padding-left:10px">Martin Ferianc</h6>
-                    </div>
-                    <div class="row">
-                        <img src="/static/img/normal.gif" style="padding-left:25px"/>
-                        <img src="/static/img/on_field.png" style="padding-left:25px"/>
-                    </div>
-                </div>
-                <div class="player" style="padding-right:40px">
-                    <img src="/static/img/player.jpg"/>
-                    <div class="row" style="padding-top:10px">
-                        <h6 style="padding-left:20px">23</h6>
-                        <h6 style="padding-left:10px">Martin Ferianc</h6>
-                    </div>
-                    <div class="row">
-                        <img src="/static/img/normal.gif" style="padding-left:25px"/>
-                        <img src="/static/img/on_field.png" style="padding-left:25px"/>
-                    </div>
-                </div>
-                <div class="player" style="padding-right:40px">
-                    <img src="/static/img/player.jpg"/>
-                    <div class="row" style="padding-top:10px">
-                        <h6 style="padding-left:20px">23</h6>
-                        <h6 style="padding-left:10px">Martin Ferianc</h6>
-                    </div>
-                    <div class="row">
-                        <img src="/static/img/normal.gif" style="padding-left:25px"/>
-                        <img src="/static/img/on_field.png" style="padding-left:25px"/>
-                    </div>
-                </div>
-                <div class="player" style="padding-right:40px">
-                    <img src="/static/img/player.jpg"/>
-                    <div class="row" style="padding-top:10px">
-                        <h6 style="padding-left:20px">23</h6>
-                        <h6 style="padding-left:10px">Martin Ferianc</h6>
-                    </div>
-                    <div class="row">
-                        <img src="/static/img/normal.gif" style="padding-left:25px"/>
-                        <img src="/static/img/on_field.png" style="padding-left:25px"/>
-                    </div>
-                </div>
-                <div class="player" style="padding-right:40px">
-                    <img src="/static/img/player.jpg"/>
-                    <div class="row" style="padding-top:10px">
-                        <h6 style="padding-left:20px">23</h6>
-                        <h6 style="padding-left:10px">Martin Ferianc</h6>
-                    </div>
-                    <div class="row">
-                        <img src="/static/img/normal.gif" style="padding-left:25px"/>
-                        <img src="/static/img/on_field.png" style="padding-left:25px"/>
-                    </div>
-                </div>
-                <div class="player" style="padding-right:40px">
-                    <img src="/static/img/player.jpg"/>
-                    <div class="row" style="padding-top:10px">
-                        <h6 style="padding-left:20px">23</h6>
-                        <h6 style="padding-left:10px">Martin Ferianc</h6>
-                    </div>
-                    <div class="row">
-                        <img src="/static/img/normal.gif" style="padding-left:25px"/>
-                        <img src="/static/img/on_field.png" style="padding-left:25px"/>
-                    </div>
-                </div>
-                <div class="player" style="padding-right:40px">
-                    <img src="/static/img/player.jpg"/>
-                    <div class="row" style="padding-top:10px">
-                        <h6 style="padding-left:20px">23</h6>
-                        <h6 style="padding-left:10px">Martin Ferianc</h6>
-                    </div>
-                    <div class="row">
-                        <img src="/static/img/normal.gif" style="padding-left:25px"/>
-                        <img src="/static/img/on_field.png" style="padding-left:25px"/>
-                    </div>
-                </div>
-                <div class="player" style="padding-right:40px">
-                    <img src="/static/img/player.jpg"/>
-                    <div class="row" style="padding-top:10px">
-                        <h6 style="padding-left:20px">23</h6>
-                        <h6 style="padding-left:10px">Martin Ferianc</h6>
-                    </div>
-                    <div class="row">
-                        <img src="/static/img/normal.gif" style="padding-left:25px"/>
-                        <img src="/static/img/on_field.png" style="padding-left:25px"/>
-                    </div>
-                </div>
-                <div class="player" style="padding-right:40px">
-                    <img src="/static/img/player.jpg"/>
-                    <div class="row" style="padding-top:10px">
-                        <h6 style="padding-left:20px">23</h6>
-                        <h6 style="padding-left:10px">Martin Ferianc</h6>
-                    </div>
-                    <div class="row">
-                        <img src="/static/img/normal.gif" style="padding-left:25px"/>
-                        <img src="/static/img/on_field.png" style="padding-left:25px"/>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
 
         </div>

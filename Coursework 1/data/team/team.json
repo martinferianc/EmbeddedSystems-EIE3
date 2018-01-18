@@ -4,101 +4,121 @@
     "1":{
         "name": "Luther Jackson",
         "condition" : "good",
-        "number":12
+        "number":12,
+        "on_field": "no"
     },
     "2":{
         "name": "Rudolph Stevenson",
         "condition" : "good",
-        "number":13
+        "number":13,
+        "on_field": "no"
     },
     "3":{
         "name": "Ben Burton",
         "condition" : "critical",
-        "number":23
+        "number":23,
+        "on_field": "no"
     },
     "4":{
         "name": "Harry Sandoval",
         "condition" : "good",
-        "number":14
+        "number":14,
+        "on_field": "no"
     },
     "5":{
         "name": "Rufus Knight",
         "condition" : "bad",
-        "number":18
+        "number":18,
+        "on_field": "no"
     },
     "6":{
         "name": "Randolph Mccarthy",
         "condition" : "good",
-        "number":88
+        "number":88,
+        "on_field": "no"
     },
     "7":{
         "name": "Tim Ferguson",
         "condition" : "good",
-        "number":92
+        "number":92,
+        "on_field": "no"
     },
     "8":{
         "name": "Clifton Sanchez",
         "condition" : "critical",
-        "number":12
+        "number":12,
+        "on_field": "no"
     },
     "9":{
         "name": "Edmund Luna",
         "condition" : "good",
-        "number":77
+        "number":77,
+        "on_field": "no"
     },
     "10":{
         "name": "Courtney Guerro",
         "condition" : "good",
-        "number":1
+        "number":1,
+        "on_field": "no"
     },
     "11":{
         "name": "Walter Spencer",
         "condition" : "bad",
-        "number":89
+        "number":89,
+        "on_field": "no"
     },
     "12":{
         "name": "Luther Jackson",
         "condition" : "good",
-        "number":44
+        "number":44,
+        "on_field": "no"
     },
     "13":{
         "name": "Gary King",
         "condition" : "bad",
-        "number":15
+        "number":15,
+        "on_field": "no"
     },
     "14":{
         "name": "Thomas Hudson",
         "condition" : "good",
-        "number":19
+        "number":19,
+        "on_field": "no"
     },
     "15":{
         "name": "Max Gardner",
         "condition" : "good",
-        "number":9
+        "number":9,
+        "on_field": "no"
     },
     "16":{
         "name": "Abraham Figuearo",
         "condition" : "good",
-        "number":10
+        "number":10,
+        "on_field": "no"
     },
     "17":{
         "name": "Van Anderson",
         "condition" : "bad",
-        "number":8
+        "number":8,
+        "on_field": "no"
     },
     "18":{
         "name": "Caroll Coleman",
         "condition" : "good",
-        "number":1
+        "number":1,
+        "on_field": "no"
     },
     "19":{
         "name": "Luis Burnsn",
         "condition" : "good",
-        "number":74
+        "number":74,
+        "on_field": "no"
     },
     "20":{
         "name": "Jonathan Little",
         "condition" : "critical",
-        "number":0
+        "number":0,
+        "on_field": "no"
     }
 }
