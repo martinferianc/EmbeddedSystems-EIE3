@@ -1,0 +1,86 @@
+{% set active_page = 'Home' %}
+{% block pageheader %}
+{% endblock pageheader %}
+
+{% block fullPage %}
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>HeadAid | Helps you diagnose and avoid brain injuries</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/static/vendor/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/one-page-wonder.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <a class="btn btn-primary rounded-pill-logo navbar-brand" style="color:#ecf0f1;">HeadAid</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#functionality">Functionality</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/demo">Demo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="mailto:ferianc.martin@gmail.com" class="btn btn-primary rounded-pill-contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead">
+      <div class="container">
+        <div class="masthead-content">
+            <h1 class="masthead-heading mb-0">HeadAid</h1>
+            <h2 class="masthead-subheading mb-0">Helps you diagnose and avoid brain injuries</h2>
+            <a href="#about" class="btn btn-primary btn-xl rounded-pill mt-5 text-center">Learn More</a>
+        </div>
+      </div>
+    </header>
+
+    <section>
+        potato
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="py-3 footer">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Martin Ferianc, Alexander T. Luisi, Owen Harcombe 2018 @ IC</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+{% endblock fullPage %}
+<!-- Bootstrap core JavaScript -->
+<script src=" {{ url_for('static', filename='js/scripts.js') }}"></script>

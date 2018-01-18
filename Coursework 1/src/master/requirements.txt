@@ -1,0 +1,16 @@
+numpy
+Flask
+Flask-DebugToolbar
+Flask-Login
+Flask-SQLAlchemy
+Jinja2
+MarkupSafe
+Werkzeug
+gunicorn
+html5lib
+python-dateutil
+pytz
+raven
+requests
+SQLAlchemy
+psycopg2
