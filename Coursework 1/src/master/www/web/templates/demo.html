@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta http-equiv="refresh" content="1">
 
     <title>Demo</title>
 
@@ -59,7 +60,9 @@
 
     <section>
         <div class="container" style="padding-top:100px">
-            <div class="row" style="padding-bottom:30px">
+                <p class="text-right">{{time}}</p>
+                <p class="text-left"><h2>{{team_name}}</h2></p>
+            <div class="row" style="padding-bottom:30px;">
                 {% for player in players %}
                 <div class="player" style="padding-right:40px">
                     <img src="/static/img/player.jpg"/>

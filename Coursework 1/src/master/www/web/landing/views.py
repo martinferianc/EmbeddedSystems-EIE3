@@ -5,6 +5,7 @@ import datetime
 import flask
 import logging
 import json
+import time
 
 from flask import (
     #Flask,
@@ -16,7 +17,7 @@ from flask import (
     Response,
     session
 )
-data = json.load(open("../../data/team/team.json"))
+
 logger = logging.getLogger("web.landing.views")
 
 def make_error_response(description):
@@ -34,7 +35,11 @@ def index():
 def demo():
     data = json.load(open("../../data/team/team.json"))
     size = data["size"]
+    team_name = data["name"]
+
+    t = time.strftime('%H:%M:%S')
+
     parsed = []
     for i in range(1,size+1):
         parsed.append(data[str(i)])
-    return render_template('demo.html',players=parsed,page_title='Demo')
+    return render_template('demo.html',players=parsed,team_name=team_name,time=t,page_title='Demo')
