@@ -67,7 +67,7 @@
             <p class="text-left"><h2>{{team_name}}</h2></p>
             <div class="row" style="padding-bottom:30px;">
                 {% for player in players %}
-                <div id={{player['index']}} class="player" style="padding-right:40px">
+                <div class="player" style="padding-right:40px">
                     <img src="/static/img/player.jpg"/>
                     <div class="row" style="padding-top:10px">
                         <h6 style="padding-left:20px">{{player['number']}}</h6>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="row">
                         <img src="/static/img/{{player['condition']}}.gif" style="padding-left:25px"/>
-                        <img src="/static/img/{{player['on_field']}}.png" style="padding-left:25px"/>
+                        <img id={{player['index']}} src="/static/img/{{player['on_field']}}.png" style="padding-left:25px"/>
                     </div>
                 </div>
                 {% endfor %}
