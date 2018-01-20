@@ -16,6 +16,9 @@ h6 {
   font-weight: 800 !important;
 }
 
+.on_field{
+    margin: 0;
+}
 .btn-xl {
   text-transform: uppercase;
   padding: 1.5rem 3rem;
