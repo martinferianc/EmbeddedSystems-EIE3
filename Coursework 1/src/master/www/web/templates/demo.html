@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta http-equiv="refresh" content="1">
 
     <title>Demo</title>
 
@@ -25,6 +24,9 @@
     <link href="/static/css/one-page-wonder.css" rel="stylesheet">
 
     <!-- JQuery and javascript -->
+    <script type="text/javascript" src="/static/js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="/static/js/demo.js"></script>
+
 
 </head>
 
@@ -61,7 +63,7 @@
 
     <section>
         <div class="container" style="padding-top:100px">
-            <p class="text-right">{{time}}</p>
+            <p id="time" class="text-right"></p>
             <p class="text-left"><h2>{{team_name}}</h2></p>
             <div class="row" style="padding-bottom:30px;">
                 {% for player in players %}

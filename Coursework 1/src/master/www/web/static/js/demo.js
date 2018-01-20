@@ -1,13 +1,12 @@
-$(document).ready ( function () {
-    $(document).on ("click", "#1,#2,#3,#4,#5,#6,#7,#8,#9,#10,#11,#12,#13,#14,#15,#16,#17,#18,#19", function () {
-        $.getJSON( "/team/team.json", function( data ) {
-            var items = [];
-            alert(items);
-        });
+var serverTime = new Date();
 
-        var src = ($(this).attr('src') === "/static/img/no.png" )
-           ? "/static/img/yes.png"
-           : "/static/img/no.png";
-        $(this).attr('src', src);
-    });
-});
+function updateTime() {
+    /// Increment serverTime by 1 second and update the html for '#time'
+    serverTime = new Date(serverTime.getTime() + 1000);
+    $('#time').html(serverTime.toGMTString());
+}
+
+$(function() {
+    updateTime();
+    setInterval(updateTime, 1000);
+})
