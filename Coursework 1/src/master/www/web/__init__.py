@@ -21,6 +21,7 @@ log.addHandler(handler)
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+
 class Config(object):
     DEBUG = False
     TESTING = False
@@ -49,6 +50,7 @@ def create_app(config_name):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
     app.wsgi_app = ProxyFix(app.wsgi_app)
+
 
 
     from .landing import landing as landing_blueprint

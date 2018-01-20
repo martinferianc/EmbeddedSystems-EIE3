@@ -10,3 +10,15 @@ $(function() {
     updateTime();
     setInterval(updateTime, 1000);
 })
+var previous = null;
+var current = null;
+    setInterval(function() {
+        $.get("data.html", function(data) {
+            current = data;
+            if ((previous && current) && (previous !== current)) {
+                console.log('refresh');
+                location.reload();
+            }
+            previous = current;
+        });
+    }, 1000);
