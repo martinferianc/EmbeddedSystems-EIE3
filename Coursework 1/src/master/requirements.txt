@@ -14,3 +14,4 @@ raven
 requests
 SQLAlchemy
 psycopg2
+ampy
