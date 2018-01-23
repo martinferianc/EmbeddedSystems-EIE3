@@ -2,7 +2,7 @@
 ### FINISH THIS!
 This is the applicaiton that is being run at the master. It creates a web server that is being updated based on the data which we read off the sensors. In addition it employs various algorithms to establish the connection between our board and the master computer/server.
 
-##Structure
+## Structure
 ### FINISH THIS!
 ```
 .

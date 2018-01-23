@@ -1,6 +1,6 @@
 # Code for Coursework 1
 
-##Structure
+## Structure
 ```
 .
 ├── master
@@ -13,4 +13,4 @@ The `slave folder` contains all the code to be run on the embedded system.
 
 ## Building & Running
 
-Look into separate directories for instructions. 
+Look into separate directories for instructions.
