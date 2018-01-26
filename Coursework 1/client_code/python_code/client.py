@@ -1,10 +1,12 @@
 from machine import Pin I2C
-import esp, network
+import esp, network, json
 
 class client:
+	# Initialise the class with the device address and the player number.
     def __init__(self, devAddr, playerNum):
 		self.__devAddr = devAddr
 		self.__playerNum = playerNum
+		# Setup the wifi and the accelerometer and the datastructures to store the data
         self.ap = setupWifi()
         self.accel = setupAccel()
 		self.accelValues = {'ACX': 0, 'ACY': 0, 'ACZ': 0, 'TMP': 0, 'GYX': 0, 'GYY': 0, 'GYZ': 0}
@@ -22,11 +24,13 @@ class client:
         return ap
 
     def setupAccel(self):
+		# Setup the I2C interface for the accelerometer 
         accelHandle = I2C(scl=Pin(5), sda=Pin(4), freq = 100000)
         buf = bytearray(2)
         accelHandle.writeto(__devAddr, buf)
 
     def updateAccelValues(self,accelValues):
+		# Take all the values 
         i = 0
         for key in accelValues:
             accelValues[key] = buf[i]<<8|buf[i+1]
@@ -35,3 +39,7 @@ class client:
 		if(len(self.measurementList) > 99):
 			self.measurementList.pop(0)
 		self.measurementList.append(accelValues)
+
+	def getJsonValues(self):
+		# Return the array of measurements as a json object
+		return json.dumps(self.measurementList)
