@@ -2,9 +2,6 @@ import micropython
 import uctypes
 from machine import I2C
 
-#buffer to store error messages
-micropython.alloc_emergency_exception_buf(100)
-
 #register defines
 ACCEL_X_H_REG = micropython.const(59)
 ACCEL_X_L_REG = micropython.const(60)

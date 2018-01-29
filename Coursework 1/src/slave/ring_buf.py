@@ -56,6 +56,12 @@ class ring_buf:
 
     return data
 
+  def put_block(self,data,size):
+    pass
+
+  def get_block(self,size):
+    pass
+
   def clear(self):
     self.write_pos = self.read_pos
     self.buf_size = 0
