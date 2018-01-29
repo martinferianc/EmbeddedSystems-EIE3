@@ -20,10 +20,19 @@ GYRO_Y_L_REG = micropython.const(70)
 GYRO_Z_H_REG = micropython.const(71)
 GYRO_Z_L_REG = micropython.const(72)
 
+SMPLRT_DIV  = micropython.const(25)
+CONF        = micropython.const(26)
+GYRO_CONF   = micropython.const(27)
+ACCEL_CONF  = micropython.const(28)
+
+#class to handle interface with mpu device
 class mpu:
     def __init__(self, freq=400000):
         self.i2c = I2C(freq=freq)
         self.slave = i2c.scan()
+        self.accel_buf = bytearray(6)
+        self.gyro_buf  = bytearray(6)
+        self.init_mpu()
 
     def turn_off(self):
         self.i2c.deinit()
@@ -35,4 +44,17 @@ class mpu:
             self.i2c.writeto_mem(self.slave,reg_addr,data)
  
     def read_reg(self, reg_addr, size):
-        self.i2c.readfrom_mem(self.slave,reg_addr,size)
+        self.i2c.readfrom_mem(self.slave,reg_addr,size)   
+
+    def get_accel(self):
+        self.accel_buf = self.read_reg(ACCEL_X_H_REG,6) 
+
+    def get_gyro(self):
+        self.gyro_buf = self.read_reg(GYRO_X_H_REG,6)
+
+    def init_mpu(self):
+        self.write_reg(SMPLRT_DIV   , b'00000000') #8kHz sampling rate
+        self.write_reg(CONF         , b'00000000') #no external sync, largest bandwidth
+        self.write_reg(GYRO_CONF    , b'00011000') #2000deg/s gyro range
+        self.write_reg(ACCEL_CONF   , b'00011000') #16g accel range
+        
