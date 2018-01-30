@@ -31,7 +31,7 @@ class client:
         accelHandle.writeto(__devAddr, buf)
 
     def setupInterupt(self, pin):
-        self.p0 = Pin(0, Pin.IN)
+        self.p0 = Pin(pin, Pin.IN)
         self.p0.irq(trigger=Pin.IRQ_RISING, handler=mpu.read_sensor_reg())
 
     def updateAccelValues(self,accelValues):
