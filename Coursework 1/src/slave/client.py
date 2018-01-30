@@ -5,6 +5,7 @@ class client:
 	# Initialise the class with the device address and the player number.
     def __init__(self, devAddr, playerNum):
 		self.__devAddr = devAddr
+        self.p0
 		self.__playerNum = playerNum
 		# Setup the wifi and the accelerometer and the datastructures to store the data
         self.ap = setupWifi()
@@ -28,6 +29,10 @@ class client:
         accelHandle = I2C(scl=Pin(5), sda=Pin(4), freq = 100000)
         buf = bytearray(2)
         accelHandle.writeto(__devAddr, buf)
+
+    def setupInterupt(self, pin):
+        self.p0 = Pin(0, Pin.IN)
+        self.p0.irq(trigger=Pin.IRQ_RISING, handler=mpu.read_sensor_reg())
 
     def updateAccelValues(self,accelValues):
 		# Take all the values
