@@ -1,5 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% set active_page = 'Home' %}
+{% block pageheader %}
+{% endblock pageheader %}
+
+{% block fullPage %}
 
 <head>
 
@@ -8,18 +11,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>MedAid | Helps you diagnose and avoid brain injuries</title>
+    <title>HeadAid | Helps you diagnose and avoid brain injuries</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/vendor/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/one-page-wonder.css" rel="stylesheet">
+    <link href="/static/css/one-page-wonder.css" rel="stylesheet">
 
 </head>
 
@@ -44,6 +47,9 @@
                         <a class="nav-link" href="#team">Team</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/demo">Demo</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="mailto:ferianc.martin@gmail.com" class="btn btn-primary rounded-pill-contact">Contact</a>
                     </li>
                 </ul>
@@ -65,7 +71,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 order-lg-2">
                     <div class="p-5">
-                        <img class="img-fluid rounded-circle" src="img/01.jpg" alt="">
+                        <img class="img-fluid rounded-circle" src="/static/img/01.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 order-lg-1">
@@ -83,7 +89,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="p-5">
-                        <img class="img-fluid rounded-circle" src="img/02.jpg" alt="">
+                        <img class="img-fluid rounded-circle" src="/static/img/02.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -102,9 +108,8 @@
                 <h2 class="display-4">Team</h2>
             </div>
         <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-lg-3 column-pad text-center">
-                <img src="img/team/martin.jpg" class="img-responsive img-circle" alt="">
+            <div class="col-md-3 column-pad text-center">
+                <img src="/static/img/team/martin.jpg" class="img-responsive img-circle" alt="">
                 <h4 class="text-center" style="padding-top: 15px;">Martin Ferianc</h4>
                 <ul class="list-inline social-buttons text-center">
                     <li style="margin: 10px;"><a href="https://www.linkedin.com/in/martin-ferianc-987751ab?authType=NAME_SEARCH&authToken=7-P6&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A393012535%2CauthType%3ANAME_SEARCH%2Cidx%3A1-2-2%2CtarId%3A1454210850483%2Ctas%3Aferianc%20martin" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
@@ -115,8 +120,8 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-lg-3 column-pad text-center">
-                <img src="img/team/owen.jpg" class="img-responsive img-circle" alt="">
+            <div class="col-md-3 column-pad text-center">
+                <img src="/static/img/team/owen.jpg" class="img-responsive img-circle" alt="">
                 <h4 class="text-center" style="padding-top: 15px;">Owen Harcombe</h4>
                 <ul class="list-inline social-buttons text-center">
                     <li style="margin: 10px"><a href="https://www.linkedin.com/in/owen-harcombe-27422a114/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
@@ -125,14 +130,25 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-lg-3 column-pad text-center">
-                <img src="img/team/alex.jpg" class="img-responsive img-circle" alt="">
+            <div class="col-md-3 column-pad text-center">
+                <img src="/static/img/team/alexl.jpg" class="img-responsive img-circle" alt="">
                 <h4 class="text-center" style="padding-top: 15px;">Alexander Luisi</h4>
                 <ul class="list-inline social-buttons text-center">
                     <li style="margin: 10px">
                         <a href="https://www.linkedin.com/in/alexander-luisi/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
                     </li>
                     <li><a href="https://github.com/luisi-at" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3 column-pad text-center">
+                <img src="/static/img/team/alexm.jpg" class="img-responsive img-circle" alt="">
+                <h4 class="text-center" style="padding-top: 15px;">Alexander Montgomerie</h4>
+                <ul class="list-inline social-buttons text-center">
+                    <li style="margin: 10px">
+                        <a href="https://www.linkedin.com/in/alexander-montgomerie-corcoran-83aa7312a/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                    </li>
+                    <li><a href="https://github.com/AlexMontgomerie" target="_blank"><i class="fab fa-github fa-2x"></i></a>
                     </li>
                 </ul>
             </div>
@@ -149,9 +165,6 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
-</html>
+{% endblock fullPage %}
+<!-- Bootstrap core JavaScript -->
+<script src=" {{ url_for('static', filename='js/scripts.js') }}"></script>

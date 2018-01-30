@@ -1,26 +1,29 @@
-from team import Team
-from GUI import GUI
+from algorithms.team import Team
+from algorithms.kmeans import KMeans
 import random
+import _thread
 import time
+from www.web import create_app
 
-JSON_FILE = "../../data/team/team.json"
-IMG_FILES = "img/"
-SCREEN_WIDTH = 1500
-SCREEN_HEIGHT = 400
 
-team = Team(JSON_FILE)
 
-gui = GUI(team, IMG_FILES, SCREEN_WIDTH, SCREEN_HEIGHT)
 
-def main_loop():
-    #In case of an injury
-    i = random.randint(0,19)
-    t = time.strftime('%H:%M:%S')
-    team.update_player(gui_index = i, condition="critical", injury_time=t)
-    gui.alert(gui_index=i)
+HOST = "0.0.0.0"
+PORT = 8086
+#Connection
 
-    time.sleep(3)
-    gui.update(f_handle=main_loop)
+#Filtering
 
-gui.update(f_handle=main_loop)
-gui.loop()
+#Write to json
+
+
+#ALL ESTABLISHING CODE BEFORE THESE LINES
+app = create_app('dev')
+
+def flask_thread():
+    app.run(debug=False, host=HOST,port=PORT, threaded=True)
+_thread.start_new_thread(flask_thread,())
+
+# Main Loop
+while True:
+    pass
