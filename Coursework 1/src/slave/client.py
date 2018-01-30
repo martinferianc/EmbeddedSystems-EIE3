@@ -1,5 +1,8 @@
 from machine import Pin I2C
+from umqtt.simple import MQTTClient
+import machine, ubinascii, time
 import esp, network, json
+
 
 #register defines
 ACCEL_X_H_REG = micropython.const(59)
@@ -23,6 +26,11 @@ ACCEL_CONF  = micropython.const(28)
 INT_EN      = micropython.const(56)
 INT_PIN_CFG = micropython.const(55)
 
+# MQTT Defaults:
+BROKER = "192.168.0.10" # TEMP ADDRESS
+CLIENT_ID = ubinascii.hexlify(machine.unique_id())
+TOPIC = b"sensor_reading"
+
 class client:
 
 ##################### Setup Functions ############################
@@ -37,7 +45,7 @@ class client:
 		# Setup the wifi and the accelerometer and the datastructures to store the data
         self.ap = self.setupWifi()
         self.initMpu()
-		self.accelValues = {'ACX': 0, 'ACY': 0, 'ACZ': 0, 'TMP': 0, 'GYX': 0, 'GYY': 0, 'GYZ': 0}
+		self.accelValues = {'PLAYER': playerNum, 'DEVICE ADDRESS': deviceAddress, 'ACX': 0, 'ACY': 0, 'ACZ': 0, 'TMP': 0, 'GYX': 0, 'GYY': 0, 'GYZ': 0}
 		self.measurementList = [self.accelValues for x in range(100)]
 
     def setupWifi(self):
@@ -87,3 +95,8 @@ class client:
 		if(len(self.measurementList) > 99):
 			self.measurementList.pop(0)
 		self.measurementList.append(accelValues)
+
+##################### Client MQTT Functions ############################
+
+    def publishDataToBroker(self):
+        client = MQTTClient
