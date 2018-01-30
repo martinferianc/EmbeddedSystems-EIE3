@@ -25,7 +25,7 @@ INT_EN      = micropython.const(56)
 INT_PIN_CFG = micropython.const(55)
 
 #class to handle interface with mpu device
-class mpu:
+class Mpu:
     def __init__(self, freq=400000):
         self.i2c = I2C(freq=freq)
         self.slave = i2c.scan()
@@ -33,7 +33,6 @@ class mpu:
         self.gyro_buf   = bytearray(6)
         self.sensor_buf = bytearray(14)
         self.init_mpu()
-
 
     def turn_off(self):
         self.i2c.deinit()
@@ -43,9 +42,9 @@ class mpu:
             raise ValueError('Only write 1 Byte of data to a register')
         else:
             self.i2c.writeto_mem(self.slave,reg_addr,data)
- 
+
     def read_reg(self, reg_addr, size):
-        self.i2c.readfrom_mem(self.slave,reg_addr,size)   
+        self.i2c.readfrom_mem(self.slave,reg_addr,size)
 
     def read_sensor_reg(self):
         self.i2c.readfrom_mem_into(self.slave,ACCEL_X_H_REG,self.sensor_buf)
@@ -57,5 +56,3 @@ class mpu:
         self.write_reg(ACCEL_CONF   , b'00011000') #16g accel range
         self.write_reg(INT_EN       , b'00000001') #16g accel range
         self.write_reg(INT_PIN_CFG  , b'10100000') #16g accel range
-       
- 

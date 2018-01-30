@@ -24,13 +24,13 @@ class client:
         return ap
 
     def setupAccel(self):
-		# Setup the I2C interface for the accelerometer 
+		# Setup the I2C interface for the accelerometer
         accelHandle = I2C(scl=Pin(5), sda=Pin(4), freq = 100000)
         buf = bytearray(2)
         accelHandle.writeto(__devAddr, buf)
 
     def updateAccelValues(self,accelValues):
-		# Take all the values 
+		# Take all the values
         i = 0
         for key in accelValues:
             accelValues[key] = buf[i]<<8|buf[i+1]
