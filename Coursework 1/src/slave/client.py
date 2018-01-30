@@ -37,7 +37,7 @@ class client:
 
 	# Initialise the class with the device address and the player number.
     def __init__(self, playerNum, deviceAddress):
-        self.i2c = I2C(scl = Pin(5), sda = Pin(4), freq=400000)
+        self.i2c = I2C(freq=400000)
         self.slave = i2c.scan()
         self.sensor_buf = bytearray(14)
         self.p0
@@ -49,20 +49,19 @@ class client:
 		self.measurementList = [self.accelValues for x in range(100)]
 
     def setupWifi(self):
-        ap_if = network.WLAN(network.AP_IF)
-        ap_if.active(False)
         wlan = network.WLAN(network.STA_IF)
         wlan.active(True)
         wlan.scan()
         if(!wlan.isconnected()):
-            wlan.connect('EEERover', 'exhibition')
-        #ap = network.WLAN(network.AP_IF)
-        #ap.active(True)
-        return wlan
+            wlan.connect('essid', 'password')
+
+        ap = network.WLAN(network.AP_IF)
+        ap.active(True)
+        return ap
 
     def initMpu(self):
-        self.write_reg(SMPLRT_DIV   , 0xFF) #4Hz sampling rate
-        self.write_reg(CONF         , 0x01) #no external sync, largest bandwidth, fs = 1kHz
+        self.write_reg(SMPLRT_DIV   , b'00000000') #8kHz sampling rate
+        self.write_reg(CONF         , b'00000000') #no external sync, largest bandwidth
         self.write_reg(GYRO_CONF    , b'00011000') #2000deg/s gyro range
         self.write_reg(ACCEL_CONF   , b'00011000') #16g accel range
         self.write_reg(INT_EN       , b'00000001') #16g accel range
@@ -100,4 +99,8 @@ class client:
 ##################### Client MQTT Functions ############################
 
     def publishDataToBroker(self):
-        client = MQTTClient
+        client = MQTTClient(CLIENT_ID,BROKER)
+        client.connect()
+        client.publish(TOPIC, bytes(return ujson.dumps(self.measurementList)), 'utf-8')
+
+    def getTimeFromBroker(self)
