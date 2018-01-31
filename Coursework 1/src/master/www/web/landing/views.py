@@ -46,6 +46,15 @@ def load_data():
             parsed.append(data[str(i)])
 
         return (parsed,team_name)
+
+def load_log():
+    with open("../../data/team/log.json", 'r') as f:
+        data = json.load(f)
+        parsed = []
+        for i in range(0,len(data)):
+            parsed.append(data[str(i)])
+        return parsed
+
 @landing.after_request
 def add_header(r):
     """
@@ -65,21 +74,13 @@ def add_header(r):
 def index():
     return render_template('index.html', page_title='Home')
 
-#Listening here
-@landing.route('/data_posting', methods=['GET','POST'])
-@landing.route('/data_posting/', methods=['GET','POST'])
-def data_posting():
-    parsed,team_name = load_data()
-
-    ## DO some processing
-    return render_template('demo.html',players=parsed,team_name=team_name,page_title='Demo')
-
 
 @landing.route('/demo', methods=['GET','POST'])
 @landing.route('/demo/', methods=['GET','POST'])
 def demo():
     parsed,team_name = load_data()
-    return render_template('demo.html',players=parsed,team_name=team_name,page_title='Demo')
+    log = load_log()
+    return render_template('demo.html',logs = log, players=parsed,team_name=team_name,page_title='Demo')
 
 
 
