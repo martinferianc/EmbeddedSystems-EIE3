@@ -10,6 +10,7 @@ $(function() {
     updateTime();
     setInterval(updateTime, 1000);
 })
+
 var previous = null;
 var current = null;
     setInterval(function() {
