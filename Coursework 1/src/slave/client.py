@@ -45,13 +45,13 @@ class Client:
     def __init__(self, playerNum, deviceAddress):
         self.i2c = I2C(scl = Pin(5), sda=Pin(4), freq=400000)
         self.slave = deviceAddress
-        self.sensor_buf = bytearray(14)
         self.__playerNum = playerNum
         # Setup the wifi and the accelerometer and the datastructures to store the data
         #self.ap = self.setupWifi()
         self.initMpu()
-        self.accelValues = {'PLAYER': playerNum, 'ACX': 0, 'ACY': 0, 'ACZ': 0, 'TMP': 0, 'GYX': 0, 'GYY': 0, 'GYZ': 0}
-        self.measurementList = [self.accelValues for x in range(100)]
+        self.sampleNumber = 0
+        accelValues = {'SAMPLE': self.sampleNumber, 'PLAYER': playerNum, 'ACX': 0, 'ACY': 0, 'ACZ': 0, 'TMP': 0, 'GYX': 0, 'GYY': 0, 'GYZ': 0}
+        self.measurementList = [accelValues for x in range(50)]
 
     def setupWifi(self):
         wlan = network.WLAN(network.STA_IF)
@@ -70,19 +70,24 @@ class Client:
         self.write_reg(GYRO_CONF, 0x18)  # 2000deg/s gyro range
         self.write_reg(ACCEL_CONF, 0x18)  # 16g accel range
         self.write_reg(INT_EN, 0x01)  # 16g accel range
-        self.write_reg(INT_PIN_CFG, 0xA0)  # 16g accel range
+        self.write_reg(INT_PIN_CFG, 0xF0)  # 16g accel 
 
 ###################### MPU Functions #############################
 
     def read_sensor_reg(self):
-        self.i2c.readfrom_mem_into(self.slave, ACCEL_X_H_REG, self.sensor_buf)
-        micropython.schedule(self.updateAccelValues)
+        sensor_buf = bytearray(14)
+        self.i2c.readfrom_mem_into(self.slave, ACCEL_X_H_REG, sensor_buf)
+        print("Data Read")
+        self.updateAccelValues(sensor_buf)
+
 
     def write_reg(self, reg_addr, data):
         #if uctypes.size_of(data) > 1:
         #    raise ValueError('Only write 1 Byte of data to a register')
         #else:
-        self.i2c.writeto_mem(self.slave, reg_addr, bytes(data))
+        dataByte = bytearray(1)
+        dataByte[0] = data
+        self.i2c.writeto_mem(self.slave, reg_addr, dataByte)
 
 ##################### Client Functions ############################
 
@@ -90,16 +95,28 @@ class Client:
         # Return the array of measurements as a json object
         return ujson.dumps(self.measurementList)
 
-    def updateAccelValues(self):
-        # Take all the values
-        i = 0
-        for key in self.accelValues:
-            self.accelValues[key] = self.sensor_buf[i] << 8 | self.sensor_buf[i + 1]
-            i = i + 2
-            # Store the last 100 measurements ready for transmission if a shock occurs
-            if(len(self.measurementList) > 99):
-                self.measurementList.pop(0)
-            self.measurementList.append(self.accelValues)
+    def updateAccelValues(self, sensor_buf):
+        # Update all of the values
+        accelValues = {}
+        accelValues['SAMPLE'] = self.sampleNumber
+        accelValues['PLAYER'] = self.__playerNum
+        accelValues['ACX'] = sensor_buf[0] << 8 | sensor_buf[1]
+        accelValues['ACY'] = sensor_buf[2] << 8 | sensor_buf[3]
+        accelValues['ACZ'] = sensor_buf[4] << 8 | sensor_buf[5]
+
+        #update temperature value
+        accelValues['TMP'] = sensor_buf[6] << 8 | sensor_buf[7]
+
+        #update gyroscope values
+        accelValues['GYX'] = sensor_buf[8] << 8 | sensor_buf[9]
+        accelValues['GYY'] = sensor_buf[10] << 8 | sensor_buf[11]
+        accelValues['GYZ'] = sensor_buf[12] << 8 | sensor_buf[13]
+
+        # Store the last 100 measurements ready for transmission if a shock occurs
+        if(len(self.measurementList) > 49):
+            self.measurementList.pop(0)
+        self.measurementList.append(accelValues)
+        self.sampleNumber = self.sampleNumber +1
 
 ##################### Client MQTT Functions ############################
 
