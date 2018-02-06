@@ -34,8 +34,8 @@ PWR_MGMT    = micropython.const(107)
 
 # MQTT Defaults:
 BROKER = "192.168.0.10"  # TEMP ADDRESS
-CLIENT_ID = ubinascii.hexlify(machine.unique_id())
-TOPIC = "esys/HeadAid/sensor_reading"
+CLIENT_ID = "HeadAid" #+ ubinascii.hexlify(machine.unique_id())
+TOPIC = "esys/HeadAid/sensor"
 
 
 #Network setup variables:
@@ -55,7 +55,7 @@ class Client:
 
         #hardware threshold init
         self.thresholdFlag = False
-        self.thresholdValue = 2000
+        self.thresholdValue = 20
         self.thresholdCounter = int(measurementSize/2)
 
         #network init
@@ -69,6 +69,10 @@ class Client:
         self.sampleNumber = 0
         accelValues = {'SAMPLE': self.sampleNumber, 'PLAYER': playerNum, 'ACX': 0, 'ACY': 0, 'ACZ': 0, 'TMP': 0, 'GYX': 0, 'GYY': 0, 'GYZ': 0}
         self.measurementList = [accelValues for x in range(measurementSize)]
+        self.mainPack = {'PLAYER': playerNum, 'DEVICE ADDRESS': deviceAddress, 'TIMESTAMP': 0, 'DATA': []}
+        
+        self.mqttClient = MQTTClient(CLIENT_ID,BROKER)
+        self.mqttClient.connect()  
 
     def accessInit(self):
         #access point setup
@@ -153,6 +157,9 @@ class Client:
         self.thresholdCounter = int(self.measurementSize/2)
 
     def updateAccelValues(self, sensor_buf):
+        
+        print('here, update')
+
         # Update all of the values
         accelValues = {}
         accelValues['SAMPLE'] = self.sampleNumber
@@ -193,28 +200,35 @@ class Client:
 
 ##################### Client MQTT Functions ############################
 
-    def publishDataToBroker(self):
+    def publishDataToBroker(self,_):
 
+        print('here, publish')
+
+        #disable interrupts whilst sending data
+        #irq_state = pyb.disable_irq()
+        '''
         # Check if there is an active connection
         if not self.ap_if.active:
             # Reconnect if there isn't
             self.ap_if = self.accessInit() #TODO: need to check what we are reconnecting to
-            self.client = MQTTClient(CLIENT_ID,BROKER)
-            self.client.connect()
-
+            self.mqttClient = MQTTClient(CLIENT_ID,BROKER)
+            self.mqttClient.connect()
+        '''
         # Serialize the data packet
         self.mainPack['DATA'] = self.measurementList
         self.mainPack['TIMESTAMP'] = self.getTimeStamp()
+        
         # Publish the data to the MQTT broker
-        self.client.publish(bytes(TOPIC), bytes(ujson.dumps(self.mainPack)), 'utf-8')
+        self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
+
+        #enable interrupts again (keep collecting data)
+        #pyb.enable_irq(irq_state)
 
     def getTimeStamp(self):
-        return 0
-
+        pass
 '''
     def setTime(self):
         # Get the time from an NTP server at startup and set the RTC
         rtc = machine.RTC()
         rtc.init(settime())
 '''
-
