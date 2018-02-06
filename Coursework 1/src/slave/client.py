@@ -35,7 +35,7 @@ PWR_MGMT    = micropython.const(107)
 # MQTT Defaults:
 BROKER = "192.168.0.10"  # TEMP ADDRESS
 CLIENT_ID = ubinascii.hexlify(machine.unique_id())
-TOPIC = "sensor_reading"
+TOPIC = "esys/HeadAid/sensor_reading"
 
 
 #Network setup variables:
@@ -53,27 +53,53 @@ class Client:
         self.__playerNum = playerNum
         self.measurementSize = measurementSize
 
+        #hardware threshold init
         self.thresholdFlag = False
         self.thresholdValue = 2000
         self.thresholdCounter = int(measurementSize/2)
 
+        #network init
+        self.ap_if  = self.accessInit()
+        self.sta_if = self.stationInit()
+
         # Setup the wifi and the accelerometer and the datastructures to store the data
         #self.ap = self.setupWifi()
         self.initMpu()
+        
         self.sampleNumber = 0
         accelValues = {'SAMPLE': self.sampleNumber, 'PLAYER': playerNum, 'ACX': 0, 'ACY': 0, 'ACZ': 0, 'TMP': 0, 'GYX': 0, 'GYY': 0, 'GYZ': 0}
         self.measurementList = [accelValues for x in range(measurementSize)]
 
-    def setupWifi(self):
+    def accessInit(self):
+        #access point setup
+        ap = network.WLAN(network.AP_IF)
+        ap.active(True)
+        
+        print (ap.ifconfig())
+        
+        return ap
+
+    def stationInit(self):
+
+        #station setup
         wlan = network.WLAN(network.STA_IF)
         wlan.active(True)
         wlan.scan()
-        if not (wlan.isconnected()):
-            wlan.connect('essid', 'password')
+        #TODO: maybe loop until connected? and also have some sort of timeout?
+        if not wlan.isconnected():
+            wlan.connect(SSID, NETWORK_PW)
+       
+        print (wlan.ifconfig())
 
-        ap = network.WLAN(network.AP_IF)
-        ap.active(True)
-        return ap
+
+
+        return wlan
+ 
+    def stationRefresh(self):
+        if not self.sta_if.isconnected():
+            self.sta_if.scan()
+            self.sta_if.connect(SSID, NETWORK_PW)
+        return
 
     def initMpu(self):
         self.write_reg(PWR_MGMT, 0x80)  # reset
@@ -167,9 +193,28 @@ class Client:
 
 ##################### Client MQTT Functions ############################
 
-#    def publishDataToBroker(self):
-#        client = MQTTClient(CLIENT_ID, BROKER)
-#        client.connect()
-#        client.publish(TOPIC, bytes(self.getJsonValues(), 'utf-8')
-#
-#   def getTimeFromBroker(self)
+    def publishDataToBroker(self):
+
+        # Check if there is an active connection
+        if not self.ap_if.active:
+            # Reconnect if there isn't
+            self.ap_if = self.accessInit() #TODO: need to check what we are reconnecting to
+            self.client = MQTTClient(CLIENT_ID,BROKER)
+            self.client.connect()
+
+        # Serialize the data packet
+        self.mainPack['DATA'] = self.measurementList
+        self.mainPack['TIMESTAMP'] = self.getTimeStamp()
+        # Publish the data to the MQTT broker
+        self.client.publish(bytes(TOPIC), bytes(ujson.dumps(self.mainPack)), 'utf-8')
+
+    def getTimeStamp(self):
+        return 0
+
+'''
+    def setTime(self):
+        # Get the time from an NTP server at startup and set the RTC
+        rtc = machine.RTC()
+        rtc.init(settime())
+'''
+
