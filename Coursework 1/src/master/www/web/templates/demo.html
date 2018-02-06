@@ -14,7 +14,11 @@
     <title>Demo</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/static/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!-- Custom fonts for this template -->
     <link href="/static/vendor/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" type="text/css">
@@ -33,22 +37,29 @@
 <body>
 
     <!-- Navigation -->
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
         <div class="container">
-            <a class="btn btn-primary rounded-pill-logo navbar-brand" style="color:#ecf0f1;">HeadAid</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <a href="/index"><img src="/static/img/logo.png" href="/index" alt=""></a> 
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">About</a>
+                        <a class="nav-link" href="/index">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Functionality</a>
+                        <a class="nav-link" href="/index">Functionality</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Team</a>
+                        <a class="nav-link" href="/index">Market</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">How does it work?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">Technology</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/demo">Demo</a>
@@ -62,25 +73,48 @@
     </nav>
 
     <section>
-        <div class="container" style="padding-top:100px">
+        <div class="container" style="padding-top:120px">
             <p id="time" class="text-right"></p>
             <p class="text-left"><h2>{{team_name}}</h2></p>
-            <div class="row" style="padding-bottom:30px;">
+            <div class="row" style="margin-bottom:30px;">
                 {% for player in players %}
-                <div class="player col-md-3" style="padding-right:40px">
-                    <img src="/static/img/player.jpg"/>
-                    <div class="row" style="padding-top:10px">
-                        <h6 style="padding-left:20px">{{player['number']}}</h6>
-                        <h6 style="padding-left:10px">{{player['name']}}</h6>
+                {% if player['condition']=="good" %}
+                    <div class="col-sd-1 card" style="background-color: #b8e994; width: 10rem; margin-bottom: 30px; margin-left: 30px;  border-color: #333; border-width:2px;">
+                {% endif %}
+                {% if player['condition']=="bad" %}
+                    <div class="col-sd-1 card" style="background-color: #fad390; width: 10rem; margin-bottom: 30px; margin-left: 30px;  border-color: #333; border-width:2px;">
+                {% endif %}
+                {% if player['condition']=="critical" %}
+                    <div class="col-sd-1 card" style="background-color: #e55039; width: 10rem; margin-bottom: 30px; margin-left: 30px;  border-color: #333; border-width:2px;">
+                {% endif %}
+                    <div class="row">
+                        <div class="col-lg-12 text-center" style="padding-top:10px;">
+                            <img src="/static/img/player.svg"/>
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-sd-12">
-                            <img src="/static/img/{{player['condition']}}.gif" style="padding-left:25px; padding-top:6px;"/>
+                        <div class="col-sd-1">
+                        <p id="time_on_ice{{player['index']}}"></p>
                         </div>
-                        <div class="col-sd-12">
-                            <form action="/demo/{{player['index']}}" method="post">
-                                <button class="btn btn-default" type="submit">
-                                    <img class="on_field" id={{player['index']}} src="/static/img/{{player['on_field']}}.png"/>
+                    </div>
+                    <hr style="border-width:2px; border-color: #333;">
+                    <div class="row" style="padding-top:10px">
+                        <div class="col-lg-12 text-center">
+                            <h3>{{player['number']}}</h3>
+                            <h6>{{player['name']}}</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <form action="/demo/{{player['index']}}" method="post" style="margin-top:10px;">
+                                {% if player['on_field']=="no" %}
+                                    <button id="on_ice{{player['index']}}" class="btn btn-danger btn-circle btn-lg" type="submit">
+                                        Go!
+                                {% else %}
+                                    <button id="on_ice{{player['index']}}" class="btn btn-success btn-circle btn-lg" type="submit">
+                                        Off!
+                                {% endif %}
+
                                 </button>
                             </form>
                         </div>
@@ -88,10 +122,47 @@
                 </div>
                 {% endfor %}
             </div>
-
         </div>
     </section>
+    <section>
+        <div class="container" style="padding-top:20px">
+            <div class="row">
+                <p class="text-left"><h2>Log</h2></p>
+            </div>
+                {%for l in logs %}
+                <div class="row" style="margin-bottom:20px;">
+                    <div class="col-lg-12">
+                        <div class="card">
+                        {% if l['condition']=="good" %}
+                        <div class="card-header" style="background-color: #b8e994;">
+                        {% endif %}
+                        {% if l['condition']=="bad" %}
+                        <div class="card-header" style="background-color: #fad390;">
+                        {% endif %}
+                        {% if l['condition']=="critical" %}
+                        <div class="card-header" style="background-color: #e55039;">
+                        {% endif %}
+                        <h3>
+                            <div class="row">
 
+                            <div class="col-lg-6 text-left">
+                                <p >{{l["name"]}} {{l['number']}}</p>
+                            </div>
+                            <div class="col-lg-6 text-right">
+                                <p>{{l["time"]}}</p>
+                            </div>
+                        </div>
+                        </h3>
+                    </div>
+                        <div class="card-block"style="padding-top:10px; padding-bottom:10px;">
+                            <p class="card-text" style="padding-left:20px;">{{l['message']}}</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+        </div>
+    </section>
 
 
     <!-- Footer -->

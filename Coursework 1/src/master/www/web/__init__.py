@@ -51,8 +51,6 @@ def create_app(config_name):
     app.config.from_object(config[config_name])
     app.wsgi_app = ProxyFix(app.wsgi_app)
 
-
-
     from .landing import landing as landing_blueprint
     app.register_blueprint(landing_blueprint)
 
@@ -63,9 +61,4 @@ def create_app(config_name):
     def setup_logging():
         if not app.debug:
             app.logger.addHandler(handler)
-
-    # Setup raven to report to sentry
-    #sentry = Sentry(app, dsn='https://{key}@sentry.io/{key2}')
-
-    # return created app
     return app

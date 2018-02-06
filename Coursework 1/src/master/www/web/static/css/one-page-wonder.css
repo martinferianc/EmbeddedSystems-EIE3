@@ -56,25 +56,23 @@ h6 {
   color: white;
 }
 .navbar-custom {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .navbar-custom .navbar-brand {
-  font-size: 1.4rem;
-  letter-spacing: 0.13rem;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
   font-weight: 700;
 }
-.nav-item{
-    padding-top: 2px;
-}
 
-.navbar-custom .navbar-nav .nav-item .nav-link{
+.navbar-custom .navbar-nav .nav-item .nav-link {
   text-transform: uppercase;
   font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.13rem;
+  letter-spacing: 0.1rem;
 }
 header.masthead {
   position: relative;
