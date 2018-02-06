@@ -24,12 +24,13 @@ GYRO_Y_L_REG = micropython.const(70)
 GYRO_Z_H_REG = micropython.const(71)
 GYRO_Z_L_REG = micropython.const(72)
 
-SMPLRT_DIV = micropython.const(25)
-CONF = micropython.const(26)
-GYRO_CONF = micropython.const(27)
-ACCEL_CONF = micropython.const(28)
-INT_EN = micropython.const(56)
+SMPLRT_DIV  = micropython.const(25)
+CONF        = micropython.const(26)
+GYRO_CONF   = micropython.const(27)
+ACCEL_CONF  = micropython.const(28)
+INT_EN      = micropython.const(56)
 INT_PIN_CFG = micropython.const(55)
+PWR_MGMT    = micropython.const(107)
 
 # MQTT Defaults:
 BROKER = "192.168.0.10"  # TEMP ADDRESS
@@ -37,21 +38,31 @@ CLIENT_ID = ubinascii.hexlify(machine.unique_id())
 TOPIC = "sensor_reading"
 
 
+#Network setup variables:
+SSID = 'EEERover'
+NETWORK_PW = 'exhibition'
+
 class Client:
 
     ##################### Setup Functions ############################
 
         # Initialise the class with the device address and the player number.
-    def __init__(self, playerNum, deviceAddress):
+    def __init__(self, playerNum, deviceAddress, measurementSize):
         self.i2c = I2C(scl = Pin(5), sda=Pin(4), freq=400000)
         self.slave = deviceAddress
         self.__playerNum = playerNum
+        self.measurementSize = measurementSize
+
+        self.thresholdFlag = False
+        self.thresholdValue = 2000
+        self.thresholdCounter = int(measurementSize/2)
+
         # Setup the wifi and the accelerometer and the datastructures to store the data
         #self.ap = self.setupWifi()
         self.initMpu()
         self.sampleNumber = 0
         accelValues = {'SAMPLE': self.sampleNumber, 'PLAYER': playerNum, 'ACX': 0, 'ACY': 0, 'ACZ': 0, 'TMP': 0, 'GYX': 0, 'GYY': 0, 'GYZ': 0}
-        self.measurementList = [accelValues for x in range(50)]
+        self.measurementList = [accelValues for x in range(measurementSize)]
 
     def setupWifi(self):
         wlan = network.WLAN(network.STA_IF)
@@ -65,26 +76,37 @@ class Client:
         return ap
 
     def initMpu(self):
+        self.write_reg(PWR_MGMT, 0x80)  # reset
+        time.sleep(1)
+        self.write_reg(PWR_MGMT, 0x00)  # 8kHz sampling rate
         self.write_reg(SMPLRT_DIV, 0xFF)  # 8kHz sampling rate
+        #TODO adjust sample rate
         self.write_reg(CONF, 0x01)  # no external sync, largest bandwidth
         self.write_reg(GYRO_CONF, 0x18)  # 2000deg/s gyro range
         self.write_reg(ACCEL_CONF, 0x18)  # 16g accel range
         self.write_reg(INT_EN, 0x01)  # 16g accel range
-        self.write_reg(INT_PIN_CFG, 0xF0)  # 16g accel 
+        self.write_reg(INT_PIN_CFG, 0xB0)  # 16g accel 
 
 ###################### MPU Functions #############################
 
-    def read_sensor_reg(self):
-        sensor_buf = bytearray(14)
-        self.i2c.readfrom_mem_into(self.slave, ACCEL_X_H_REG, sensor_buf)
-        print("Data Read")
-        self.updateAccelValues(sensor_buf)
+    def read_sensor_reg(self,_):
 
+        #disable interrupts whilst doing memory operations 
+        irq_state = machine.disable_irq()
+
+        #buffer for the sensor data
+        sensor_buf = bytearray(14)
+        
+        #read sensor data into buffer
+        self.i2c.readfrom_mem_into(self.slave, ACCEL_X_H_REG, sensor_buf)
+       
+        #update the sensor values in class dictionary
+        self.updateAccelValues(sensor_buf)
+  
+        #re-enable interrupts
+        machine.enable_irq(irq_state)
 
     def write_reg(self, reg_addr, data):
-        #if uctypes.size_of(data) > 1:
-        #    raise ValueError('Only write 1 Byte of data to a register')
-        #else:
         dataByte = bytearray(1)
         dataByte[0] = data
         self.i2c.writeto_mem(self.slave, reg_addr, dataByte)
@@ -93,7 +115,16 @@ class Client:
 
     def getJsonValues(self):
         # Return the array of measurements as a json object
-        return ujson.dumps(self.measurementList)
+        #return ujson.dumps(self.measurementList)
+        for item in self.measurementList:
+            print(item)
+        print('\n')
+
+    def getAccelMagnitude(self, values):
+        return values['ACX']+values['ACY']+values['ACZ']
+
+    def resetThresholdCounter(self):
+        self.thresholdCounter = int(self.measurementSize/2)
 
     def updateAccelValues(self, sensor_buf):
         # Update all of the values
@@ -113,10 +144,26 @@ class Client:
         accelValues['GYZ'] = sensor_buf[12] << 8 | sensor_buf[13]
 
         # Store the last 100 measurements ready for transmission if a shock occurs
-        if(len(self.measurementList) > 49):
+        if(len(self.measurementList) > 5):
             self.measurementList.pop(0)
         self.measurementList.append(accelValues)
-        self.sampleNumber = self.sampleNumber +1
+        
+        self.sampleNumber += 1
+
+        #flag set: decrease counter
+        if self.thresholdFlag:
+          self.thresholdCounter -= 1
+
+        #check for threshold
+        if (self.getAccelMagnitude(accelValues)>self.thresholdValue) and not self.thresholdFlag:
+            #reset threshold
+            self.resetThresholdCounter()
+            self.thresholdFlag = True
+
+        if self.thresholdFlag and (self.thresholdCounter==0):
+            #publish results
+            pass
+
 
 ##################### Client MQTT Functions ############################
 
