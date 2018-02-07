@@ -49,7 +49,7 @@ class ring_buf:
     data = self.buf[self.read_pos]
     self.buf_size -= 1
 
-    if self.read_po self.MAX_BUF_SIZE-1:
+    if self.read_pos == self.MAX_BUF_SIZE-1:
       self.read_pos = 0
     else:
       self.read_pos += 1
