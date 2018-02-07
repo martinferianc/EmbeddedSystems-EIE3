@@ -11,7 +11,7 @@ playerNum = 1
 
 def callback(pin):
     #schedule to call sensor read function
-    micropython.schedule(client_board.read_sensor_reg,0)
+    micropython.schedule(client_board.read_sensor_reg, 0)
 
 # Initialise the client and the buffer for the registers
 client_board = client.Client(playerNum, deviceAddress, 20)

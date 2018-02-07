@@ -73,6 +73,8 @@ class Client:
 
         self.mqttClient = MQTTClient(CLIENT_ID,BROKER)
         self.mqttClient.connect()
+        print('here,init')
+
 
     def accessInit(self):
         #access point setup
@@ -97,8 +99,6 @@ class Client:
 
         print (wlan.ifconfig())
 
-
-
         return wlan
 
     def stationRefresh(self):
@@ -110,14 +110,15 @@ class Client:
     def initMpu(self):
         self.write_reg(PWR_MGMT, 0x80)  # reset
         time.sleep(1)
-        self.write_reg(PWR_MGMT, 0x00)  # 8kHz sampling rate
-        self.write_reg(SMPLRT_DIV, 0xFF)  # 8kHz sampling rate
+        self.write_reg(PWR_MGMT, 0x00)  # power on
+        self.write_reg(SMPLRT_DIV, 0x7F)  # 8kHz sampling rate
         #TODO adjust sample rate
         self.write_reg(CONF, 0x01)  # no external sync, largest bandwidth
         self.write_reg(GYRO_CONF, 0x18)  # 2000deg/s gyro range
         self.write_reg(ACCEL_CONF, 0x18)  # 16g accel range
         self.write_reg(INT_EN, 0x01)  # 16g accel range
-        self.write_reg(INT_PIN_CFG, 0xB0)  # 16g accel
+        self.write_reg(INT_PIN_CFG, 0x90)  # 16g accel
+        print('here, init MPU')
 
 ###################### MPU Functions #############################
 
