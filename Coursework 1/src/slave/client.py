@@ -55,7 +55,7 @@ class Client:
 
         #hardware threshold init
         self.thresholdFlag = False
-        self.thresholdValue = 20
+        self.thresholdValue = 5000
         self.thresholdCounter = int(measurementSize/2)
 
         #network init
@@ -184,7 +184,7 @@ class Client:
 
         # Store the last 100 measurements ready for transmission if a shock occurs
         if(len(self.measurementList) > 5):
-            uheapq.heappop(self.measurementList)
+            self.measurementList.pop(0)
         uheapq.heappush(self.measurementList,accelValues)
 
         #flag set: decrease counter
@@ -194,6 +194,7 @@ class Client:
         #check for threshold
         if (self.getAccelMagnitude(accelValues)>self.thresholdValue) and not self.thresholdFlag:
             #reset threshold
+            print('here, threshold')
             self.resetThresholdCounter()
             self.thresholdFlag = True
 
