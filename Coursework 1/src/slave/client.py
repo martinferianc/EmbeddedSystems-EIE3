@@ -65,40 +65,42 @@ class Client:
         # Setup the wifi and the accelerometer and the datastructures to store the data
         #self.ap = self.setupWifi()
         self.initMpu()
-        
+
         self.sampleNumber = 0
         accelValues = {'SAMPLE': self.sampleNumber, 'PLAYER': playerNum, 'ACX': 0, 'ACY': 0, 'ACZ': 0, 'TMP': 0, 'GYX': 0, 'GYY': 0, 'GYZ': 0}
         self.measurementList = [accelValues for x in range(measurementSize)]
         self.mainPack = {'PLAYER': playerNum, 'DEVICE ADDRESS': deviceAddress, 'TIMESTAMP': 0, 'DATA': []}
-        
+
         self.mqttClient = MQTTClient(CLIENT_ID,BROKER)
-        self.mqttClient.connect()  
+        self.mqttClient.connect()
 
     def accessInit(self):
         #access point setup
         ap = network.WLAN(network.AP_IF)
         ap.active(True)
-        
+
         print (ap.ifconfig())
-        
+
         return ap
 
     def stationInit(self):
 
         #station setup
         wlan = network.WLAN(network.STA_IF)
+        wlan.active(False)
         wlan.active(True)
         wlan.scan()
+        wlan.connect(SSID, NETWORK_PW)
         #TODO: maybe loop until connected? and also have some sort of timeout?
-        if not wlan.isconnected():
-            wlan.connect(SSID, NETWORK_PW)
-       
+        while not wlan.isconnected():
+            pass
+
         print (wlan.ifconfig())
 
 
 
         return wlan
- 
+
     def stationRefresh(self):
         if not self.sta_if.isconnected():
             self.sta_if.scan()
@@ -115,24 +117,24 @@ class Client:
         self.write_reg(GYRO_CONF, 0x18)  # 2000deg/s gyro range
         self.write_reg(ACCEL_CONF, 0x18)  # 16g accel range
         self.write_reg(INT_EN, 0x01)  # 16g accel range
-        self.write_reg(INT_PIN_CFG, 0xB0)  # 16g accel 
+        self.write_reg(INT_PIN_CFG, 0xB0)  # 16g accel
 
 ###################### MPU Functions #############################
 
     def read_sensor_reg(self,_):
 
-        #disable interrupts whilst doing memory operations 
+        #disable interrupts whilst doing memory operations
         irq_state = machine.disable_irq()
 
         #buffer for the sensor data
         sensor_buf = bytearray(14)
-        
+
         #read sensor data into buffer
         self.i2c.readfrom_mem_into(self.slave, ACCEL_X_H_REG, sensor_buf)
-       
+
         #update the sensor values in class dictionary
         self.updateAccelValues(sensor_buf)
-  
+
         #re-enable interrupts
         machine.enable_irq(irq_state)
 
@@ -157,7 +159,7 @@ class Client:
         self.thresholdCounter = int(self.measurementSize/2)
 
     def updateAccelValues(self, sensor_buf):
-        
+
         print('here, update')
 
         # Update all of the values
@@ -180,7 +182,7 @@ class Client:
         if(len(self.measurementList) > 5):
             self.measurementList.pop(0)
         self.measurementList.append(accelValues)
-        
+
         self.sampleNumber += 1
 
         #flag set: decrease counter
@@ -195,7 +197,8 @@ class Client:
 
         if self.thresholdFlag and (self.thresholdCounter==0):
             #publish results
-            pass
+            micropython.schedule(self.publishDataToBroker,0)
+            self.thresholdFlag = False
 
 
 ##################### Client MQTT Functions ############################
@@ -217,7 +220,7 @@ class Client:
         # Serialize the data packet
         self.mainPack['DATA'] = self.measurementList
         self.mainPack['TIMESTAMP'] = self.getTimeStamp()
-        
+
         # Publish the data to the MQTT broker
         self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
 
