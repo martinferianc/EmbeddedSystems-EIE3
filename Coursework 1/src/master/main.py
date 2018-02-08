@@ -22,6 +22,8 @@ if __name__ == '__main__':
 
     def on_message(client, userdata, msg):
          print(str(msg.payload))
+         # Deserialize the JSON here
+         # Write to the team.json any changes
 
     #Establish connection
     client = mqtt.Client()
@@ -30,7 +32,7 @@ if __name__ == '__main__':
 
     def con_thread():
         client.loop_start()
-        client.connect("192.168.0.10", 1883, 60)
+        client.connect("172.20.10.7", 1883, 60)
     _thread.start_new_thread(con_thread,())
 
     def web_thread():
@@ -40,6 +42,6 @@ if __name__ == '__main__':
     # Main Loop
     while True:
         #print("potato")
-        #Write to the team.json any changes
-        # Deserialize the json here
+
+
         pass
