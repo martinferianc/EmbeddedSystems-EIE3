@@ -13,7 +13,6 @@ if __name__ == '__main__':
     HOST = sys.argv[1]
     PORT = int(sys.argv[2])
 
-
     #### ALL ESTABLISHING CODE BEFORE THESE LINES ###
     app = create_app('dev')
 
@@ -38,11 +37,9 @@ if __name__ == '__main__':
         app.run(debug=False, host=HOST,port=PORT, threaded=True, use_reloader=False)
     _thread.start_new_thread(web_thread,())
 
-
     # Main Loop
     while True:
         #print("potato")
         #Write to the team.json any changes
         # Deserialize the json here
-
         pass
