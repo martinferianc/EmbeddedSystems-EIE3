@@ -21,26 +21,6 @@ log.addHandler(handler)
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-
-class Config(object):
-    DEBUG = False
-    TESTING = False
-    CSRF_ENABLED = True
-    SECRET_KEY = 'this-is-a-secret'
-    #SQLALCHEMY_DATABASE_URI = 'postgresql://webui:testpass@localhost:51001/webui'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    CLIENT_API_KEYS = [
-        ["foo", "bar"]
-    ]
-
-class DevelopmentConfig(Config):
-    DEVELOPMENT = True
-    DEBUG = True
-
-config = {
-    'dev': DevelopmentConfig
-}
-
 def has_no_empty_params(rule):
     defaults = rule.defaults if rule.defaults is not None else ()
     arguments = rule.arguments if rule.arguments is not None else ()
@@ -48,7 +28,6 @@ def has_no_empty_params(rule):
 
 def create_app(config_name):
     app = Flask(__name__)
-    app.config.from_object(config[config_name])
     app.wsgi_app = ProxyFix(app.wsgi_app)
 
     from .landing import landing as landing_blueprint
