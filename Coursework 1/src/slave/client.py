@@ -33,13 +33,16 @@ INT_PIN_CFG = micropython.const(55)
 PWR_MGMT    = micropython.const(107)
 
 # MQTT Defaults:
-BROKER = "192.168.0.10"  # TEMP ADDRESS
+#BROKER = "172.20.10.7"  # TEMP ADDRESS
+BROKER = "192.168.0.50"  # TEMP ADDRESS
 CLIENT_ID = "HeadAid" #+ ubinascii.hexlify(machine.unique_id())
 TOPIC = "esys/HeadAid/sensor"
 
 
 #Network setup variables:
+#SSID = 'Alexander\'s iPhone'
 SSID = 'EEERover'
+#NETWORK_PW = 'alexLuisi1996'
 NETWORK_PW = 'exhibition'
 
 class Client:
@@ -55,7 +58,7 @@ class Client:
 
         #hardware threshold init
         self.thresholdFlag = False
-        self.thresholdValue = 5000
+        self.thresholdValue = 500
         self.thresholdCounter = int(measurementSize/2)
 
         #network init
@@ -225,7 +228,8 @@ class Client:
         self.mainPack['TIMESTAMP'] = self.getTimeStamp()
 
         # Publish the data to the MQTT broker
-        self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
+        #self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
+        self.mqttClient.publish(TOPIC, bytes('Hello World!','utf-8'))
 
         #enable interrupts again (keep collecting data)
         #pyb.enable_irq(irq_state)
