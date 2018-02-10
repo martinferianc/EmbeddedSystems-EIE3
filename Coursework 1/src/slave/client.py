@@ -8,6 +8,7 @@ import network
 import ujson
 import micropython
 import uheapq
+import socket
 
 # register defines
 ACCEL_X_H_REG = micropython.const(59)
@@ -127,7 +128,26 @@ class Client:
         self.write_reg(INT_PIN_CFG, 0x90)  # 16g accel
         print('here, init MPU')
 
+    #https://gist.github.com/drrk/4a17c4394f93d0f9123560af056f6f30
+    def getNTPTime(self):
+        
+        host = 'pool.ntp.org' #choose ntp server
+        NTP_DELTA = 3155673600
+
+        NTP_QUERY = bytearray(48)
+        NTP_QUERY[0] = 0x1b
+        addr = socket.getaddrinfo(host,123)[0][-1]
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        res = s.sendto(NTP_QUERY, addr)
+        msg = s.recv(48)
+        s.close()
+        import struct
+        val = struct.unpack("!I",msg[40:44])[0]
+        return val - NTP_DELTA
+
 ###################### MPU Functions #############################
+
+#TODO: need to make it so that we can do several I2C devices
 
     def read_sensor_reg(self,_):
 
@@ -235,10 +255,13 @@ class Client:
         #pyb.enable_irq(irq_state)
 
     def getTimeStamp(self):
-        pass
-'''
+        return RTC.datetime()
+
     def setTime(self):
         # Get the time from an NTP server at startup and set the RTC
+        
+        time = (2018,2,10,6,15,12,0,0) #change to get NTP time
+
         rtc = machine.RTC()
-        rtc.init(settime())
-'''
+        rtc.datetime(time)
+
