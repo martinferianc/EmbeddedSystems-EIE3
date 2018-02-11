@@ -7,6 +7,8 @@ gyro_cal_x = 0
 gyro_cal_y = 0
 gyro_cal_z = 0
 
+rad2deg = 180/math.pi
+
 # Need to make sure both are in degrees before calculation commences!
 # Depending on resoltion, accel needs to divide by 16384 and gyro by 131.
 # Accelerometer may need calibration
@@ -36,8 +38,8 @@ def complement_filt(old_angle, accel, gyro):
     filtered_angle = average_factor*(old_angle + gyro*time_step) + (1-average_factor)*accel
     return filtered_angle
 
-rollangle = atan2(accel_y,accel_z)*180/pi
-pitchangle = atan2(accelX, (accel_y*accel_y+accel_z*accel_z))*180/pi
+rollangle = math.atan2(accel_y,accel_z)*rad2deg
+pitchangle = math.atan2(accelX, (accel_y*accel_y+accel_z*accel_z))*rad2deg
 
 roll = complement_filt(roll, rollangle, gyro_x)
 pitch = complement_filt(pitch, pitchangle, gyro_y)
