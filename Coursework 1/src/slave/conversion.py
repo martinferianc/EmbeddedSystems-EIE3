@@ -19,7 +19,7 @@ def calibrate():
     global gyro_cal_y
     global gyro_cal_z
 
-    for i in range(0:2000):
+    for i in range(0,2000):
         gyro_cal_x = gyro_cal_x + gyro_x
         gyro_cal_y = gyro_cal_y + gyro_y
         gyro_cal_z = gyo_cal_z + gyro_z
