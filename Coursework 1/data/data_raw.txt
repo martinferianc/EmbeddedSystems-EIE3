@@ -1,0 +1,6 @@
+{"LABEL": "0", "DEVICE ADDRESS": "22", "DATA": {"GYX": "0", "ACX": "0", "GYY": "0", "GYZ": "0", "ACY": "0", "ACZ": "0"}, "TIMESTAMP": "Sun Feb 11 23:00:06 2018", "PLAYER": "1"}
+{"LABEL": "0", "DEVICE ADDRESS": "22", "DATA": {"GYX": "0", "ACX": "0", "GYY": "0", "GYZ": "0", "ACY": "0", "ACZ": "0"}, "TIMESTAMP": "Sun Feb 11 23:00:06 2018", "PLAYER": "2"}
+{"LABEL": "0", "DATA": {"GYZ": "0", "GYY": "0", "ACZ": "0", "GYX": "0", "ACY": "0", "ACX": "0"}, "PLAYER": "1", "DEVICE ADDRESS": "22", "TIMESTAMP": "Sun Feb 11 23:00:35 2018"}
+{"LABEL": "0", "DATA": {"GYZ": "0", "GYY": "0", "ACZ": "0", "GYX": "0", "ACY": "0", "ACX": "0"}, "PLAYER": "2", "DEVICE ADDRESS": "22", "TIMESTAMP": "Sun Feb 11 23:00:35 2018"}
+{"LABEL": "0", "PLAYER": 1, "TIMESTAMP": "Sun Feb 11 23:55:23 2018", "DEVICE ADDRESS": "22", "DATA": {"ACZ": "0", "GYZ": "0", "GYX": "0", "ACX": "0", "ACY": "0", "GYY": "0"}}
+{"LABEL": "0", "PLAYER": 2, "TIMESTAMP": "Sun Feb 11 23:55:23 2018", "DEVICE ADDRESS": "22", "DATA": {"ACZ": "0", "GYZ": "0", "GYX": "0", "ACX": "0", "ACY": "0", "GYY": "0"}}
