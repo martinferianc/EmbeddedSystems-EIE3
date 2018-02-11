@@ -8,7 +8,7 @@ gyro_cal_y = 0
 gyro_cal_z = 0
 
 # Need to make sure both are in degrees before calculation commences!
-# Depending on resoltuon, accel needs to divide by 16384 and gyro by 131.
+# Depending on resoltion, accel needs to divide by 16384 and gyro by 131.
 # Accelerometer may need calibration
 
 # Calibrate the gyros by taking 2000 samples and then creating an average offset
