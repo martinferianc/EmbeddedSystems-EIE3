@@ -76,6 +76,9 @@ class Client:
         self.mainPack = {'PLAYER': playerNum, 'DEVICE ADDRESS': deviceAddress, 'DATA': []}
         #list arrangement: ACX-ACY-ACZ-TMP-GYX-GYY-GYZ
 
+        self.heap = []
+        uheapq.heapify(self.heap)      
+
         #MQTT setup
         self.mqttClient = MQTTClient(CLIENT_ID,BROKER)
         self.mqttClient.connect()
@@ -115,7 +118,7 @@ class Client:
         self.write_reg(PWR_MGMT, 0x80)  # reset
         time.sleep(1)
         self.write_reg(PWR_MGMT, 0x00)  # power on
-        self.write_reg(SMPLRT_DIV, 0xFF)  # 8kHz sampling rate
+        self.write_reg(SMPLRT_DIV, 0x10)  # 8kHz sampling rate
         #TODO adjust sample rate
         self.write_reg(CONF, 0x01)  # no external sync, largest bandwidth
         self.write_reg(GYRO_CONF, 0x18)  # 2000deg/s gyro range
@@ -166,11 +169,11 @@ class Client:
         values[5] = sensor_buf[10] << 8 | sensor_buf[11]
         values[6] = sensor_buf[12] << 8 | sensor_buf[13]
 
-        #update main packet
-        self.mainPack['DATA'] = values
 
-        #publish data
-        self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
+        uheapq.heapappend(self.heap, values)
+
+        if len(self.heap) > 1000:
+            self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
 
 
 ##################### Client MQTT Functions ############################
