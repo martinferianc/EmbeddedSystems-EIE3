@@ -36,9 +36,8 @@ PWR_MGMT    = micropython.const(107)
 # MQTT Defaults:
 #BROKER = "172.20.10.7"  # TEMP ADDRESS
 BROKER = "192.168.0.50"  # TEMP ADDRESS
-CLIENT_ID = "HeadAid" #+ ubinascii.hexlify(machine.unique_id())
+CLIENT_ID = "HeadAid" + str(ubinascii.hexlify(machine.unique_id()))
 TOPIC = "esys/HeadAid/sensor"
-
 
 #Network setup variables:
 #SSID = 'Alexander\'s iPhone'
@@ -46,55 +45,52 @@ SSID = 'EEERover'
 #NETWORK_PW = 'alexLuisi1996'
 NETWORK_PW = 'exhibition'
 
+DEBUG = False
+
 class Client:
 
     ##################### Setup Functions ############################
 
         # Initialise the class with the device address and the player number.
     def __init__(self, playerNum, deviceAddress, measurementSize):
+        #I2C setup
         self.i2c = I2C(scl = Pin(5), sda=Pin(4), freq=400000)
+
+        #device information
         self.slave = deviceAddress
         self.__playerNum = playerNum
-        self.measurementSize = measurementSize
 
-        #hardware threshold init
+        #hardware threshold initialisation
         self.thresholdFlag = False
         self.thresholdValue = 500
         self.thresholdCounter = int(measurementSize/2)
 
-        #network init
+        #network initialisation
         self.ap_if  = self.accessInit()
-        self.sta_if = self.stationInit()
+        self.sta_if = self.stationInit(10)
 
-        # Setup the wifi and the accelerometer and the datastructures to store the data
-        #self.ap = self.setupWifi()
+        #MPU register initialisation
         self.initMpu()
 
-        self.mainPack = {'PLAYER': playerNum, 'DEVICE ADDRESS': deviceAddress, 'TIMESTAMP': 0, 'DATA': []}
+        #data to be sent 
+        self.mainPack = {'PLAYER': playerNum, 'DEVICE ADDRESS': deviceAddress, 'DATA': []}
+        #list arrangement: ACX-ACY-ACZ-TMP-GYX-GYY-GYZ
 
-        #ACX-ACY-ACZ-TMP-GYX-GYY-GYZ
-        tmp = [0,0,0,0,0,0,0]
-        self.measurementList = [tmp for x in range(measurementSize)]
-
-        uheapq.heapify(self.measurementList)
-
+        #MQTT setup
         self.mqttClient = MQTTClient(CLIENT_ID,BROKER)
         self.mqttClient.connect()
-
-        print('here,init')
-
 
     def accessInit(self):
         #access point setup
         ap = network.WLAN(network.AP_IF)
         ap.active(True)
 
-        print (ap.ifconfig())
+        if DEBUG:
+            print (ap.ifconfig())
 
         return ap
 
-    def stationInit(self):
-
+    def stationInit(self,timeout):
         #station setup
         wlan = network.WLAN(network.STA_IF)
         wlan.active(False)
@@ -102,18 +98,17 @@ class Client:
         wlan.scan()
         wlan.connect(SSID, NETWORK_PW)
         #TODO: maybe loop until connected? and also have some sort of timeout?
-        while not wlan.isconnected():
-            pass
+        while (not wlan.isconnected()) and ( not timeout == 0):
+            time.sleep(1)
+            timeout -= 1
 
-        print (wlan.ifconfig())
+        if timeout == 0:
+            print('STA ERROR')
+
+        if DEBUG:
+            print (wlan.ifconfig())
 
         return wlan
-
-    def stationRefresh(self):
-        if not self.sta_if.isconnected():
-            self.sta_if.scan()
-            self.sta_if.connect(SSID, NETWORK_PW)
-        return
 
     def initMpu(self):
         self.write_reg(PWR_MGMT, 0x80)  # reset
@@ -126,31 +121,10 @@ class Client:
         self.write_reg(ACCEL_CONF, 0x18)  # 16g accel range
         self.write_reg(INT_EN, 0x01)  # 16g accel range
         self.write_reg(INT_PIN_CFG, 0x90)  # 16g accel
-        print('here, init MPU')
-
-    #https://gist.github.com/drrk/4a17c4394f93d0f9123560af056f6f30
-    def getNTPTime(self):
-        
-        host = 'pool.ntp.org' #choose ntp server
-        NTP_DELTA = 3155673600
-
-        NTP_QUERY = bytearray(48)
-        NTP_QUERY[0] = 0x1b
-        addr = socket.getaddrinfo(host,123)[0][-1]
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        res = s.sendto(NTP_QUERY, addr)
-        msg = s.recv(48)
-        s.close()
-        import struct
-        val = struct.unpack("!I",msg[40:44])[0]
-        return val - NTP_DELTA
 
 ###################### MPU Functions #############################
 
-#TODO: need to make it so that we can do several I2C devices
-
     def read_sensor_reg(self,_):
-
         #disable interrupts whilst doing memory operations
         irq_state = machine.disable_irq()
 
@@ -167,101 +141,45 @@ class Client:
         machine.enable_irq(irq_state)
 
     def write_reg(self, reg_addr, data):
-        dataByte = bytearray(1)
-        dataByte[0] = data
-        self.i2c.writeto_mem(self.slave, reg_addr, dataByte)
+        self.i2c.writeto_mem(self.slave, reg_addr, bytes(dataByte))
 
 ##################### Client Functions ############################
 
-    def getJsonValues(self):
-        # Return the array of measurements as a json object
-        #return ujson.dumps(self.measurementList)
-        for item in self.measurementList:
-            print(item)
-        print('\n')
-
-    def getAccelMagnitude(self, values):
-        return values[0]+values[1]+values[2]
-
-    def resetThresholdCounter(self):
-        self.thresholdCounter = int(self.measurementSize/2)
-
     def updateAccelValues(self, sensor_buf):
-
-        print('here, update')
-
         # Update all of the values
-        accelValues = [0,0,0,0,0,0,0]
+        values = [0,0,0,0,0,0,0]
         
-        accelValues[0] = sensor_buf[0] << 8 | sensor_buf[1]
-        accelValues[1] = sensor_buf[2] << 8 | sensor_buf[3]
-        accelValues[2] = sensor_buf[4] << 8 | sensor_buf[5]
+        #update acceleration values
+        values[0] = sensor_buf[0] << 8 | sensor_buf[1]
+        values[1] = sensor_buf[2] << 8 | sensor_buf[3]
+        values[2] = sensor_buf[4] << 8 | sensor_buf[5]
 
         #update temperature value
-        accelValues[3] = sensor_buf[6] << 8 | sensor_buf[7]
+        values[3] = sensor_buf[6] << 8 | sensor_buf[7]
 
         #update gyroscope values
-        accelValues[4] = sensor_buf[8] << 8 | sensor_buf[9]
-        accelValues[5] = sensor_buf[10] << 8 | sensor_buf[11]
-        accelValues[6] = sensor_buf[12] << 8 | sensor_buf[13]
+        values[4] = sensor_buf[8] << 8 | sensor_buf[9]
+        values[5] = sensor_buf[10] << 8 | sensor_buf[11]
+        values[6] = sensor_buf[12] << 8 | sensor_buf[13]
 
-        # Store the last 100 measurements ready for transmission if a shock occurs
-        if(len(self.measurementList) > 5):
-            self.measurementList.pop(0)
-        uheapq.heappush(self.measurementList,accelValues)
+        #update main packet
+        self.mainPack['DATA'] = values
 
-        #flag set: decrease counter
-        if self.thresholdFlag:
-          self.thresholdCounter -= 1
-
-        #check for threshold
-        if (self.getAccelMagnitude(accelValues)>self.thresholdValue) and not self.thresholdFlag:
-            #reset threshold
-            print('here, threshold')
-            self.resetThresholdCounter()
-            self.thresholdFlag = True
-
-        if self.thresholdFlag and (self.thresholdCounter==0):
-            #publish results
-            micropython.schedule(self.publishDataToBroker,0)
-            self.thresholdFlag = False
+        #publish data
+        micropython.schedule(self.publishDataToBroker,0)
 
 
 ##################### Client MQTT Functions ############################
 
-    def publishDataToBroker(self,_):
-
-        print('here, publish')
-
-        #disable interrupts whilst sending data
-        #irq_state = pyb.disable_irq()
-        '''
+    def publishDataToBroker(self,_):    
         # Check if there is an active connection
         if not self.ap_if.active:
             # Reconnect if there isn't
-            self.ap_if = self.accessInit() #TODO: need to check what we are reconnecting to
-            self.mqttClient = MQTTClient(CLIENT_ID,BROKER)
-            self.mqttClient.connect()
-        '''
-        # Serialize the data packet
-        self.mainPack['DATA'] = self.measurementList
-        self.mainPack['TIMESTAMP'] = self.getTimeStamp()
+            self.ap_if = self.accessInit() 
+        
+        if not self.sta_if.active:
+            self.sta_if = self.stationInit(10)
 
         # Publish the data to the MQTT broker
-        #self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
-        self.mqttClient.publish(TOPIC, bytes('Hello World!','utf-8'))
-
-        #enable interrupts again (keep collecting data)
-        #pyb.enable_irq(irq_state)
-
-    def getTimeStamp(self):
-        return RTC.datetime()
-
-    def setTime(self):
-        # Get the time from an NTP server at startup and set the RTC
-        
-        time = (2018,2,10,6,15,12,0,0) #change to get NTP time
-
-        rtc = machine.RTC()
-        rtc.datetime(time)
-
+        self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
+    
