@@ -46,6 +46,15 @@ def load_data():
             parsed.append(data[str(i)])
 
         return (parsed,team_name)
+
+def load_log():
+    with open("../../data/team/log.json", 'r') as f:
+        data = json.load(f)
+        parsed = []
+        for i in range(0,len(data)):
+            parsed.append(data[str(i)])
+        return parsed
+
 @landing.after_request
 def add_header(r):
     """
@@ -64,11 +73,16 @@ def add_header(r):
 @landing.route('/index/', methods=['GET','POST'])
 def index():
     return render_template('index.html', page_title='Home')
+
+
 @landing.route('/demo', methods=['GET','POST'])
 @landing.route('/demo/', methods=['GET','POST'])
 def demo():
     parsed,team_name = load_data()
-    return render_template('demo.html',players=parsed,team_name=team_name,page_title='Demo')
+    log = load_log()
+    return render_template('demo.html',logs = log, players=parsed,team_name=team_name,page_title='Demo')
+
+
 
 @landing.route('/demo/data.html',methods = ['POST', 'GET'])
 def team():
@@ -76,6 +90,8 @@ def team():
     with open("../../data/team/team.json", 'r') as f:
         data = json.load(f)
     return render_template('data.html',data=json.dumps(data))
+
+
 @landing.route('/demo/<int:id>',methods = ['POST', 'GET'])
 def p1(id):
     change_on_field(int(request.path.split('/')[-1]))

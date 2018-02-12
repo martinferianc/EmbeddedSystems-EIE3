@@ -130,7 +130,7 @@ class Client:
 
     #https://gist.github.com/drrk/4a17c4394f93d0f9123560af056f6f30
     def getNTPTime(self):
-        
+
         host = 'pool.ntp.org' #choose ntp server
         NTP_DELTA = 3155673600
 
@@ -192,7 +192,7 @@ class Client:
 
         # Update all of the values
         accelValues = [0,0,0,0,0,0,0]
-        
+
         accelValues[0] = sensor_buf[0] << 8 | sensor_buf[1]
         accelValues[1] = sensor_buf[2] << 8 | sensor_buf[3]
         accelValues[2] = sensor_buf[4] << 8 | sensor_buf[5]
@@ -259,9 +259,8 @@ class Client:
 
     def setTime(self):
         # Get the time from an NTP server at startup and set the RTC
-        
+
         time = (2018,2,10,6,15,12,0,0) #change to get NTP time
 
         rtc = machine.RTC()
         rtc.datetime(time)
-
