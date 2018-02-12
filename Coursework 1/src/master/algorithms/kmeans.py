@@ -32,7 +32,19 @@ class KMeans():
             if optimized == True:
                 break
 
-    def classify(self,x,y):
+    #function to save trained centroids
+    def saveCentroids(self):
+        with open('trained_centroids.txt','w') as f:
+            f.writelines(self.centroids)
+  
+    #function to load trained centroids
+    def loadCentroids(self):
+        i = 0
+        for line in open('trained_centroids.txt','r'):
+            self.centroids[centroid] = float(line)
+            i+=1
+
+    def classify(self,X):
         distances = [np.linalg.norm(X[index] - self.centroids[centroid]) for centroid in self.centroids]
         classification = distances.index(min(distances))
         return classification
