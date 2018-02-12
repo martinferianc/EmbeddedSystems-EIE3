@@ -35,17 +35,17 @@ PWR_MGMT    = micropython.const(107)
 
 # MQTT Defaults:
 #BROKER = "172.20.10.7"  # TEMP ADDRESS
-BROKER = "192.168.0.50"  # TEMP ADDRESS
+BROKER = "192.168.43.124"  # TEMP ADDRESS
 CLIENT_ID = "HeadAid" + str(ubinascii.hexlify(machine.unique_id()))
 TOPIC = "esys/HeadAid/sensor"
 
 #Network setup variables:
 #SSID = 'Alexander\'s iPhone'
-SSID = 'EEERover'
+SSID = 'headAidNet'
 #NETWORK_PW = 'alexLuisi1996'
-NETWORK_PW = 'exhibition'
+NETWORK_PW = 'gangganggang'
 
-DEBUG = False
+DEBUG = True 
 
 class Client:
 
@@ -80,6 +80,8 @@ class Client:
         self.mqttClient = MQTTClient(CLIENT_ID,BROKER)
         self.mqttClient.connect()
 
+        print('setup done')
+
     def accessInit(self):
         #access point setup
         ap = network.WLAN(network.AP_IF)
@@ -98,9 +100,8 @@ class Client:
         wlan.scan()
         wlan.connect(SSID, NETWORK_PW)
         #TODO: maybe loop until connected? and also have some sort of timeout?
-        while (not wlan.isconnected()) and ( not timeout == 0):
-            time.sleep(1)
-            timeout -= 1
+        while not wlan.isconnected():
+            pass
 
         if timeout == 0:
             print('STA ERROR')
@@ -114,7 +115,7 @@ class Client:
         self.write_reg(PWR_MGMT, 0x80)  # reset
         time.sleep(1)
         self.write_reg(PWR_MGMT, 0x00)  # power on
-        self.write_reg(SMPLRT_DIV, 0x7F)  # 8kHz sampling rate
+        self.write_reg(SMPLRT_DIV, 0xFF)  # 8kHz sampling rate
         #TODO adjust sample rate
         self.write_reg(CONF, 0x01)  # no external sync, largest bandwidth
         self.write_reg(GYRO_CONF, 0x18)  # 2000deg/s gyro range
@@ -141,13 +142,16 @@ class Client:
         machine.enable_irq(irq_state)
 
     def write_reg(self, reg_addr, data):
-        self.i2c.writeto_mem(self.slave, reg_addr, bytes(dataByte))
-
+        dataByte = bytearray(1)
+        dataByte[0] = data
+        self.i2c.writeto_mem(self.slave, reg_addr, dataByte)
 ##################### Client Functions ############################
 
     def updateAccelValues(self, sensor_buf):
         # Update all of the values
         values = [0,0,0,0,0,0,0]
+
+        print('updating values')        
 
         #update acceleration values
         values[0] = sensor_buf[0] << 8 | sensor_buf[1]
@@ -166,19 +170,14 @@ class Client:
         self.mainPack['DATA'] = values
 
         #publish data
-        micropython.schedule(self.publishDataToBroker,0)
+        self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
 
 
 ##################### Client MQTT Functions ############################
 
     def publishDataToBroker(self,_):
-        # Check if there is an active connection
-        if not self.ap_if.active:
-            # Reconnect if there isn't
-            self.ap_if = self.accessInit()
-
-        if not self.sta_if.active:
-            self.sta_if = self.stationInit(10)
-
+        
         # Publish the data to the MQTT broker
         self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
+        print('sending data')
+        

@@ -13,7 +13,7 @@ SAVE  = True
 
 def saveData(msg):
     #load json file
-    data = json.loads(msg.payload)
+    data = json.loads(msg.payload.decode("utf-8"))
     #get timestamp
     data['TIMESTAMP'] = time.ctime()
     #leave empty label key
@@ -26,15 +26,10 @@ def saveData(msg):
         outfile.write('\n')
 
 if __name__ == '__main__':
-    HOST = sys.argv[1]
-    PORT = int(sys.argv[2])
-
-    #### ALL ESTABLISHING CODE BEFORE THESE LINES ###
-    app = create_app('dev')
 
     def on_connect(client, userdata, flags, rc):
         print("Connected with result code "+str(rc))
-        client.subscribe("esys/headaid/#")
+        client.subscribe("esys/#")
 
     def on_message(client, userdata, msg):
         print(str(msg.payload))
@@ -49,14 +44,9 @@ if __name__ == '__main__':
     client.on_connect = on_connect
     client.on_message = on_message
 
-    def con_thread():
-        client.loop_start()
-        client.connect("192.168.10.7", 1883, 60)
-    _thread.start_new_thread(con_thread,())
+    client.loop_start()
+    client.connect("192.168.43.124", 1883, 60)
 
-    def web_thread():
-        app.run(debug=False, host=HOST,port=PORT, threaded=True, use_reloader=False)
-    _thread.start_new_thread(web_thread,())
 
     # Main Loop
     while True:
