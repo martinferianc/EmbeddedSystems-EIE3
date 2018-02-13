@@ -1,4 +1,4 @@
-import math, json, ast, re
+import math, json, ast, re, time
 
 class PostProcessing():
 ##################### Member Variables ##########################
@@ -166,6 +166,15 @@ class PostProcessing():
             f.close()
         return processed_data, times
 
+def encapsulate_data(data):
+    new_data = {}
+    new_data["PLAYER"] = 1
+    # Package the data
+    new_data['TIMESTAMP'] = time.ctime()
+    tmp = data['DATA']
+    tmp = {'ACX':tmp[0], 'ACY':tmp[1], 'ACZ':tmp[2], 'GYX':tmp[4], 'GYY':tmp[5], 'GYZ':tmp[6]}
+    new_data['DATA'] = tmp
+    return new_data
 
 if __name__ == '__main__':
     postprocessing = PostProcessing()

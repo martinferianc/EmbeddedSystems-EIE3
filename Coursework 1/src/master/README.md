@@ -33,6 +33,6 @@ Make sure that you have all the dependencies:
 
 Then just:
 
-`python3 main.py "0.0.0.0" 8080`
+`python3 main.py "0.0.0.0" 8080 "192.168.0.183" 1883`
 
 to setup the host address and the port on which the server is going to listen and you are good to go.

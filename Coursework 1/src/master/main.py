@@ -8,6 +8,8 @@ import random
 import time
 import sys
 import paho.mqtt.client as mqtt
+import paho.mqtt.publish as publish
+
 import _thread
 import json
 
@@ -41,11 +43,12 @@ if __name__ == '__main__':
     # Establish the broker service
     def on_connect(client, userdata, flags, rc):
         print("Connected with result code "+str(rc))
-        client.subscribe("esys/#")
+        client.subscribe("esys/HeadAid/sensor")
 
     def on_message(client, userdata, msg):
         # Get the raw data
         data = json.loads(msg.payload.decode("utf-8"))
+        print(data)
         #Encapsulate the data into dictionary format
         data = encapsulate_data(data)
 
@@ -74,9 +77,14 @@ if __name__ == '__main__':
         app.run(debug=False, host=HOST,port=PORT, threaded=True, use_reloader=False)
     _thread.start_new_thread(web_thread,())
 
+    def turn_sensor(value,sensor):
+        client.publish("esys/HeadAid/on_field_status{}".format(sensor), str(value))
+
     while True:
+        time.sleep(1)
         players_on_field = check_on_field()
         for i in range(N_PLAYERS):
             if players_on_field[i] != SENSOR_STATES[i]:
                 SENSOR_STATES[i] = players_on_field[i]
                 # Turn on or off the sensor
+                turn_sensor(SENSOR_STATES[i],i)

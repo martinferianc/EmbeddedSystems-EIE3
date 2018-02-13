@@ -25,7 +25,7 @@ def log_event(data, label, file_path = "../../data/team/"):
     player_condition = team_data[player_index]["condition"]
 
     # No Change
-    if condition == player_condition:
+    if condition == player_condition or (condition=="bad" and player_condition="critical"):
         return
 
     new_log = {
