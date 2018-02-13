@@ -144,9 +144,10 @@ class PostProcessing():
                 raw_data[i]['GYZ'] = self._gyro_normal(raw_data[i]['GYZ'], self.gyro_cal_z)
         # Put the data in the correct form to be outputted
         for i in range(0, len(raw_data)):
-            feature_vector = {'ACX': raw_data[i]['ACX'], 'ACY':raw_data[i]['ACY'], 'ACZ':raw_data[i]['ACZ'],'GYX': raw_data[i]['GYX'],'GYY':raw_data[i]['GYY'], "GYZ": raw_data[i]['GYZ']}
-            processed_data_str+=feature_vector+"\n"
-            processed_data.append({'ACX': raw_data[i]['ACX'], 'ACY':raw_data[i]['ACY'], 'ACZ':raw_data[i]['ACZ'],'GYX': raw_data[i]['GYX'],'GYY':raw_data[i]['GYY'], "GYZ": raw_data[i]['GYZ']}'\n')
+            feature_vector = {"ACX": raw_data[i]['ACX'], "ACY":raw_data[i]['ACY'], "ACZ":raw_data[i]['ACZ'],"GYX": raw_data[i]['GYX'],"GYY":raw_data[i]['GYY'], "GYZ": raw_data[i]['GYZ']}
+            processed_data_str+=str(feature_vector)+"\n"
+            processed_data_str = processed_data_str.replace("\'", "\"")
+            processed_data.append(feature_vector)
         # Save calibration values and return
         if(save_gyro_cal):
             self.save_gyro_calibration()
