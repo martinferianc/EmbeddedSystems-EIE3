@@ -13,7 +13,6 @@ def preprocessData(testRatio):
             X.append([data['ACX'],data['ACY'],data['ACZ'],data['GYX'],data['GYY'],data['GYZ']])
 
     testSize = int(testRatio*len(X))
-    print("potato")
     test_X = np.array(X[0:testSize-1])
 
     train_X = np.array(X[testSize:])
@@ -23,6 +22,6 @@ def preprocessData(testRatio):
 
 if __name__ == '__main__':
     train_X,test_X = preprocessData(0.1)
-    c = KMeans(k=3, tol=0.00001, epochs=3000)
+    c = KMeans(k=4, tol=0.00001, epochs=3000)
     c.fit(train_X,[], save = True, file_path = "model/{}.pickle".format(MODEL_NAME))
     #c.load(file_path = "model/{}.pickle".format(MODEL_NAME))

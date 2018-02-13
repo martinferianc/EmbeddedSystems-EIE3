@@ -95,13 +95,14 @@ class PostProcessing():
     def postprocess_data(self, feature_vector, yaw_pitch_roll_values = False):
         # Get only the relevant data from the feature vector
         feature_vector = feature_vector["DATA"]
-        feature_vector['ACX'] = self._acc_normal(feature_vector['ACX'])
-        feature_vector['ACY'] = self._acc_normal(feature_vector['ACY'])
-        feature_vector['ACZ'] = self._acc_normal(feature_vector['ACZ'])
-        feature_vector['GYX'] = self._gyro_normal(feature_vector['GYX'], self.gyro_cal_x)
-        feature_vector['GYY'] = self._gyro_normal(feature_vector['GYY'], self.gyro_cal_y)
-        feature_vector['GYZ'] = self._gyro_normal(feature_vector['GYZ'], self.gyro_cal_z)
-        return feature_vector
+        processed_vector = []
+        processed_vector.append(self._acc_normal(feature_vector['ACX']))
+        processed_vector.append(self._acc_normal(feature_vector['ACY']))
+        processed_vector.append(self._acc_normal(feature_vector['ACZ']))
+        processed_vector.append(self._gyro_normal(feature_vector['GYX'], self.gyro_cal_x))
+        processed_vector.append(self._gyro_normal(feature_vector['GYY'], self.gyro_cal_y))
+        processed_vector.append(self._gyro_normal(feature_vector['GYZ'], self.gyro_cal_z))
+        return processed_vector
 
     # Process the whole JSON fie
     def postprocess_file(self, filename, new_gyro_cal = False, old_gyro_cal = False, save_gyro_cal = False, save_to_file = False):
