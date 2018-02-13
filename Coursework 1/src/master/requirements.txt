@@ -15,3 +15,5 @@ requests
 SQLAlchemy
 psycopg2
 ampy
+scipy
+sklearn
