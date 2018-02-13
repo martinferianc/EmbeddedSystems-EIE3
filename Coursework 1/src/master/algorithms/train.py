@@ -24,15 +24,15 @@ def preprocessData(testRatio):
 
     train_X = np.array(X[testSize:])
     train_Y = np.array(Y[testSize:])
-    print(train_X.shape)
+
 
     return train_X, train_Y, test_X, test_Y
 
 if __name__ == '__main__':
     train_X, train_Y, test_X, test_Y = preprocessData(0.1)
-    c = KMeans(k=3, tol=0.001, epochs=3000)
-    #c.fit(train_X,train_Y, save = True, file_path = "model/{}.pickle".format(MODEL_NAME))
-    c.load(file_path = "model/{}.pickle".format(MODEL_NAME))
+    c = KMeans(k=3, tol=0.00001, epochs=3000)
+    c.fit(train_X,train_Y, save = True, file_path = "model/{}.pickle".format(MODEL_NAME))
+    #c.load(file_path = "model/{}.pickle".format(MODEL_NAME))
     label = c.classify([65528,  24,  0,  2015,  65432,  65512])
     print(label)
     print(c.centroids)
