@@ -15,7 +15,6 @@ def preprocessData(testRatio):
             sensor_data = data["DATA"]
             X.append([sensor_data['ACX'],sensor_data['ACY'],sensor_data['ACZ'],sensor_data['GYX'],sensor_data['GYY'],sensor_data['GYZ']])
             Y.append(data['LABEL'])
-    print(len(X))
 
     testSize = int(testRatio*len(Y))
 

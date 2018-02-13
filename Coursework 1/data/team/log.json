@@ -5,19 +5,5 @@
         "condition": "critical",
         "message": "This is a sample comment message",
         "time":"12:02:23"
-    },
-    "1":{
-        "name": "Luther Jackson",
-        "number": 12,
-        "condition": "good",
-        "message": "This is a sample comment message",
-        "time":"12:02:23"
-    },
-    "2":{
-        "name": "Luther Jackson",
-        "number": 12,
-        "condition": "bad",
-        "message": "This is a sample comment message",
-        "time":"12:02:23"
     }
 }

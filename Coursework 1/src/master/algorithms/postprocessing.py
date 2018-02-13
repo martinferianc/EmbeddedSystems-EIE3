@@ -1,6 +1,6 @@
 import math, json
 
-class post_prossing(self):
+class PostProcessing(self):
 ##################### Member Variables ##########################
 
     # Gyro calibration values

@@ -1,20 +1,28 @@
 from algorithms.exceptions import EmptyDataError, EmptyCentroidsError
 from algorithms.kmeans import KMeans
-from postprocessing import postprocess_demo
+from algorithms.postprocessing import postprocess_demo, load_calibaration
+from algoriths.logging import log_event
+from www.web import create_app
 
 import random
 import time
-from www.web import create_app
 import sys
 import paho.mqtt.client as mqtt
 import _thread
 import json
 import csv
 
-DEBUG = True
-SAVE  = True
-
 MODEL_NAME =  "kmeans" + "1.0"
+
+
+def encapsulate_data(data):
+    data["PLAYER"] = 0
+    # Package the data
+    data['TIMESTAMP'] = time.ctime()
+    tmp = data['DATA']
+    tmp = {'ACX':tmp[0], 'ACY':tmp[1], 'ACZ':tmp[2], 'GYX':tmp[4], 'GYY':tmp[5], 'GYZ':tmp[6]}
+    data['DATA'] = tmp
+    return data
 
 if __name__ == '__main__':
     HOST = sys.argv[1]
@@ -27,7 +35,8 @@ if __name__ == '__main__':
     kmeans.load('/algorithms/model/{}'.format(MODEL_NAME))
 
     # Calibrate the sensors
-
+    sensor = PostProcessing()
+    sensor.load()
 
 
     ### Establishing code for the broker
@@ -40,27 +49,29 @@ if __name__ == '__main__':
         # Get the raw data
         data = json.loads(msg.payload.decode("utf-8"))
 
-        # Package the data
-        data['TIMESTAMP'] = time.ctime()
-        tmp = data['DATA']
-        tmp = {'ACX':tmp[0], 'ACY':tmp[1], 'ACZ':tmp[2], 'GYX':tmp[4], 'GYY':tmp[5], 'GYZ':tmp[6]}
-        data['DATA'] = tmp
+        #Encapsulate the data into dictionary format
+        data = encapsulate_data(data)
 
         processed_data = postprocess_data(data)
         label = kmeans.classify(processed_data)
 
+        # The condition has been classified as bad
+        if label != 0:
+            log_event(data=data, label=label)
 
 
-    #Establish connection
+    ####### MQTT #######
+    #Establish connection with the MQTT
     client = mqtt.Client()
     client.on_connect = on_connect
     client.on_message = on_message
-    client.connect("192.168.10.7", 1883, 60)
+    client.connect(BROKET_HOST, BROKET_PORT, 60)
 
     def con_thread():
         client.loop_start()
     _thread.start_new_thread(con_thread,())
 
+    ####### FLASK #######
     ### Establishing code for the web server
     app = create_app('dev')
     def web_thread():
