@@ -1,6 +1,6 @@
 import numpy as np
 import pickle
-from exceptiions import EmptyCentroidsError, EmptyDataError
+from exceptions import EmptyCentroidsError, EmptyDataError
 
 class KMeans():
     def __init__(self, k=2, tol=0.001, epochs=300):
@@ -13,7 +13,7 @@ class KMeans():
         if X.size == 0:
             raise EmptyDataError("Can not train the data is empty")
         print("#####################")
-        print("Beginning training on data of shape: {}, max epochs: {} and error tolerance: {}".format(X.shape, self.epochs, tol))
+        print("Beginning training on data of shape: {}, max epochs: {} and error tolerance: {}".format(X.shape, self.epochs, self.tol))
 
         self.centroids = {}
         epochs =0
@@ -41,11 +41,11 @@ class KMeans():
             epochs+=1
             if optimized == True:
                 break
-            print("#####################")
-            print("Finished training in {} epochs".format(epochs))
-            if save:
-                print("Saving model in {}".format(file_path))
-                self.save(file_path)
+        print("#####################")
+        print("Finished training in {} epochs".format(epochs))
+        if save:
+            print("Saving model in {}".format(file_path))
+            self.save(file_path)
 
      # Pickles the centroids
     def save(self, file_path):
@@ -65,7 +65,7 @@ class KMeans():
     def classify(self,X):
         if self.centroids == None:
             raise EmptyCentroidsError("No centroids were trained or loaded!")
-        distances = [np.linalg.norm(X[index] - self.centroids[centroid]) for centroid in self.centroids]
+        distances = [np.linalg.norm(X - self.centroids[centroid]) for centroid in self.centroids]
         classification = distances.index(min(distances))
         return classification
 
