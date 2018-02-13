@@ -94,6 +94,8 @@ class PostProcessing():
     # Converts the values into actual meaningful units
     def postprocess_data(self, feature_vector, yaw_pitch_roll_values = False):
         # Get only the relevant data from the feature vector
+        if(self.gyro_cal_x == 0 and self.gyro_cal_y == 0 and self.gyro_cal_z == 0):
+            raise Exception("Gyro Calibration Values are all 0.")
         feature_vector = feature_vector["DATA"]
         processed_vector = []
         processed_vector.append(self._acc_normal(feature_vector['ACX']))
