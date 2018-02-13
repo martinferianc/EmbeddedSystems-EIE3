@@ -11,7 +11,7 @@ import uheapq
 import socket
 import uzlib
 
-# register defines
+# Register definitions
 ACCEL_X_H_REG = micropython.const(59)
 ACCEL_X_L_REG = micropython.const(60)
 ACCEL_Y_H_REG = micropython.const(61)
@@ -43,7 +43,7 @@ TOPIC = "esys/HeadAid/sensor"
 SSID = 'EEERover'
 NETWORK_PW = 'exhibition'
 
-DEBUG = True 
+DEBUG = True
 
 class Client:
 
@@ -54,14 +54,14 @@ class Client:
         #I2C setup
         self.i2c = I2C(scl = Pin(5), sda=Pin(4), freq=400000)
 
-        self.BOARD_ON = False 
+        self.BOARD_ON = False
 
         #device information
         self.slave = deviceAddress
         self.__playerNum = playerNum
 
         #hardware threshold initialisation
-        self.accelThreshold = 2500 
+        self.accelThreshold = 2500
         self.gyroThreshold  = 100
 
         #network initialisation
@@ -153,11 +153,13 @@ class Client:
         return val
 
     def magnitude(self,val):
-        return abs(self.intSigned(val[0]))+abs(self.intSigned(val[1]))+abs(self.intSigned(val[2])) 
+        return abs(self.intSigned(val[0]))+abs(self.intSigned(val[1]))+abs(self.intSigned(val[2]))
 
     def updateAccelValues(self, sensor_buf):
         # Update all of the values
         values = [0,0,0,0,0,0,0]
+
+        print('updating values')
 
         #update acceleration values
         values[0] = sensor_buf[0] << 8 | sensor_buf[1]
@@ -174,7 +176,7 @@ class Client:
 
         values = [values[1]<<16|values[0],values[4]<<16|values[2],values[6]<<16|values[5]]
 
-        if self.magnitude(values[0:3]) > self.accelThreshold or self.magnitude(values[4:]) > self.gyroThreshold: 
+        if self.magnitude(values[0:3]) > self.accelThreshold or self.magnitude(values[4:]) > self.gyroThreshold:
             self.mainPack = values
             self.publishDataToBroker(0)
 
@@ -185,7 +187,7 @@ class Client:
         print('got command')
         if m == 1:
             self.BOARD_ON = True
-        
+
         if m == 0:
             self.BOARD_ON = False
 
@@ -194,4 +196,3 @@ class Client:
         # Publish the data to the MQTT broker
         if self.BOARD_ON:
             self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
-        

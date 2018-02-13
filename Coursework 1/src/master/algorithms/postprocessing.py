@@ -1,4 +1,4 @@
-import math, json, ast, re
+import math, json, ast, re, time
 
 class PostProcessing():
 ##################### Member Variables ##########################
@@ -94,14 +94,17 @@ class PostProcessing():
     # Converts the values into actual meaningful units
     def postprocess_data(self, feature_vector, yaw_pitch_roll_values = False):
         # Get only the relevant data from the feature vector
+        if(self.gyro_cal_x == 0 and self.gyro_cal_y == 0 and self.gyro_cal_z == 0):
+            raise Exception("Gyro Calibration Values are all 0.")
         feature_vector = feature_vector["DATA"]
-        feature_vector['ACX'] = self._acc_normal(feature_vector['ACX'])
-        feature_vector['ACY'] = self._acc_normal(feature_vector['ACY'])
-        feature_vector['ACZ'] = self._acc_normal(feature_vector['ACZ'])
-        feature_vector['GYX'] = self._gyro_normal(feature_vector['GYX'], self.gyro_cal_x)
-        feature_vector['GYY'] = self._gyro_normal(feature_vector['GYY'], self.gyro_cal_y)
-        feature_vector['GYZ'] = self._gyro_normal(feature_vector['GYZ'], self.gyro_cal_z)
-        return feature_vector
+        processed_vector = []
+        processed_vector.append(self._acc_normal(feature_vector['ACX']))
+        processed_vector.append(self._acc_normal(feature_vector['ACY']))
+        processed_vector.append(self._acc_normal(feature_vector['ACZ']))
+        processed_vector.append(self._gyro_normal(feature_vector['GYX'], self.gyro_cal_x))
+        processed_vector.append(self._gyro_normal(feature_vector['GYY'], self.gyro_cal_y))
+        processed_vector.append(self._gyro_normal(feature_vector['GYZ'], self.gyro_cal_z))
+        return processed_vector
 
     # Process the whole JSON fie
     def postprocess_file(self, filename, new_gyro_cal = False, old_gyro_cal = False, save_gyro_cal = False, save_to_file = False):
@@ -163,6 +166,15 @@ class PostProcessing():
             f.close()
         return processed_data, times
 
+def encapsulate_data(data):
+    new_data = {}
+    new_data["PLAYER"] = 1
+    # Package the data
+    new_data['TIMESTAMP'] = time.ctime()
+    tmp = data['DATA']
+    tmp = {'ACX':tmp[0], 'ACY':tmp[1], 'ACZ':tmp[2], 'GYX':tmp[4], 'GYY':tmp[5], 'GYZ':tmp[6]}
+    new_data['DATA'] = tmp
+    return new_data
 
 if __name__ == '__main__':
     postprocessing = PostProcessing()
