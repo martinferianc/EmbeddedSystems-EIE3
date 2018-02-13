@@ -21,4 +21,4 @@ p13 = Pin(13, Pin.IN, Pin.PULL_UP)
 p13.irq(trigger=Pin.IRQ_FALLING, handler=callback)
 
 while True:
-    pass
+    client_board.mqttClient.wait_msg()

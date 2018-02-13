@@ -9,6 +9,7 @@ import ujson
 import micropython
 import uheapq
 import socket
+import uzlib
 
 # register defines
 ACCEL_X_H_REG = micropython.const(59)
@@ -34,16 +35,13 @@ INT_PIN_CFG = micropython.const(55)
 PWR_MGMT    = micropython.const(107)
 
 # MQTT Defaults:
-BROKER = "172.20.10.7"  # TEMP ADDRESS
-#BROKER = "192.168.43.62"  # TEMP ADDRESS
+BROKER = "192.168.0.17"  # TEMP ADDRESS
 CLIENT_ID = "HeadAid" + str(ubinascii.hexlify(machine.unique_id()))
 TOPIC = "esys/HeadAid/sensor"
 
 #Network setup variables:
-SSID = 'Alexander\'s iPhone'
-#SSID = 'headAidNet'
-NETWORK_PW = 'alexLuisi1996'
-#NETWORK_PW = 'gangganggang'
+SSID = 'EEERover'
+NETWORK_PW = 'exhibition'
 
 DEBUG = True 
 
@@ -56,13 +54,15 @@ class Client:
         #I2C setup
         self.i2c = I2C(scl = Pin(5), sda=Pin(4), freq=400000)
 
+        self.BOARD_ON = False 
+
         #device information
         self.slave = deviceAddress
         self.__playerNum = playerNum
 
         #hardware threshold initialisation
-        self.accelThreshold = 1900
-        self.gyroThreshold  = 50
+        self.accelThreshold = 2500 
+        self.gyroThreshold  = 100
 
         #network initialisation
         self.ap_if  = self.accessInit()
@@ -77,8 +77,9 @@ class Client:
 
         #MQTT setup
         self.mqttClient = MQTTClient(CLIENT_ID,BROKER)
+        self.mqttClient.set_callback(self.sub_cb)
         self.mqttClient.connect()
-
+        self.mqttClient.subscribe(b"esys/HeadAid/on_field_status1")
         print('setup done')
 
     def accessInit(self):
@@ -152,42 +153,45 @@ class Client:
         return val
 
     def magnitude(self,val):
-        return abs(val[0])+abs(val[1])+abs(val[2]) 
+        return abs(self.intSigned(val[0]))+abs(self.intSigned(val[1]))+abs(self.intSigned(val[2])) 
 
     def updateAccelValues(self, sensor_buf):
         # Update all of the values
         values = [0,0,0,0,0,0,0]
 
-        print('updating values')        
-
         #update acceleration values
-        values[0] = self.intSigned(sensor_buf[0] << 8 | sensor_buf[1])
-        values[1] = self.intSigned(sensor_buf[2] << 8 | sensor_buf[3])
-        values[2] = self.intSigned(sensor_buf[4] << 8 | sensor_buf[5])
+        values[0] = sensor_buf[0] << 8 | sensor_buf[1]
+        values[1] = sensor_buf[2] << 8 | sensor_buf[3]
+        values[2] = sensor_buf[4] << 8 | sensor_buf[5]
 
         #update temperature value
         values[3] = sensor_buf[6] << 8 | sensor_buf[7]
 
         #update gyroscope values
-        values[4] = self.intSigned(sensor_buf[8] << 8 | sensor_buf[9])
-        values[5] = self.intSigned(sensor_buf[10]<< 8 | sensor_buf[11])
-        values[6] = self.intSigned(sensor_buf[12]<< 8 | sensor_buf[13])
+        values[4] = sensor_buf[8] << 8 | sensor_buf[9]
+        values[5] = sensor_buf[10]<< 8 | sensor_buf[11]
+        values[6] = sensor_buf[12]<< 8 | sensor_buf[13]
 
-        if self.magnitude(values[0:2]) > self.accelThreshold: 
-            self.mainPack['DATA'] = values
-            self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
-            return
+        values = [values[1]<<16|values[0],values[4]<<16|values[2],values[6]<<16|values[5]]
 
-        if self.magnitude(values[3:5]) > self.gyroThreshold: 
-            self.mainPack['DATA'] = values
-            self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
-            return
+        if self.magnitude(values[0:3]) > self.accelThreshold or self.magnitude(values[4:]) > self.gyroThreshold: 
+            self.mainPack = values
+            self.publishDataToBroker(0)
 
 ##################### Client MQTT Functions ############################
 
-    def publishDataToBroker(self,_):
+    def sub_cb(self,topic,msg):
+        m = int(msg.decode('utf-8'))
+        print('got command')
+        if m == 1:
+            self.BOARD_ON = True
         
+        if m == 0:
+            self.BOARD_ON = False
+
+    def publishDataToBroker(self,_):
+        self.mainPack.extend([self.slave,self.__playerNum])
         # Publish the data to the MQTT broker
-        self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
-        print('sending data')
+        if self.BOARD_ON:
+            self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
         

@@ -47,7 +47,25 @@ if __name__ == '__main__':
 
     def on_message(client, userdata, msg):
         # Get the raw data
-        data = json.loads(msg.payload.decode("utf-8"))
+        temp = {}        
+
+        data = list(msg.payload.decode("utf-8"))
+        
+        temp['PLAYER']          = data[3]
+        temp['DEVICE ADDRESS']  = data[4]
+
+        temp['DATA'] = []
+        temp['DATA'].append(data[0]     & 0xFF)
+        temp['DATA'].append(data[0]>>16 & 0xFF)
+        temp['DATA'].append(data[1]     & 0xFF)
+        temp['DATA'].append(0)
+        temp['DATA'].append(data[1]>>16 & 0xFF)
+        temp['DATA'].append(data[2]     & 0xFF)
+        temp['DATA'].append(data[2]>>16 & 0xFF)
+
+        data = temp
+
+        print(data)
 
         #Encapsulate the data into dictionary format
         data = encapsulate_data(data)
