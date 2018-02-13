@@ -77,6 +77,7 @@ class PostProcessing(self):
         self.gyro_cal_x = offset_values['GYX']
         self.gyro_cal_y = offset_values['GYY']
         self.gyro_cal_y = offset_values['GYZ']
+        file.close()
 
     # Calibrate the gyros by taking 2000 samples and then creating an average offset
     def refresh_calibration_values(self, data):
