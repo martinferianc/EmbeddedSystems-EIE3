@@ -34,16 +34,16 @@ INT_PIN_CFG = micropython.const(55)
 PWR_MGMT    = micropython.const(107)
 
 # MQTT Defaults:
-#BROKER = "172.20.10.7"  # TEMP ADDRESS
-BROKER = "192.168.43.124"  # TEMP ADDRESS
+BROKER = "172.20.10.7"  # TEMP ADDRESS
+#BROKER = "192.168.43.62"  # TEMP ADDRESS
 CLIENT_ID = "HeadAid" + str(ubinascii.hexlify(machine.unique_id()))
 TOPIC = "esys/HeadAid/sensor"
 
 #Network setup variables:
-#SSID = 'Alexander\'s iPhone'
-SSID = 'headAidNet'
-#NETWORK_PW = 'alexLuisi1996'
-NETWORK_PW = 'gangganggang'
+SSID = 'Alexander\'s iPhone'
+#SSID = 'headAidNet'
+NETWORK_PW = 'alexLuisi1996'
+#NETWORK_PW = 'gangganggang'
 
 DEBUG = True 
 
@@ -61,9 +61,8 @@ class Client:
         self.__playerNum = playerNum
 
         #hardware threshold initialisation
-        self.thresholdFlag = False
-        self.thresholdValue = 500
-        self.thresholdCounter = int(measurementSize/2)
+        self.accelThreshold = 1900
+        self.gyroThreshold  = 50
 
         #network initialisation
         self.ap_if  = self.accessInit()
@@ -75,9 +74,6 @@ class Client:
         #data to be sent
         self.mainPack = {'PLAYER': playerNum, 'DEVICE ADDRESS': deviceAddress, 'DATA': []}
         #list arrangement: ACX-ACY-ACZ-TMP-GYX-GYY-GYZ
-
-        self.heap = []
-        uheapq.heapify(self.heap)      
 
         #MQTT setup
         self.mqttClient = MQTTClient(CLIENT_ID,BROKER)
@@ -118,7 +114,7 @@ class Client:
         self.write_reg(PWR_MGMT, 0x80)  # reset
         time.sleep(1)
         self.write_reg(PWR_MGMT, 0x00)  # power on
-        self.write_reg(SMPLRT_DIV, 0x10)  # 8kHz sampling rate
+        self.write_reg(SMPLRT_DIV, 0x7F)  # 8kHz sampling rate
         #TODO adjust sample rate
         self.write_reg(CONF, 0x01)  # no external sync, largest bandwidth
         self.write_reg(GYRO_CONF, 0x18)  # 2000deg/s gyro range
@@ -150,6 +146,14 @@ class Client:
         self.i2c.writeto_mem(self.slave, reg_addr, dataByte)
 ##################### Client Functions ############################
 
+    def intSigned(self,val):
+        if val > 32768:
+          return val - 65536
+        return val
+
+    def magnitude(self,val):
+        return abs(val[0])+abs(val[1])+abs(val[2]) 
+
     def updateAccelValues(self, sensor_buf):
         # Update all of the values
         values = [0,0,0,0,0,0,0]
@@ -157,24 +161,27 @@ class Client:
         print('updating values')        
 
         #update acceleration values
-        values[0] = sensor_buf[0] << 8 | sensor_buf[1]
-        values[1] = sensor_buf[2] << 8 | sensor_buf[3]
-        values[2] = sensor_buf[4] << 8 | sensor_buf[5]
+        values[0] = self.intSigned(sensor_buf[0] << 8 | sensor_buf[1])
+        values[1] = self.intSigned(sensor_buf[2] << 8 | sensor_buf[3])
+        values[2] = self.intSigned(sensor_buf[4] << 8 | sensor_buf[5])
 
         #update temperature value
         values[3] = sensor_buf[6] << 8 | sensor_buf[7]
 
         #update gyroscope values
-        values[4] = sensor_buf[8] << 8 | sensor_buf[9]
-        values[5] = sensor_buf[10] << 8 | sensor_buf[11]
-        values[6] = sensor_buf[12] << 8 | sensor_buf[13]
+        values[4] = self.intSigned(sensor_buf[8] << 8 | sensor_buf[9])
+        values[5] = self.intSigned(sensor_buf[10]<< 8 | sensor_buf[11])
+        values[6] = self.intSigned(sensor_buf[12]<< 8 | sensor_buf[13])
 
-
-        uheapq.heapappend(self.heap, values)
-
-        if len(self.heap) > 1000:
+        if self.magnitude(values[0:2]) > self.accelThreshold: 
+            self.mainPack['DATA'] = values
             self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
+            return
 
+        if self.magnitude(values[3:5]) > self.gyroThreshold: 
+            self.mainPack['DATA'] = values
+            self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
+            return
 
 ##################### Client MQTT Functions ############################
 
