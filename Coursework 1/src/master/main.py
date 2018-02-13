@@ -1,6 +1,6 @@
 from algorithms.exceptions import EmptyDataError, EmptyCentroidsError
 from algorithms.kmeans import KMeans
-from algorithms.postprocessing import PostProcessing
+from algorithms.postprocessing import PostProcessing, encapsulate_data
 from algorithms.log import log_event, check_on_field
 from www.web import create_app
 
@@ -10,28 +10,19 @@ import sys
 import paho.mqtt.client as mqtt
 import _thread
 import json
-import csv
+
 
 N_PLAYERS = 20
 MODEL_NAME =  "kmeans" + "1.0"
 SENSOR_STATES = [0 for i in range(20)]
 
 
-def encapsulate_data(data):
-    data["PLAYER"] = 1
-    # Package the data
-    data['TIMESTAMP'] = time.ctime()
-    tmp = data['DATA']
-    tmp = {'ACX':tmp[0], 'ACY':tmp[1], 'ACZ':tmp[2], 'GYX':tmp[4], 'GYY':tmp[5], 'GYZ':tmp[6]}
-    data['DATA'] = tmp
-    return data
-
 if __name__ == '__main__':
     HOST = sys.argv[1]
     PORT = int(sys.argv[2])
     BROKET_HOST = sys.argv[3]
     BROKET_PORT = int(sys.argv[4])
-
+    print("Initializing the web server & MQTT broker")
     print("BROKER HOST {}".format(BROKET_HOST))
     print("BROKER PORT {}".format(BROKET_PORT))
     print("HOST {}".format(HOST))
@@ -80,13 +71,12 @@ if __name__ == '__main__':
     ### Establishing code for the web server
     app = create_app('dev')
     def web_thread():
-            app.run(debug=False, host=HOST,port=PORT, threaded=True, use_reloader=False)
+        app.run(debug=False, host=HOST,port=PORT, threaded=True, use_reloader=False)
     _thread.start_new_thread(web_thread,())
 
     while True:
-        pass
-        #players_on_field = check_on_field()
-        #for i in range(N_PLAYERS):
-        #    if players_on_field[i] != SENSOR_STATES[i]:
-        #        SENSOR_STATES[i] = players_on_field[i]
+        players_on_field = check_on_field()
+        for i in range(N_PLAYERS):
+            if players_on_field[i] != SENSOR_STATES[i]:
+                SENSOR_STATES[i] = players_on_field[i]
                 # Turn on or off the sensor
