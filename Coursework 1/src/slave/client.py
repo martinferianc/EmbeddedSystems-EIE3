@@ -10,7 +10,7 @@ import micropython
 import uheapq
 import socket
 
-# register defines
+# Register definitions
 ACCEL_X_H_REG = micropython.const(59)
 ACCEL_X_L_REG = micropython.const(60)
 ACCEL_Y_H_REG = micropython.const(61)
@@ -45,7 +45,7 @@ SSID = 'Alexander\'s iPhone'
 NETWORK_PW = 'alexLuisi1996'
 #NETWORK_PW = 'gangganggang'
 
-DEBUG = True 
+DEBUG = True
 
 class Client:
 
@@ -152,13 +152,13 @@ class Client:
         return val
 
     def magnitude(self,val):
-        return abs(val[0])+abs(val[1])+abs(val[2]) 
+        return abs(val[0])+abs(val[1])+abs(val[2])
 
     def updateAccelValues(self, sensor_buf):
         # Update all of the values
         values = [0,0,0,0,0,0,0]
 
-        print('updating values')        
+        print('updating values')
 
         #update acceleration values
         values[0] = self.intSigned(sensor_buf[0] << 8 | sensor_buf[1])
@@ -173,12 +173,12 @@ class Client:
         values[5] = self.intSigned(sensor_buf[10]<< 8 | sensor_buf[11])
         values[6] = self.intSigned(sensor_buf[12]<< 8 | sensor_buf[13])
 
-        if self.magnitude(values[0:2]) > self.accelThreshold: 
+        if self.magnitude(values[0:2]) > self.accelThreshold:
             self.mainPack['DATA'] = values
             self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
             return
 
-        if self.magnitude(values[3:5]) > self.gyroThreshold: 
+        if self.magnitude(values[3:5]) > self.gyroThreshold:
             self.mainPack['DATA'] = values
             self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
             return
@@ -186,8 +186,7 @@ class Client:
 ##################### Client MQTT Functions ############################
 
     def publishDataToBroker(self,_):
-        
+
         # Publish the data to the MQTT broker
         self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
         print('sending data')
-        
