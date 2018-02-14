@@ -8,7 +8,7 @@ class KMeans():
         self.tol = tol
         self.epochs = epochs
         self.centroids = None
-
+    # Does the unsupervised training of the kmeans algorithm
     def fit(self,X,Y, save = False, file_path=""):
         if X.size == 0:
             raise EmptyDataError("Can not train the data is empty")
@@ -47,7 +47,7 @@ class KMeans():
             print("Saving model in {}".format(file_path))
             self.save(file_path)
 
-     # Pickles the centroids
+    # Pickles the centroids
     def save(self, file_path):
         with open(file_path, 'wb') as handle:
             print("Saving model in {}".format(file_path))
@@ -61,14 +61,14 @@ class KMeans():
             (self.centroids,self.k) = pickle.load(handle)
         return True
 
-
+    # Classifies the data
     def classify(self,X):
         if self.centroids == None:
             raise EmptyCentroidsError("No centroids were trained or loaded!")
         distances = [np.linalg.norm(X - self.centroids[centroid]) for centroid in self.centroids]
         classification = distances.index(min(distances))
         return classification
-
+    # Calculate the accuracy against validation data
     def test(self,X,Y):
         error = 0
         for index in range(X.shape[0]):

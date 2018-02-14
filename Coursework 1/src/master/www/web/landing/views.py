@@ -1,5 +1,5 @@
 from . import landing
-
+import re
 import os
 import datetime
 import flask
@@ -32,6 +32,14 @@ def change_on_field(index):
         data[str(index+1)]["on_field"] = "no"
     else:
         data[str(index+1)]["on_field"] = "yes"
+    with open('../../data/team/team.json', 'w') as outfile:
+        json.dump(data, outfile)
+
+def change_condition(index):
+    data = None
+    with open('../../data/team/team.json', 'r') as outfile:
+        data = json.load(open("../../data/team/team.json"))
+    data[str(index+1)]["condition"] = "good"
     with open('../../data/team/team.json', 'w') as outfile:
         json.dump(data, outfile)
 
@@ -93,6 +101,15 @@ def team():
 
 
 @landing.route('/demo/<int:id>',methods = ['POST', 'GET'])
-def p1(id):
+def change_on_field(id):
     change_on_field(int(request.path.split('/')[-1]))
+    return redirect(url_for('.demo'))
+
+@landing.route('/demo/<int:id>_reset',methods = ['POST', 'GET'])
+def reset_condition(id):
+    path = request.path.split('/')[-1]
+    index = re.findall("\d+", path)
+    index = int(index[0])
+    print(index)
+    change_condition(index)
     return redirect(url_for('.demo'))

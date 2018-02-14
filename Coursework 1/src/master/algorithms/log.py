@@ -1,6 +1,9 @@
 import json
 import time
 
+# This function logs an event into the main data file and also in the log
+# it does so only when the state of the player has been modified from bad into critical
+# or good into bad or critical to avoid false positives as it is assumed that the state can only get worse
 def log_event(data, label, file_path = "../../data/team/"):
     team_f = open(file_path+"team.json", 'r')
     team_data = json.load(team_f)
@@ -45,7 +48,7 @@ def log_event(data, label, file_path = "../../data/team/"):
     json.dump(team_data, team_f)
     team_f.close()
 
-
+# Check which players are on the field and turn the sensor on and off
 def check_on_field(file_path = "../../data/team/", size=20):
     team_f = open(file_path+"team.json", 'r')
     team_data = json.load(team_f)

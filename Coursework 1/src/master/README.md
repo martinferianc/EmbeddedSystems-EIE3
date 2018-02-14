@@ -1,29 +1,40 @@
 # Master program
 
-This is the applicaiton that is being run at the master. It creates a web server that is being updated based on the data which we read off the sensors. In addition it employs various algorithms to establish the connection between our board and the master computer/server.
+This code runs on the server side which is configured as the MQTT broker to receive the messages. It creates a web server which updates a website based on the data which is read from the accelerometer, clearly allowing a coach or other support personnel to identify when a player has suffered a trauma. The script contained within `main.py` handles the creation of the web sever and the MQTT server to listen to incoming messages from all of the connected players.
 
 ## Structure
 
 ```
 .
 ├── algorithms
+│   ├── calibration
+│   └── model
 └── www
     └── web
         ├── landing
         ├── static
         │   ├── css
         │   ├── img
+        │   │   └── team
         │   ├── js
+        │   │   └── team -> ../../../../../../data/team
         │   ├── scss
         │   └── vendor
         │       ├── bootstrap
+        │       │   ├── css
+        │       │   └── js
         │       ├── font-awesome
+        │       │   ├── css
+        │       │   ├── less
+        │       │   ├── scss
+        │       │   └── webfonts
         │       └── jquery
         └── templates
+            └── team -> ../../../../../data/team
 ```
 The `algorithms` foldter contains all the other programs needed to filter out the data or enable connectivity with the web server. The main directory contains `main.py` which combines all the sub programs into the main loop that runs the server and all pooling to the server.
 
-`www` contains all the necessary stuff for the web server to run. `landing` contains the main configuration file for the web server where all URL linking takes place and where the server responds to POST or GET requersts. `static` contains all the static data and libraries that we use to run the web server, the main css bootstrap enhanced template is under `static/css/`. `tempaltes` contains the HTML templates for the websites that we run.
+`www` contains all the necessary stuff for the web server to run. `landing` contains the main configuration file for the web server where all URL linking takes place and where the server responds to POST or GET requersts. `static` contains all the static data and libraries that we use to run the web server, the main css bootstrap enhanced template is under `static/css/`. `templates` contains the HTML templates for the websites that we run.
 
 ## Building & Running
 
@@ -35,4 +46,4 @@ Then just:
 
 `python3 main.py "0.0.0.0" 8080 "192.168.0.183" 1883`
 
-to setup the host address and the port on which the server is going to listen and you are good to go.
+to setup the host address and the port on which the server is going to listen. If a webserver other than one being run locally is used, you need to change `0.0.0.0` to correspond to it's address. `192.168.0.183` also needs to be changed to the address of the laptop on the network which is running the MQTT broker.
