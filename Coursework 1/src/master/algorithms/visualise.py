@@ -4,6 +4,7 @@ import json
 from kmeans import KMeans
 from datetime import datetime
 
+# This is a helper file to visualize our cluster centroids to check if our ML algorithm works correctly
 def magnitude(x,y,z):
     return math.sqrt(x**2+y**2+z**2)
 
@@ -13,7 +14,7 @@ def intSigned(val):
     return val
 
 if __name__ == "__main__":
-  
+
     X = []
     Y = []
     T = []
@@ -31,7 +32,7 @@ if __name__ == "__main__":
 
             accelMag = magnitude(data['ACX'],data['ACY'],data['ACZ'])
             gyroMag = magnitude(data['GYX'],data['GYY'],data['GYZ'])
- 
+
             X.append(accelMag)
             Y.append(gyroMag)
 
@@ -39,24 +40,24 @@ if __name__ == "__main__":
         for line in f:
             data = json.loads(line)
             T.append(datetime.strptime(data['TIMESTAMP'],'%h/%s'))
- 
+
     km = KMeans(k=3)
     km.load('./model/{}.pickle'.format("kmeans"+"1.0"))
 
     print(T)
-     
+
     sz = [0.1 for x in range(len(X))]
     c  = ['b' for x in range(len(X))]
 
-    X.append(magnitude(km.centroids[0][0],km.centroids[0][1],km.centroids[0][2]))    
-    X.append(magnitude(km.centroids[1][0],km.centroids[1][1],km.centroids[1][2]))    
-    X.append(magnitude(km.centroids[2][0],km.centroids[2][1],km.centroids[2][2]))    
+    X.append(magnitude(km.centroids[0][0],km.centroids[0][1],km.centroids[0][2]))
+    X.append(magnitude(km.centroids[1][0],km.centroids[1][1],km.centroids[1][2]))
+    X.append(magnitude(km.centroids[2][0],km.centroids[2][1],km.centroids[2][2]))
 
-    Y.append(magnitude(km.centroids[0][3],km.centroids[0][4],km.centroids[0][5]))    
-    Y.append(magnitude(km.centroids[1][3],km.centroids[1][4],km.centroids[1][5]))    
-    Y.append(magnitude(km.centroids[2][3],km.centroids[2][4],km.centroids[2][5]))    
-    
-    c.extend(['r','r','r'])  
+    Y.append(magnitude(km.centroids[0][3],km.centroids[0][4],km.centroids[0][5]))
+    Y.append(magnitude(km.centroids[1][3],km.centroids[1][4],km.centroids[1][5]))
+    Y.append(magnitude(km.centroids[2][3],km.centroids[2][4],km.centroids[2][5]))
+
+    c.extend(['r','r','r'])
     sz.extend([3,3,3])
 
     plt.scatter(X,Y,sz,c)

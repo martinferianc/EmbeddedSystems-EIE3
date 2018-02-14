@@ -13,7 +13,7 @@ import paho.mqtt.publish as publish
 import _thread
 import json
 
-
+# Define static variables
 N_PLAYERS = 20
 MODEL_NAME =  "kmeans" + "1.0"
 SENSOR_STATES = [0 for i in range(20)]
@@ -53,7 +53,7 @@ if __name__ == '__main__':
 
         temp['PLAYER']          = data[3]
         temp['DEVICE ADDRESS']  = data[4]
-
+        # Manipulate the data to reflect the compression of the sent data
         temp['DATA'] = []
         temp['DATA'].append(data[0]     & 0xFF)
         temp['DATA'].append(data[0]>>16 & 0xFF)
@@ -98,11 +98,13 @@ if __name__ == '__main__':
     def turn_sensor(value,sensor):
         client.publish("esys/HeadAid/on_field_status{}".format(sensor), str(value))
 
+    # Necessary while loop for the code to keep on executing
     while True:
+        # Delay to reduce the checking if the players are on the field, selected by the coach
         time.sleep(1)
         players_on_field = check_on_field()
         for i in range(N_PLAYERS):
             if players_on_field[i] != SENSOR_STATES[i]:
                 SENSOR_STATES[i] = players_on_field[i]
-                # Turn on or off the sensor
+                # Turn on or off the sensor in case player state has been changed to conserve power
                 turn_sensor(SENSOR_STATES[i],i)

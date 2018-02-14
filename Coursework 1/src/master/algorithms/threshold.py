@@ -2,7 +2,7 @@ import math
 import numpy as np
 import json
 
-#magnitude function
+# These functions calculate the basic threshold for the sensors to operate based on the past data that we have collected
 def getMagnitude(val):
   return abs(val[0])+abs(val[1])+abs(val[2])
 
@@ -16,7 +16,7 @@ def intSigned(val):
 
 if __name__=="__main__":
     #get data from readings
-    accel = [] 
+    accel = []
     gyro = []
 
     with open('../../../data/data_raw.txt','r') as f:
@@ -25,11 +25,11 @@ if __name__=="__main__":
             data['ACX'] = intSigned(data['ACX'])
             data['ACY'] = intSigned(data['ACY'])
             data['ACZ'] = intSigned(data['ACZ'])
-          
+
             data['GYX'] = intSigned(data['GYX'])
             data['GYY'] = intSigned(data['GYY'])
             data['GYZ'] = intSigned(data['GYZ'])
-            
+
             accel.append(getMagnitude([data['ACX'],data['ACY'],data['ACZ']]))
             gyro.append(getMagnitude([data['GYX'],data['GYY'],data['GYZ']]))
 
