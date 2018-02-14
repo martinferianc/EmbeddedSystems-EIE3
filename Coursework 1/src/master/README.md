@@ -42,8 +42,12 @@ Make sure that you have all the dependencies:
 
 `pip install -r requierments.txt`
 
+## For Mac OSX
+
+Follow thsi link: [Tutorial](https://simplifiedthinking.co.uk/2015/10/03/install-mqtt-server/)
+
 Then just:
 
 `python3 main.py "0.0.0.0" 8080 "192.168.0.183" 1883`
 
-to setup the host address and the port on which the server is going to listen. If a webserver other than one being run locally is used, you need to change `0.0.0.0` to correspond to it's address. `192.168.0.183` also needs to be changed to the address of the laptop on the network which is running the MQTT broker.
+to setup the host address and the port on which the server is going to listen. If a webserver other than one being run locally is used, you need to change `0.0.0.0` to correspond to it's address. `192.168.0.183` also needs to be changed to the address of the laptop on the network which is running the MQTT broker. THe web server and the MQTT broker are running in separate threads. 
