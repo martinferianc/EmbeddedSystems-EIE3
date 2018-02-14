@@ -47,8 +47,6 @@ if __name__ == "__main__":
     km = KMeans(k=3)
     km.load('./model/{}.pickle'.format("kmeans"+"1.0"))
 
-    print(T)
-
     plt.plot(T,X)
     plt.show()
 
