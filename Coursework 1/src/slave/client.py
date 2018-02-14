@@ -56,7 +56,7 @@ class Client:
         self.i2c = I2C(scl = Pin(5), sda=Pin(4), freq=400000)
 
         # Sending data flag
-        self.BOARD_ON = False
+        self.BOARD_ON = False 
 
         #device information
         self.slave = deviceAddress
@@ -155,8 +155,8 @@ class Client:
         return val
 
     ### lightweight magnitude function
-    def magnitude(self,val):
-        return abs(self.intSigned(val[0]))+abs(self.intSigned(val[1]))+abs(self.intSigned(val[2]))
+    def magnitude(self,x,y,z):
+        return abs(self.intSigned(x))+abs(self.intSigned(y))+abs(self.intSigned(z))
 
     ### update values to be sent
     def updateValues(self, sensor_buf):
@@ -169,7 +169,7 @@ class Client:
         self.mainPack[2] = int(sensor_buf[12]<<24 | sensor_buf[13]<<16 | sensor_buf[10]<<8 | sensor_buf[11])
 
         #only sent above threshold
-        if self.magnitude(values[0:3]) > self.accelThreshold or self.magnitude(values[4:]) > self.gyroThreshold:
+        if self.magnitude(sensor_buf[0]<<8|sensor_buf[1],sensor_buf[2]<<8|sensor_buf[3],sensor_buf[4]<<8|sensor_buf[5]) > self.accelThreshold or self.magnitude(sensor_buf[8]<<8|sensor_buf[9],sensor_buf[10]<<8|sensor_buf[11],sensor_buf[12]<<8|sensor_buf[13]) > self.gyroThreshold:
             #publish to broker
             micropython.schedule(self.publishDataToBroker,0)
 
@@ -195,4 +195,6 @@ class Client:
         self.mainPack[4] = self.slave
         # Publish the data to the MQTT broker
         if self.BOARD_ON:
+            if DEBUG:
+                print('sent data') 
             self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
