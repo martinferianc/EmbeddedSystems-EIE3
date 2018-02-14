@@ -18,6 +18,18 @@ N_PLAYERS = 20
 MODEL_NAME =  "kmeans" + "1.0"
 SENSOR_STATES = [0 for i in range(20)]
 
+def encrypt(val):
+
+    temp = int(0)
+
+    temp = temp | (val << 0  & 0x000F)
+    temp = temp | (val << 16 & 0x00F0)
+    temp = temp | (val << 0  & 0x0F00)
+    temp = temp | (val >> 16 & 0xF000)
+    
+    return temp
+
+
 
 if __name__ == '__main__':
     HOST = sys.argv[1]

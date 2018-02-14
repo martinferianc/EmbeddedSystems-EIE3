@@ -186,6 +186,18 @@ class Client:
         if m == 0:
             self.BOARD_ON = False
 
+    ### encryption function
+    def encrypt(self, val):
+
+        temp = int(0)
+
+        temp = temp | (val >> 0  & 0x000F)
+        temp = temp | (val >> 16 & 0x00F0)
+        temp = temp | (val >> 0  & 0x0F00)
+        temp = temp | (val << 16 & 0xF000)
+        
+        return temp
+
     ### publish function
     def publishDataToBroker(self,_):
         if DEBUG:
@@ -197,4 +209,6 @@ class Client:
         if self.BOARD_ON:
             if DEBUG:
                 print('sent data') 
+            for x in self.mainPack:
+                x = self.encrypt(x) 
             self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
