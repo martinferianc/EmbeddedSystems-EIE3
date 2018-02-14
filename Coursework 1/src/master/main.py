@@ -33,6 +33,7 @@ if __name__ == '__main__':
     # Initialization of data postprocessing and ML algorithm
     kmeans = KMeans(k=3)
     kmeans.load('algorithms/model/{}.pickle'.format(MODEL_NAME))
+    print(kmeans.centroids)
 
     # Calibrate the sensors
     sensor = PostProcessing()
@@ -74,12 +75,11 @@ if __name__ == '__main__':
         data = encapsulate_data(data)
 
         processed_data = sensor.postprocess_data(data)
-        print(processed_data)
         label = kmeans.classify(processed_data)
 
-
+        print(label)
         # The condition has been classified as bad
-        if label >= 2:
+        if label < 2:
             log_event(data=data, label=label)
 
     ####### MQTT #######

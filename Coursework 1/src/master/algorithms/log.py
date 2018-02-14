@@ -11,10 +11,10 @@ def log_event(data, label, file_path = "../../data/team/"):
 
     condition = None
     message = None
-    if label == 2:
+    if label == 0:
         condition = "bad"
         message = "The player has been badly hit, there is moderate proababilty of concussion."
-    elif label == 3:
+    elif label == 1:
         condition = "critical"
         message = "The player has been critically hit, there is high proababilty of concussion."
 

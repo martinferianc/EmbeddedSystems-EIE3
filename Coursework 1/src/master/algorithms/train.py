@@ -10,7 +10,7 @@ def preprocessData(testRatio, file_path='../../../data/data_processed.txt'):
     with open(file_path,'r') as f:
         for line in f:
             data = json.loads(line)
-            X.append([data['ACMAG'],data['GYMAG']])
+            X.append([data['ACMAG']])
 
     testSize = int(testRatio*len(X))
     test_X = np.array(X[0:testSize-1])
