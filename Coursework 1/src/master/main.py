@@ -19,15 +19,13 @@ N_PLAYERS = 20
 MODEL_NAME =  "kmeans" + "1.0"
 SENSOR_STATES = [0 for i in range(20)]
 
-    ### encryption function
+# Decrypt the message for security reasons
 def decrypt(val):
     temp = int(0)
-     
-    temp = temp | (val << 0  & 0x000000FF)
-    temp = temp | (val << 16 & 0x0000FF00)
-    temp = temp | (val << 0  & 0x00FF0000)
-    temp = temp | (val >> 16 & 0xFF000000)
-
+    temp = temp | ((val << 0)  & 0x000000FF)
+    temp = temp | ((val << 16) & 0xFF000000)
+    temp = temp | ((val << 0)  & 0x00FF0000)
+    temp = temp | ((val >> 16) & 0x0000FF00)
     return temp
 
 
@@ -91,7 +89,6 @@ if __name__ == '__main__':
         processed_data = sensor.postprocess_data(data)
         label = kmeans.classify(processed_data)
 
-        print(label)
         # The condition has been classified as bad
         if label < 2:
             log_event(data=data, label=label)
