@@ -1,30 +1,27 @@
 import json
-from algorithms.kmeans import KMeans
 import numpy as np
+from kmeans import KMeans
 
-def preprocessData(testRatio):
+MODEL_NAME =  "kmeans" + "1.0"
+
+def preprocessData(testRatio, file_path='../../../data/data_processed.txt'):
     #features to X
     X = []
-    Y = []
-
-    with open('../../../data/data_raw.txt','r') as f:
+    with open(file_path,'r') as f:
         for line in f:
             data = json.loads(line)
-            X.append([data['ACX'],data['ACY'],data['ACZ'],data['GYX'],data['GYY'],data['GYZ']])
-            Y.append(data['LABEL'])
+            X.append([data['ACMAG']])
 
-    testSize = int(testRatio*len(Y))
+    testSize = int(testRatio*len(X))
+    test_X = np.array(X[0:testSize-1])
 
-    train_X = np.array(X[0:testSize-1])
-    train_Y = np.array(Y[0:testSize-1])
+    train_X = np.array(X[testSize:])
 
-    test_X = np.array(X[testSize:])
-    test_Y = np.array(Y[testSize:])
 
-    return train_X, train_Y, test_X, test_Y
+    return train_X, test_X
 
 if __name__ == '__main__':
-    train_X, train_Y, test_X, test_Y = preprocessData(0.1)
+    train_X,test_X = preprocessData(0.1)
     c = KMeans(k=3, tol=0.00001, epochs=3000)
-    c.fit(train_X,train_Y, save = True, file_path = "/model/kmeans1.pickle")
-    c.test(test_X, test_Y)
+    c.fit(train_X,[], save = True, file_path = "model/{}.pickle".format(MODEL_NAME))
+    #c.load(file_path = "model/{}.pickle".format(MODEL_NAME))

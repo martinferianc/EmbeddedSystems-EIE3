@@ -1,6 +1,10 @@
 import numpy as np
 import pickle
+<<<<<<< HEAD
 from exceptions import EmptyCentroidsError, EmptyDataError
+=======
+from .exceptions import EmptyCentroidsError, EmptyDataError
+>>>>>>> f52db219b51a6e2f6ddd11882f0c3eb28d5187f0
 
 class KMeans():
     def __init__(self, k=2, tol=0.001, epochs=300):
@@ -8,12 +12,12 @@ class KMeans():
         self.tol = tol
         self.epochs = epochs
         self.centroids = None
-
+    # Does the unsupervised training of the kmeans algorithm
     def fit(self,X,Y, save = False, file_path=""):
         if X.size == 0:
             raise EmptyDataError("Can not train the data is empty")
         print("#####################")
-        print("Beginning training on data of shape: {}, max epochs: {} and error tolerance: {}".format(X.shape, self.epochs, tol))
+        print("Beginning training on data of shape: {}, max epochs: {} and error tolerance: {}".format(X.shape, self.epochs, self.tol))
 
         self.centroids = {}
         epochs =0
@@ -41,13 +45,13 @@ class KMeans():
             epochs+=1
             if optimized == True:
                 break
-            print("#####################")
-            print("Finished training in {} epochs".format(epochs))
-            if save:
-                print("Saving model in {}".format(file_path))
-                self.save(file_path)
+        print("#####################")
+        print("Finished training in {} epochs".format(epochs))
+        if save:
+            print("Saving model in {}".format(file_path))
+            self.save(file_path)
 
-     # Pickles the centroids
+    # Pickles the centroids
     def save(self, file_path):
         with open(file_path, 'wb') as handle:
             print("Saving model in {}".format(file_path))
@@ -61,14 +65,14 @@ class KMeans():
             (self.centroids,self.k) = pickle.load(handle)
         return True
 
-
+    # Classifies the data
     def classify(self,X):
         if self.centroids == None:
             raise EmptyCentroidsError("No centroids were trained or loaded!")
-        distances = [np.linalg.norm(X[index] - self.centroids[centroid]) for centroid in self.centroids]
+        distances = [np.linalg.norm(X - self.centroids[centroid]) for centroid in self.centroids]
         classification = distances.index(min(distances))
         return classification
-
+    # Calculate the accuracy against validation data
     def test(self,X,Y):
         error = 0
         for index in range(X.shape[0]):
