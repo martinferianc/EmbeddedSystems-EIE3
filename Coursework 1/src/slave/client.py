@@ -35,17 +35,20 @@ PWR_MGMT    = micropython.const(107)
 
 # MQTT Defaults:
 #BROKER = "172.20.10.7"  # TEMP ADDRESS
-BROKER = "192.168.43.124"  # TEMP ADDRESS
+#BROKER = "192.168.43.124"  # TEMP ADDRESS
+BROKER = "192.168.0.3"
 CLIENT_ID = "HeadAid" + str(ubinascii.hexlify(machine.unique_id()))
 TOPIC = "esys/HeadAid/sensor"
 
 #Network setup variables:
 #SSID = 'Alexander\'s iPhone'
-SSID = 'headAidNet'
+#SSID = 'headAidNet'
+SSID = 'virginmedia8004421'
 #NETWORK_PW = 'alexLuisi1996'
-NETWORK_PW = 'gangganggang'
+#NETWORK_PW = 'gangganggang'
+NETWORK_PW = 'wkzypxjs'
 
-DEBUG = True 
+DEBUG = True
 
 class Client:
 
@@ -77,7 +80,7 @@ class Client:
         #list arrangement: ACX-ACY-ACZ-TMP-GYX-GYY-GYZ
 
         self.heap = []
-        uheapq.heapify(self.heap)      
+        uheapq.heapify(self.heap)
 
         #MQTT setup
         self.mqttClient = MQTTClient(CLIENT_ID,BROKER)
@@ -154,7 +157,7 @@ class Client:
         # Update all of the values
         values = [0,0,0,0,0,0,0]
 
-        print('updating values')        
+        print('updating values')
 
         #update acceleration values
         values[0] = sensor_buf[0] << 8 | sensor_buf[1]
@@ -179,8 +182,7 @@ class Client:
 ##################### Client MQTT Functions ############################
 
     def publishDataToBroker(self,_):
-        
+
         # Publish the data to the MQTT broker
         self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
         print('sending data')
-        
