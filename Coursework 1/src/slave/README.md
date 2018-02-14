@@ -24,6 +24,6 @@ If you are not using the default WiFi settings you need to change these manually
 
 To program the board you need to run the shell script
 
-`run.sh`
+`./run.sh`
 
 This will update `client.py` and `main.py` on the board. After this the board can be reset using the on-board reset button and the program should commence running.
