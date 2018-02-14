@@ -19,7 +19,7 @@ N_PLAYERS = 20
 MODEL_NAME =  "kmeans" + "1.0"
 SENSOR_STATES = [0 for i in range(20)]
 
-def encrypt(val):
+def decrypt(val):
 
     temp = int(0)
 
@@ -28,9 +28,7 @@ def encrypt(val):
     temp = temp | (val << 0  & 0x0F00)
     temp = temp | (val >> 16 & 0xF000)
     
-    return temp
-
-
+    return int(temp)
 
 if __name__ == '__main__':
     HOST = sys.argv[1]
@@ -65,7 +63,7 @@ if __name__ == '__main__':
         data = msg.payload.decode("utf-8")
         data = data.strip("[").strip("]").split(",")
 
-        data = [int(d) for d in data]
+        data = [decrypt(d) for d in data]
 
         temp['PLAYER']          = data[3]
         temp['DEVICE ADDRESS']  = data[4]
