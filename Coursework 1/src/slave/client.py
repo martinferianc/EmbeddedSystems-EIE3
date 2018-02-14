@@ -34,15 +34,15 @@ INT_PIN_CFG = micropython.const(55)
 PWR_MGMT    = micropython.const(107)
 
 # MQTT Details:
-BROKER    = "192.168.43.71" # Broker Address 
+BROKER    = "192.168.0.10" # Broker Address 
 CLIENT_ID = "HeadAid" + str(ubinascii.hexlify(machine.unique_id()))
 TOPIC     = "esys/HeadAid/sensor" # Sensor topic
 
 #Network setup variables:
-SSID        = 'headAidNet'
-NETWORK_PW  = 'gangganggang'
+SSID        = 'EEERover'
+NETWORK_PW  = 'exhibition'
 
-DEBUG = True
+DEBUG = False 
 
 class Client:
 
@@ -175,6 +175,18 @@ class Client:
 
 ##################### Client MQTT Functions ############################
 
+    ### encryption function
+    def encrypt(self, val):
+        temp = int(0)
+
+        # shifting bytes around
+        temp = temp | ((val >> 0)  & 0x000000FF)
+        temp = temp | ((val >> 16) & 0x0000FF00)
+        temp = temp | ((val >> 0)  & 0x00FF0000)
+        temp = temp | ((val << 16) & 0xFF000000)
+        
+        return temp
+
     ### subscription callback
     def sub_cb(self,topic,msg):
         m = int(msg.decode('utf-8'))
@@ -195,6 +207,7 @@ class Client:
         self.mainPack[4] = self.slave
         # Publish the data to the MQTT broker
         if self.BOARD_ON:
+            self.mainPack = [self.encrypt(int(d)) for d in self.mainPack]
             if DEBUG:
                 print('sent data') 
             self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
