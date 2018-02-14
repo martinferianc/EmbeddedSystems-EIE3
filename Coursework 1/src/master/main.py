@@ -49,6 +49,7 @@ if __name__ == '__main__':
         # Get the raw data
         temp = {}
 
+        #TODO: check if this is actually a list
         data = list(msg.payload.decode("utf-8"))
 
         temp['PLAYER']          = data[3]
