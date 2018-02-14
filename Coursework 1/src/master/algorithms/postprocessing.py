@@ -91,6 +91,9 @@ class PostProcessing():
         self.gyro_cal_y = tmp_gyro_cal_y/self.average_number
         self.gyro_cal_z = tmp_gyro_cal_z/self.average_number
 
+    def magnitude(self,x,y,z):
+        return math.sqrt(x**2+y**2+z**2)
+
     # Converts the values into actual meaningful units
     def postprocess_data(self, feature_vector, yaw_pitch_roll_values = False):
         # Get only the relevant data from the feature vector
@@ -98,12 +101,21 @@ class PostProcessing():
             raise Exception("Gyro Calibration Values are all 0.")
         feature_vector = feature_vector["DATA"]
         processed_vector = []
+
+        accelMag = self.magnitude(feature_vector['ACX'],feature_vector['ACY'],feature_vector['ACZ'])
+        gyroMag  = self.magnitude(feature_vector['GYX'],feature_vector['GYY'],feature_vector['GYZ'])
+
+        
         processed_vector.append(self._acc_normal(feature_vector['ACX']))
         processed_vector.append(self._acc_normal(feature_vector['ACY']))
         processed_vector.append(self._acc_normal(feature_vector['ACZ']))
         processed_vector.append(self._gyro_normal(feature_vector['GYX'], self.gyro_cal_x))
         processed_vector.append(self._gyro_normal(feature_vector['GYY'], self.gyro_cal_y))
-        processed_vector.append(self._gyro_normal(feature_vector['GYZ'], self.gyro_cal_z))
+        processed_vector.append(self._gyro_normal(feature_vector['GYZ'], self.gyro_cal_z)) 
+  
+        processed_vector.append(accelMag)
+        processed_vector.append(gyroMag)
+
         return processed_vector
 
     # Process the whole JSON fie
@@ -122,12 +134,20 @@ class PostProcessing():
         if(old_gyro_cal):
             # Iterate through the array and normalise all of the values
             for i in range(0, len(raw_data)):
+                
                 raw_data[i]['ACX'] = self._acc_normal(raw_data[i]['ACX'])
                 raw_data[i]['ACY'] = self._acc_normal(raw_data[i]['ACY'])
                 raw_data[i]['ACZ'] = self._acc_normal(raw_data[i]['ACZ'])
                 raw_data[i]['GYX'] = self._gyro_normal(raw_data[i]['GYX'], self.gyro_cal_x)
                 raw_data[i]['GYY'] = self._gyro_normal(raw_data[i]['GYY'], self.gyro_cal_y)
                 raw_data[i]['GYZ'] = self._gyro_normal(raw_data[i]['GYZ'], self.gyro_cal_z)
+                
+                accelMag = self.magnitude(raw_data[i]['ACX'],raw_data[i]['ACY'],raw_data[i]['ACZ'])
+                gyroMag  = self.magnitude(raw_data[i]['GYX'],raw_data[i]['GYY'],raw_data[i]['GYZ']) 
+
+                raw_data[i]['ACMAG'] = accelMag
+                raw_data[i]['GYMAG'] = gyroMag
+
         else:
             # Iterate through the array and normalise all of the values
             for i in range(0, len(raw_data)):
@@ -137,6 +157,13 @@ class PostProcessing():
                 raw_data[i]['GYX'] = self._gyro_normal(raw_data[i]['GYX'])
                 raw_data[i]['GYY'] = self._gyro_normal(raw_data[i]['GYY'])
                 raw_data[i]['GYZ'] = self._gyro_normal(raw_data[i]['GYZ'])
+
+                accelMag = self.magnitude(raw_data[i]['ACX'],raw_data[i]['ACY'],raw_data[i]['ACZ'])
+                gyroMag  = self.magnitude(raw_data[i]['GYX'],raw_data[i]['GYY'],raw_data[i]['GYZ']) 
+
+                raw_data[i]['ACMAG'] = accelMag
+                raw_data[i]['GYMAG'] = gyroMag
+
         if(new_gyro_cal):
             # Take an average of a set number of samples to get the gyro offset
             self.refresh_calibration_values(raw_data)
@@ -147,7 +174,7 @@ class PostProcessing():
                 raw_data[i]['GYZ'] = self._gyro_normal(raw_data[i]['GYZ'], self.gyro_cal_z)
         # Put the data in the correct form to be outputted
         for i in range(0, len(raw_data)):
-            feature_vector = {"ACX": raw_data[i]['ACX'], "ACY":raw_data[i]['ACY'], "ACZ":raw_data[i]['ACZ'],"GYX": raw_data[i]['GYX'],"GYY":raw_data[i]['GYY'], "GYZ": raw_data[i]['GYZ']}
+            feature_vector = {"ACX": raw_data[i]['ACX'], "ACY":raw_data[i]['ACY'], "ACZ":raw_data[i]['ACZ'],"GYX": raw_data[i]['GYX'],"GYY":raw_data[i]['GYY'], "GYZ": raw_data[i]['GYZ'], "ACMAG":raw_data[i]['ACMAG'], "GYMAG":raw_data[i]['GYMAG']}
             processed_data_str+=str(feature_vector)+"\n"
             processed_data_str = processed_data_str.replace("\'", "\"")
             processed_data.append(feature_vector)

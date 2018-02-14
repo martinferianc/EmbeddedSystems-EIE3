@@ -1,6 +1,6 @@
 import numpy as np
 import pickle
-from .exceptions import EmptyCentroidsError, EmptyDataError
+from exceptions import EmptyCentroidsError, EmptyDataError
 
 class KMeans():
     def __init__(self, k=2, tol=0.001, epochs=300):

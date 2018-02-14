@@ -3,6 +3,7 @@ import math
 import json
 from kmeans import KMeans
 from datetime import datetime
+import time
 
 # This is a helper file to visualize our cluster centroids to check if our ML algorithm works correctly
 def magnitude(x,y,z):
@@ -39,12 +40,17 @@ if __name__ == "__main__":
     with open('../../../data/data_raw.txt','r') as f:
         for line in f:
             data = json.loads(line)
-            T.append(datetime.strptime(data['TIMESTAMP'],'%h/%s'))
+            t = datetime.strptime(data['TIMESTAMP'],'%a %b %d %H:%M:%S %Y')
+            T.append(time.mktime(t.timetuple()))
+            # Mon Feb 12 18:05:51 2018
 
     km = KMeans(k=3)
     km.load('./model/{}.pickle'.format("kmeans"+"1.0"))
 
     print(T)
+
+    plt.plot(T,X)
+    plt.show()
 
     sz = [0.1 for x in range(len(X))]
     c  = ['b' for x in range(len(X))]
