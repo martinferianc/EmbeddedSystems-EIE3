@@ -116,6 +116,9 @@ h6 {
     color: white;
   }
 }
+.text-primary {
+  color: #3498db !important;
+}
 
 .fab{
   color: #3498db;
