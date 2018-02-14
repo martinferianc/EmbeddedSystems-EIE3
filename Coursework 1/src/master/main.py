@@ -4,6 +4,7 @@ from algorithms.postprocessing import PostProcessing, encapsulate_data
 from algorithms.log import log_event, check_on_field
 from www.web import create_app
 
+import hashlib
 import random
 import time
 import sys
