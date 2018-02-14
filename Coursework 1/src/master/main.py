@@ -45,7 +45,6 @@ if __name__ == '__main__':
     # Initialization of data postprocessing and ML algorithm
     kmeans = KMeans(k=3)
     kmeans.load('algorithms/model/{}.pickle'.format(MODEL_NAME))
-    print(kmeans.centroids)
 
     # Calibrate the sensors
     sensor = PostProcessing()

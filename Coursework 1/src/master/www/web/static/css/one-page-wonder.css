@@ -74,31 +74,47 @@ h6 {
   font-weight: 700;
   letter-spacing: 0.1rem;
 }
-header.masthead {
-  position: relative;
-  overflow: hidden;
-  padding-top: calc(7rem + 72px);
-  padding-bottom: 7rem;
-  background: linear-gradient(180deg, #3498db 0%, #34495e 100%);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: scroll;
+.masthead {
+  display: table;
+  width: 100%;
+  height: auto;
+  padding: 200px 0;
+  text-align: center;
+  color: white;
+  background: url("../img/header.png") no-repeat bottom center scroll;
+  background-color: #2980b9;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
 }
 
-header.masthead .masthead-content {
-  z-index: 1;
-  position: relative;
+.masthead .intro-body {
+  display: table-cell;
+  vertical-align: middle;
 }
 
-header.masthead .masthead-content .masthead-heading {
-  font-size: 4rem;
-  color: #ecf0f1;
+.masthead .intro-body .brand-heading {
+  font-size: 80px;
 }
 
-header.masthead .masthead-content .masthead-subheading {
-  font-size: 2rem;
-  color: #ecf0f1;
+.masthead .intro-body .intro-text {
+  font-size: 50px;
+}
+
+@media (min-width: 768px) {
+  .masthead {
+    height: 100%;
+    padding: 0;
+  }
+  .masthead .intro-body .brand-heading {
+    font-size: 130px;
+    color: white;
+  }
+  .masthead .intro-body .intro-text {
+    font-size: 60px;
+    color: white;
+  }
 }
 
 .fab{
