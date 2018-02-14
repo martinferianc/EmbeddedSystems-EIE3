@@ -1,17 +1,26 @@
 import numpy as np
+import pickle
+from .exceptions import EmptyCentroidsError, EmptyDataError
 
 class KMeans():
-    def __init__(self, k=2, tol=0.001, max_iter=300):
+    def __init__(self, k=2, tol=0.001, epochs=300):
         self.k = k
         self.tol = tol
-        self.max_iter = max_iter
+        self.epochs = epochs
+        self.centroids = None
+    # Does the unsupervised training of the kmeans algorithm
+    def fit(self,X,Y, save = False, file_path=""):
+        if X.size == 0:
+            raise EmptyDataError("Can not train the data is empty")
+        print("#####################")
+        print("Beginning training on data of shape: {}, max epochs: {} and error tolerance: {}".format(X.shape, self.epochs, self.tol))
 
-    def fit(self,X,Y):
         self.centroids = {}
+        epochs =0
         for i in range(self.k):
             self.centroids[i] = X[i]
 
-        for i in range(self.max_iter):
+        for i in range(self.epochs):
             self.classifications = {}
 
             for i in range(self.k):
@@ -29,14 +38,37 @@ class KMeans():
                 current_centroid = self.centroids[c]
                 if np.sum((current_centroid-original_centroid)/original_centroid*100.0)>self.tol:
                     optimized = False
+            epochs+=1
             if optimized == True:
                 break
+        print("#####################")
+        print("Finished training in {} epochs".format(epochs))
+        if save:
+            print("Saving model in {}".format(file_path))
+            self.save(file_path)
 
-    def classify(self,x,y):
-        distances = [np.linalg.norm(X[index] - self.centroids[centroid]) for centroid in self.centroids]
+    # Pickles the centroids
+    def save(self, file_path):
+        with open(file_path, 'wb') as handle:
+            print("Saving model in {}".format(file_path))
+            pickle.dump((self.centroids,self.k), handle, protocol=pickle.HIGHEST_PROTOCOL)
+            return True
+
+    # Loads the centroids
+    def load(self, file_path):
+        with open(file_path, 'rb') as handle:
+            print("Loading model in {}".format(file_path))
+            (self.centroids,self.k) = pickle.load(handle)
+        return True
+
+    # Classifies the data
+    def classify(self,X):
+        if self.centroids == None:
+            raise EmptyCentroidsError("No centroids were trained or loaded!")
+        distances = [np.linalg.norm(X - self.centroids[centroid]) for centroid in self.centroids]
         classification = distances.index(min(distances))
         return classification
-
+    # Calculate the accuracy against validation data
     def test(self,X,Y):
         error = 0
         for index in range(X.shape[0]):
@@ -45,9 +77,3 @@ class KMeans():
             if classification!=Y[index]:
                 error+=1
         print("Accuracy of this run: {}, Test set: {} examples".format(1-error/len(X),len(X)))
-
-
-#train_X, train_Y, test_X, test_Y = preprocess_data("../../data/titanic/train.csv",0.1)
-#c = KMeans( k=2, tol=0.00001, max_iter=3000)
-#c.fit(train_X,train_Y)
-#c.test(test_X, test_Y)
