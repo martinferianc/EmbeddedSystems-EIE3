@@ -31,7 +31,7 @@ if __name__ == '__main__':
     print("PORT {}".format(PORT))
 
     # Initialization of data postprocessing and ML algorithm
-    kmeans = KMeans(k=4)
+    kmeans = KMeans(k=3)
     kmeans.load('algorithms/model/{}.pickle'.format(MODEL_NAME))
 
     # Calibrate the sensors
@@ -74,7 +74,9 @@ if __name__ == '__main__':
         data = encapsulate_data(data)
 
         processed_data = sensor.postprocess_data(data)
+        print(processed_data)
         label = kmeans.classify(processed_data)
+
 
         # The condition has been classified as bad
         if label >= 2:

@@ -24,7 +24,7 @@ def make_error_response(description):
         status=400,
         content_type="application/json")
 
-def change_on_field(index):
+def on_field(index):
     data = None
     with open('../../data/team/team.json', 'r') as outfile:
         data = json.load(open("../../data/team/team.json"))
@@ -102,7 +102,7 @@ def team():
 
 @landing.route('/demo/<int:id>',methods = ['POST', 'GET'])
 def change_on_field(id):
-    change_on_field(int(request.path.split('/')[-1]))
+    on_field(int(request.path.split('/')[-1]))
     return redirect(url_for('.demo'))
 
 @landing.route('/demo/<int:id>_reset',methods = ['POST', 'GET'])
@@ -110,6 +110,5 @@ def reset_condition(id):
     path = request.path.split('/')[-1]
     index = re.findall("\d+", path)
     index = int(index[0])
-    print(index)
     change_condition(index)
     return redirect(url_for('.demo'))
