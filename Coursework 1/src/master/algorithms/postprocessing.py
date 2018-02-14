@@ -105,14 +105,15 @@ class PostProcessing():
         accelMag = self.magnitude(feature_vector['ACX'],feature_vector['ACY'],feature_vector['ACZ'])
         gyroMag  = self.magnitude(feature_vector['GYX'],feature_vector['GYY'],feature_vector['GYZ'])
 
-        
+        '''
         processed_vector.append(self._acc_normal(feature_vector['ACX']))
         processed_vector.append(self._acc_normal(feature_vector['ACY']))
         processed_vector.append(self._acc_normal(feature_vector['ACZ']))
         processed_vector.append(self._gyro_normal(feature_vector['GYX'], self.gyro_cal_x))
         processed_vector.append(self._gyro_normal(feature_vector['GYY'], self.gyro_cal_y))
         processed_vector.append(self._gyro_normal(feature_vector['GYZ'], self.gyro_cal_z)) 
-  
+        '''  
+
         processed_vector.append(accelMag)
         processed_vector.append(gyroMag)
 
