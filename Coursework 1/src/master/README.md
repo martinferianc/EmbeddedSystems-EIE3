@@ -1,6 +1,6 @@
 # Master program
 
-This is the applicaiton that is being run at the master. It creates a web server that is being updated based on the data which we read off the sensors. In addition it employs various algorithms to establish the connection between our board and the master computer/server.
+This code runs on the server side which is configured as the MQTT broker to receive the messages. It creates a web server which updates a website based on the data which is read from the accelerometer, clearly allowing a coach or other support personnel to identify when a player has suffered a trauma. The script contained within `main.py` handles the creation of the web sever and the MQTT server to listen to incoming messages from all of the connected players.
 
 ## Structure
 
