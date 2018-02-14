@@ -34,11 +34,11 @@ def decrypt(val):
 if __name__ == '__main__':
     HOST = sys.argv[1]
     PORT = int(sys.argv[2])
-    BROKET_HOST = sys.argv[3]
-    BROKET_PORT = int(sys.argv[4])
+    BROKER_HOST = sys.argv[3]
+    BROKER_PORT = int(sys.argv[4])
     print("Initializing the web server & MQTT broker")
-    print("BROKER HOST {}".format(BROKET_HOST))
-    print("BROKER PORT {}".format(BROKET_PORT))
+    print("BROKER HOST {}".format(BROKER_HOST))
+    print("BROKER PORT {}".format(BROKER_PORT))
     print("HOST {}".format(HOST))
     print("PORT {}".format(PORT))
 
@@ -100,7 +100,7 @@ if __name__ == '__main__':
     client.on_message = on_message
     def con_thread():
         client.loop_start()
-        client.connect(BROKET_HOST, BROKET_PORT, 60)
+        client.connect(BROKER_HOST, BROKER_PORT, 60)
     _thread.start_new_thread(con_thread,())
 
 
