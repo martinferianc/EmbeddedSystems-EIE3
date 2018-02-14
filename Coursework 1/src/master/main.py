@@ -4,6 +4,7 @@ from algorithms.postprocessing import PostProcessing, encapsulate_data
 from algorithms.log import log_event, check_on_field
 from www.web import create_app
 
+import hashlib
 import random
 import time
 import sys
@@ -61,24 +62,26 @@ if __name__ == '__main__':
         # Get the raw data
         temp = {}
 
-        #TODO: check if this is actually a list
-        data = list(msg.payload.decode("utf-8"))
+        data = msg.payload.decode("utf-8")
+        data = data.strip("[").strip("]").split(",")
+
+        data = [int(d) for d in data]
 
         temp['PLAYER']          = data[3]
         temp['DEVICE ADDRESS']  = data[4]
+
         # Manipulate the data to reflect the compression of the sent data
         temp['DATA'] = []
-        temp['DATA'].append(data[0]     & 0xFF)
-        temp['DATA'].append(data[0]>>16 & 0xFF)
-        temp['DATA'].append(data[1]     & 0xFF)
+        temp['DATA'].append(data[0]     & 0xFFFF)
+        temp['DATA'].append(data[0]>>16 & 0xFFFF)
+        temp['DATA'].append(data[1]     & 0xFFFF)
         temp['DATA'].append(0)
-        temp['DATA'].append(data[1]>>16 & 0xFF)
-        temp['DATA'].append(data[2]     & 0xFF)
-        temp['DATA'].append(data[2]>>16 & 0xFF)
+        temp['DATA'].append(data[1]>>16 & 0xFFFF)
+        temp['DATA'].append(data[2]     & 0xFFFF)
+        temp['DATA'].append(data[2]>>16 & 0xFFFF)
 
         data = temp
 
-        print(data)
 
         #Encapsulate the data into dictionary format
         data = encapsulate_data(data)
