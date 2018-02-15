@@ -93,7 +93,7 @@ if __name__ == '__main__':
             log_event(data=data, label=label)
 
     ####### MQTT #######
-    #Establish connection with the MQTT
+    # Establish connection with the MQTT and run it in the separate thread
     client = mqtt.Client()
     client.on_connect = on_connect
     client.on_message = on_message

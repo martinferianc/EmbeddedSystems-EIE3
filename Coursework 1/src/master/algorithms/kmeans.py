@@ -8,7 +8,10 @@ class KMeans():
         self.tol = tol
         self.epochs = epochs
         self.centroids = None
-    # Does the unsupervised training of the kmeans algorithm
+    # Does the unsupervised training of the kmeans algorithm by finding all the points that correspond to
+    # a potential centroid and finding the average point between them
+    # finishes at a stopping condition of maximum number of epochs or
+    # when the training error is very low
     def fit(self,X,Y, save = False, file_path=""):
         if X.size == 0:
             raise EmptyDataError("Can not train the data is empty")
