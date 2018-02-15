@@ -33,48 +33,30 @@ INT_EN      = micropython.const(56)
 INT_PIN_CFG = micropython.const(55)
 PWR_MGMT    = micropython.const(107)
 
-<<<<<<< HEAD
-# MQTT Defaults:
-#BROKER = "172.20.10.7"  # TEMP ADDRESS
-#BROKER = "192.168.43.124"  # TEMP ADDRESS
-BROKER = "192.168.0.3"
-=======
 # MQTT Details:
-BROKER    = "192.168.0.10" # Broker Address 
->>>>>>> f52db219b51a6e2f6ddd11882f0c3eb28d5187f0
+BROKER    = "192.168.0.10" # Broker Address
 CLIENT_ID = "HeadAid" + str(ubinascii.hexlify(machine.unique_id()))
 TOPIC     = "esys/HeadAid/sensor" # Sensor topic
 
 #Network setup variables:
-<<<<<<< HEAD
-#SSID = 'Alexander\'s iPhone'
-#SSID = 'headAidNet'
-SSID = 'virginmedia8004421'
-#NETWORK_PW = 'alexLuisi1996'
-#NETWORK_PW = 'gangganggang'
-NETWORK_PW = 'wkzypxjs'
-
-DEBUG = True
-=======
 SSID        = 'EEERover'
 NETWORK_PW  = 'exhibition'
 
-DEBUG = False 
->>>>>>> f52db219b51a6e2f6ddd11882f0c3eb28d5187f0
+DEBUG = False
 
 class Client:
 
     ##################### Setup Functions ############################
 
     def __init__(self, playerNum, deviceAddress, measurementSize):
-        
+
         print('---SETUP START---')
-        
+
         # I2C setup
         self.i2c = I2C(scl = Pin(5), sda=Pin(4), freq=400000)
 
         # Sending data flag
-        self.BOARD_ON = False 
+        self.BOARD_ON = False
 
         #device information
         self.slave = deviceAddress
@@ -92,25 +74,17 @@ class Client:
         self.initMpu()
 
         #data to be sent
-<<<<<<< HEAD
-        self.mainPack = {'PLAYER': playerNum, 'DEVICE ADDRESS': deviceAddress, 'DATA': []}
-        #list arrangement: ACX-ACY-ACZ-TMP-GYX-GYY-GYZ
-
-        self.heap = []
-        uheapq.heapify(self.heap)
-=======
         self.mainPack = [0,0,0,0,0]
         #list arrangement: ACX-ACY-ACZ-GYX-GYY-GYZ-playerNum-deviceAddr
->>>>>>> f52db219b51a6e2f6ddd11882f0c3eb28d5187f0
 
         #MQTT setup
         self.mqttClient = MQTTClient(CLIENT_ID,BROKER)
         self.mqttClient.set_callback(self.sub_cb)
         self.mqttClient.connect()
         self.mqttClient.subscribe(b"esys/HeadAid/on_field_status1")
-        
+
         print('---SETUP DONE---')
-        
+
     def accessInit(self):
         #access point setup
         ap = network.WLAN(network.AP_IF)
@@ -172,19 +146,7 @@ class Client:
         dataByte[0] = data
         self.i2c.writeto_mem(self.slave, reg_addr, dataByte)
 
-<<<<<<< HEAD
-        print('updating values')
-
-        #update acceleration values
-        values[0] = sensor_buf[0] << 8 | sensor_buf[1]
-        values[1] = sensor_buf[2] << 8 | sensor_buf[3]
-        values[2] = sensor_buf[4] << 8 | sensor_buf[5]
-
-        #update temperature value
-        values[3] = sensor_buf[6] << 8 | sensor_buf[7]
-=======
 ##################### Client Functions ############################
->>>>>>> f52db219b51a6e2f6ddd11882f0c3eb28d5187f0
 
     ### Turn 16bit integer to signed integer
     def intSigned(self,val):
@@ -222,7 +184,7 @@ class Client:
         temp = temp | ((val >> 16) & 0x0000FF00)
         temp = temp | ((val >> 0)  & 0x00FF0000)
         temp = temp | ((val << 16) & 0xFF000000)
-        
+
         return temp
 
     ### subscription callback
@@ -238,21 +200,14 @@ class Client:
 
     ### publish function
     def publishDataToBroker(self,_):
-<<<<<<< HEAD
-
-        # Publish the data to the MQTT broker
-        self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
-        print('sending data')
-=======
         if DEBUG:
             print('sent data')
-        
+
         self.mainPack[3] = self.__playerNum
         self.mainPack[4] = self.slave
         # Publish the data to the MQTT broker
         if self.BOARD_ON:
             self.mainPack = [self.encrypt(int(d)) for d in self.mainPack]
             if DEBUG:
-                print('sent data') 
+                print('sent data')
             self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
->>>>>>> f52db219b51a6e2f6ddd11882f0c3eb28d5187f0
