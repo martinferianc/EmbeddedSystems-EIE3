@@ -5,7 +5,7 @@ from kmeans import KMeans
 MODEL_NAME =  "kmeans" + "1.0"
 
 def preprocessData(testRatio, file_path='../../../data/data_processed.txt'):
-    #features to X
+    # Preprocess data for teh training into the ML algorithm
     X = []
     with open(file_path,'r') as f:
         for line in f:

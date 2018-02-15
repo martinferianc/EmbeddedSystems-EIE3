@@ -34,7 +34,7 @@ INT_PIN_CFG = micropython.const(55)
 PWR_MGMT    = micropython.const(107)
 
 # MQTT Details:
-BROKER    = "192.168.0.10" # Broker Address 
+BROKER    = "192.168.0.10" # Broker Address
 CLIENT_ID = "HeadAid" + str(ubinascii.hexlify(machine.unique_id()))
 TOPIC     = "esys/HeadAid/sensor" # Sensor topic
 
@@ -42,21 +42,21 @@ TOPIC     = "esys/HeadAid/sensor" # Sensor topic
 SSID        = 'EEERover'
 NETWORK_PW  = 'exhibition'
 
-DEBUG = False 
+DEBUG = False
 
 class Client:
 
     ##################### Setup Functions ############################
 
     def __init__(self, playerNum, deviceAddress, measurementSize):
-        
+
         print('---SETUP START---')
-        
+
         # I2C setup
         self.i2c = I2C(scl = Pin(5), sda=Pin(4), freq=400000)
 
         # Sending data flag
-        self.BOARD_ON = False 
+        self.BOARD_ON = False
 
         #device information
         self.slave = deviceAddress
@@ -82,9 +82,9 @@ class Client:
         self.mqttClient.set_callback(self.sub_cb)
         self.mqttClient.connect()
         self.mqttClient.subscribe(b"esys/HeadAid/on_field_status1")
-        
+
         print('---SETUP DONE---')
-        
+
     def accessInit(self):
         #access point setup
         ap = network.WLAN(network.AP_IF)
@@ -184,7 +184,7 @@ class Client:
         temp = temp | ((val >> 16) & 0x0000FF00)
         temp = temp | ((val >> 0)  & 0x00FF0000)
         temp = temp | ((val << 16) & 0xFF000000)
-        
+
         return temp
 
     ### subscription callback
@@ -202,12 +202,12 @@ class Client:
     def publishDataToBroker(self,_):
         if DEBUG:
             print('sent data')
-        
+
         self.mainPack[3] = self.__playerNum
         self.mainPack[4] = self.slave
         # Publish the data to the MQTT broker
         if self.BOARD_ON:
             self.mainPack = [self.encrypt(int(d)) for d in self.mainPack]
             if DEBUG:
-                print('sent data') 
+                print('sent data')
             self.mqttClient.publish(TOPIC, bytes(ujson.dumps(self.mainPack),'utf-8'))
