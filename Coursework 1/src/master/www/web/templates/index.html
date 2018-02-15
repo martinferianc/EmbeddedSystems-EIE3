@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>HeadAid | Helps you diagnose and avoid brain injuries</title>
+    <title>HeadAid | Helps you avoid concussions</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -67,11 +67,17 @@
         </div>
     </nav>
     <header class="masthead">
-        <div class="masthead-content">
+      <div class="intro-body">
         <div class="container">
-            <h1 class="masthead-heading mb-0">HeadAid</h1>
-            <h6 class="masthead-subheading mb-0">Helps you diagnose and avoid brain injuries</h6>
-            <a href="#about" class="btn btn-primary btn-xl rounded-pill mt-5 text-center">Learn More</a>
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h1 class="brand-heading">HeadAid</h1>
+              <p class="intro-text">Helps your players prevent concussions.</p>
+              <a href="#about" class="btn btn-circle js-scroll-trigger">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -80,22 +86,28 @@
         <div class="container" id="about">
             <div class="row align-items-center">
                 <div class="col-lg-6 order-lg-1">
+                    <div class="p-5">
                     <div class="row">
                         <div class="col-sd-2">
-                            <img class="img-responsive" src="/static/img/hint.png" alt="">
+                            <img class="img-fluid" src="/static/img/hint.png" alt="">
                         </div>
                         <div class="col-sd-10">
                             <h6 class="display-4" style="padding-top:20px; padding-left:10px;">About</h6>
                         </div>
-                    </div>
-                    <div class="row" style="padding-top:15px;">
-                        <div class="col-lg-12">
-                            <p>HeadAid was founded by a group of undergraduate engineers from the Electrical and Electronic Engineering Department at Imperial College London. The project was proposed when co-founder Alex Luisi, an avid ice hockey player and member of the university team, realised how common concussions are within ice hockey and how easy it is to miss the signs of Traumatic Brain Injury (TBI), especially when players feel uninjured and want to return to the ice. The HeadAid project aims to provide a way to pinpoint when a concussion may have been sustained through IoT technology and machine learning methods to ultimately improve the safety and wellbeing within the sport and beyond. </p>
+                        <div class="row" style="padding-top:15px;">
+                            <div class="col-lg-12">
+                                <p>HeadAid was founded by a group of undergraduate engineers from the Electrical and Electronic Engineering Department at Imperial College London. The project was proposed when co-founder Alex Luisi, an avid ice hockey player and member of the university team, realised how common concussions are within ice hockey and how easy it is to miss the signs of Traumatic Brain Injury (TBI), especially when players feel uninjured and want to return to the ice. The HeadAid project aims to provide a way to pinpoint when a concussion may have been sustained through IoT technology and machine learning methods to ultimately improve the safety and wellbeing within the sport and beyond. </p>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="p-5">
+                            <img class="img-responsive rounded-circle" src="/static/img/check.png" alt="">
+                        </div>
+                    </div>
+                </div>
         </div>
     </section>
 
@@ -134,24 +146,23 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 order-lg-2">
                     <div class="p-5">
-                        <img class="img-fluid rounded-circle" src="/static/img/01.jpg" alt="">
+                        <img class="img-fluid" src="/static/img/chart.png" alt="">
+                        <img class="img-fluid" src="/static/img/chart.png" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 order-lg-1">
                     <div class="row">
-                        <div class="col-sd-2">
+                        <div class="col-sd-1">
                             <img class="img-responsive" src="/static/img/moneybag.png" alt="">
                         </div>
-                        <div class="col-sd-10">
-                            <h6 class="display-4" style="padding-top:20px; padding-left:10px;">Currently on the Ice</h6>
+                        <div class="col-sd-11">
+                            <h5 class="display-4" style="padding-top:20px; padding-left:10px;">Trending on ice</h5>
                         </div>
                     </div>
                     <div class="row" style="padding-top:15px;">
                         <div class="col-lg-12">
                           <p>HeadAid is for hockey teams across all skill levels. The risk of concussion is present at any level of the sport and so the target market is junior hockey teams, high school and college teams with the aim to soon expand into the professional leagues. There is currently only one such product on the market that attempts to indicate whether a concussion has been sustained. i1 Biometrics’ Shockbox involves a sensor mounted on the top of the helmet that connects to a smartphone via Bluetooth and feeds back real time information regarding player impacts. However, according to their website, the system does not take into account other metrics such as player age and weight in order to provide a more detailed impact analysis. Data access is also limited as the app must be installed in a smartphone and be registered to a cloud service. </p>
-                          <div class="col-sd-10">
-                              <h7 class="display-4" style="padding-top:20px; padding-left:10px;">We Play in the Big Leagues</h7>
-                          </div>
+                          <h3>We Play in the Big Leagues</h3>
                           <p>HeadAid employs machine learning to provide an impact decision based on the sensor data in the helmet along with player metrics- age, weight and years of experience. Inexperienced players are more likely to suffer harmless impacts caused by tripping or awkward exits but are equally as likely to sustain serious impacts. With these extra metrics, HeadAid is automatically able to calibrate and adapt to each player in order to identify the impacts that could lead to a concussion.</p>
                           <p>HeadAid is entirely cloud-based, meaning that coaches can access data and monitor their team real time without the need for an app and instead through their browser. The webpage automatically adjusts to the user’s platform so that the page is just as accessible on mobile platforms as it is on desktop, meaning that data can be accessed anytime, anywhere. </p>
                           <p>eadAid aims to provide the most accurate method of detecting head impact to make it accessible to those most at risk- junior, school and university hockey players.</p>
@@ -161,11 +172,45 @@
             </div>
         </div>
     </section>
+    <section id="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center" style="padding-bottom:20px;">
+            <h1>Why are we better?</h1>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-bolt fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Lighting fast</h4>
+            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+          </div>
+          <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-cogs fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Machine Learning</h4>
+            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+          </div>
+          <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Security</h4>
+            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section>
-        <div class="container" id="video">
+        <div class="container" id="video" style="padding-top:20px;">
             <div class="row align-items-center">
-                <div class="row">
                     <div class="col-lg-12">
                         <div class="row">
                             <div class="col-lg-12 text-center">
@@ -173,23 +218,21 @@
                                     <img class="img-responsive" src="/static/img/film.png" alt="">
                                 </div>
                                 <div class="col-sd-10">
-                                    <h6 class="display-4" style="padding-top:20px; padding-left:10px;">Technology</h6>
+                                    <h6 class="display-4" style="padding-top:20px; padding-left:10px;">How does it work?</h6>
                                 </div>
                             </div>
                         </div>
                         <div class="row" style="padding-top:15px;">
                             <div class="col-lg-12 text-center">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="padding-bottom:30px;"></iframe>
-                                <p>HeadAid In Action</p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/QVr7ECA3h2E" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                             </div>
                         </div>
                         </div>
                 </div>
             </div>
-        </div>
     </section>
     <section>
-        <div class="container" id="technology">
+        <div class="container" id="technology" style="padding-top:20px;">
             <div class="row align-items-center">
                 <div class="row">
                     <div class="col-lg-12">
