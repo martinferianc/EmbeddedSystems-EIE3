@@ -1,6 +1,4 @@
 #include "mbed.h"
-#include "helpers.hpp"
-//#include "rtos.h"
 #include "hash/SHA256.h"
 
 //Photointerrupter input pins
@@ -34,8 +32,10 @@
  */
 // Required for the bitcoin mining
 uint8_t sequence[] = {0x45,0x6D,0x62,0x65,0x64,0x64,0x65,0x64, 0x20,0x53,0x79,0x73,0x74,0x65,0x6D,0x73, 0x20,0x61,0x72,0x65,0x20,0x66,0x75,0x6E, 0x20,0x61,0x6E,0x64,0x20,0x64,0x6F,0x20, 0x61,0x77,0x65,0x73,0x6F,0x6D,0x65,0x20, 0x74,0x68,0x69,0x6E,0x67,0x73,0x21,0x20, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
-uint64_t* key = (uint64_t*)((int)sequence + 48); uint64_t* nonce = (uint64_t*)((int)sequence + 56); uint8_t hash[32];
-
+uint64_t* key = (uint64_t*)((int)sequence + 48);
+uint64_t* nonce = (uint64_t*)((int)sequence + 56);
+uint8_t hash[32];
+uint32_t hash_counter=0;
 
 //Drive state to output table
 const int8_t driveTable[] = {0x12,0x18,0x09,0x21,0x24,0x06,0x00,0x00};
@@ -68,6 +68,30 @@ DigitalOut L2L(L2Lpin);
 DigitalOut L2H(L2Hpin);
 DigitalOut L3L(L3Lpin);
 DigitalOut L3H(L3Hpin);
+
+// Checks if the input is a digit
+uint8_t isdigit(const char c) {
+        if ((c - '0' > -1) && (c - '0' < 10))
+                return 1;
+        else
+                return 0;
+}
+// The output sequence determines the type of the output
+// 1 --- FLOAT
+// 0 --- INT
+uint8_t parseRegex(char* regex, char type){
+        uint8_t result_type = 0;
+        if (regex[1]== '-') {
+                for (uint8_t i = 1; i < 23; i++) {
+                        if (regex[i]=='.') {
+                                // Number is a float
+                                result_type = 1;
+                        }
+                        regex[i-1] = regex[i];
+                }
+        }
+        return result_type;
+}
 
 //Set a given drive state
 void motorOut(int8_t driveState){
@@ -102,6 +126,11 @@ void motorHome() {
         wait(1.0);
         return;
 }
+void countHash(){
+        printf("Counted %d hashes/s\n\r", hash_counter);
+        hash_counter = 0;
+}
+
 
 //Main
 int main() {
@@ -111,9 +140,6 @@ int main() {
 
         // This is the buffer to hold the input commands
         static char buffer[24];
-        for (int i = 0; i < buffer_length; i++) {
-                buffer[i] = ';';
-        }
         static uint8_t count = 0;
 
         int8_t intState = 0;
@@ -133,15 +159,12 @@ int main() {
         I2.fall(&updateState);
         I1.fall(&updateState);
 
-        // Initialize the timer
-        Timer t;
+        // Initialize the timer for the hash calculation
+        Ticker t;
+        t.attach(&countHash, 1.0);
 
         //Poll the rotor state and set the motor outputs accordingly to spin the motor
         while (1) {
-                intState = state;
-                motorOut(0);
-
-                // Start reading the commands from the serial port
                 char c;
                 if (pc.readable()) {
                         c = pc.getc();
@@ -152,16 +175,16 @@ int main() {
                                 count = 0;
                                 // Execute the rotor commands
                                 if (buffer[0] == 'R' || buffer[0] == 'V') {
-
                                         uint8_t result_type = parseRegex(buffer, (char)buffer[0]);
                                         if (result_type) {
-                                                pc.printf("%f\n", atof(buffer));
+                                                pc.printf(buffer);
+                                                // pc.printf("%f\n\r", atof(buffer));
                                         } else {
-                                                pc.printf("%d\n", atoi(buffer));
+                                                pc.printf(buffer);
+                                                // pc.printf("%d\n\r", atoi(buffer));
                                         }
                                 }
 
-                                // Set the bitcoin key
                         } else if (buffer[0] == 'K') {
 
                                 // Set the tune
@@ -169,26 +192,19 @@ int main() {
 
 
 
-                        }else{
-                                count = 0;
-                                // Reset the buffer and the counter
-                                for (int i = 0; i < buffer_length; i++) {
-                                        buffer[i] = ';';
-                                }
-                                // Compute the hash
-                                t.start();
-                                SHA256 hash;
-                                // for (int i =0; i<64; i++){
-                                //     hash.computeHash(uint8_t *hash, (uint8_t*)("0"), strlen("0"));
-                                //  }
-                                t.stop();
-                                pc.printf("Computed hash in: %f", t.read());
-                                t.reset();
                         }
+                        count = 0;
+                        // Reset the buffer and the counter
+                        for (int i = 0; i < buffer_length; i++) {
+                                buffer[i] = ';';
+                        }
+
                 }
-                if (intState != intStateOld) {
-                        intStateOld = intState;
-                        motorOut((intState-orState+lead+6)%6); //+6 to make sure the remainder is positive
-                }
+                // Compute the hash
+                SHA256::computeHash(hash, sequence, 64);
+                if ((hash[0]==0) || (hash[1]==0))
+                        *nonce+=1;
+                hash_counter+=1;
+
         }
 }

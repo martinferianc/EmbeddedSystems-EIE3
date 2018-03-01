@@ -7,25 +7,18 @@ int isdigit(const char c) {
     return 0;
 }
 // The output sequence determines the type of the output
-// 1 --- FLOAT, and minus
+// 1 --- FLOAT
 // 0 --- INT
 short int parseRegex(char* regex, char type){
     short int result_type = 0;
-    if ((type == 'R') || (type == 'V')){
-        if (regex[1]== '-'){
-            for (size_t i = 1; i < 23; i++) {
-                if (regex[i]=='-'){
-                    result_type = 1
-                }
-                if (regex[i]=='.'){
-                    // Number is a float
-                    result_type = 1;
-                }
-                regex[i-1] = regex[i];
+    if (regex[1]== '-'){
+        for (size_t i = 1; i < 23; i++) {
+            if (regex[i]=='.'){
+                // Number is a float
+                result_type = 1;
             }
+            regex[i-1] = regex[i];
         }
-    } else if (type == 'K'){
-
     }
     return result_type;
 }
