@@ -1,5 +1,5 @@
 #include "mbed.h"
-#include "rtos.h"
+//#include "rtos.h"
 
 //Photointerrupter input pins
 #define I1pin D2
