@@ -40,13 +40,16 @@ const int8_t stateMap[] = {0x07,0x05,0x03,0x04,0x01,0x00,0x02,0x07};
 //Phase lead to make motor spin
 const int8_t lead = -2;  //2 for forwards, -2 for backwards
 
+//State variabel of the motor
+volatile int8_t state = -1;
+
 //Status LED
 DigitalOut led1(LED1);
 
 //Photointerrupter inputs
-DigitalIn I1(I1pin);
-DigitalIn I2(I2pin);
-DigitalIn I3(I3pin);
+InterruptIn I1(I1pin);
+InterruptIn I2(I2pin);
+InterruptIn I3(I3pin);
 
 //Motor Drive outputs
 DigitalOut L1L(L1Lpin);
@@ -79,19 +82,15 @@ void motorOut(int8_t driveState){
     if (driveOut & 0x20) L3H = 0;
     }
 
-    //Convert photointerrupter inputs to a rotor state
-inline int8_t readRotorState(){
-    return stateMap[I1 + 2*I2 + 4*I3];
-    }
-
+void updateState(){
+    state = stateMap[I1 + 2*I2 + 4*I3];
+}
 //Basic synchronisation routine
-int8_t motorHome() {
+void motorHome() {
     //Put the motor in drive state 0 and wait for it to stabilise
     motorOut(0);
     wait(1.0);
-
-    //Get the rotor state
-    return readRotorState();
+    return;
 }
 
 //Main
@@ -105,13 +104,22 @@ int main() {
     pc.printf("Hello\n\r");
 
     //Run the motor synchronisation
-    orState = motorHome();
+    motorHome();
+    orState = state;
     pc.printf("Rotor origin: %x\n\r",orState);
     //orState is subtracted from future rotor state inputs to align rotor and motor states
 
+    //Use interrups to check for the state of the rotor
+    I3.rise(&updateState);
+    I2.rise(&updateState);
+    I1.rise(&updateState);
+    I3.fall(&updateState);
+    I2.fall(&updateState);
+    I1.fall(&updateState);
+
     //Poll the rotor state and set the motor outputs accordingly to spin the motor
     while (1) {
-        intState = readRotorState();
+        intState = state;
         if (intState != intStateOld) {
             intStateOld = intState;
             motorOut((intState-orState+lead+6)%6); //+6 to make sure the remainder is positive
