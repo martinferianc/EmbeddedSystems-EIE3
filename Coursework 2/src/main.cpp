@@ -35,7 +35,7 @@ uint8_t sequence[] = {0x45,0x6D,0x62,0x65,0x64,0x64,0x65,0x64, 0x20,0x53,0x79,0x
 uint64_t* key = (uint64_t*)((int)sequence + 48);
 uint64_t* nonce = (uint64_t*)((int)sequence + 56);
 uint8_t hash[32];
-uint32_t hash_counter=0;
+volatile uint32_t hash_counter=0;
 /////////////////////////
 
 // Motor variables
@@ -96,6 +96,7 @@ uint8_t isdigit(const char c) {
 // The output sequence determines the type of the output
 // 1 --- FLOAT
 // 0 --- INT
+/*
 uint8_t parseRegex(char* regex, char type){
         uint8_t result_type = 0;
         if (regex[1]== '-') {
@@ -109,8 +110,8 @@ uint8_t parseRegex(char* regex, char type){
         }
         return result_type;
 }
-
-void computeHash(){
+*/
+inline void computeHash(){
         // Compute the hash
         SHA256::computeHash(hash, sequence, 64);
         if ((hash[0]==0) || (hash[1]==0))
@@ -155,6 +156,44 @@ void countHash(){
         hash_counter = 0;
 }
 
+volatile char serialCommand;
+
+void parseRegex() {
+
+  char c = pc.getc();
+
+  //check if instruction
+  if( c=='K' ||
+      c=='V' ||
+      c=='K' ||
+      c=='T')
+  {
+    serialCommand = c;
+  }
+  else 
+  {
+    switch(serialCommand)
+    {
+      case 'K':
+        //parse for numerical sequence of (-)ddd(.dd)
+        break;
+
+      case 'V':
+        //parse for numerical sequence of ddd(.ddd)
+        break;
+
+      case 'K':
+        //parse for 16 characters hhhhhhhhhhhhhhhh
+        break;
+
+      case 'T':
+        //parse up to 16 notes with durations
+        break;
+    }
+  }
+  return;
+}
+
 
 //Main
 int main() {
@@ -186,43 +225,12 @@ int main() {
         // Begin the thread for hash calculation
         Ticker t;
         t.attach(&countHash, 1.0);
+        hashThread.set_priority(osPriorityLow);
         hashThread.start(computeHash);
 
+        // Initialise interrupt to handle characters passed over serial port
+        pc.attach(&parseRegex);
+
         //Poll the rotor state and set the motor outputs accordingly to spin the motor
-        while (1) {
-                char c;
-                if (pc.readable()) {
-                        c = pc.getc();
-                        pc.putc(c);
-                        buffer[count++] = c;
-                        if (count > buffer_length || c == '\r' || c == '\n') {
-                                pc.printf("\r\n");
-                                count = 0;
-                                // Execute the rotor commands
-                        } else if (buffer[0] == 'R' || buffer[0] == 'V') {
-                                uint8_t result_type = parseRegex(buffer, (char)buffer[0]);
-                                if (result_type) {
-                                        pc.printf(buffer);
-                                        // pc.printf("%f\n\r", atof(buffer));
-                                } else {
-                                        pc.printf(buffer);
-                                        // pc.printf("%d\n\r", atoi(buffer));
-                                }
-                        } else if (buffer[0] == 'K') {
-
-                                // Set the tune
-                        } else if (buffer[0] == 'T') {
-
-
-
-                        } else {
-                                count = 0;
-                                // Reset the buffer and the counter
-                                for (int i = 0; i < buffer_length; i++) {
-                                        buffer[i] = ';';
-                                }
-                        }
-
-                }
-        }
+        while(1);
 }
