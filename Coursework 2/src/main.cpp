@@ -36,7 +36,9 @@ uint64_t* key = (uint64_t*)((int)sequence + 48);
 uint64_t* nonce = (uint64_t*)((int)sequence + 56);
 uint8_t hash[32];
 uint32_t hash_counter=0;
+/////////////////////////
 
+// Motor variables
 //Drive state to output table
 const int8_t driveTable[] = {0x12,0x18,0x09,0x21,0x24,0x06,0x00,0x00};
 
@@ -47,11 +49,23 @@ const int8_t stateMap[] = {0x07,0x05,0x03,0x04,0x01,0x00,0x02,0x07};
 //Phase lead to make motor spin
 const int8_t lead = -2;  //2 for forwards, -2 for backwards
 
-//State variabel of the motor
-volatile int8_t state = -1;
-
 // Buffer length for the input string
 static uint8_t buffer_length = 24;
+
+// Define the max speed
+int8_t orState = 0;    //Rotot offset at motor state 0
+volatile float speed = 0;
+volatile float max_speed = 0;
+
+// Rotation
+volatile uint16_t rotations = 0;
+volatile uint16_t max_rotations = 0;
+
+// Direction
+volatile int8_t direction = -1;
+volatile uint8_t dir_prev;
+/////////////////////////
+
 
 //Status LED
 DigitalOut led1(LED1);
@@ -62,12 +76,15 @@ InterruptIn I2(I2pin);
 InterruptIn I3(I3pin);
 
 //Motor Drive outputs
-DigitalOut L1L(L1Lpin);
-DigitalOut L1H(L1Hpin);
-DigitalOut L2L(L2Lpin);
-DigitalOut L2H(L2Hpin);
-DigitalOut L3L(L3Lpin);
-DigitalOut L3H(L3Hpin);
+PwmOut L1L(L1Lpin);
+PwmOut L1H(L1Hpin);
+PwmOut L2L(L2Lpin);
+PwmOut L2H(L2Hpin);
+PwmOut L3L(L3Lpin);
+PwmOut L3H(L3Hpin);
+
+//Threads
+Thread hashThread;
 
 // Checks if the input is a digit
 uint8_t isdigit(const char c) {
@@ -93,27 +110,34 @@ uint8_t parseRegex(char* regex, char type){
         return result_type;
 }
 
+void computeHash(){
+        // Compute the hash
+        SHA256::computeHash(hash, sequence, 64);
+        if ((hash[0]==0) || (hash[1]==0))
+                *nonce+=1;
+        hash_counter+=1;
+}
 //Set a given drive state
-void motorOut(int8_t driveState){
+void motorOut(int8_t driveState, float scale){
 
         //Lookup the output byte from the drive state.
         int8_t driveOut = driveTable[driveState & 0x07];
 
         //Turn off first
-        if (~driveOut & 0x01) L1L = 0;
-        if (~driveOut & 0x02) L1H = 1;
-        if (~driveOut & 0x04) L2L = 0;
-        if (~driveOut & 0x08) L2H = 1;
-        if (~driveOut & 0x10) L3L = 0;
-        if (~driveOut & 0x20) L3H = 1;
+        if (~driveOut & 0x01) L1L.write(0.0);
+        if (~driveOut & 0x02) L1H.write(scale);
+        if (~driveOut & 0x04) L2L.write(0.0);
+        if (~driveOut & 0x08) L2H.write(scale);
+        if (~driveOut & 0x10) L3L.write(0.0);
+        if (~driveOut & 0x20) L3H.write(scale);
 
         //Then turn on
-        if (driveOut & 0x01) L1L = 1;
-        if (driveOut & 0x02) L1H = 0;
-        if (driveOut & 0x04) L2L = 1;
-        if (driveOut & 0x08) L2H = 0;
-        if (driveOut & 0x10) L3L = 1;
-        if (driveOut & 0x20) L3H = 0;
+        if (driveOut & 0x01) L1L.write(scale);
+        if (driveOut & 0x02) L1H.write(0.0);
+        if (driveOut & 0x04) L2L.write(scale);
+        if (driveOut & 0x08) L2H.write(0.0);
+        if (driveOut & 0x10) L3L.write(scale);
+        if (driveOut & 0x20) L3H.write(0.0);
 }
 
 void updateState(){
@@ -149,7 +173,6 @@ int main() {
         motorHome();
         orState = state;
         pc.printf("Rotor origin: %x\n\r",orState);
-        //orState is subtracted from future rotor state inputs to align rotor and motor states
 
         //Use interrups to check for the state of the rotor
         I3.rise(&updateState);
@@ -160,8 +183,10 @@ int main() {
         I1.fall(&updateState);
 
         // Initialize the timer for the hash calculation
+        // Begin the thread for hash calculation
         Ticker t;
         t.attach(&countHash, 1.0);
+        hashThread.start(computeHash);
 
         //Poll the rotor state and set the motor outputs accordingly to spin the motor
         while (1) {
@@ -174,17 +199,15 @@ int main() {
                                 pc.printf("\r\n");
                                 count = 0;
                                 // Execute the rotor commands
-                                if (buffer[0] == 'R' || buffer[0] == 'V') {
-                                        uint8_t result_type = parseRegex(buffer, (char)buffer[0]);
-                                        if (result_type) {
-                                                pc.printf(buffer);
-                                                // pc.printf("%f\n\r", atof(buffer));
-                                        } else {
-                                                pc.printf(buffer);
-                                                // pc.printf("%d\n\r", atoi(buffer));
-                                        }
+                        } else if (buffer[0] == 'R' || buffer[0] == 'V') {
+                                uint8_t result_type = parseRegex(buffer, (char)buffer[0]);
+                                if (result_type) {
+                                        pc.printf(buffer);
+                                        // pc.printf("%f\n\r", atof(buffer));
+                                } else {
+                                        pc.printf(buffer);
+                                        // pc.printf("%d\n\r", atoi(buffer));
                                 }
-
                         } else if (buffer[0] == 'K') {
 
                                 // Set the tune
@@ -192,19 +215,14 @@ int main() {
 
 
 
-                        }
-                        count = 0;
-                        // Reset the buffer and the counter
-                        for (int i = 0; i < buffer_length; i++) {
-                                buffer[i] = ';';
+                        } else {
+                                count = 0;
+                                // Reset the buffer and the counter
+                                for (int i = 0; i < buffer_length; i++) {
+                                        buffer[i] = ';';
+                                }
                         }
 
                 }
-                // Compute the hash
-                SHA256::computeHash(hash, sequence, 64);
-                if ((hash[0]==0) || (hash[1]==0))
-                        *nonce+=1;
-                hash_counter+=1;
-
         }
 }
