@@ -1,6 +1,12 @@
+//#define HASH
+//#define PARSE
+
 #include "mbed.h"
 #include "rtos.h"
+
+#ifdef HASH
 #include "hash/SHA256.h"
+#endif
 
 //Photointerrupter input pins
 #define I1pin D2
@@ -34,12 +40,15 @@
    6       -   -   -
    7       -   -   -
  */
+//Hashing Variables
+#ifdef HASH
 // Required for the bitcoin mining
 uint8_t sequence[] = {0x45,0x6D,0x62,0x65,0x64,0x64,0x65,0x64, 0x20,0x53,0x79,0x73,0x74,0x65,0x6D,0x73, 0x20,0x61,0x72,0x65,0x20,0x66,0x75,0x6E, 0x20,0x61,0x6E,0x64,0x20,0x64,0x6F,0x20, 0x61,0x77,0x65,0x73,0x6F,0x6D,0x65,0x20, 0x74,0x68,0x69,0x6E,0x67,0x73,0x21,0x20, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 uint64_t* key = (uint64_t*)((int)sequence + 48);
 uint64_t* nonce = (uint64_t*)((int)sequence + 56);
 uint8_t hash[32];
 volatile uint32_t hash_counter=0;
+#endif
 /////////////////////////
 
 // Motor variables
@@ -89,11 +98,13 @@ PwmOut L3L(L3Lpin);
 PwmOut L3H(L3Hpin);
 
 //Threads
+#ifdef HASH
 Thread hashThread;
-
+#endif
 // The output sequence determines the type of the output
 // 1 --- FLOAT
 // 0 --- INT
+#ifdef PARSE
 uint8_t parseRegex(char* regex, char type){
         uint8_t result_type = 0;
 
@@ -106,6 +117,13 @@ uint8_t parseRegex(char* regex, char type){
         }
         return result_type;
 }
+#endif
+
+#ifdef HASH
+void countHash(){
+        printf("Counted %d hashes/s\n\r", hash_counter);
+        hash_counter = 0;
+}
 
 void computeHash(){
         // Compute the hash
@@ -114,6 +132,8 @@ void computeHash(){
                 *nonce+=1;
         hash_counter+=1;
 }
+#endif
+
 //Set a given drive state
 void motorOut(int8_t driveState, float scale){
 
@@ -147,11 +167,6 @@ void motorHome() {
         wait(1.0);
         return;
 }
-void countHash(){
-        printf("Counted %d hashes/s\n\r", hash_counter);
-        hash_counter = 0;
-}
-
 
 //Main
 int main() {
@@ -182,51 +197,13 @@ int main() {
 
         // Initialize the timer for the hash calculation
         // Begin the thread for hash calculation
+        #ifdef HASH
         Ticker t;
         t.attach(&countHash, 1.0);
         hashThread.start(computeHash);
         hashThread.set_priority(osPriorityLow);
+        #endif
 
         //Poll the rotor state and set the motor outputs accordingly to spin the motor
-        while (1) {
-                char c;
-                if (pc.readable()) {
-                        c = pc.getc();
-                        pc.putc(c);
-                        buffer[count++] = c;
-                        if (count > buffer_length || c == '\r' || c == '\n') {
-                                pc.printf("\r\n");
-                                count = 0;
-                                // Execute the rotor commands
-                        } else if (buffer[0] == 'R' || buffer[0] == 'V') {
-                                uint8_t result_type = parseRegex(buffer, (char)buffer[0]);
-                                // Result is a Float
-                                if (result_type) {
-                                        pc.printf(buffer);
-                                        // pc.printf("%f\n\r", atof(buffer));
-
-                                } else {
-                                        pc.printf(buffer);
-                                        // pc.printf("%d\n\r", atoi(buffer));
-                                }
-                                // Sets the key
-                        } else if (buffer[0] == 'K') {
-                                parseRegex(buffer, (char)buffer[0]);
-                                memcpy(&key, buffer, 8);
-
-                                // Set the tune
-                        } else if (buffer[0] == 'T') {
-
-
-
-                        } else {
-                                count = 0;
-                                // Reset the buffer and the counter
-                                for (int i = 0; i < buffer_length; i++) {
-                                        buffer[i] = ';';
-                                }
-                        }
-
-                }
-        }
+        while (1);
 }
