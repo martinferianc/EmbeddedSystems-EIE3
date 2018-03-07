@@ -1,0 +1,9 @@
+BUILD/
+*.pyc
+mbed/
+mbed-dev/
+mbed-rtos/
+Crypto/
+*.lib
+.temp/
+*.swp
