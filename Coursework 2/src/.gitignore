@@ -5,3 +5,4 @@ mbed-dev/
 mbed-rtos/
 Crypto/
 *.lib
+.temp/
