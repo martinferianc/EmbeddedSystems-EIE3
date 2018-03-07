@@ -1,4 +1,5 @@
 #include "mbed.h"
+#include "rtos.h"
 #include "hash/SHA256.h"
 
 //Photointerrupter input pins
@@ -17,6 +18,9 @@
 #define L2Hpin D6           //0x08
 #define L3Lpin D9           //0x10
 #define L3Hpin D10          //0x20
+
+#define SERIAL_TX D1
+#define SERIAL_RX D0
 
 //Mapping from sequential drive states to motor phase outputs
 /*
@@ -44,6 +48,7 @@ const int8_t driveTable[] = {0x12,0x18,0x09,0x21,0x24,0x06,0x00,0x00};
 
 //Mapping from interrupter inputs to sequential rotor states. 0x00 and 0x07 are not valid
 const int8_t stateMap[] = {0x07,0x05,0x03,0x04,0x01,0x00,0x02,0x07};
+volatile int8_t state;
 //const int8_t stateMap[] = {0x07,0x01,0x03,0x02,0x05,0x00,0x04,0x07}; //Alternative if phase order of input or drive is reversed
 
 //Phase lead to make motor spin
@@ -86,32 +91,23 @@ PwmOut L3H(L3Hpin);
 //Threads
 Thread hashThread;
 
-// Checks if the input is a digit
-uint8_t isdigit(const char c) {
-        if ((c - '0' > -1) && (c - '0' < 10))
-                return 1;
-        else
-                return 0;
-}
 // The output sequence determines the type of the output
 // 1 --- FLOAT
 // 0 --- INT
-/*
 uint8_t parseRegex(char* regex, char type){
         uint8_t result_type = 0;
-        if (regex[1]== '-') {
-                for (uint8_t i = 1; i < 23; i++) {
-                        if (regex[i]=='.') {
-                                // Number is a float
-                                result_type = 1;
-                        }
-                        regex[i-1] = regex[i];
+
+        for (uint8_t i = 1; i < 23; i++) {
+                if (regex[i]=='.') {
+                        // Number is a float
+                        result_type = 1;
                 }
+                regex[i-1] = regex[i];
         }
         return result_type;
 }
-*/
-inline void computeHash(){
+
+void computeHash(){
         // Compute the hash
         SHA256::computeHash(hash, sequence, 64);
         if ((hash[0]==0) || (hash[1]==0))
@@ -147,51 +143,13 @@ void updateState(){
 //Basic synchronisation routine
 void motorHome() {
         //Put the motor in drive state 0 and wait for it to stabilise
-        motorOut(0);
+        motorOut(0,0.0);
         wait(1.0);
         return;
 }
 void countHash(){
         printf("Counted %d hashes/s\n\r", hash_counter);
         hash_counter = 0;
-}
-
-volatile char serialCommand;
-
-void parseRegex() {
-
-  char c = pc.getc();
-
-  //check if instruction
-  if( c=='K' ||
-      c=='V' ||
-      c=='K' ||
-      c=='T')
-  {
-    serialCommand = c;
-  }
-  else 
-  {
-    switch(serialCommand)
-    {
-      case 'K':
-        //parse for numerical sequence of (-)ddd(.dd)
-        break;
-
-      case 'V':
-        //parse for numerical sequence of ddd(.ddd)
-        break;
-
-      case 'K':
-        //parse for 16 characters hhhhhhhhhhhhhhhh
-        break;
-
-      case 'T':
-        //parse up to 16 notes with durations
-        break;
-    }
-  }
-  return;
 }
 
 
@@ -210,6 +168,7 @@ int main() {
 
         //Run the motor synchronisation
         motorHome();
+        updateState();
         orState = state;
         pc.printf("Rotor origin: %x\n\r",orState);
 
@@ -225,12 +184,49 @@ int main() {
         // Begin the thread for hash calculation
         Ticker t;
         t.attach(&countHash, 1.0);
-        hashThread.set_priority(osPriorityLow);
         hashThread.start(computeHash);
-
-        // Initialise interrupt to handle characters passed over serial port
-        pc.attach(&parseRegex);
+        hashThread.set_priority(osPriorityLow);
 
         //Poll the rotor state and set the motor outputs accordingly to spin the motor
-        while(1);
+        while (1) {
+                char c;
+                if (pc.readable()) {
+                        c = pc.getc();
+                        pc.putc(c);
+                        buffer[count++] = c;
+                        if (count > buffer_length || c == '\r' || c == '\n') {
+                                pc.printf("\r\n");
+                                count = 0;
+                                // Execute the rotor commands
+                        } else if (buffer[0] == 'R' || buffer[0] == 'V') {
+                                uint8_t result_type = parseRegex(buffer, (char)buffer[0]);
+                                // Result is a Float
+                                if (result_type) {
+                                        pc.printf(buffer);
+                                        // pc.printf("%f\n\r", atof(buffer));
+
+                                } else {
+                                        pc.printf(buffer);
+                                        // pc.printf("%d\n\r", atoi(buffer));
+                                }
+                                // Sets the key
+                        } else if (buffer[0] == 'K') {
+                                parseRegex(buffer, (char)buffer[0]);
+                                memcpy(&key, buffer, 8);
+
+                                // Set the tune
+                        } else if (buffer[0] == 'T') {
+
+
+
+                        } else {
+                                count = 0;
+                                // Reset the buffer and the counter
+                                for (int i = 0; i < buffer_length; i++) {
+                                        buffer[i] = ';';
+                                }
+                        }
+
+                }
+        }
 }

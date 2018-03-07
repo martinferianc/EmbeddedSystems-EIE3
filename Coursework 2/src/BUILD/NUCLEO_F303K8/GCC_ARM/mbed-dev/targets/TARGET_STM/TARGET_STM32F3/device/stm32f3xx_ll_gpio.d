@@ -1,0 +1,3 @@
+BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_ll_gpio.o: \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_ll_gpio.c \
+ BUILD/NUCLEO_F303K8/GCC_ARM/mbed_config.h
