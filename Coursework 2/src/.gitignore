@@ -6,3 +6,4 @@ mbed-rtos/
 Crypto/
 *.lib
 .temp/
+*.swp
