@@ -25,8 +25,8 @@
 #define L3Lpin D9           //0x10
 #define L3Hpin D10          //0x20
 
-#define SERIAL_TX D1
-#define SERIAL_RX D0
+//#define SERIAL_TX D1
+//#define SERIAL_RX D0
 
 //Mapping from sequential drive states to motor phase outputs
 /*
@@ -71,6 +71,8 @@ int8_t orState = 0;    //Rotot offset at motor state 0
 volatile float speed = 0;
 volatile float max_speed = 0;
 
+volatile int rotor_speed = 0;
+
 // Rotation
 volatile uint16_t rotations = 0;
 volatile uint16_t max_rotations = 0;
@@ -80,6 +82,7 @@ volatile int8_t direction = -1;
 volatile uint8_t dir_prev;
 /////////////////////////
 
+Timer rotor_speed_timer;
 
 //Status LED
 DigitalOut led1(LED1);
@@ -157,34 +160,38 @@ void motorOut(int8_t driveState, float scale){
         if (driveOut & 0x20) L3H.write(0.0);
 }
 
-void updateState(){
+inline void updateState(){
         state = stateMap[I1 + 2*I2 + 4*I3];
 }
 //Basic synchronisation routine
 void motorHome() {
         //Put the motor in drive state 0 and wait for it to stabilise
-        motorOut(0,0.0);
-        wait(1.0);
+        motorOut(0,1.0);
+        wait(2.0);
+        updateState();
         return;
 }
 
 //Main
+
+Ticker motorDrive;
+
 int main() {
         Serial pc(SERIAL_TX, SERIAL_RX);
         pc.printf("Beginning the program!\n\r");
-        int8_t orState = 0; //Rotor offset at motor state 0
 
         // This is the buffer to hold the input commands
         static char buffer[24];
         static uint8_t count = 0;
 
+        int8_t orState = 0;
         int8_t intState = 0;
         int8_t intStateOld = 0;
 
         //Run the motor synchronisation
         motorHome();
-        updateState();
-        orState = state;
+        orState = state;        
+
         pc.printf("Rotor origin: %x\n\r",orState);
 
         //Use interrups to check for the state of the rotor
@@ -204,6 +211,21 @@ int main() {
         hashThread.set_priority(osPriorityLow);
         #endif
 
+        //motorDrive.attach(&motorDrive,0.1);
+
         //Poll the rotor state and set the motor outputs accordingly to spin the motor
-        while (1);
+        rotor_speed_timer.start();
+        while (1) {
+            updateState();
+            intState = state;
+            
+            if (intState != intStateOld) {
+                rotor_speed_timer.stop();
+                pc.printf("Rotor Speed: %d \n\r",rotor_speed_timer.read_us());
+                rotor_speed_timer.reset();
+                rotor_speed_timer.start();
+                intStateOld = intState;
+                motorOut((intState-orState+lead+6)%6,1.0); //+6 to make sure the remainder is positive
+            }
+        }
 }
