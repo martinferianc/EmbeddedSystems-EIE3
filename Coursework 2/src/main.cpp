@@ -3,6 +3,7 @@
 
 #include "mbed.h"
 #include "rtos.h"
+#include "messages.h"
 
 #ifdef HASH
 #include "hash/SHA256.h"
@@ -80,6 +81,8 @@ volatile uint16_t max_rotations = 0;
 // Direction
 volatile int8_t direction = -1;
 volatile uint8_t dir_prev;
+
+
 /////////////////////////
 
 Timer rotor_speed_timer;
@@ -102,8 +105,21 @@ PwmOut L3H(L3Hpin);
 
 //Threads
 #ifdef HASH
+
 Thread hashThread;
+
 #endif
+
+
+//////// /C SERIAL COMMUNCATION OBJECTS /////////
+// Thread to run hash
+Thread commOutT;
+
+// RawSerial object to write to serial port
+RawSerial pc(SERIAL_TX, SERIAL_RX);
+
+//////// /E SERIAL COMMUNCATION OBJECTS /////////
+
 // The output sequence determines the type of the output
 // 1 --- FLOAT
 // 0 --- INT
@@ -172,14 +188,17 @@ void motorHome() {
         return;
 }
 
+
 //Main
 
 Ticker motorDrive;
 
 int main() {
-        Serial pc(SERIAL_TX, SERIAL_RX);
+        // Start the serial communication thread
+        commOutT.start(commOutFn);
         pc.printf("Beginning the program!\n\r");
 
+        putMessage(0x01, 0x35);
         // This is the buffer to hold the input commands
         static char buffer[24];
         static uint8_t count = 0;
