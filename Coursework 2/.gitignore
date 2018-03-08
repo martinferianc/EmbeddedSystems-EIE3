@@ -1,0 +1,12 @@
+*.pyc
+__pycache__
+*.cpy
+.DC_Store
+#ignore all of the mbed libs
+mbed/
+mbed-rtos/
+mbed-dev/
+Crypto/
+.temp/
+*.lib
+*.bld
