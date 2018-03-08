@@ -120,7 +120,6 @@ RawSerial pc(SERIAL_TX, SERIAL_RX);
 
 //////// /E SERIAL COMMUNCATION OBJECTS /////////
 
-
 // The output sequence determines the type of the output
 // 1 --- FLOAT
 // 0 --- INT
@@ -198,6 +197,7 @@ int main() {
         // Start the serial communication thread
         commOutT.start(commOutFn);
         pc.printf("Beginning the program!\n\r");
+
         putMessage(0x01, 0x35);
         // This is the buffer to hold the input commands
         static char buffer[24];
