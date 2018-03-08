@@ -3,6 +3,7 @@
 
 #include "mbed.h"
 #include "rtos.h"
+#include "messages.h"
 
 #ifdef HASH
 #include "hash/SHA256.h"
@@ -82,33 +83,6 @@ volatile int8_t direction = -1;
 volatile uint8_t dir_prev;
 
 
-/////////// SERIAL COMMUNICATION /////////////
-/////// SERIAL COMMUNCATION VARIABLES ////////
-
-// Structure to hold the unique code and the data of each message in memory
-
-typedef struct{
-  uint8_t code;
-  uint8_t data;
-  } message_t;
-}
-
-RawSerial pc(SERIAL_TX, SERIAL_RX);
-
-
-// Mail handles the message queue.
-
-Mail<message_t, 16> outMessages;
-
-/////// SERIAL COMMUNCATION VARIABLES ////////
-
-//////// SERIAL FUNCTION PROTOTYPES //////////
-
-void commOutFn();
-
-void putMessage(uint8_t code, uint32_t data);
-
-//////// SERIAL FUNCTION PROTOTYPES //////////
 /////////////////////////
 
 Timer rotor_speed_timer;
@@ -133,9 +107,20 @@ PwmOut L3H(L3Hpin);
 #ifdef HASH
 
 Thread hashThread;
-Thread commOutT;
 
 #endif
+
+
+//////// /C SERIAL COMMUNCATION OBJECTS /////////
+// Thread to run hash
+Thread commOutT;
+
+// RawSerial object to write to serial port
+RawSerial pc(SERIAL_TX, SERIAL_RX);
+
+//////// /E SERIAL COMMUNCATION OBJECTS /////////
+
+
 // The output sequence determines the type of the output
 // 1 --- FLOAT
 // 0 --- INT
@@ -205,49 +190,15 @@ void motorHome() {
 }
 
 
-//////// SERIAL FUNCTION DEFINITIONS /////////
-
-// putMessage() takes a message and a unique code, allocates the memory
-// for the message and places the message in the FIFO mail queue
-
-void putMessage(uint8_t code, uint32_t data){
-  message_t *pMessage = outMessages.alloc();
-  pMessage->code = code;
-  pMessage->data = data;
-  outMessages.put(pMessage);
-}
-
-
-// commOutFn() checks to see if there is a new message in the queue. If there is
-// it fetches the pointer to it, prints its code and the data stored and then frees
-// the memory allocated to it.
-
-void commOutFn(){
-  while(1){
-    osEvent newEvent = outMessages.get();
-    message_t *pMessage = (message_t*)newEvent.value.p;
-    pc.printf("Message %d with data 0x%016x\n", pMessage->code, pMessage->data);
-    outMessages.free(pMessage);
-  }
-}
-
-
-
-//////// SERIAL FUNCTION DEFINITIONS /////////
-
-
-
-
-
 //Main
 
 Ticker motorDrive;
 
 int main() {
         // Start the serial communication thread
-        commOutT.start(commOutFn)
+        commOutT.start(commOutFn);
         pc.printf("Beginning the program!\n\r");
-
+        putMessage(0x01, 0x35);
         // This is the buffer to hold the input commands
         static char buffer[24];
         static uint8_t count = 0;
