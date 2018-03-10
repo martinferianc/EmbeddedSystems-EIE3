@@ -4,6 +4,7 @@
 #include "mbed.h"
 #include "rtos.h"
 #include "messages.h"
+//#include "decodeCommand.h"
 
 #ifdef HASH
 #include "hash/SHA256.h"
@@ -83,6 +84,26 @@ volatile int8_t direction = -1;
 volatile uint8_t dir_prev;
 
 
+// Global Queueing variable
+Queue<void, 8> inCharQ;
+// Buffer for holding chars to decode
+char charBuffer[17];
+// buffer index
+int charBufferCounter = 0;
+
+// New key from serial port for the bitcoin miner
+volatile uint64_t newKey;
+// mutex for the new key
+Mutex newKey_mutex;
+
+// Output codes for testing
+enum outputCodes{
+  ROTATE,
+  VELOCITY,
+  KEY,
+  TUNE
+};
+
 /////////////////////////
 
 Timer rotor_speed_timer;
@@ -110,6 +131,8 @@ Thread hashThread;
 
 #endif
 
+// Thread to decode the incoming instructions
+Thread decodeThread;
 
 //////// /C SERIAL COMMUNCATION OBJECTS /////////
 // Thread to run hash
@@ -123,20 +146,6 @@ RawSerial pc(SERIAL_TX, SERIAL_RX);
 // The output sequence determines the type of the output
 // 1 --- FLOAT
 // 0 --- INT
-#ifdef PARSE
-uint8_t parseRegex(char* regex, char type){
-        uint8_t result_type = 0;
-
-        for (uint8_t i = 1; i < 23; i++) {
-                if (regex[i]=='.') {
-                        // Number is a float
-                        result_type = 1;
-                }
-                regex[i-1] = regex[i];
-        }
-        return result_type;
-}
-#endif
 
 #ifdef HASH
 void countHash(){
@@ -146,12 +155,19 @@ void countHash(){
 
 void computeHash(){
         // Compute the hash
+
+        // copy the new key into key, lock the key so it can't change while copying
+        newKey_mutex.lock();
+        *key = newKey;
+        newKey_mutex.unlock();
+
         SHA256::computeHash(hash, sequence, 64);
         if ((hash[0]==0) || (hash[1]==0))
                 *nonce+=1;
         hash_counter+=1;
 }
 #endif
+
 
 //Set a given drive state
 void motorOut(int8_t driveState, float scale){
@@ -188,6 +204,43 @@ void motorHome() {
         return;
 }
 
+void serialISR(){
+        uint8_t newChar = pc.getc();
+        inCharQ.put((void*)newChar);
+}
+
+// Decoding
+void decode(){
+  pc.attach(&serialISR);
+  while(1){
+    osEvent newEvent = inCharQ.get();
+    uint8_t newChar = (uint8_t)newEvent.value.p;
+    // check for the buffer index, prevent overflow
+    if(charBufferCounter > 17){
+      charBufferCounter = 0;
+    }
+    if(newChar == '\r'){
+      charBuffer[charBufferCounter] = '\0';
+      // reset to read next command
+      charBufferCounter = 0;
+      // test the first character
+      switch(charBuffer[0]){
+        case 'R': break; //max_rotations
+        case 'V': break;
+        case 'K': newKey_mutex.lock();
+                  sscanf(charBuffer,"K%x",&newKey);
+                  putMessage(ROTATE, 0xFF);
+                  newKey_mutex.unlock();
+                  break;
+        case 'T': break;
+
+      }
+
+    }
+    charBuffer[charBufferCounter] = newChar;
+    charBufferCounter++;
+  }
+}
 
 //Main
 
@@ -202,6 +255,10 @@ int main() {
         // This is the buffer to hold the input commands
         static char buffer[24];
         static uint8_t count = 0;
+
+        // Start the decode Thread
+        decodeThread.start(decode);
+
 
         int8_t orState = 0;
         int8_t intState = 0;
