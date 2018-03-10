@@ -13,6 +13,7 @@ const int8_t lead = 2;  //2 for forwards, -2 for backwards
 
 // MOTOR POSITION VARIABLES
 rotations = 0;
+uint8_t direction = 1;
 
 // MOTOR VELOCITY VARIABLES
 volatile float    speed = 0;
@@ -66,6 +67,8 @@ void motorOut(int8_t driveState, uint32_t scale){
 
 inline void updateState(){
         state = stateMap[I1 + 2*I2 + 4*I3];
+        if(direction) rotations++;
+        else          rotations--;
 }
 //Basic synchronisation routine
 void motorHome() {
@@ -90,6 +93,8 @@ void pinInit() {
     I3.fall(&updateState);
     I2.fall(&updateState);
     I1.fall(&updateState);
+
+
     return;
 }
 
