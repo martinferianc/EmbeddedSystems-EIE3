@@ -12,16 +12,14 @@ volatile int8_t state;
 const int8_t lead = 2;  //2 for forwards, -2 for backwards
 
 // MOTOR POSITION VARIABLES
-//extern int8_t     orState = 0;    //Rotot offset at motor state 0
-volatile uint16_t rotations = 0;
-volatile uint16_t max_rotations = 0;
+rotations = 0;
 
 // MOTOR VELOCITY VARIABLES
-volatile float speed = 0;
-volatile float max_speed = 0;
-volatile int rotor_speed = 0;
-volatile int8_t direction = -1;
-volatile uint8_t dir_prev;
+volatile float    speed = 0;
+volatile float    max_speed = 0;
+volatile int      rotor_speed = 0;
+volatile int8_t   direction = -1;
+volatile uint8_t  dir_prev;
 
 Timer rotor_speed_timer;
 Ticker motorDrive;

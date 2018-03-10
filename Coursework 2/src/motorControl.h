@@ -29,6 +29,9 @@ extern volatile int8_t state;
 //MOTOR TORQUE VARIABLES
 extern const int8_t lead;  //2 for forwards, -2 for backwards
 
+//MOTOR POSITION VARIABLES;
+extern volatile int32_t rotations;
+
 //Set a given drive state
 extern void motorOut(int8_t driveState, uint32_t scale);
 
