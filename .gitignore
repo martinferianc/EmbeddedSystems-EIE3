@@ -7,6 +7,7 @@ mbed/
 mbed-rtos/
 mbed-dev/
 Crypto/
+BUILD/
 .temp/
 *.lib
 *.bld
