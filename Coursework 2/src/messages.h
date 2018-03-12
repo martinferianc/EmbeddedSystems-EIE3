@@ -3,6 +3,14 @@
 
 #include "rtos.h"
 
+//TODO:
+//define message codes
+
+#define NONCE_CODE 2
+#define VELOCITY_CODE 3
+
+extern RawSerial pc;
+
 // Structure to hold the unique code and the data of each message in memory
 
 typedef struct{

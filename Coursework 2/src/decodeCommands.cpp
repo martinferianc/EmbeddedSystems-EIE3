@@ -1,5 +1,16 @@
-/*
 #include "decodeCommands.h"
+
+// Global Queueing variable
+Queue<uint8_t, 8> inCharQ;
+// Buffer for holding chars to decode
+char charBuffer[17];
+// buffer index
+int charBufferCounter = 0;
+
+// New key from serial port for the bitcoin miner
+volatile uint64_t newKey;
+// mutex for the new key
+Mutex newKey_mutex;
 
 enum outputCodes{
   ROTATE,
@@ -8,16 +19,22 @@ enum outputCodes{
   TUNE
 };
 
+void serialISR(){
+        uint8_t newChar = pc.getc();
+        inCharQ.put((uint8_t*)newChar);
+}
+
+// Decoding
 void decode(){
   pc.attach(&serialISR);
   while(1){
     osEvent newEvent = inCharQ.get();
-    uint8_t newChar = (uint8_t)newEvent.value.p;
+    uint8_t * newChar = (uint8_t*)newEvent.value.p;
     // check for the buffer index, prevent overflow
     if(charBufferCounter > 17){
       charBufferCounter = 0;
     }
-    if(newChar == '\r'){
+    if(*newChar == '\r'){
       charBuffer[charBufferCounter] = '\0';
       // reset to read next command
       charBufferCounter = 0;
@@ -35,8 +52,7 @@ void decode(){
       }
 
     }
-    charBuffer[charBufferCounter] = newChar;
+    charBuffer[charBufferCounter] = *newChar;
     charBufferCounter++;
   }
 }
-*/

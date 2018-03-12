@@ -5,7 +5,7 @@
 Mail<message_t, 16> outMessages;
 
 // RawSerial object to write to serial port
-extern RawSerial pc;
+RawSerial pc(SERIAL_TX, SERIAL_RX);
 
 //////// /E SERIAL COMMUNCATION OBJECTS /////////
 
@@ -27,6 +27,10 @@ void putMessage(uint8_t code, uint32_t data){
 // the memory allocated to it.
 
 void commOutFn(){
+
+  //allocate memory for outgoing messages
+  outMessages.alloc(); //is this needed?
+
   while(1){
     osEvent newEvent = outMessages.get();
     message_t *pMessage = (message_t*)newEvent.value.p;
@@ -34,5 +38,3 @@ void commOutFn(){
     outMessages.free(pMessage);
   }
 }
-
-//////// /E SERIAL FUNCTION DEFINITIONS /////////
