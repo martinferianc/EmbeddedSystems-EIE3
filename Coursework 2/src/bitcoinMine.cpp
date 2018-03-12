@@ -17,8 +17,9 @@ void computeHash(){
         // - print the nonce by putting into Queue
         // Compute the hash
         SHA256::computeHash(hash, sequence, 64);
-        if ((hash[0]==0) || (hash[1]==0))
+        if ((hash[0]==0) || (hash[1]==0)){
                 *nonce+=1;
                 putMessage(NONCE_CODE, *nonce);
+        }
         hash_counter+=1;
 }
