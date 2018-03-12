@@ -7,16 +7,14 @@ char charBuffer[17];
 // buffer index
 int charBufferCounter = 0;
 
-// New key from serial port for the bitcoin miner
-volatile uint64_t newKey;
 // mutex for the new key
-Mutex newKey_mutex;
+Mutex key_mutex;
 
-enum outputCodes{
-  ROTATE,
-  VELOCITY,
-  KEY,
-  TUNE
+enum outputCodes {
+        ROTATE,
+        VELOCITY,
+        KEY,
+        TUNE
 };
 
 void serialISR(){
@@ -26,34 +24,35 @@ void serialISR(){
 
 // Decoding
 void decode(){
-  pc.attach(&serialISR);
-  while(1){
-    osEvent newEvent = inCharQ.get();
-    uint8_t newChar = (uint8_t)newEvent.value.v;
-    putMessage(1, newChar);
-    // check for the buffer index, prevent overflow
-    if(charBufferCounter > 17){
-      charBufferCounter = 0;
-    }
-    if(newChar == '\r'){
-      charBuffer[charBufferCounter] = '\0';
-      // reset to read next command
-      charBufferCounter = 0;
-      // test the first character
-      switch(charBuffer[0]){
-        case 'R': break; //max_rotations
-        case 'V': break;
-        case 'K': newKey_mutex.lock();
-                  sscanf(charBuffer,"K%x",&newKey);
-                  putMessage(ROTATE, 0xFF);
-                  newKey_mutex.unlock();
-                  break;
-        case 'T': break;
+        pc.attach(&serialISR);
+        while(1) {
+                osEvent newEvent = inCharQ.get();
+                uint8_t newChar = (uint8_t)newEvent.value.v;
+                putMessage(1, newChar);
+                // check for the buffer index, prevent overflow
+                if(charBufferCounter > 17) {
+                        charBufferCounter = 0;
+                }
+                if(newChar == '\r') {
+                        charBuffer[charBufferCounter] = '\0';
+                        // reset to read next command
+                        charBufferCounter = 0;
+                        // test the first character
+                        switch(charBuffer[0]) {
+                        case 'R': break; //max_rotations
+                        case 'V': break;
+                        case 'K':
+                                key_mutex.lock();
+                                sscanf(charBuffer,"K%x",key);
+                                putMessage(ROTATE, 0xFF);
+                                key_mutex.unlock();
+                                break;
+                        case 'T': break;
 
-      }
+                        }
 
-    }
-    charBuffer[charBufferCounter] = newChar;
-    charBufferCounter++;
-  }
+                }
+                charBuffer[charBufferCounter] = newChar;
+                charBufferCounter++;
+        }
 }
