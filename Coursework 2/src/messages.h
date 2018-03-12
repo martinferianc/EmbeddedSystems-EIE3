@@ -22,7 +22,7 @@ typedef struct {
 
 void commOutFn();
 
-void putMessage(uint8_t code, uint32_t data);
+extern void putMessage(uint8_t code, uint32_t data);
 
 //////// /E SERIAL FUNCTION PROTOTYPES //////////
 
