@@ -29,12 +29,13 @@ void decode(){
   pc.attach(&serialISR);
   while(1){
     osEvent newEvent = inCharQ.get();
-    uint8_t * newChar = (uint8_t*)newEvent.value.p;
+    uint8_t newChar = (uint8_t)newEvent.value.v;
+    putMessage(1, newChar);
     // check for the buffer index, prevent overflow
     if(charBufferCounter > 17){
       charBufferCounter = 0;
     }
-    if(*newChar == '\r'){
+    if(newChar == '\r'){
       charBuffer[charBufferCounter] = '\0';
       // reset to read next command
       charBufferCounter = 0;
@@ -52,7 +53,7 @@ void decode(){
       }
 
     }
-    charBuffer[charBufferCounter] = *newChar;
+    charBuffer[charBufferCounter] = newChar;
     charBufferCounter++;
   }
 }

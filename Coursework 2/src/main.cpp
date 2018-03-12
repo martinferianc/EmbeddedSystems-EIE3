@@ -20,13 +20,14 @@ int main() {
         // THREADS
         decodeThread.start(decode);
         commOutT.start(commOutFn);
-        hashThread.start(computeHash);
-        motorRunT.start(motorRun);
+        //hashThread.start(computeHash);
+        //motorRunT.start(motorRun);
 
+        /*
         //THREAD PRIORITY
         hashThread.set_priority(osPriorityLow);
 
-        /*
+
         //PROFILING
         Ticker t;
         t.attach(&countHash, 1.0);
