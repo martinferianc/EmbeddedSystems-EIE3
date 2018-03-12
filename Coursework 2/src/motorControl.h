@@ -1,5 +1,9 @@
+#ifndef _motorControl_h_
+#define _motorControl_h_
+
 #include "mbed.h"
 #include "rtos.h"
+#include "messages.h"
 
 //Photointerrupter input pins
 #define I1pin D2
@@ -44,3 +48,6 @@ extern void setPWMPeriod(int period);
 
 extern void pinInit();
 
+extern void motorRun();
+
+#endif

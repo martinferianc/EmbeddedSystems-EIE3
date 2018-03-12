@@ -12,9 +12,13 @@ void countHash(){
 }
 
 void computeHash(){
+        //TODO:
+        // - update key to new key from decodeCommands header
+        // - print the nonce by putting into Queue
         // Compute the hash
         SHA256::computeHash(hash, sequence, 64);
         if ((hash[0]==0) || (hash[1]==0))
                 *nonce+=1;
+                putMessage(NONCE, *nonce);
         hash_counter+=1;
 }

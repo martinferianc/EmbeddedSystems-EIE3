@@ -1,7 +1,7 @@
 #include "decodeCommands.h"
 
 // Global Queueing variable
-Queue<void, 8> inCharQ;
+Queue<uint8_t, 8> inCharQ;
 // Buffer for holding chars to decode
 char charBuffer[17];
 // buffer index
@@ -21,21 +21,20 @@ enum outputCodes{
 
 void serialISR(){
         uint8_t newChar = pc.getc();
-        inCharQ.put((void*)newChar);
+        inCharQ.put((uint8_t*)newChar);
 }
-
 
 // Decoding
 void decode(){
   pc.attach(&serialISR);
   while(1){
     osEvent newEvent = inCharQ.get();
-    uint8_t newChar = (uint8_t)newEvent.value.p;
+    uint8_t * newChar = (uint8_t*)newEvent.value.p;
     // check for the buffer index, prevent overflow
     if(charBufferCounter > 17){
       charBufferCounter = 0;
     }
-    if(newChar == '\r'){
+    if(*newChar == '\r'){
       charBuffer[charBufferCounter] = '\0';
       // reset to read next command
       charBufferCounter = 0;
@@ -53,7 +52,7 @@ void decode(){
       }
 
     }
-    charBuffer[charBufferCounter] = newChar;
+    charBuffer[charBufferCounter] = *newChar;
     charBufferCounter++;
   }
 }

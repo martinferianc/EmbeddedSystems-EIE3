@@ -1,10 +1,18 @@
 [
     {
-        "module": "[fill]", 
+        "module": "Crypto/hash", 
         "size": {
             ".data": 0, 
-            ".bss": 24, 
-            ".text": 103
+            ".bss": 0, 
+            ".text": 7400
+        }
+    }, 
+    {
+        "module": "[fill]", 
+        "size": {
+            ".data": 3, 
+            ".bss": 32, 
+            ".text": 106
         }
     }, 
     {
@@ -32,11 +40,27 @@
         }
     }, 
     {
+        "module": "bitcoinMine.o", 
+        "size": {
+            ".data": 68, 
+            ".bss": 36, 
+            ".text": 76
+        }
+    }, 
+    {
+        "module": "decodeCommands.o", 
+        "size": {
+            ".data": 4, 
+            ".bss": 113, 
+            ".text": 371
+        }
+    }, 
+    {
         "module": "main.o", 
         "size": {
             ".data": 4, 
-            ".bss": 898, 
-            ".text": 1804
+            ".bss": 352, 
+            ".text": 441
         }
     }, 
     {
@@ -44,7 +68,7 @@
         "size": {
             ".data": 4, 
             ".bss": 100, 
-            ".text": 1982
+            ".text": 1790
         }
     }, 
     {
@@ -68,7 +92,7 @@
         "size": {
             ".data": 4, 
             ".bss": 1072, 
-            ".text": 10661
+            ".text": 10689
         }
     }, 
     {
@@ -76,7 +100,7 @@
         "size": {
             ".data": 4, 
             ".bss": 4, 
-            ".text": 750
+            ".text": 790
         }
     }, 
     {
@@ -84,21 +108,29 @@
         "size": {
             ".data": 20, 
             ".bss": 2222, 
-            ".text": 7259
+            ".text": 7335
         }
     }, 
     {
         "module": "messages.o", 
         "size": {
             ".data": 4, 
-            ".bss": 180, 
-            ".text": 198
+            ".bss": 256, 
+            ".text": 284
+        }
+    }, 
+    {
+        "module": "motorControl.o", 
+        "size": {
+            ".data": 5, 
+            ".bss": 537, 
+            ".text": 1039
         }
     }, 
     {
         "summary": {
-            "static_ram": 5400, 
-            "total_flash": 35259
+            "static_ram": 5704, 
+            "total_flash": 42903
         }
     }
 ]

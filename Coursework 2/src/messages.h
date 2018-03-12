@@ -3,6 +3,10 @@
 
 #include "rtos.h"
 
+//TODO:
+//define message codes
+#define NONCE 2
+
 extern RawSerial pc;
 
 // Structure to hold the unique code and the data of each message in memory

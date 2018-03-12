@@ -12,14 +12,13 @@ volatile int8_t state;
 const int8_t lead = 2;  //2 for forwards, -2 for backwards
 
 // MOTOR POSITION VARIABLES
-rotations = 0;
+volatile int32_t rotations;
 uint8_t direction = 1;
 
 // MOTOR VELOCITY VARIABLES
 volatile float    speed = 0;
 volatile float    max_speed = 0;
 volatile int      rotor_speed = 0;
-volatile int8_t   direction = -1;
 volatile uint8_t  dir_prev;
 
 Timer rotor_speed_timer;
@@ -93,8 +92,28 @@ void pinInit() {
     I3.fall(&updateState);
     I2.fall(&updateState);
     I1.fall(&updateState);
-
-
     return;
 }
 
+void motorRun() {
+
+  pinInit();
+
+  int8_t orState = 0;
+  int8_t intState = 0;
+  int8_t intStateOld = 0;
+
+  //Run the motor synchronisation
+  motorHome();
+  orState = state;
+
+  pc.printf("Rotor origin: %x\n\r",orState);
+
+  while (1) {
+      intState = state;
+      if (intState != intStateOld) {
+          intStateOld = intState;
+          motorOut((intState-orState+lead+6)%6,1.0); //+6 to make sure the remainder is positive
+      }
+  }
+}
