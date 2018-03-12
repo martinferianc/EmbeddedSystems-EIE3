@@ -13,16 +13,18 @@ const int8_t lead = 2;  //2 for forwards, -2 for backwards
 
 // MOTOR POSITION VARIABLES
 volatile int32_t rotations;
-uint8_t direction = 1;
+uint8_t direction = 1; // 1: forward, 2: backward
+volatile int32_t rotations_curr = 0;
+volatile int32_t rotations_prev = 0;
+
 
 // MOTOR VELOCITY VARIABLES
-volatile float    speed = 0;
-volatile float    max_speed = 0;
-volatile int      rotor_speed = 0;
-volatile uint8_t  dir_prev;
+volatile int32_t velocity = 0;
+volatile int8_t vel_count = 0;
 
-Timer rotor_speed_timer;
+// TIMER INITIALISATIONS
 Ticker motorDrive;
+Ticker velocityT;
 
 //Status LED
 DigitalOut led1(LED1);
@@ -95,9 +97,25 @@ void pinInit() {
     return;
 }
 
+void velocityCalc() {
+  rotations_curr = rotations;
+  velocity = (rotations_curr-rotations_prev)*10;
+  rotations_prev = rotations_curr;
+  vel_count++;
+  if(vel_count>=10) {
+    vel_count = 0;
+    putMessage(VELOCITY_CODE, velocity);
+  }
+}
+
+void measureInit() {
+  velocityT.attach(&velocityCalc,0.1);
+}
+
 void motorRun() {
 
   pinInit();
+  measureInit();
 
   int8_t orState = 0;
   int8_t intState = 0;

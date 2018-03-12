@@ -19,6 +19,6 @@ void computeHash(){
         SHA256::computeHash(hash, sequence, 64);
         if ((hash[0]==0) || (hash[1]==0))
                 *nonce+=1;
-                putMessage(NONCE, *nonce);
+                putMessage(NONCE_CODE, *nonce);
         hash_counter+=1;
 }

@@ -5,7 +5,9 @@
 
 //TODO:
 //define message codes
-#define NONCE 2
+
+#define NONCE_CODE 2
+#define VELOCITY_CODE 3
 
 extern RawSerial pc;
 
