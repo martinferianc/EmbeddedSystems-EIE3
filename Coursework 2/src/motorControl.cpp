@@ -138,8 +138,7 @@ void motorRun() {
   }
 }
 
-/* ISR to handle the updating of the motor position.
-
+/* ISR to handle the updating of the motor position
 */
 
 void motorISR(){
@@ -167,7 +166,8 @@ void motorCtrlFn(){
     oldMotorPosition = motorPosition; // Update the motor position
     if(vel_count == 0){
       vel_count = MVELOCITY_PRINT_FREQUENCY;
-      putMessage( , );
+      putMessage((int8_t)*nonce, 0x20563A20);
+      putMessage((int8_t)*nonce, velocity); // Print the velocity
     }
     vel_count -= 1;
   }
