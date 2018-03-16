@@ -9,7 +9,8 @@
 Thread hashThread;
 Thread decodeThread;
 Thread commOutT;
-Thread motorRunT;
+Thread motorRunT; // <- What does this do?
+Thread motorCtrlT (osPriorityNormal, 1024); // Thread to hold task running every 100ms
 
 int main() {
         // Start the serial communication thread

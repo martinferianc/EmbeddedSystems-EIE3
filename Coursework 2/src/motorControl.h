@@ -22,6 +22,8 @@
 #define L3Lpin D9           //0x10
 #define L3Hpin D10          //0x20
 
+#define MVELOCITY_PRINT_FREQUENCY 10    // How often motor velocity is printed
+
 // MOTOR STATE VARIABLES
 //Drive state to output table
 extern const int8_t driveTable[];
@@ -49,5 +51,11 @@ extern void setPWMPeriod(int period);
 extern void pinInit();
 
 extern void motorRun();
+
+extern void motorISR();
+
+extern void motorCtrlFn();
+
+extern void motorCtrlTick();
 
 #endif

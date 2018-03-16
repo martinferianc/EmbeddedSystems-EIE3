@@ -4,15 +4,15 @@
         "size": {
             ".data": 0, 
             ".bss": 17, 
-            ".text": 98
+            ".text": 101
         }
     }, 
     {
         "module": "[lib]/c_nano.a", 
         "size": {
-            ".data": 100, 
+            ".data": 464, 
             ".bss": 12, 
-            ".text": 4998
+            ".text": 7826
         }
     }, 
     {
@@ -32,11 +32,19 @@
         }
     }, 
     {
+        "module": "decodeCommands.o", 
+        "size": {
+            ".data": 4, 
+            ".bss": 113, 
+            ".text": 379
+        }
+    }, 
+    {
         "module": "main.o", 
         "size": {
             ".data": 4, 
-            ".bss": 697, 
-            ".text": 1403
+            ".bss": 352, 
+            ".text": 381
         }
     }, 
     {
@@ -44,7 +52,7 @@
         "size": {
             ".data": 4, 
             ".bss": 100, 
-            ".text": 1946
+            ".text": 1516
         }
     }, 
     {
@@ -60,7 +68,7 @@
         "size": {
             ".data": 4, 
             ".bss": 270, 
-            ".text": 1522
+            ".text": 1472
         }
     }, 
     {
@@ -68,7 +76,7 @@
         "size": {
             ".data": 4, 
             ".bss": 1072, 
-            ".text": 10661
+            ".text": 10561
         }
     }, 
     {
@@ -84,21 +92,29 @@
         "size": {
             ".data": 20, 
             ".bss": 2222, 
-            ".text": 7191
+            ".text": 7259
         }
     }, 
     {
         "module": "messages.o", 
         "size": {
             ".data": 4, 
-            ".bss": 180, 
-            ".text": 198
+            ".bss": 256, 
+            ".text": 284
+        }
+    }, 
+    {
+        "module": "motorControl.o", 
+        "size": {
+            ".data": 4, 
+            ".bss": 564, 
+            ".text": 512
         }
     }, 
     {
         "summary": {
-            "static_ram": 4828, 
-            "total_flash": 31557
+            "static_ram": 5608, 
+            "total_flash": 34203
         }
     }
 ]
