@@ -7,19 +7,17 @@ uint8_t hash[32];
 volatile uint32_t hash_counter=0;
 
 void countHash(){
-        printf("Counted %d hashes/s\n\r", hash_counter);
+        pc.printf("Counted %d hashes/s\n\r", hash_counter);
         hash_counter = 0;
 }
 
 void computeHash(){
-        //TODO:
-        // - update key to new key from decodeCommands header
-        // - print the nonce by putting into Queue
-        // Compute the hash
-        SHA256::computeHash(hash, sequence, 64);
-        if ((hash[0]==0) || (hash[1]==0)){
-                *nonce+=1;
-                putMessage(NONCE_CODE, *nonce);
+        while(1) {
+                SHA256::computeHash(hash, sequence, 64);
+                if ((hash[0]==0) || (hash[1]==0)) {
+                        *nonce+=1;
+                        putMessage(NONCE_CODE, *nonce);
+                }
+                hash_counter+=1;
         }
-        hash_counter+=1;
 }
