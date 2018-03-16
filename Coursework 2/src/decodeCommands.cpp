@@ -9,6 +9,10 @@ int charBufferCounter = 0;
 
 // New key from serial port for the bitcoin miner
 volatile uint64_t newKey;
+
+// Key for testing the motor torque
+volatile uint32_t torqueKey;
+
 // mutex for the new key
 Mutex newKey_mutex;
 
@@ -48,7 +52,8 @@ void decode(){
                   putMessage(ROTATE, 0xFF);
                   newKey_mutex.unlock();
                   break;
-        case 'T': break;
+        case 'T': sscanf(charBuffer, "T%x", &torqueKey);
+                  break;
 
       }
 

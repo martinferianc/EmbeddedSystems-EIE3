@@ -1,5 +1,5 @@
 BUILD/NUCLEO_F303K8/GCC_ARM/./main.o: main.cpp \
- BUILD/NUCLEO_F303K8/GCC_ARM/mbed_config.h motorControl.h mbed-dev/mbed.h \
+ BUILD/NUCLEO_F303K8/GCC_ARM/mbed_config.h mbed-dev/mbed.h \
  mbed-dev/platform/mbed_toolchain.h mbed-dev/platform/mbed_preprocessor.h \
  mbed-dev/platform/platform.h mbed-dev/platform/mbed_retarget.h \
  mbed-dev/platform/mbed_toolchain.h \
@@ -132,5 +132,4 @@ BUILD/NUCLEO_F303K8/GCC_ARM/./main.o: main.cpp \
  mbed-dev/platform/toolchain.h mbed-rtos/rtos/Semaphore.h \
  mbed-rtos/rtos/Mutex.h mbed-rtos/rtos/RtosTimer.h mbed-rtos/rtos/Mail.h \
  mbed-rtos/rtos/MemoryPool.h mbed-rtos/rtos/Queue.h \
- mbed-dev/platform/mbed_error.h messages.h bitcoinMine.h decodeCommands.h \
- Crypto/hash/SHA256.h Crypto/hash/HashAlgorithm.h Crypto/hash/SHA2_32.h
+ mbed-dev/platform/mbed_error.h messages.h

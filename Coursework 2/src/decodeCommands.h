@@ -5,6 +5,7 @@
 #include "messages.h"
 
 extern volatile uint64_t newKey;
+extern volatile uint32_t torqueKey;
 
 void serialISR();
 
