@@ -115,7 +115,7 @@ void velocityCalc() {
   vel_count++;
   if(vel_count>=10) {
     vel_count = 0;
-    putMessage(VELOCITY, velocity);
+    //putMessage(VELOCITY, velocity);
   }
 }
 

@@ -35,16 +35,16 @@ void commOutFn(){
           pc.printf("R 0x%016x\n", pMessage->code, pMessage->data);
           break;
       case(ROTOR_STATE):
-          pc.printf("State for %d with data 0x%016x\n", pMessage->code, pMessage->data);
+          pc.printf("State for %d with data 0x%016x\r\n", pMessage->code, pMessage->data);
           break;
       case(VELOCITY):
-          pc.printf("Motor Velcity: 0x%016x\n", pMessage->data);
+          pc.printf("Motor Velocity: %d rev/s\r\n", pMessage->data);
           break;
       case(HASH):
-          pc.printf("Bitcoin Hash: 0x%016x\n", pMessage->data);
+          pc.printf("Bitcoin Hashes per second: %d\r\n", pMessage->data);
           break;
       case(NONCE):
-          pc.printf("Bitcoin Nonce: 0x%016x\n", pMessage->data);
+          pc.printf("Bitcoin Nonce: 0x%016x\r\n", pMessage->data);
           break;
     }
     outMessages.free(pMessage);

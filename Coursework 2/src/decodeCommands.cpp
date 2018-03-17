@@ -1,7 +1,7 @@
 #include "decodeCommands.h"
 
 // Global Queueing variable
-Queue<uint8_t, 8> inCharQ;
+Queue<void, 8> inCharQ;
 // Buffer for holding chars to decode
 char charBuffer[17];
 // buffer index
@@ -18,7 +18,7 @@ Mutex key_mutex;
 
 void serialISR(){
         uint8_t newChar = pc.getc();
-        inCharQ.put((uint8_t*)newChar);
+        inCharQ.put((void*)newChar);
 }
 
 // Decoding
@@ -26,8 +26,8 @@ void decode(){
         pc.attach(&serialISR);
         while(1) {
                 osEvent newEvent = inCharQ.get();
-                uint8_t newChar = (uint8_t)newEvent.value.v;
-                //putMessage(1, newChar);
+                uint8_t newChar = (uint8_t)newEvent.value.p;
+
                 // check for the buffer index, prevent overflow
                 if(charBufferCounter > 17) {
                         charBufferCounter = 0;
