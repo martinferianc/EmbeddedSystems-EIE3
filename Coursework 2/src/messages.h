@@ -8,6 +8,7 @@
 #define VELOCITY 2
 #define HASH 3
 #define NONCE 4
+#define KEY 5
 
 extern RawSerial pc;
 

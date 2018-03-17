@@ -4,8 +4,9 @@
 #include "rtos.h"
 #include "messages.h"
 
-extern volatile uint32_t torqueKey;
 extern volatile uint64_t* key;
+volatile int32_t velocity;
+volatile int32_t rotations;
 
 void serialISR();
 
