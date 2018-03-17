@@ -12,7 +12,6 @@ volatile int8_t state;
 const int8_t lead = 2;  //2 for forwards, -2 for backwards
 
 // MOTOR POSITION VARIABLES
-volatile int32_t rotations;
 uint8_t direction = 1; // 1: forward, 2: backward
 volatile int32_t motorPosition;
 volatile int32_t rotations_curr = 0;
@@ -20,7 +19,6 @@ volatile int32_t rotations_prev = 0;
 
 
 // MOTOR VELOCITY VARIABLES
-volatile int32_t velocity = 0;
 volatile int8_t vel_count = 0;
 
 // TIMER INITIALISATIONS
