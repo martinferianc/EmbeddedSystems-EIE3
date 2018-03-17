@@ -55,12 +55,14 @@ extern void motorRun();
 
 extern void motorISR();
 
+extern void measureInit();
+
 extern void motorCtrlFn();
 
 extern void motorCtrlTick();
 
-extern volatile uint32_t torqueKey;
-extern volatile int32_t velocity;
+extern volatile uint32_t motorTorque;
+extern volatile int32_t tar_velocity;
 extern volatile int32_t rotations;
 
 extern Thread motorCtrlT;

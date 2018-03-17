@@ -13,6 +13,7 @@ const int8_t lead = 2;  //2 for forwards, -2 for backwards
 
 // MOTOR POSITION VARIABLES
 uint8_t direction = 1; // 1: forward, 2: backward
+volatile int32_t act_velocity;
 volatile int32_t motorPosition;
 volatile int32_t rotations_curr = 0;
 volatile int32_t rotations_prev = 0;
@@ -74,6 +75,7 @@ inline void updateState(){
 const uint8_t readRotorState(){
         return stateMap[I1 + 2*I2 + 4*I3];
 }
+
 //Basic synchronisation routine
 
 void motorHome() {
@@ -106,23 +108,6 @@ void pinInit() {
         return;
 }
 
-void velocityCalc() {
-        rotations_curr = rotations;
-        velocity = (rotations_curr-rotations_prev)*10;
-        rotations_prev = rotations_curr;
-        vel_count++;
-        if(vel_count>=10) {
-                vel_count = 0;
-                //putMessage(VELOCITY, velocity);
-        }
-}
-
-void measureInit() {
-        velocityT.attach(&velocityCalc,0.1);
-}
-
-//
-//
 
 void motorRun() {
         pinInit();
@@ -153,7 +138,7 @@ void motorRun() {
 void motorISR(){
         static int8_t oldRotorState;
         int8_t rotorState = readRotorState(); // <-  This function is not defined
-        motorOut((rotorState - oldRotorState + lead + 6)%6, torqueKey);
+        motorOut((rotorState - oldRotorState + lead + 6)%6, motorTorque);
         if(rotorState - oldRotorState == 5) motorPosition--;
         else if (rotorState - oldRotorState == -5) motorPosition++;
         else motorPosition += (rotorState = oldRotorState);
@@ -170,11 +155,11 @@ void motorCtrlFn(){
         motorCtrlTicker.attach_us(&motorCtrlTick, 100000);
         while(1) {
                 motorCtrlT.signal_wait(0x1); // Suspend until signal occurs.
-                velocity = motorPosition - oldMotorPosition; // Calculate the velocity of the motor.
+                act_velocity = motorPosition - oldMotorPosition; // Calculate the velocity of the motor.
                 oldMotorPosition = motorPosition; // Update the motor position
                 if(vel_count == 0) {
                         vel_count = MVELOCITY_PRINT_FREQUENCY;
-                        putMessage(VELOCITY, velocity); // Print the velocity
+                        putMessage(VELOCITY, act_velocity); // Print the velocity
                 }
                 vel_count -= 1;
         }
@@ -185,4 +170,20 @@ void motorCtrlFn(){
 
 void motorCtrlTick(){
         motorCtrlT.signal_set(0x1); // Set signal to calculate velocity
+}
+
+
+void velocityCalc() {
+        rotations_curr = rotations;
+        act_velocity = (rotations_curr-rotations_prev)*10;
+        rotations_prev = rotations_curr;
+        vel_count++;
+        if(vel_count>=10) {
+                vel_count = 0;
+                //putMessage(VELOCITY, velocity);
+        }
+}
+
+void measureInit() {
+        velocityT.attach(&velocityCalc,0.1);
 }

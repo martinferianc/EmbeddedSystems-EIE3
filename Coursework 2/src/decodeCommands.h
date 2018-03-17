@@ -5,7 +5,7 @@
 #include "messages.h"
 
 extern volatile uint64_t* key;
-extern volatile int32_t velocity;
+extern volatile int32_t tar_velocity;
 extern volatile int32_t rotations;
 
 void serialISR();

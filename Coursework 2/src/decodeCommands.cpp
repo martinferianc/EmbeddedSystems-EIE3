@@ -8,10 +8,10 @@ char charBuffer[17];
 int charBufferCounter = 0;
 
 // Key for testing the motor torque
-volatile uint32_t torqueKey;
+volatile uint32_t motorTorque;
 
 //Motor control variables
-volatile int32_t velocity = 0;
+volatile int32_t tar_velocity = 0;
 volatile int32_t rotations = 0;
 
 // mutex for the new key
@@ -44,23 +44,23 @@ void decode(){
                         case 'R':
                                 rotations_mutex.lock();
                                 sscanf(charBuffer, "R%lf", &rotations);
-                                putMessage(ROTATE, rotations);
                                 rotations_mutex.unlock();
+                                putMessage(ROTATE, rotations);
                                 break;
                         case 'V':
                                 velocity_mutex.lock();
-                                sscanf(charBuffer, "V%lf", &velocity);
-                                putMessage(VELOCITY, velocity);
+                                sscanf(charBuffer, "V%lf", &tar_velocity);
                                 velocity_mutex.unlock();
+                                putMessage(VELOCITY, tar_velocity);
                                 break;
                         case 'K':
                                 key_mutex.lock();
                                 sscanf(charBuffer,"K%x",&key);
-                                putMessage(KEY, velocity);
                                 key_mutex.unlock();
+                                putMessage(KEY, key);
                                 break;
                         case 'T':
-                                sscanf(charBuffer, "T%x", &torqueKey);
+                                sscanf(charBuffer, "T%x", &motorTorque);
                                 break;
 
                         }

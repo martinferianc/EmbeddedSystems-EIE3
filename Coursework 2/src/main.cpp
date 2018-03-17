@@ -8,6 +8,7 @@
 // THREADS
 Thread decodeThread;
 Thread commOutT;
+Thread motorDriveT;
 Thread motorCtrlT (osPriorityNormal, 1024); // Thread to hold task running every 100ms
 
 
@@ -22,10 +23,8 @@ int main() {
         decodeThread.start(decode);
         commOutT.start(commOutFn);
         motorCtrlT.start(motorRun);
-
+        //motorCtrlT.start(motorCtrlFn);
         //THREAD PRIORITY
-
-
 
         //PROFILING
         Ticker t;
