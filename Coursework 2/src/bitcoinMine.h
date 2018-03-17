@@ -1,7 +1,6 @@
 #ifndef _bitcoinMine_h_
 #define  _bitcoinMine_h_
 
-#include "decodeCommands.h"
 #include "messages.h"
 #include "hash/SHA256.h"
 #include "rtos.h"
