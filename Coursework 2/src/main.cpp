@@ -16,13 +16,15 @@ int main() {
         // Start the serial communication thread
         pc.printf("Beginning the program!\n\r");
 
+        setPWMPeriod(2000);
+
         putMessage(0x01, 0x35);
 
         // THREADS
         decodeThread.start(decode);
         commOutT.start(commOutFn);
-        //hashThread.start(computeHash);
-        //motorRunT.start(motorRun);
+        hashThread.start(computeHash);
+        motorRunT.start(motorRun);
 
         /*
         //THREAD PRIORITY

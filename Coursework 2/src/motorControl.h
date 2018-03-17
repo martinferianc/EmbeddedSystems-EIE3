@@ -58,4 +58,10 @@ extern void motorCtrlFn();
 
 extern void motorCtrlTick();
 
+extern volatile uint64_t* nonce;
+
+extern volatile uint32_t torqueKey;
+
+extern Thread motorCtrlT;
+
 #endif

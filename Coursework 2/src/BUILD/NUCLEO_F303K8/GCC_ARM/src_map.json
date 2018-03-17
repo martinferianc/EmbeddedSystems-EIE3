@@ -1,10 +1,18 @@
 [
     {
-        "module": "[fill]", 
+        "module": "Crypto/hash", 
         "size": {
             ".data": 0, 
-            ".bss": 17, 
-            ".text": 101
+            ".bss": 0, 
+            ".text": 7400
+        }
+    }, 
+    {
+        "module": "[fill]", 
+        "size": {
+            ".data": 3, 
+            ".bss": 23, 
+            ".text": 102
         }
     }, 
     {
@@ -32,19 +40,27 @@
         }
     }, 
     {
+        "module": "bitcoinMine.o", 
+        "size": {
+            ".data": 72, 
+            ".bss": 36, 
+            ".text": 84
+        }
+    }, 
+    {
         "module": "decodeCommands.o", 
         "size": {
             ".data": 4, 
-            ".bss": 113, 
-            ".text": 379
+            ".bss": 109, 
+            ".text": 411
         }
     }, 
     {
         "module": "main.o", 
         "size": {
             ".data": 4, 
-            ".bss": 352, 
-            ".text": 381
+            ".bss": 440, 
+            ".text": 465
         }
     }, 
     {
@@ -52,7 +68,7 @@
         "size": {
             ".data": 4, 
             ".bss": 100, 
-            ".text": 1516
+            ".text": 1732
         }
     }, 
     {
@@ -68,7 +84,7 @@
         "size": {
             ".data": 4, 
             ".bss": 270, 
-            ".text": 1472
+            ".text": 1500
         }
     }, 
     {
@@ -76,7 +92,7 @@
         "size": {
             ".data": 4, 
             ".bss": 1072, 
-            ".text": 10561
+            ".text": 10689
         }
     }, 
     {
@@ -106,15 +122,15 @@
     {
         "module": "motorControl.o", 
         "size": {
-            ".data": 4, 
-            ".bss": 564, 
-            ".text": 512
+            ".data": 5, 
+            ".bss": 582, 
+            ".text": 1395
         }
     }, 
     {
         "summary": {
-            "static_ram": 5608, 
-            "total_flash": 34203
+            "static_ram": 5828, 
+            "total_flash": 43135
         }
     }
 ]
