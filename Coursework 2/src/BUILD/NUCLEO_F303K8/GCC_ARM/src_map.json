@@ -12,7 +12,7 @@
         "size": {
             ".data": 3, 
             ".bss": 23, 
-            ".text": 102
+            ".text": 106
         }
     }, 
     {
@@ -52,7 +52,7 @@
         "size": {
             ".data": 4, 
             ".bss": 109, 
-            ".text": 411
+            ".text": 399
         }
     }, 
     {
@@ -60,7 +60,7 @@
         "size": {
             ".data": 4, 
             ".bss": 440, 
-            ".text": 465
+            ".text": 420
         }
     }, 
     {
@@ -116,7 +116,7 @@
         "size": {
             ".data": 4, 
             ".bss": 256, 
-            ".text": 284
+            ".text": 424
         }
     }, 
     {
@@ -124,13 +124,13 @@
         "size": {
             ".data": 5, 
             ".bss": 582, 
-            ".text": 1395
+            ".text": 1364
         }
     }, 
     {
         "summary": {
             "static_ram": 5828, 
-            "total_flash": 43135
+            "total_flash": 43191
         }
     }
 ]

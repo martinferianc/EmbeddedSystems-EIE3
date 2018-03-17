@@ -7,7 +7,6 @@
 extern volatile uint32_t torqueKey;
 extern volatile uint64_t* key;
 
-
 void serialISR();
 
 extern void decode();

@@ -16,13 +16,6 @@ volatile uint32_t torqueKey;
 // mutex for the new key
 Mutex key_mutex;
 
-enum outputCodes {
-        ROTATE,
-        VELOCITY,
-        KEY,
-        TUNE
-};
-
 void serialISR(){
         uint8_t newChar = pc.getc();
         inCharQ.put((uint8_t*)newChar);
@@ -34,7 +27,7 @@ void decode(){
         while(1) {
                 osEvent newEvent = inCharQ.get();
                 uint8_t newChar = (uint8_t)newEvent.value.v;
-                putMessage(1, newChar);
+                //putMessage(1, newChar);
                 // check for the buffer index, prevent overflow
                 if(charBufferCounter > 17) {
                         charBufferCounter = 0;

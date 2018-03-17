@@ -2,12 +2,12 @@
 #define  _messages_h_
 
 #include "rtos.h"
-
-//TODO:
-//define message codes
-
-#define NONCE_CODE 2
-#define VELOCITY_CODE 3
+// Define Output Codes
+#define ROTATE 0
+#define ROTOR_STATE 1
+#define VELOCITY 2
+#define HASH 3
+#define NONCE 4
 
 extern RawSerial pc;
 

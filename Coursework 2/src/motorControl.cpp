@@ -86,8 +86,9 @@ void motorHome() {
         return;
 }
 
-// Set the period
-//
+// Set the PWM period
+// NOTE: Due to a hardware fault on the board, this should be set to a maximum
+// of 2000 uS.
 
 void setPWMPeriod(int period) {
   L1L.period_us(period);
@@ -96,6 +97,7 @@ void setPWMPeriod(int period) {
   return;
 }
 
+//
 void pinInit() {
     I3.rise(&updateState);
     I2.rise(&updateState);
@@ -113,7 +115,7 @@ void velocityCalc() {
   vel_count++;
   if(vel_count>=10) {
     vel_count = 0;
-    putMessage(VELOCITY_CODE, velocity);
+    putMessage(VELOCITY, velocity);
   }
 }
 
@@ -125,7 +127,6 @@ void measureInit() {
 //
 
 void motorRun() {
-
   pinInit();
   measureInit();
 
@@ -137,7 +138,7 @@ void motorRun() {
   motorHome();
   orState = state;
 
-  pc.printf("Rotor origin: %x\n\r",orState);
+  putMessage(ROTOR_STATE, orState);
 
   while (1) {
       intState = state;
@@ -175,8 +176,7 @@ void motorCtrlFn(){
     oldMotorPosition = motorPosition; // Update the motor position
     if(vel_count == 0){
       vel_count = MVELOCITY_PRINT_FREQUENCY;
-      putMessage((int8_t)*nonce, 0x20563A20);
-      putMessage((int8_t)*nonce, velocity); // Print the velocity
+      putMessage(VELOCITY, velocity); // Print the velocity
     }
     vel_count -= 1;
   }
