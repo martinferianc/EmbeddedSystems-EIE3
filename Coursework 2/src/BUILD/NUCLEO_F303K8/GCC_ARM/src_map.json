@@ -12,7 +12,7 @@
         "size": {
             ".data": 3, 
             ".bss": 23, 
-            ".text": 104
+            ".text": 107
         }
     }, 
     {
@@ -51,8 +51,8 @@
         "module": "decodeCommands.o", 
         "size": {
             ".data": 4, 
-            ".bss": 109, 
-            ".text": 399
+            ".bss": 165, 
+            ".text": 557
         }
     }, 
     {
@@ -116,21 +116,21 @@
         "size": {
             ".data": 4, 
             ".bss": 256, 
-            ".text": 438
+            ".text": 465
         }
     }, 
     {
         "module": "motorControl.o", 
         "size": {
             ".data": 5, 
-            ".bss": 582, 
+            ".bss": 574, 
             ".text": 1280
         }
     }, 
     {
         "summary": {
-            "static_ram": 5652, 
-            "total_flash": 43255
+            "static_ram": 5700, 
+            "total_flash": 43443
         }
     }
 ]
