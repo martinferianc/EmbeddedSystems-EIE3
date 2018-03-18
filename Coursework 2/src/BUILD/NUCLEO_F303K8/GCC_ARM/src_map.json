@@ -2,9 +2,9 @@
     {
         "module": "[fill]", 
         "size": {
-            ".data": 0, 
-            ".bss": 13, 
-            ".text": 95
+            ".data": 2, 
+            ".bss": 22, 
+            ".text": 96
         }
     }, 
     {
@@ -44,7 +44,7 @@
         "size": {
             ".data": 4, 
             ".bss": 165, 
-            ".text": 585
+            ".text": 600
         }
     }, 
     {
@@ -52,7 +52,7 @@
         "size": {
             ".data": 4, 
             ".bss": 264, 
-            ".text": 312
+            ".text": 340
         }
     }, 
     {
@@ -60,7 +60,7 @@
         "size": {
             ".data": 4, 
             ".bss": 100, 
-            ".text": 1516
+            ".text": 1732
         }
     }, 
     {
@@ -76,7 +76,7 @@
         "size": {
             ".data": 4, 
             ".bss": 270, 
-            ".text": 1494
+            ".text": 1522
         }
     }, 
     {
@@ -84,7 +84,7 @@
         "size": {
             ".data": 4, 
             ".bss": 1072, 
-            ".text": 10561
+            ".text": 10689
         }
     }, 
     {
@@ -92,7 +92,7 @@
         "size": {
             ".data": 4, 
             ".bss": 4, 
-            ".text": 750
+            ".text": 768
         }
     }, 
     {
@@ -100,7 +100,7 @@
         "size": {
             ".data": 20, 
             ".bss": 2222, 
-            ".text": 7259
+            ".text": 7727
         }
     }, 
     {
@@ -108,21 +108,21 @@
         "size": {
             ".data": 4, 
             ".bss": 256, 
-            ".text": 549
+            ".text": 551
         }
     }, 
     {
         "module": "motorControl.o", 
         "size": {
-            ".data": 4, 
-            ".bss": 564, 
-            ".text": 510
+            ".data": 6, 
+            ".bss": 579, 
+            ".text": 1494
         }
     }, 
     {
         "summary": {
-            "static_ram": 5636, 
-            "total_flash": 34687
+            "static_ram": 5664, 
+            "total_flash": 36579
         }
     }
 ]

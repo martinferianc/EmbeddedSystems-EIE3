@@ -88,7 +88,7 @@ const uint8_t readRotorState(){
 void motorHome() {
         //Put the motor in drive state 0 and wait for it to stabilise
         motorOut(0,1000);
-        wait();
+        wait(2);
         updateState();
         return;
 }
