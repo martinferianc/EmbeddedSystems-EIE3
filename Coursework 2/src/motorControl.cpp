@@ -88,7 +88,7 @@ const uint8_t readRotorState(){
 void motorHome() {
         //Put the motor in drive state 0 and wait for it to stabilise
         motorOut(0,1000);
-        wait(4.0);
+        wait();
         updateState();
         return;
 }
@@ -123,7 +123,7 @@ void motorISR(){
         static int8_t oldRotorState;
         int8_t rotorState = readRotorState();
         motorPower();
-        motorOut((rotorState - oldRotorState + lead + 6)%6, motorTorque);
+        motorOut((rotorState - oldRotorState + lead + 6)%6, motorPWM);
         if(rotorState - oldRotorState == 5) motorPosition--;
         else if (rotorState - oldRotorState == -5) motorPosition++;
         else motorPosition += (rotorState = oldRotorState);
@@ -163,14 +163,14 @@ void motorCtrlTick(){
 // Implement the proportional speed control
 void motorPower(){
   // y_s = k_p(s-|v|)
-
+  int32_t y_s;
   static int32_t oldVelocityError;
   int32_t velocityError = tar_velocity - act_velocity;
 
   // take the absolute value;
-  act_velocity = (act_velocity < 0) ? (0-act_velocity) : act_velocity;
+  act_velocity = (act_velocity < 0) ? (0 - act_velocity) : act_velocity;
 
-  int32_t y_s = PROPORTIONAL_CONST*(velocityError) + DIFFERENTIAL_CONST*(velocityError - oldVelocityError); // Need to divide by time
+  y_s = PROPORTIONAL_CONST*(velocityError); //+ DIFFERENTIAL_CONST*(velocityError - oldVelocityError); // Need to divide by time
 
   oldVelocityError = velocityError;
   if(y_s < 0){
@@ -178,7 +178,7 @@ void motorPower(){
       lead = lead*-1;
   }
   y_s = (y_s > PWM_LIMIT) ? (y_s = PWM_LIMIT) : y_s;
-  motorTorque = (uint32_t)y_s;
+  motorPWM = (uint32_t)y_s;
 }
 
 
