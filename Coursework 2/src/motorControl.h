@@ -47,6 +47,8 @@ extern inline void updateState();
 //Basic synchronisation routine
 extern void motorHome();
 
+extern void photoISRSetup();
+
 extern void setPWMPeriod(int period);
 
 extern void pinInit();

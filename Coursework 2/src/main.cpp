@@ -8,10 +8,7 @@
 // THREADS
 Thread decodeThread;
 Thread commOutT;
-//Thread motorDriveT;
 Thread motorCtrlT (osPriorityNormal, 1024); // Thread to hold task running every 100ms
-
-
 
 int main() {
         // Start the serial communication thread
@@ -22,7 +19,6 @@ int main() {
         decodeThread.start(decode);
         commOutT.start(commOutFn);
         motorCtrlT.start(motorCtrlFn);
-        //motorCtrlT.start(motorCtrlFn);
         //THREAD PRIORITY
 
         //PROFILING

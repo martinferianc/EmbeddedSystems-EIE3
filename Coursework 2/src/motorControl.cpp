@@ -106,7 +106,7 @@ void setPWMPeriod(int period) {
 // Copy of pinInit to run with code Ed provided. Calls the motor ISR each time
 // one of the state of the light sensor changes
 
-void motorPinInit(){
+void photoISRSetup(){
         I3.rise(&motorISR);
         I2.rise(&motorISR);
         I1.rise(&motorISR);
@@ -133,7 +133,7 @@ void motorISR(){
 // the velocity at this time.
 
 void motorCtrlFn(){
-        motorPinInit();   // Attach the motorISR to the pins
+        photoISRSetup();   // Attach the motorISR to the pins
         motorHome();      // Home the motor
         static int32_t oldMotorPosition;
         Ticker motorCtrlTicker; // Used to control how often motor control thread runs
