@@ -28,6 +28,7 @@
 // Parameters for proportional control
 #define PWM_LIMIT 1000
 #define PROPORTIONAL_CONST 25
+#define DIFFERENTIAL_CONST 20
 
 // MOTOR STATE VARIABLES
 //Drive state to output table
@@ -69,7 +70,7 @@ extern void motorCtrlFn();
 
 extern void motorCtrlTick();
 
-extern volatile uint32_t motorTorque;
+extern volatile uint32_t motorPWM;
 extern volatile int32_t tar_velocity;
 extern volatile int32_t rotations;
 
