@@ -66,17 +66,23 @@ void motorOut(int8_t driveState, uint32_t scale){
         if (driveOut & 0x20) L3H = 0;
 }
 
+// Updates the state of the motor based upon the light sensors.
+
 inline void updateState(){
         state = stateMap[I1 + 2*I2 + 4*I3];
         if(direction) rotations++;
         else rotations--;
 }
 
+// Returns the state of the motor when called
+
 const uint8_t readRotorState(){
         return stateMap[I1 + 2*I2 + 4*I3];
 }
 
-//Basic synchronisation routine
+// Basic synchronisation routine
+// Drives the motor to a deafult position, waits for it to arrive and updates
+// the motor state.
 
 void motorHome() {
         //Put the motor in drive state 0 and wait for it to stabilise
@@ -97,7 +103,63 @@ void setPWMPeriod(int period) {
         return;
 }
 
-//
+// Copy of pinInit to run with code Ed provided. Calls the motor ISR each time
+// one of the state of the light sensor changes
+
+void motorPinInit(){
+        I3.rise(&motorISR);
+        I2.rise(&motorISR);
+        I1.rise(&motorISR);
+        I3.fall(&motorISR);
+        I2.fall(&motorISR);
+        I1.fall(&motorISR);
+        return;
+}
+
+// ISR to handle the updating of the motor position
+
+void motorISR(){
+        static int8_t oldRotorState;
+        int8_t rotorState = readRotorState();
+        motorOut((rotorState - oldRotorState + lead + 6)%6, motorTorque);
+        if(rotorState - oldRotorState == 5) motorPosition--;
+        else if (rotorState - oldRotorState == -5) motorPosition++;
+        else motorPosition += (rotorState = oldRotorState);
+        oldRotorState = rotorState;
+}
+
+
+// Function to instantiate thread which will run every 100ms to calcualte
+// the velocity at this time.
+
+void motorCtrlFn(){
+        motorPinInit();   // Attach the motorISR to the pins
+        motorHome();      // Home the motor
+        static int32_t oldMotorPosition;
+        Ticker motorCtrlTicker; // Used to control how often motor control thread runs
+        motorCtrlTicker.attach_us(&motorCtrlTick, 100000);
+        while(1) {
+                motorCtrlT.signal_wait(0x1); // Suspend until signal occurs.
+                act_velocity = motorPosition - oldMotorPosition; // Calculate the velocity of the motor.
+                oldMotorPosition = motorPosition; // Update the motor position
+                if(vel_count == 0) {
+                        vel_count = MVELOCITY_PRINT_FREQUENCY;
+                        putMessage(VELOCITY, act_velocity); // Print the velocity
+                }
+                vel_count -= 1;
+        }
+}
+
+// ISR which will be called each time 100ms has passed. Performs no computation
+// so Photointerrupter is not blocked.
+
+void motorCtrlTick(){
+        motorCtrlT.signal_set(0x1); // Set signal to calculate velocity
+}
+
+//############# Code below this line was written by Alex MC. Now works from code provided by Ed. ##############
+
+/*
 void pinInit() {
         I3.rise(&updateState);
         I2.rise(&updateState);
@@ -108,6 +170,20 @@ void pinInit() {
         return;
 }
 
+void velocityCalc() {
+        rotations_curr = rotations;
+        act_velocity = (rotations_curr-rotations_prev)*10;
+        rotations_prev = rotations_curr;
+        vel_count++;
+        if(vel_count>=10) {
+                vel_count = 0;
+                putMessage(VELOCITY, act_velocity);
+        }
+}
+
+void measureInit() {
+        velocityT.attach(&velocityCalc,0.1);
+}
 
 void motorRun() {
         pinInit();
@@ -132,58 +208,4 @@ void motorRun() {
         }
 }
 
-// ISR to handle the updating of the motor position
-//
-
-void motorISR(){
-        static int8_t oldRotorState;
-        int8_t rotorState = readRotorState(); // <-  This function is not defined
-        motorOut((rotorState - oldRotorState + lead + 6)%6, motorTorque);
-        if(rotorState - oldRotorState == 5) motorPosition--;
-        else if (rotorState - oldRotorState == -5) motorPosition++;
-        else motorPosition += (rotorState = oldRotorState);
-        oldRotorState = rotorState;
-}
-
-
-// Function to instantiate thread which will run every 100ms to calcualte
-// the velocity at this time.
-
-void motorCtrlFn(){
-        static int32_t oldMotorPosition;
-        Ticker motorCtrlTicker; // Used to control how often motor control thread runs
-        motorCtrlTicker.attach_us(&motorCtrlTick, 100000);
-        while(1) {
-                motorCtrlT.signal_wait(0x1); // Suspend until signal occurs.
-                act_velocity = motorPosition - oldMotorPosition; // Calculate the velocity of the motor.
-                oldMotorPosition = motorPosition; // Update the motor position
-                if(vel_count == 0) {
-                        vel_count = MVELOCITY_PRINT_FREQUENCY;
-                        putMessage(VELOCITY, act_velocity); // Print the velocity
-                }
-                vel_count -= 1;
-        }
-}
-
-// ISR which will be called each time 100ms has passed. Performs no computation
-// so Photointerrupter is not blocked.
-
-void motorCtrlTick(){
-        motorCtrlT.signal_set(0x1); // Set signal to calculate velocity
-}
-
-
-void velocityCalc() {
-        rotations_curr = rotations;
-        act_velocity = (rotations_curr-rotations_prev)*10;
-        rotations_prev = rotations_curr;
-        vel_count++;
-        if(vel_count>=10) {
-                vel_count = 0;
-                //putMessage(VELOCITY, velocity);
-        }
-}
-
-void measureInit() {
-        velocityT.attach(&velocityCalc,0.1);
-}
+*/
