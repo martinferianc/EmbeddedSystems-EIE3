@@ -15,10 +15,10 @@ RawSerial pc(SERIAL_TX, SERIAL_RX);
 // for the message and places the message in the FIFO mail queue
 
 void putMessage(uint8_t code, uint32_t data){
-  message_t *pMessage = outMessages.alloc();
-  pMessage->code = code;
-  pMessage->data = data;
-  outMessages.put(pMessage);
+        message_t *pMessage = outMessages.alloc();
+        pMessage->code = code;
+        pMessage->data = data;
+        outMessages.put(pMessage);
 }
 
 
@@ -27,14 +27,32 @@ void putMessage(uint8_t code, uint32_t data){
 // the memory allocated to it.
 
 void commOutFn(){
-
-  //allocate memory for outgoing messages
-  outMessages.alloc(); //is this needed?
-
-  while(1){
-    osEvent newEvent = outMessages.get();
-    message_t *pMessage = (message_t*)newEvent.value.p;
-    pc.printf("Message %d with data 0x%016x\n", pMessage->code, pMessage->data);
-    outMessages.free(pMessage);
-  }
+        while(1) {
+                osEvent newEvent = outMessages.get();
+                message_t *pMessage = (message_t*)newEvent.value.p;
+                switch(pMessage->code) {
+                case (STARTUP):
+                        pc.printf("STARTUP COMPLETE %d, %d", pMessage->code, pMessage->data);
+                        break;
+                case (ROTATE):
+                        pc.printf("R 0x%016x\n", pMessage->code, pMessage->data);
+                        break;
+                case (ROTOR_STATE):
+                        pc.printf("State for %d with data 0x%016x\r\n", pMessage->code, pMessage->data);
+                        break;
+                case (VELOCITY):
+                        pc.printf("Motor Velocity: %d rev/s\r\n", pMessage->data);
+                        break;
+                case (HASH):
+                        pc.printf("Bitcoin Hashes per second: %d\r\n", pMessage->data);
+                        break;
+                case (NONCE):
+                        pc.printf("Bitcoin Nonce: 0x%016x\r\n", pMessage->data);
+                        break;
+                case (KEY):
+                        pc.printf("New Key: 0x%016x\r\n", pMessage->data);
+                        break;
+                }
+                outMessages.free(pMessage);
+        }
 }

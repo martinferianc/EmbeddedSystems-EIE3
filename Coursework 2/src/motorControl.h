@@ -4,6 +4,7 @@
 #include "mbed.h"
 #include "rtos.h"
 #include "messages.h"
+#include "decodeCommands.h"
 
 //Photointerrupter input pins
 #define I1pin D2
@@ -46,6 +47,8 @@ extern inline void updateState();
 //Basic synchronisation routine
 extern void motorHome();
 
+extern void photoISRSetup();
+
 extern void setPWMPeriod(int period);
 
 extern void pinInit();
@@ -54,8 +57,16 @@ extern void motorRun();
 
 extern void motorISR();
 
+extern void measureInit();
+
 extern void motorCtrlFn();
 
 extern void motorCtrlTick();
+
+extern volatile uint32_t motorTorque;
+extern volatile int32_t tar_velocity;
+extern volatile int32_t rotations;
+
+extern Thread motorCtrlT;
 
 #endif

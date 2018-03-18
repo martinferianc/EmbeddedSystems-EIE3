@@ -132,5 +132,5 @@ BUILD/NUCLEO_F303K8/GCC_ARM/./main.o: main.cpp \
  mbed-dev/platform/toolchain.h mbed-rtos/rtos/Semaphore.h \
  mbed-rtos/rtos/Mutex.h mbed-rtos/rtos/RtosTimer.h mbed-rtos/rtos/Mail.h \
  mbed-rtos/rtos/MemoryPool.h mbed-rtos/rtos/Queue.h \
- mbed-dev/platform/mbed_error.h messages.h bitcoinMine.h decodeCommands.h \
+ mbed-dev/platform/mbed_error.h messages.h decodeCommands.h bitcoinMine.h \
  Crypto/hash/SHA256.h Crypto/hash/HashAlgorithm.h Crypto/hash/SHA2_32.h
