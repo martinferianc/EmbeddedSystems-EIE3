@@ -32,7 +32,7 @@ void commOutFn(){
                 message_t *pMessage = (message_t*)newEvent.value.p;
                 switch(pMessage->code) {
                 case (STARTUP):
-                        pc.printf("STARTUP COMPLETE %d, %d", pMessage->code, pMessage->data);
+                        pc.printf("STARTUP COMPLETE %d, %d \n", pMessage->code, pMessage->data);
                         break;
                 case (ROTATE):
                         pc.printf("R 0x%016x\n", pMessage->code, pMessage->data);
@@ -51,6 +51,12 @@ void commOutFn(){
                         break;
                 case (KEY):
                         pc.printf("New Key: 0x%016x\r\n", pMessage->data);
+                        break;
+                case (TAR_VELOCITY):
+                        pc.printf("Target Velocity: %d rev/s\r\n", pMessage->data);
+                        break;
+                case (TEST_MSG):
+                        pc.printf("Test: %d \r\n", pMessage->data);
                         break;
                 }
                 outMessages.free(pMessage);

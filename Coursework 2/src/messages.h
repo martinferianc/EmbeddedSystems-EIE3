@@ -3,13 +3,15 @@
 
 #include "rtos.h"
 // Define Output Codes
-#define ROTATE 0
-#define ROTOR_STATE 1
-#define VELOCITY 2
-#define HASH 3
-#define NONCE 4
-#define KEY 5
-#define STARTUP 13
+#define ROTATE        0
+#define ROTOR_STATE   1
+#define VELOCITY      2
+#define HASH          3
+#define NONCE         4
+#define KEY           5
+#define STARTUP       13
+#define TAR_VELOCITY  14
+#define TEST_MSG      15
 
 extern RawSerial pc;
 

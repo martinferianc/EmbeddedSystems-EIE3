@@ -6,9 +6,9 @@
 #include "decodeCommands.h"
 
 // THREADS
-Thread decodeThread;
+Thread decodeThread(osPriorityHigh);
 Thread commOutT;
-Thread motorCtrlT (osPriorityNormal, 1024); // Thread to hold task running every 100ms
+Thread motorCtrlT (osPriorityNormal,1024); //, 1024); // Thread to hold task running every 100ms
 
 int main() {
         // Start the serial communication thread
@@ -21,8 +21,10 @@ int main() {
         motorCtrlT.start(motorCtrlFn);
         //THREAD PRIORITY
 
+
+
         //PROFILING
-        Ticker t;
-        t.attach(&countHash, 1.0);
-        computeHash();
+        //Ticker t;
+        //t.attach(&countHash, 1.0);
+        //computeHash();
 }
