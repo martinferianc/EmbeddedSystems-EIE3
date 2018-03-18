@@ -60,7 +60,7 @@
         "size": {
             ".data": 4, 
             ".bss": 100, 
-            ".text": 1732
+            ".text": 1786
         }
     }, 
     {
@@ -115,14 +115,14 @@
         "module": "motorControl.o", 
         "size": {
             ".data": 6, 
-            ".bss": 579, 
-            ".text": 1494
+            ".bss": 451, 
+            ".text": 1376
         }
     }, 
     {
         "summary": {
-            "static_ram": 5664, 
-            "total_flash": 36579
+            "static_ram": 5536, 
+            "total_flash": 36515
         }
     }
 ]

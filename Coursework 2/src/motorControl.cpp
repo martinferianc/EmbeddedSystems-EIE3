@@ -24,8 +24,8 @@ volatile int32_t rotations_prev = 0;
 volatile int8_t vel_count = 0;
 
 // TIMER INITIALISATIONS
-Ticker motorDrive;
-Ticker velocityT;
+//Ticker motorDrive;
+//Ticker velocityT;
 
 //Status LED
 DigitalOut led1(LED1);
