@@ -8,7 +8,7 @@ char charBuffer[17];
 int charBufferCounter = 0;
 
 // Key for testing the motor torque
-volatile uint32_t motorTorque;
+volatile uint32_t motorPWM;
 
 //Motor control variables
 volatile int32_t tar_velocity = 0;
@@ -31,15 +31,18 @@ void decode(){
                 osEvent newEvent = inCharQ.get();
                 uint8_t newChar = (uint8_t)newEvent.value.p;
                 // check for the buffer index, prevent overflow
-                if(charBufferCounter > 17) {
+                if(charBufferCounter > 18) {
                         charBufferCounter = 0;
+                }
+                else{
+                        charBuffer[charBufferCounter] = newChar;
                 }
                 if(newChar == '\r') {
                         charBuffer[charBufferCounter] = '\0';
                         // reset to read next command
                         charBufferCounter = 0;
                         //pc.printf(charBuffer);
-                        pc.printf(charBuffer[1]);
+                        pc.printf(charBuffer[0]);
                         // test the first character
                         switch(charBuffer[0]) {
                         case 'R':
@@ -48,9 +51,11 @@ void decode(){
                                 rotations_mutex.unlock();
                                 break;
                         case 'V':
+                                //pc.printf("VELOCITY");
                                 velocity_mutex.lock();
-                                sscanf(charBuffer, "V%lf", &tar_velocity);
+                                sscanf(charBuffer, "V%d", &tar_velocity);
                                 velocity_mutex.unlock();
+                                tar_velocity = (tar_velocity == 0) ? 1000 : tar_velocity;
                                 putMessage(TAR_VELOCITY, tar_velocity);
                                 break;
                         case 'K':
@@ -60,13 +65,15 @@ void decode(){
                                 putMessage(KEY, key);
                                 break;
                         case 'T':
-                                sscanf(charBuffer, "T%x", &motorTorque);
+                                sscanf(charBuffer, "T%x", &motorPWM);
                                 break;
 
                         }
 
                 }
-                charBuffer[charBufferCounter] = newChar;
-                charBufferCounter++;
+                else{
+                  charBufferCounter++;
+                }
+
         }
 }

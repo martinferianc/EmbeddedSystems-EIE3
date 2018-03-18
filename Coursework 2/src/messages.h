@@ -10,7 +10,9 @@
 #define NONCE 4
 #define KEY 5
 #define STARTUP 13
+
 #define TAR_VELOCITY 14
+
 
 extern RawSerial pc;
 
