@@ -31,6 +31,9 @@ void commOutFn(){
                 osEvent newEvent = outMessages.get();
                 message_t *pMessage = (message_t*)newEvent.value.p;
                 switch(pMessage->code) {
+                case (STARTUP):
+                        pc.printf("STARTUP COMPLETE %d, %d", pMessage->code, pMessage->data);
+                        break;
                 case (ROTATE):
                         pc.printf("R 0x%016x\n", pMessage->code, pMessage->data);
                         break;

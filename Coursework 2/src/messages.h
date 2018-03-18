@@ -9,6 +9,7 @@
 #define HASH 3
 #define NONCE 4
 #define KEY 5
+#define STARTUP 13
 
 extern RawSerial pc;
 
