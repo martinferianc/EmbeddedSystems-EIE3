@@ -30,7 +30,6 @@ void decode(){
         while(1) {
                 osEvent newEvent = inCharQ.get();
                 uint8_t newChar = (uint8_t)newEvent.value.p;
-
                 // check for the buffer index, prevent overflow
                 if(charBufferCounter > 17) {
                         charBufferCounter = 0;
@@ -39,19 +38,20 @@ void decode(){
                         charBuffer[charBufferCounter] = '\0';
                         // reset to read next command
                         charBufferCounter = 0;
+                        //pc.printf(charBuffer);
+                        pc.printf(charBuffer[1]);
                         // test the first character
                         switch(charBuffer[0]) {
                         case 'R':
                                 rotations_mutex.lock();
                                 sscanf(charBuffer, "R%lf", &rotations);
                                 rotations_mutex.unlock();
-                                putMessage(ROTATE, rotations);
                                 break;
                         case 'V':
                                 velocity_mutex.lock();
                                 sscanf(charBuffer, "V%lf", &tar_velocity);
                                 velocity_mutex.unlock();
-                                putMessage(VELOCITY, tar_velocity);
+                                putMessage(TAR_VELOCITY, tar_velocity);
                                 break;
                         case 'K':
                                 key_mutex.lock();

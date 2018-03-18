@@ -1,18 +1,10 @@
 [
     {
-        "module": "Crypto/hash", 
-        "size": {
-            ".data": 0, 
-            ".bss": 0, 
-            ".text": 7400
-        }
-    }, 
-    {
         "module": "[fill]", 
         "size": {
-            ".data": 3, 
-            ".bss": 18, 
-            ".text": 101
+            ".data": 0, 
+            ".bss": 13, 
+            ".text": 95
         }
     }, 
     {
@@ -42,9 +34,9 @@
     {
         "module": "bitcoinMine.o", 
         "size": {
-            ".data": 72, 
-            ".bss": 36, 
-            ".text": 108
+            ".data": 68, 
+            ".bss": 0, 
+            ".text": 0
         }
     }, 
     {
@@ -52,7 +44,7 @@
         "size": {
             ".data": 4, 
             ".bss": 165, 
-            ".text": 561
+            ".text": 585
         }
     }, 
     {
@@ -60,7 +52,7 @@
         "size": {
             ".data": 4, 
             ".bss": 264, 
-            ".text": 532
+            ".text": 312
         }
     }, 
     {
@@ -68,7 +60,7 @@
         "size": {
             ".data": 4, 
             ".bss": 100, 
-            ".text": 1732
+            ".text": 1516
         }
     }, 
     {
@@ -84,7 +76,7 @@
         "size": {
             ".data": 4, 
             ".bss": 270, 
-            ".text": 1500
+            ".text": 1494
         }
     }, 
     {
@@ -92,7 +84,7 @@
         "size": {
             ".data": 4, 
             ".bss": 1072, 
-            ".text": 10689
+            ".text": 10561
         }
     }, 
     {
@@ -100,7 +92,7 @@
         "size": {
             ".data": 4, 
             ".bss": 4, 
-            ".text": 768
+            ".text": 750
         }
     }, 
     {
@@ -108,7 +100,7 @@
         "size": {
             ".data": 20, 
             ".bss": 2222, 
-            ".text": 7727
+            ".text": 7259
         }
     }, 
     {
@@ -116,21 +108,21 @@
         "size": {
             ".data": 4, 
             ".bss": 256, 
-            ".text": 465
+            ".text": 549
         }
     }, 
     {
         "module": "motorControl.o", 
         "size": {
-            ".data": 5, 
-            ".bss": 579, 
-            ".text": 1388
+            ".data": 4, 
+            ".bss": 564, 
+            ".text": 510
         }
     }, 
     {
         "summary": {
-            "static_ram": 5700, 
-            "total_flash": 44035
+            "static_ram": 5636, 
+            "total_flash": 34687
         }
     }
 ]

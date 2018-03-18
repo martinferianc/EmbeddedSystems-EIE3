@@ -25,6 +25,10 @@
 
 #define MVELOCITY_PRINT_FREQUENCY 10    // How often motor velocity is printed
 
+// Parameters for proportional control
+#define PWM_LIMIT 1000
+#define PROPORTIONAL_CONST 25
+
 // MOTOR STATE VARIABLES
 //Drive state to output table
 extern const int8_t driveTable[];
@@ -34,7 +38,7 @@ extern volatile int8_t state;
 //const int8_t stateMap[] = {0x07,0x01,0x03,0x02,0x05,0x00,0x04,0x07}; //Alternative if phase order of input or drive is reversed
 
 //MOTOR TORQUE VARIABLES
-extern const int8_t lead;  //2 for forwards, -2 for backwards
+extern volatile int8_t lead;  //2 for forwards, -2 for backwards
 
 //MOTOR POSITION VARIABLES;
 extern volatile int32_t rotations;
@@ -56,6 +60,8 @@ extern void pinInit();
 extern void motorRun();
 
 extern void motorISR();
+
+extern void motorPower();
 
 extern void measureInit();
 

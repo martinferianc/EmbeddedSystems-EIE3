@@ -7,7 +7,7 @@ uint8_t hash[32];
 volatile uint32_t hash_counter=0;
 
 void countHash(){
-        putMessage(HASH, hash_counter);
+        //putMessage(HASH, hash_counter);
         hash_counter = 0;
 }
 

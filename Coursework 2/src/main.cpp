@@ -6,7 +6,7 @@
 #include "decodeCommands.h"
 
 // THREADS
-Thread decodeThread;
+Thread decodeThread(osPriorityHigh);
 Thread commOutT;
 Thread motorCtrlT (osPriorityNormal, 1024); // Thread to hold task running every 100ms
 
@@ -18,11 +18,11 @@ int main() {
         // THREADS
         decodeThread.start(decode);
         commOutT.start(commOutFn);
-        motorCtrlT.start(motorCtrlFn);
+        //motorCtrlT.start(motorCtrlFn);
         //THREAD PRIORITY
 
         //PROFILING
-        Ticker t;
-        t.attach(&countHash, 1.0);
-        computeHash();
+        //Ticker t;
+        //t.attach(&countHash, 1.0);
+        //computeHash();
 }

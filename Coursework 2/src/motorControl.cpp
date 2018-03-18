@@ -1,5 +1,6 @@
 #include "motorControl.h"
 
+
 // MOTOR STATE VARIABLES
 //Drive state to output table
 const int8_t driveTable[] = {0x12,0x18,0x09,0x21,0x24,0x06,0x00,0x00};
@@ -9,7 +10,7 @@ volatile int8_t state;
 //const int8_t stateMap[] = {0x07,0x01,0x03,0x02,0x05,0x00,0x04,0x07}; //Alternative if phase order of input or drive is reversed
 
 // MOTOR TORQUE VARIABLES
-const int8_t lead = 2;  //2 for forwards, -2 for backwards
+volatile int8_t lead = 2;  //2 for forwards, -2 for backwards
 
 // MOTOR POSITION VARIABLES
 uint8_t direction = 1; // 1: forward, 2: backward
@@ -121,6 +122,7 @@ void photoISRSetup(){
 void motorISR(){
         static int8_t oldRotorState;
         int8_t rotorState = readRotorState();
+        motorPower();
         motorOut((rotorState - oldRotorState + lead + 6)%6, motorTorque);
         if(rotorState - oldRotorState == 5) motorPosition--;
         else if (rotorState - oldRotorState == -5) motorPosition++;
@@ -144,7 +146,8 @@ void motorCtrlFn(){
                 oldMotorPosition = motorPosition; // Update the motor position
                 if(vel_count == 0) {
                         vel_count = MVELOCITY_PRINT_FREQUENCY;
-                        putMessage(VELOCITY, act_velocity); // Print the velocity
+                        //putMessage(VELOCITY, act_velocity); // Print the velocity
+                        //putMessage(TAR_VELOCITY, tar_velocity); // Print the velocity
                 }
                 vel_count -= 1;
         }
@@ -156,6 +159,29 @@ void motorCtrlFn(){
 void motorCtrlTick(){
         motorCtrlT.signal_set(0x1); // Set signal to calculate velocity
 }
+
+// Implement the proportional speed control
+void motorPower(){
+  // y_s = k_p(s-|v|)
+  int32_t y_s;
+
+  // take the absolute value;
+  act_velocity = (act_velocity < 0) ? (0-act_velocity) : act_velocity;
+
+  y_s = PROPORTIONAL_CONST*(tar_velocity - act_velocity);
+
+  if(y_s < 0){
+      y_s = y_s*-1;
+      lead = lead*-1;
+  }
+  y_s = (y_s > PWM_LIMIT) ? (y_s = PWM_LIMIT) : y_s;
+  motorTorque = (uint32_t)y_s;
+}
+
+
+
+
+
 
 //############# Code below this line was written by Alex MC. Now works from code provided by Ed. ##############
 

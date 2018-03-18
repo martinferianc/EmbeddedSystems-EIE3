@@ -52,6 +52,9 @@ void commOutFn(){
                 case (KEY):
                         pc.printf("New Key: 0x%016x\r\n", pMessage->data);
                         break;
+                case (TAR_VELOCITY):
+                        pc.printf("Target Velocity: %d rev/s\r\n", pMessage->data);
+                        break;
                 }
                 outMessages.free(pMessage);
         }
