@@ -67,10 +67,8 @@ void motorOut(int8_t driveState, uint32_t scale){
         if (driveOut & 0x20) L3H = 0;
 }
 
-inline void updateState(){
-        state = stateMap[I1 + 2*I2 + 4*I3];
-        if(direction) rotations++;
-        else          rotations--;
+inline int8_t reState(){
+        return stateMap[I1 + 2*I2 + 4*I3];
 }
 //Basic synchronisation routine
 
@@ -90,12 +88,12 @@ void setPWMPeriod(int period) {
 }
 
 void pinInit() {
-    I3.rise(&updateState);
-    I2.rise(&updateState);
-    I1.rise(&updateState);
-    I3.fall(&updateState);
-    I2.fall(&updateState);
-    I1.fall(&updateState);
+    I3.rise(&motorISR);
+    I2.rise(&motorISR);
+    I1.rise(&motorISR);
+    I3.fall(&motorISR);
+    I2.fall(&motorISR);
+    I1.fall(&motorISR);
     return;
 }
 
@@ -157,6 +155,9 @@ void motorISR(){
 */
 
 void motorCtrlFn(){
+  //setup photo-interrupter ISR
+  pinInit();
+  
   static int32_t oldMotorPosition;
   Ticker motorCtrlTicker; // Used to control how often motor control thread runs
   motorCtrlTicker.attach_us(&motorCtrlTick, 100000);
