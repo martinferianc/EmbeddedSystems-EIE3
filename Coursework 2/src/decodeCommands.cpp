@@ -47,7 +47,7 @@ void decode(){
                         switch(charBuffer[0]) {
                         case 'R':
                                 rotations_mutex.lock();
-                                sscanf(charBuffer, "R%lf", &rotations);
+                                sscanf(charBuffer, "R%d", &rotations);
                                 rotations_mutex.unlock();
                                 break;
                         case 'V':

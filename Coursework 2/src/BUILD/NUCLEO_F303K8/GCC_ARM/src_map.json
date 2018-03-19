@@ -3,8 +3,8 @@
         "module": "[fill]", 
         "size": {
             ".data": 3, 
-            ".bss": 23, 
-            ".text": 102
+            ".bss": 19, 
+            ".text": 104
         }
     }, 
     {
@@ -44,7 +44,7 @@
         "size": {
             ".data": 4, 
             ".bss": 165, 
-            ".text": 600
+            ".text": 599
         }
     }, 
     {
@@ -52,7 +52,7 @@
         "size": {
             ".data": 4, 
             ".bss": 264, 
-            ".text": 360
+            ".text": 332
         }
     }, 
     {
@@ -108,21 +108,21 @@
         "size": {
             ".data": 4, 
             ".bss": 256, 
-            ".text": 575
+            ".text": 618
         }
     }, 
     {
         "module": "motorControl.o", 
         "size": {
             ".data": 5, 
-            ".bss": 450, 
-            ".text": 1318
+            ".bss": 454, 
+            ".text": 1394
         }
     }, 
     {
         "summary": {
             "static_ram": 5536, 
-            "total_flash": 36507
+            "total_flash": 36599
         }
     }
 ]

@@ -13,6 +13,9 @@
 #define TAR_VELOCITY  14
 #define TEST_MSG      15
 
+#define ROTATION      16
+#define TAR_ROTATION  17
+
 extern RawSerial pc;
 
 // Structure to hold the unique code and the data of each message in memory

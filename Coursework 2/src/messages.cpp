@@ -58,6 +58,12 @@ void commOutFn(){
                 case (TEST_MSG):
                         pc.printf("Test: %d \r\n", pMessage->data);
                         break;
+                case (ROTATION):
+                        pc.printf("Rotation: %d \r\n", pMessage->data);
+                        break;
+                case (TAR_ROTATION):
+                        pc.printf("Target Rotation: %d \r\n", pMessage->data);
+                        break;
                 }
                 outMessages.free(pMessage);
         }
