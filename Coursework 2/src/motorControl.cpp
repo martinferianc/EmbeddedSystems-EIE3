@@ -12,11 +12,11 @@ volatile int8_t state;
 volatile int8_t lead = 2;  //2 for forwards, -2 for backwards
 
 // MOTOR POSITION VARIABLES
-uint8_t           direction = 1; // 1: forward, 2: backward
-volatile int32_t  act_velocity = 0;
-volatile int32_t  motorPosition = 0;
-volatile int32_t  rotations_curr = 0;
-volatile int32_t  rotations_prev = 0;
+uint8_t           direction       = 1; // 1: forward, 2: backward
+volatile int32_t  act_velocity    = 0;
+volatile int32_t  motorPosition   = 0;
+volatile int32_t  rotations_curr  = 0;
+volatile int32_t  rotations_prev  = 0;
 
 static int8_t oldRotorState; //declaring outside function to be shared by others
 static int32_t oldRotationError = 0;
@@ -132,17 +132,14 @@ void motorCtrlFn(){
         photoISRSetup();   // Attach the motorISR to the pins
         static int32_t oldMotorPosition;
         Ticker motorCtrlTicker; // Used to control how often motor control thread runs
-        while(act_velocity==0){                
-                act_velocity = motorPosition - oldMotorPosition; // Calculate the velocity of the motor. 
-                oldMotorPosition = motorPosition; // Update the motor position
-                if(act_velocity == 0 && (rotations!=motorPosition) && (tar_velocity || rotations)) motorISR();
-        }
         motorCtrlTicker.attach_us(&motorCtrlTick, 100000); 
         while(1) {
                 motorCtrlT.signal_wait(0x1); // Suspend until signal occurs.
                 act_velocity = motorPosition - oldMotorPosition; // Calculate the velocity of the motor. 
                 oldMotorPosition = motorPosition; // Update the motor position
-                motorRotorController();
+                if(act_velocity == 0 && (tar_velocity || rotations)) motorISR();
+                motorVelocityController();            
+                //motorRotorController();
                 //motorPWM = 1000;
                 if(vel_count == 0) {
                         vel_count = MVELOCITY_PRINT_FREQUENCY;
