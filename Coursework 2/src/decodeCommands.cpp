@@ -10,6 +10,8 @@ int charBufferCounter = 0;
 // Key for testing the motor torque
 volatile uint32_t motorPWM = 0;
 
+volatile uint32_t err = 0;
+
 //Motor control variables
 volatile int32_t tar_velocity = 0;
 volatile int32_t rotations = 0;
@@ -67,12 +69,15 @@ void decode(){
                         case 'T':
                                 sscanf(charBuffer, "T%x", &motorPWM);
                                 break;
+                        default:
+                                putMessage(ERROR, &err);
+                                break;
 
                         }
 
                 }
                 else{
-                  charBufferCounter++;
+                        charBufferCounter++;
                 }
 
         }

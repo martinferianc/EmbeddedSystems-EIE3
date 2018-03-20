@@ -64,6 +64,11 @@ void commOutFn(){
                 case (TAR_ROTATION):
                         pc.printf("Target Rotation: %d \r\n", pMessage->data);
                         break;
+
+                default:
+                        pc.printf("Unknown code, data: %d \r\n", pMessage->data);
+                        break;
+
                 }
                 outMessages.free(pMessage);
         }

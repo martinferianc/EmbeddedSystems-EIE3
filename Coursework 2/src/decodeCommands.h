@@ -5,9 +5,10 @@
 #include "messages.h"
 
 extern volatile uint64_t* key;
-extern volatile int32_t   tar_velocity;
-extern volatile int32_t   rotations;
-extern volatile uint32_t  motorPWM;
+extern volatile int32_t tar_velocity;
+extern volatile int32_t rotations;
+extern volatile uint32_t motorPWM;
+extern volatile uint32_t err;
 
 void serialISR();
 

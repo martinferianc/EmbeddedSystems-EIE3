@@ -15,6 +15,7 @@
 
 #define ROTATION      16
 #define TAR_ROTATION  17
+#define ERROR      99
 
 extern RawSerial pc;
 
