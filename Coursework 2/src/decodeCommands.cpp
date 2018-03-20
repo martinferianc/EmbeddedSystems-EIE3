@@ -66,6 +66,7 @@ void decode(){
                                 break;
                         case 'T':
                                 sscanf(charBuffer, "T%d", &motorPWM);
+                                putMessage(TORQUE_TEST, motorPWM);
                                 break;
                         default:
                                 break;

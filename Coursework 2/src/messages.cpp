@@ -69,6 +69,9 @@ void commOutFn(){
                 case (TAR_VELOCITY_SET):
                         pc.printf("Target Velocity SET: %d rev/s\r\n", pMessage->data);
                         break;
+                case (TORQUE_TEST):
+                        pc.printf("Torque SET: %d rev/s\r\n", pMessage->data);
+                        break;
                 default:
                         pc.printf("Unknown code, data: %d \r\n", pMessage->data);
                         break;

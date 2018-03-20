@@ -78,6 +78,7 @@ void motorHome() {
         motorPWM = 0;
         wait(2);
         orState = readRotorState(); //initialises oldRotorState
+        motorOut((lead + 6)%6);
         return;
 }
 
@@ -121,8 +122,8 @@ void motorISR(){
 void motorCtrlFn(){
         motorHome();      // Home the motor
         Ticker motorCtrlTicker; // Used to control how often motor control thread runs
-        static int32_t oldMotorPosition = 0;
-        static int32_t currMotorPosition = 0;
+        static volatile int32_t oldMotorPosition = 0;
+        static volatile int32_t currMotorPosition = 0;
         uint32_t motorPWM_rot;
         uint32_t motorPWM_vel;
         motorCtrlTicker.attach_us(&motorCtrlTick, 100000);
@@ -133,6 +134,12 @@ void motorCtrlFn(){
                 act_velocity = (currMotorPosition - oldMotorPosition); // Calculate the velocity of the motor.
                 oldMotorPosition  = currMotorPosition; // Update the motor position
                 act_rotations     = currMotorPosition;
+
+                if(act_velocity==0 && (tar_velocity || tar_rotations))
+                {
+                  int8_t rotorState = readRotorState();
+                  motorOut((rotorState - orState + lead + 6)%6);
+                } 
 
                 //only veloctity controller
                 if(tar_velocity && !tar_rotations) {
@@ -153,16 +160,17 @@ void motorCtrlFn(){
                                 putMessage(TAR_ROTATION,tar_rotations);
                         }
                 }
-                /*
-                   if (tar_velocity && tar_rotations) {
+                
+                if (tar_velocity && tar_rotations) {
+                
                         if(lead<0) motorPWM = (motorPWM_vel>motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
                         else motorPWM = (motorPWM_vel<motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
                         if (count==0) {
                                 putMessage(VELOCITY,act_velocity);
                                 putMessage(TAR_VELOCITY,tar_velocity);
                         }
-                   }
-                 */
+                }
+                
                 count = (count==0) ? PRINT_FREQUENCY : count;
                 count-= 1;
 
