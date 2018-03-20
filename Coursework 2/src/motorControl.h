@@ -23,17 +23,26 @@
 #define L3Lpin D9           //0x10
 #define L3Hpin D10          //0x20
 
-#define MVELOCITY_PRINT_FREQUENCY 10    // How often motor velocity is printed
+#define PRINT_FREQUENCY 10    // How often motor velocity is printed
 
 // Parameters for proportional control
 #define PWM_LIMIT 1000
-#define PROPORTIONAL_CONST 30
-#define DIFFERENTIAL_CONST 20
-#define INTEGRAL_CONST     5
-#define REFERENCE_CONST    1
-#define INTEGRAL_ERR_MAX   100
+
+#define PROPORTIONAL_VEL_CONST 40
+#define DIFFERENTIAL_VEL_CONST 20
+#define INTEGRAL_VEL_CONST     5
+#define DEAD_BAND_VEL 20
+#define INTEGRAL_VEL_ERR_MAX   100
+
+
+#define PROPORTIONAL_ROT_CONST 20
+#define DIFFERENTIAL_ROT_CONST 10
+#define INTEGRAL_ROT_CONST     5
+#define DEAD_BAND_ROT 20
+#define INTEGRAL_ROT_ERR_MAX   100
+
 //Set a given drive state
-extern void motorOut(int8_t driveState, uint32_t scale);
+extern void motorOut(int8_t driveState);
 
 extern inline void updateState();
 
@@ -44,26 +53,19 @@ extern void setISRPhotoSensors();
 
 extern void setPWMPeriod(int period);
 
-extern void pinInit();
-
 extern void motorRun();
 
 extern void motorISR();
-
-extern void motorPower();
-
-extern void measureInit();
 
 extern void motorCtrlFn();
 
 extern void motorCtrlTick();
 
-void motorVelocityController();
+uint32_t motorVelocityController();
 
-void motorRotationCotroller();
+uint32_t motorRotationController();
 
 extern Thread motorCtrlT;
 
-void motorRotorController();
 
 #endif
