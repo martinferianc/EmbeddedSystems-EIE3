@@ -38,35 +38,34 @@ void commOutFn(){
                         pc.printf("R 0x%016x\n", pMessage->code, pMessage->data);
                         break;
                 case (ROTOR_STATE):
-                        pc.printf("State for %d with data 0x%016x\r\n", pMessage->code, pMessage->data);
+                        pc.printf("State for %d with data 0x%016x\n", pMessage->code, pMessage->data);
                         break;
                 case (VELOCITY):
-                        pc.printf("Motor Velocity: %d rev/s\r\n", pMessage->data);
+                        pc.printf("Motor Velocity: %d rev/s\n", pMessage->data);
                         break;
                 case (HASH):
-                        pc.printf("Bitcoin Hashes per second: %d\r\n", pMessage->data);
+                        pc.printf("Bitcoin Hashes per second: %d\n", pMessage->data);
                         break;
                 case (NONCE):
-                        pc.printf("Bitcoin Nonce: 0x%016x\r\n", pMessage->data);
+                        pc.printf("Bitcoin Nonce: 0x%016x\n", pMessage->data);
                         break;
                 case (KEY):
-                        pc.printf("New Key: 0x%016x\r\n", pMessage->data);
+                        pc.printf("New Key: 0x%016x\n", pMessage->data);
                         break;
                 case (TAR_VELOCITY):
-                        pc.printf("Target Velocity: %d rev/s\r\n", pMessage->data);
+                        pc.printf("Target Velocity: %d rev/s\n", pMessage->data);
                         break;
                 case (TEST_MSG):
-                        pc.printf("Test: %d \r\n", pMessage->data);
+                        pc.printf("Test: %d \n", pMessage->data);
                         break;
                 case (ROTATION):
-                        pc.printf("Rotation: %d \r\n", pMessage->data);
+                        pc.printf("Rotation: %d \n", pMessage->data);
                         break;
                 case (TAR_ROTATION):
-                        pc.printf("Target Rotation: %d \r\n", pMessage->data);
+                        pc.printf("Target Rotation: %d \n", pMessage->data);
                         break;
-
                 default:
-                        pc.printf("Unknown code, data: %d \r\n", pMessage->data);
+                        pc.printf("Unknown code, data: %d \n", pMessage->data);
                         break;
 
                 }

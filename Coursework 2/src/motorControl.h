@@ -27,11 +27,11 @@
 
 // Parameters for proportional control
 #define PWM_LIMIT 1000
-#define PROPORTIONAL_CONST 30 
-#define DIFFERENTIAL_CONST 20 
-#define INTEGRAL_CONST     5 
+#define PROPORTIONAL_CONST 30
+#define DIFFERENTIAL_CONST 20
+#define INTEGRAL_CONST     5
 #define REFERENCE_CONST    1
-#define INTEGRAL_ERR_MAX   100 
+#define INTEGRAL_ERR_MAX   100
 //Set a given drive state
 extern void motorOut(int8_t driveState, uint32_t scale);
 
@@ -40,7 +40,7 @@ extern inline void updateState();
 //Basic synchronisation routine
 extern void motorHome();
 
-extern void photoISRSetup();
+extern void setISRPhotoSensors();
 
 extern void setPWMPeriod(int period);
 

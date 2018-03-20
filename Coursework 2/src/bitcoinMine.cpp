@@ -7,17 +7,17 @@ uint8_t hash[32];
 volatile uint32_t hash_counter=0;
 
 void countHash(){
-        //putMessage(HASH, hash_counter);
+        putMessage(HASH, hash_counter);
         hash_counter = 0;
 }
 
 void computeHash(){
-        while(1) {
-                SHA256::computeHash(hash, sequence, 64);
-                if ((hash[0]==0) || (hash[1]==0)) {
-                        *nonce+=1;
-                        putMessage(NONCE, *nonce);
-                }
-                hash_counter+=1;
+
+        SHA256::computeHash(hash, sequence, 64);
+        if ((hash[0]==0) || (hash[1]==0)) {
+                *nonce+=1;
+                putMessage(NONCE, *nonce);
         }
+        hash_counter+=1;
+
 }

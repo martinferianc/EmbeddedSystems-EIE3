@@ -12,7 +12,6 @@
 #define STARTUP       13
 #define TAR_VELOCITY  14
 #define TEST_MSG      15
-
 #define ROTATION      16
 #define TAR_ROTATION  17
 #define ERROR      99

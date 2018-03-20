@@ -5,26 +5,29 @@
 #include "messages.h"
 #include "decodeCommands.h"
 
+#define DEBUG 1
+
 // THREADS
-Thread decodeThread(osPriorityHigh);
-Thread commOutT;
-Thread motorCtrlT (osPriorityNormal,1024); //, 1024); // Thread to hold task running every 100ms
+Thread decodeThread(osPriorityNormal);
+Thread commOutT(osPriorityNormal);
+Thread motorCtrlT (osPriorityHigh,1024); //, 1024); // Thread to hold task running every 100ms
 
 int main() {
-        // Start the serial communication thread
-
+        // Set the constants and everything
         setPWMPeriod(2000);
+        setISRPhotoSensors();
 
         // THREADS
         decodeThread.start(decode);
         commOutT.start(commOutFn);
         motorCtrlT.start(motorCtrlFn);
-        //THREAD PRIORITY
-
-
 
         //PROFILING
-        //Ticker t;
-        //t.attach(&countHash, 1.0);
-        //computeHash();
+        if (DEBUG!=1) {
+                Ticker t;
+                t.attach(&countHash, 1.0);
+                while (1) {
+                        computeHash();
+                }
+        }
 }

@@ -13,8 +13,9 @@ volatile uint32_t motorPWM = 0;
 volatile uint32_t err = 0;
 
 //Motor control variables
-volatile int32_t tar_velocity = 0;
-volatile int32_t rotations = 0;
+volatile float tar_velocity = 0;
+volatile float tar_rotations = 0;
+
 
 // mutex for the new key
 Mutex key_mutex;
@@ -43,21 +44,19 @@ void decode(){
                         charBuffer[charBufferCounter] = '\0';
                         // reset to read next command
                         charBufferCounter = 0;
-                        //pc.printf(charBuffer);
-                        pc.printf(charBuffer[0]);
                         // test the first character
                         switch(charBuffer[0]) {
                         case 'R':
                                 rotations_mutex.lock();
-                                sscanf(charBuffer, "R%d", &rotations);
+                                sscanf(charBuffer, "R%f", &tar_rotations);
                                 rotations_mutex.unlock();
                                 break;
                         case 'V':
                                 //pc.printf("VELOCITY");
                                 velocity_mutex.lock();
-                                sscanf(charBuffer, "V%d", &tar_velocity);
+                                sscanf(charBuffer, "V%f", &tar_velocity);
+                                tar_velocity = (tar_velocity == 0) ? 2000 : tar_velocity;
                                 velocity_mutex.unlock();
-                                tar_velocity = (tar_velocity == 0) ? 1000 : tar_velocity;
                                 putMessage(TAR_VELOCITY, tar_velocity);
                                 break;
                         case 'K':
@@ -67,7 +66,7 @@ void decode(){
                                 putMessage(KEY, key);
                                 break;
                         case 'T':
-                                sscanf(charBuffer, "T%x", &motorPWM);
+                                sscanf(charBuffer, "T%d", &motorPWM);
                                 break;
                         default:
                                 putMessage(ERROR, &err);
