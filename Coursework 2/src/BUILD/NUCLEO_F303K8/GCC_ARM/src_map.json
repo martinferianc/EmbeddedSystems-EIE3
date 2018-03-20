@@ -3,16 +3,16 @@
         "module": "BUILD/NUCLEO_F303K8", 
         "size": {
             ".data": 109, 
-            ".bss": 3338, 
-            ".text": 11522
+            ".bss": 3398, 
+            ".text": 11560
         }
     }, 
     {
         "module": "[fill]", 
         "size": {
             ".data": 3, 
-            ".bss": 18, 
-            ".text": 117
+            ".bss": 14, 
+            ".text": 119
         }
     }, 
     {
@@ -57,8 +57,8 @@
     }, 
     {
         "summary": {
-            "static_ram": 5404, 
-            "total_flash": 37087
+            "static_ram": 5460, 
+            "total_flash": 37127
         }
     }
 ]

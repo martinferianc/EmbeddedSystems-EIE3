@@ -14,6 +14,8 @@
 #define TEST_MSG      15
 #define ROTATION      16
 #define TAR_ROTATION  17
+#define TAR_VELOCITY_SET  18
+#define TAR_ROTATION_SET  19
 #define ERROR      99
 
 extern RawSerial pc;
@@ -22,15 +24,14 @@ extern RawSerial pc;
 
 typedef struct {
         uint8_t code;
-        uint8_t data;
+        int32_t data;
 } message_t;
 
 //////// /C SERIAL FUNCTION PROTOTYPES //////////
 
 void commOutFn();
 
-extern void putMessage(uint8_t code, uint32_t data);
-
+extern void putMessage(uint8_t code, int32_t data);
 //////// /E SERIAL FUNCTION PROTOTYPES //////////
 
 #endif

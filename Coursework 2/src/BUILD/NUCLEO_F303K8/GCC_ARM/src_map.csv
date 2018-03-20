@@ -1,2 +1,2 @@
 BUILD/NUCLEO_F303K8.text,BUILD/NUCLEO_F303K8.data,BUILD/NUCLEO_F303K8.bss,[fill].text,[fill].data,[fill].bss,[lib]/c_nano.a.text,[lib]/c_nano.a.data,[lib]/c_nano.a.bss,[lib]/gcc.a.text,[lib]/gcc.a.data,[lib]/gcc.a.bss,[lib]/mbed.a.text,[lib]/mbed.a.data,[lib]/mbed.a.bss,[lib]/misc.text,[lib]/misc.data,[lib]/misc.bss,mbed/aa5281ff4a02.text,mbed/aa5281ff4a02.data,mbed/aa5281ff4a02.bss,static_ram,total_flash
-11522,109,3338,117,3,18,7826,464,12,792,0,0,4094,4,72,208,12,28,11928,8,1336,5404,37087
+11560,109,3398,119,3,14,7826,464,12,792,0,0,4094,4,72,208,12,28,11928,8,1336,5460,37127

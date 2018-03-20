@@ -13,9 +13,8 @@ volatile uint32_t motorPWM = 0;
 volatile uint32_t err = 0;
 
 //Motor control variables
-volatile float tar_velocity = 0;
-volatile float tar_rotations = 0;
-
+volatile int32_t tar_velocity = 0;
+volatile int32_t tar_rotations = 0;
 
 // mutex for the new key
 Mutex key_mutex;
@@ -48,28 +47,27 @@ void decode(){
                         switch(charBuffer[0]) {
                         case 'R':
                                 rotations_mutex.lock();
-                                sscanf(charBuffer, "R%f", &tar_rotations);
+                                sscanf(charBuffer, "R%d", &tar_rotations);
                                 rotations_mutex.unlock();
+                                putMessage(TAR_ROTATION_SET, tar_rotations);
                                 break;
                         case 'V':
                                 //pc.printf("VELOCITY");
                                 velocity_mutex.lock();
-                                sscanf(charBuffer, "V%f", &tar_velocity);
+                                sscanf(charBuffer, "V%d", &tar_velocity);
                                 tar_velocity = (tar_velocity == 0) ? 2000 : tar_velocity;
                                 velocity_mutex.unlock();
-                                putMessage(TAR_VELOCITY, tar_velocity);
+                                putMessage(TAR_VELOCITY_SET, tar_velocity);
                                 break;
                         case 'K':
                                 key_mutex.lock();
                                 sscanf(charBuffer,"K%x",&key);
                                 key_mutex.unlock();
-                                putMessage(KEY, key);
                                 break;
                         case 'T':
                                 sscanf(charBuffer, "T%d", &motorPWM);
                                 break;
                         default:
-                                putMessage(ERROR, &err);
                                 break;
 
                         }

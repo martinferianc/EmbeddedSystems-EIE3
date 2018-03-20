@@ -11,9 +11,9 @@ volatile int8_t state;
 // MOTOR TORQUE VARIABLES
 volatile int8_t lead = 2;  //2 for forwards, -2 for backwards
 
-volatile float act_velocity    = 0;
+volatile int32_t act_velocity    = 0;
 volatile int32_t motorPosition   = 0;
-volatile float act_rotations  = 0;
+volatile int32_t act_rotations  = 0;
 
 static int8_t orState; //declaring outside function to be shared by others
 static int32_t oldRotationError = 0;
