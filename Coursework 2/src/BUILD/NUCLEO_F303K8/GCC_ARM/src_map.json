@@ -1,18 +1,10 @@
 [
     {
-        "module": "BUILD/NUCLEO_F303K8", 
-        "size": {
-            ".data": 109, 
-            ".bss": 3413, 
-            ".text": 11756
-        }
-    }, 
-    {
         "module": "[fill]", 
         "size": {
             ".data": 3, 
-            ".bss": 15, 
-            ".text": 115
+            ".bss": 23, 
+            ".text": 97
         }
     }, 
     {
@@ -28,15 +20,7 @@
         "size": {
             ".data": 0, 
             ".bss": 0, 
-            ".text": 792
-        }
-    }, 
-    {
-        "module": "[lib]/mbed.a", 
-        "size": {
-            ".data": 4, 
-            ".bss": 72, 
-            ".text": 4094
+            ".text": 768
         }
     }, 
     {
@@ -48,17 +32,97 @@
         }
     }, 
     {
-        "module": "mbed/aa5281ff4a02", 
+        "module": "bitcoinMine.o", 
         "size": {
-            ".data": 8, 
-            ".bss": 1336, 
-            ".text": 11928
+            ".data": 68, 
+            ".bss": 0, 
+            ".text": 0
+        }
+    }, 
+    {
+        "module": "decodeCommands.o", 
+        "size": {
+            ".data": 4, 
+            ".bss": 165, 
+            ".text": 591
+        }
+    }, 
+    {
+        "module": "main.o", 
+        "size": {
+            ".data": 4, 
+            ".bss": 264, 
+            ".text": 336
+        }
+    }, 
+    {
+        "module": "mbed-dev/drivers", 
+        "size": {
+            ".data": 4, 
+            ".bss": 100, 
+            ".text": 1786
+        }
+    }, 
+    {
+        "module": "mbed-dev/hal", 
+        "size": {
+            ".data": 4, 
+            ".bss": 66, 
+            ".text": 1654
+        }
+    }, 
+    {
+        "module": "mbed-dev/platform", 
+        "size": {
+            ".data": 4, 
+            ".bss": 270, 
+            ".text": 1522
+        }
+    }, 
+    {
+        "module": "mbed-dev/targets", 
+        "size": {
+            ".data": 4, 
+            ".bss": 1072, 
+            ".text": 10689
+        }
+    }, 
+    {
+        "module": "mbed-rtos/rtos", 
+        "size": {
+            ".data": 4, 
+            ".bss": 4, 
+            ".text": 768
+        }
+    }, 
+    {
+        "module": "mbed-rtos/rtx", 
+        "size": {
+            ".data": 20, 
+            ".bss": 2222, 
+            ".text": 7727
+        }
+    }, 
+    {
+        "module": "messages.o", 
+        "size": {
+            ".data": 4, 
+            ".bss": 320, 
+            ".text": 737
+        }
+    }, 
+    {
+        "module": "motorControl.o", 
+        "size": {
+            ".data": 5, 
+            ".bss": 442, 
+            ".text": 1578
         }
     }, 
     {
         "summary": {
-            "static_ram": 5476, 
-            "total_flash": 37319
+            "static_ram": 5592, 
+            "total_flash": 36891
         }
     }
 ]

@@ -73,8 +73,9 @@ inline int8_t readRotorState(){
 
 void motorHome() {
         //Put the motor in drive state 0 and wait for it to stabilise
-        motorPWM = 0;
+        motorPWM = 1000;
         motorOut(0);
+        motorPWM = 0;
         wait(2);
         orState = readRotorState(); //initialises oldRotorState
         return;
@@ -120,8 +121,8 @@ void motorISR(){
 void motorCtrlFn(){
         motorHome();      // Home the motor
         Ticker motorCtrlTicker; // Used to control how often motor control thread runs
-        int32_t oldMotorPosition = 0;
-        int32_t currMotorPosition = 0;
+        static int32_t oldMotorPosition = 0;
+        static int32_t currMotorPosition = 0;
         uint32_t motorPWM_rot;
         uint32_t motorPWM_vel;
         motorCtrlTicker.attach_us(&motorCtrlTick, 100000);
@@ -130,8 +131,8 @@ void motorCtrlFn(){
                 motorCtrlT.signal_wait(0x1); // Suspend until signal occurs.
                 currMotorPosition = motorPosition;
                 act_velocity = (currMotorPosition - oldMotorPosition); // Calculate the velocity of the motor.
-                oldMotorPosition = currMotorPosition; // Update the motor position
-                act_rotations   if= currMotorPosition;
+                oldMotorPosition  = currMotorPosition; // Update the motor position
+                act_rotations     = currMotorPosition;
 
                 //only veloctity controller
                 if(tar_velocity && !tar_rotations) {
@@ -213,10 +214,10 @@ uint32_t motorRotationController(){
         int32_t y_r;
         //Error term
         int32_t rotationError = tar_rotations - act_rotations;
-
-        y_r = PROPORTIONAL_ROT_CONST*(rotationError) + DIFFERENTIAL_ROT_CONST*(rotationError - prevRotationError); // Need to divide by time
-
         prevRotationError = rotationError;
+
+        y_r = PROPORTIONAL_ROT_CONST*(rotationError) - DIFFERENTIAL_ROT_CONST*(rotationError - prevRotationError); // Need to divide by time
+
 
         //changes direction if overshoots
         lead = (y_r > 0) ?  2 : -2;
@@ -229,5 +230,5 @@ uint32_t motorRotationController(){
 
         //stops rotating of no more (integral) error
         //if(rotationIntegralError==0) lead = 0;
-        return (y_r) ? (uint32_t)y_r : DEAD_BAND_ROT;
+        return (uint32_t)y_r;
 }

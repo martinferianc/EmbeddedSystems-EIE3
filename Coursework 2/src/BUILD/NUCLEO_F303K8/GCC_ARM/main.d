@@ -1,175 +1,136 @@
 BUILD/NUCLEO_F303K8/GCC_ARM/./main.o: main.cpp \
- BUILD/NUCLEO_F303K8/GCC_ARM/mbed_config.h motorControl.h \
- mbed/aa5281ff4a02/mbed.h mbed/aa5281ff4a02/platform/mbed_toolchain.h \
- mbed/aa5281ff4a02/platform/mbed_preprocessor.h \
- mbed/aa5281ff4a02/platform/platform.h \
- mbed/aa5281ff4a02/platform/mbed_retarget.h \
- mbed/aa5281ff4a02/platform/mbed_toolchain.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/objects.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/cmsis.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/stm32f3xx.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/stm32f303x8.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/core_cm4.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/cmsis_version.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/cmsis_compiler.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/cmsis_gcc.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/system_stm32f3xx.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_conf.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_def.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/stm32f3xx.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32_hal_legacy.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_gpio.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_gpio_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_dma.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_dma_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_cortex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_adc.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_adc_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_can.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_cec.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_comp.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_comp_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_crc.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_crc_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_dac.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_dac_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_flash.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_flash_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_sram.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_nor.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_nand.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_pccard.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_hrtim.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_i2c.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_i2c_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_i2s.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_irda.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_irda_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_iwdg.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_opamp.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_opamp_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_pcd.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_pwr.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_pwr_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rtc.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rtc_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_sdadc.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_smartcard.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_smartcard_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_smbus.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_spi.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_spi_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tsc.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_usart.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_usart_ex.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_wwdg.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/cmsis_nvic.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/PortNames.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/TARGET_NUCLEO_F303K8/PeripheralNames.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/TARGET_NUCLEO_F303K8/PinNames.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/PinNamesTypes.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/TARGET_STM32F3/common_objects.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/gpio_object.h \
- mbed/aa5281ff4a02/platform/mbed_assert.h \
- mbed/aa5281ff4a02/TARGET_NUCLEO_F303K8/TARGET_STM/PortNames.h \
- mbed/aa5281ff4a02/platform/mbed_application.h \
- mbed/aa5281ff4a02/platform/mbed_error.h \
- mbed/aa5281ff4a02/platform/mbed_interface.h \
- mbed/aa5281ff4a02/platform/mbed_assert.h \
- mbed/aa5281ff4a02/platform/mbed_debug.h \
- mbed/aa5281ff4a02/drivers/DigitalIn.h \
- mbed/aa5281ff4a02/platform/platform.h mbed/aa5281ff4a02/hal/gpio_api.h \
- mbed/aa5281ff4a02/platform/mbed_critical.h \
- mbed/aa5281ff4a02/drivers/DigitalOut.h \
- mbed/aa5281ff4a02/drivers/DigitalInOut.h \
- mbed/aa5281ff4a02/drivers/BusIn.h mbed/aa5281ff4a02/drivers/DigitalIn.h \
- mbed/aa5281ff4a02/platform/PlatformMutex.h \
- mbed/aa5281ff4a02/platform/NonCopyable.h \
- mbed/aa5281ff4a02/platform/mbed_toolchain.h \
- mbed/aa5281ff4a02/platform/mbed_debug.h \
- mbed/aa5281ff4a02/drivers/BusOut.h \
- mbed/aa5281ff4a02/drivers/DigitalOut.h \
- mbed/aa5281ff4a02/drivers/BusInOut.h \
- mbed/aa5281ff4a02/drivers/DigitalInOut.h \
- mbed/aa5281ff4a02/drivers/PortIn.h mbed/aa5281ff4a02/hal/port_api.h \
- mbed/aa5281ff4a02/drivers/PortInOut.h \
- mbed/aa5281ff4a02/drivers/PortOut.h mbed/aa5281ff4a02/drivers/AnalogIn.h \
- mbed/aa5281ff4a02/hal/analogin_api.h \
- mbed/aa5281ff4a02/platform/SingletonPtr.h \
- mbed/aa5281ff4a02/platform/mbed_assert.h \
- mbed/aa5281ff4a02/drivers/AnalogOut.h \
- mbed/aa5281ff4a02/hal/analogout_api.h mbed/aa5281ff4a02/drivers/PwmOut.h \
- mbed/aa5281ff4a02/hal/pwmout_api.h \
- mbed/aa5281ff4a02/platform/mbed_sleep.h \
- mbed/aa5281ff4a02/hal/sleep_api.h mbed/aa5281ff4a02/drivers/Serial.h \
- mbed/aa5281ff4a02/platform/Stream.h \
- mbed/aa5281ff4a02/platform/FileLike.h \
- mbed/aa5281ff4a02/platform/FileBase.h \
- mbed/aa5281ff4a02/platform/FileHandle.h \
- mbed/aa5281ff4a02/platform/Callback.h \
- mbed/aa5281ff4a02/platform/mbed_poll.h \
- mbed/aa5281ff4a02/drivers/SerialBase.h \
- mbed/aa5281ff4a02/platform/Callback.h mbed/aa5281ff4a02/hal/serial_api.h \
- mbed/aa5281ff4a02/hal/buffer.h mbed/aa5281ff4a02/hal/dma_api.h \
- mbed/aa5281ff4a02/platform/mbed_toolchain.h \
- mbed/aa5281ff4a02/platform/PlatformMutex.h \
- mbed/aa5281ff4a02/drivers/SPI.h mbed/aa5281ff4a02/hal/spi_api.h \
- mbed/aa5281ff4a02/platform/CThunk.h \
- mbed/aa5281ff4a02/platform/CircularBuffer.h \
- mbed/aa5281ff4a02/platform/FunctionPointer.h \
- mbed/aa5281ff4a02/platform/Callback.h \
- mbed/aa5281ff4a02/platform/Transaction.h \
- mbed/aa5281ff4a02/drivers/SPISlave.h mbed/aa5281ff4a02/drivers/I2C.h \
- mbed/aa5281ff4a02/hal/i2c_api.h mbed/aa5281ff4a02/drivers/I2CSlave.h \
- mbed/aa5281ff4a02/drivers/Ethernet.h mbed/aa5281ff4a02/drivers/CAN.h \
- mbed/aa5281ff4a02/hal/can_api.h mbed/aa5281ff4a02/hal/can_helper.h \
- mbed/aa5281ff4a02/drivers/RawSerial.h \
- mbed/aa5281ff4a02/drivers/SerialBase.h \
- mbed/aa5281ff4a02/hal/serial_api.h \
- mbed/aa5281ff4a02/drivers/UARTSerial.h \
- mbed/aa5281ff4a02/platform/FileHandle.h \
- mbed/aa5281ff4a02/drivers/InterruptIn.h \
- mbed/aa5281ff4a02/hal/gpio_irq_api.h \
- mbed/aa5281ff4a02/platform/CircularBuffer.h \
- mbed/aa5281ff4a02/drivers/FlashIAP.h mbed/aa5281ff4a02/drivers/Timer.h \
- mbed/aa5281ff4a02/hal/ticker_api.h mbed/aa5281ff4a02/drivers/Ticker.h \
- mbed/aa5281ff4a02/drivers/TimerEvent.h \
- mbed/aa5281ff4a02/hal/us_ticker_api.h \
- mbed/aa5281ff4a02/hal/lp_ticker_api.h \
- mbed/aa5281ff4a02/drivers/Timeout.h mbed/aa5281ff4a02/drivers/Ticker.h \
- mbed/aa5281ff4a02/drivers/LowPowerTimeout.h \
- mbed/aa5281ff4a02/drivers/LowPowerTicker.h \
- mbed/aa5281ff4a02/drivers/LowPowerTicker.h \
- mbed/aa5281ff4a02/drivers/LowPowerTimer.h \
- mbed/aa5281ff4a02/drivers/Timer.h \
- mbed/aa5281ff4a02/platform/LocalFileSystem.h \
- mbed/aa5281ff4a02/drivers/InterruptIn.h \
- mbed/aa5281ff4a02/platform/mbed_wait_api.h \
- mbed/aa5281ff4a02/hal/sleep_api.h \
- mbed/aa5281ff4a02/platform/mbed_sleep.h \
- mbed/aa5281ff4a02/platform/mbed_rtc_time.h \
- mbed/aa5281ff4a02/platform/mbed_poll.h \
- mbed/aa5281ff4a02/platform/ATCmdParser.h \
- mbed/aa5281ff4a02/platform/FileSystemHandle.h \
- mbed/aa5281ff4a02/platform/DirHandle.h \
- mbed/aa5281ff4a02/platform/FileHandle.h \
- mbed/aa5281ff4a02/platform/DirHandle.h \
- mbed/aa5281ff4a02/platform/CriticalSectionLock.h \
- mbed/aa5281ff4a02/platform/DeepSleepLock.h \
- mbed/aa5281ff4a02/platform/Callback.h \
- mbed/aa5281ff4a02/platform/FunctionPointer.h mbed-rtos/rtos/rtos.h \
+ BUILD/NUCLEO_F303K8/GCC_ARM/mbed_config.h motorControl.h mbed-dev/mbed.h \
+ mbed-dev/platform/mbed_toolchain.h mbed-dev/platform/mbed_preprocessor.h \
+ mbed-dev/platform/platform.h mbed-dev/platform/mbed_retarget.h \
+ mbed-dev/platform/mbed_toolchain.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/objects.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/cmsis.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/stm32f3xx.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/stm32f303x8.h \
+ mbed-dev/cmsis/TARGET_CORTEX_M/core_cm4.h \
+ mbed-dev/cmsis/TARGET_CORTEX_M/cmsis_version.h \
+ mbed-dev/cmsis/TARGET_CORTEX_M/cmsis_compiler.h \
+ mbed-dev/cmsis/TARGET_CORTEX_M/cmsis_gcc.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/system_stm32f3xx.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_conf.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_def.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/stm32f3xx.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32_hal_legacy.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_gpio.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_gpio_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_dma.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_dma_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_cortex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_adc.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_adc_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_can.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_cec.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_comp.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_comp_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_crc.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_crc_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_dac.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_dac_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_flash.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_flash_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_sram.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_nor.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_nand.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_pccard.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_hrtim.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_i2c.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_i2c_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_i2s.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_irda.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_irda_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_iwdg.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_opamp.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_opamp_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_pcd.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_pwr.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_pwr_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rtc.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rtc_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_sdadc.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_smartcard.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_smartcard_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_smbus.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_spi.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_spi_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tsc.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_usart.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_usart_ex.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_wwdg.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/cmsis_nvic.h \
+ mbed-dev/targets/TARGET_STM/PortNames.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/TARGET_NUCLEO_F303K8/PeripheralNames.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/TARGET_NUCLEO_F303K8/PinNames.h \
+ mbed-dev/targets/TARGET_STM/PinNamesTypes.h \
+ mbed-dev/targets/TARGET_STM/TARGET_STM32F3/common_objects.h \
+ mbed-dev/targets/TARGET_STM/gpio_object.h \
+ mbed-dev/platform/mbed_assert.h mbed-dev/targets/TARGET_STM/PortNames.h \
+ mbed-dev/platform/mbed_application.h mbed-dev/platform/mbed_error.h \
+ mbed-dev/platform/mbed_interface.h mbed-dev/platform/mbed_assert.h \
+ mbed-dev/platform/mbed_debug.h mbed-dev/drivers/DigitalIn.h \
+ mbed-dev/platform/platform.h mbed-dev/hal/gpio_api.h \
+ mbed-dev/platform/mbed_critical.h mbed-dev/drivers/DigitalOut.h \
+ mbed-dev/drivers/DigitalInOut.h mbed-dev/drivers/BusIn.h \
+ mbed-dev/drivers/DigitalIn.h mbed-dev/platform/PlatformMutex.h \
+ mbed-dev/platform/NonCopyable.h mbed-dev/platform/mbed_toolchain.h \
+ mbed-dev/platform/mbed_debug.h mbed-dev/drivers/BusOut.h \
+ mbed-dev/drivers/DigitalOut.h mbed-dev/drivers/BusInOut.h \
+ mbed-dev/drivers/DigitalInOut.h mbed-dev/drivers/PortIn.h \
+ mbed-dev/hal/port_api.h mbed-dev/drivers/PortInOut.h \
+ mbed-dev/drivers/PortOut.h mbed-dev/drivers/AnalogIn.h \
+ mbed-dev/hal/analogin_api.h mbed-dev/platform/SingletonPtr.h \
+ mbed-dev/platform/mbed_assert.h mbed-dev/drivers/AnalogOut.h \
+ mbed-dev/hal/analogout_api.h mbed-dev/drivers/PwmOut.h \
+ mbed-dev/hal/pwmout_api.h mbed-dev/platform/mbed_sleep.h \
+ mbed-dev/hal/sleep_api.h mbed-dev/drivers/Serial.h \
+ mbed-dev/platform/Stream.h mbed-dev/platform/FileLike.h \
+ mbed-dev/platform/FileBase.h mbed-dev/platform/FileHandle.h \
+ mbed-dev/platform/Callback.h mbed-dev/platform/mbed_poll.h \
+ mbed-dev/drivers/SerialBase.h mbed-dev/platform/Callback.h \
+ mbed-dev/hal/serial_api.h mbed-dev/hal/buffer.h mbed-dev/hal/dma_api.h \
+ mbed-dev/platform/mbed_toolchain.h mbed-dev/platform/PlatformMutex.h \
+ mbed-dev/drivers/SPI.h mbed-dev/hal/spi_api.h mbed-dev/platform/CThunk.h \
+ mbed-dev/platform/CircularBuffer.h mbed-dev/platform/FunctionPointer.h \
+ mbed-dev/platform/Callback.h mbed-dev/platform/Transaction.h \
+ mbed-dev/drivers/SPISlave.h mbed-dev/drivers/I2C.h \
+ mbed-dev/hal/i2c_api.h mbed-dev/drivers/I2CSlave.h \
+ mbed-dev/drivers/Ethernet.h mbed-dev/drivers/CAN.h \
+ mbed-dev/hal/can_api.h mbed-dev/hal/can_helper.h \
+ mbed-dev/drivers/RawSerial.h mbed-dev/drivers/SerialBase.h \
+ mbed-dev/hal/serial_api.h mbed-dev/drivers/UARTSerial.h \
+ mbed-dev/platform/FileHandle.h mbed-dev/drivers/InterruptIn.h \
+ mbed-dev/hal/gpio_irq_api.h mbed-dev/platform/CircularBuffer.h \
+ mbed-dev/drivers/FlashIAP.h mbed-dev/drivers/Timer.h \
+ mbed-dev/hal/ticker_api.h mbed-dev/drivers/Ticker.h \
+ mbed-dev/drivers/TimerEvent.h mbed-dev/hal/us_ticker_api.h \
+ mbed-dev/hal/lp_ticker_api.h mbed-dev/drivers/Timeout.h \
+ mbed-dev/drivers/Ticker.h mbed-dev/drivers/LowPowerTimeout.h \
+ mbed-dev/drivers/LowPowerTicker.h mbed-dev/drivers/LowPowerTicker.h \
+ mbed-dev/drivers/LowPowerTimer.h mbed-dev/drivers/Timer.h \
+ mbed-dev/platform/LocalFileSystem.h mbed-dev/drivers/InterruptIn.h \
+ mbed-dev/platform/mbed_wait_api.h mbed-dev/hal/sleep_api.h \
+ mbed-dev/platform/mbed_sleep.h mbed-dev/platform/mbed_rtc_time.h \
+ mbed-dev/platform/mbed_poll.h mbed-dev/platform/ATCmdParser.h \
+ mbed-dev/platform/FileSystemHandle.h mbed-dev/platform/DirHandle.h \
+ mbed-dev/platform/FileHandle.h mbed-dev/platform/DirHandle.h \
+ mbed-dev/platform/CriticalSectionLock.h \
+ mbed-dev/platform/DeepSleepLock.h mbed-dev/platform/Callback.h \
+ mbed-dev/platform/FunctionPointer.h mbed-rtos/rtos/rtos.h \
  mbed-rtos/rtos/Thread.h mbed-rtos/rtx/TARGET_CORTEX_M/cmsis_os.h \
- mbed/aa5281ff4a02/platform/toolchain.h mbed-rtos/rtos/Semaphore.h \
+ mbed-dev/platform/toolchain.h mbed-rtos/rtos/Semaphore.h \
  mbed-rtos/rtos/Mutex.h mbed-rtos/rtos/RtosTimer.h mbed-rtos/rtos/Mail.h \
  mbed-rtos/rtos/MemoryPool.h mbed-rtos/rtos/Queue.h \
- mbed/aa5281ff4a02/platform/mbed_error.h messages.h decodeCommands.h \
- bitcoinMine.h Crypto/hash/SHA256.h Crypto/hash/HashAlgorithm.h \
- Crypto/hash/SHA2_32.h
+ mbed-dev/platform/mbed_error.h messages.h decodeCommands.h bitcoinMine.h \
+ Crypto/hash/SHA256.h Crypto/hash/HashAlgorithm.h Crypto/hash/SHA2_32.h
