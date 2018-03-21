@@ -5580,1110 +5580,1110 @@ LOAD /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/softfp/crtn.o
                 0x0000000008000b14       0xbc ./BUILD/NUCLEO_F303K8/GCC_ARM/./motorControl.o
                 0x0000000008000b14                setISRPhotoSensors()
  .text._Z11motorCtrlFnv
-                0x0000000008000bd0      0x214 ./BUILD/NUCLEO_F303K8/GCC_ARM/./motorControl.o
+                0x0000000008000bd0      0x210 ./BUILD/NUCLEO_F303K8/GCC_ARM/./motorControl.o
                 0x0000000008000bd0                motorCtrlFn()
  .text.startup._GLOBAL__sub_I_led1
-                0x0000000008000de4       0xd8 ./BUILD/NUCLEO_F303K8/GCC_ARM/./motorControl.o
+                0x0000000008000de0       0xd8 ./BUILD/NUCLEO_F303K8/GCC_ARM/./motorControl.o
  .text._ZN4mbed8CallbackIFvvEEaSERKS2_
-                0x0000000008000ebc       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/CAN.o
-                0x0000000008000ebc                mbed::Callback<void ()>::operator=(mbed::Callback<void ()> const&)
+                0x0000000008000eb8       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/CAN.o
+                0x0000000008000eb8                mbed::Callback<void ()>::operator=(mbed::Callback<void ()> const&)
  .text._ZN4mbed8CallbackIFviEED2Ev
-                0x0000000008000ee0       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/I2C.o
-                0x0000000008000ee0                mbed::Callback<void (int)>::~Callback()
-                0x0000000008000ee0                mbed::Callback<void (int)>::~Callback()
+                0x0000000008000edc       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/I2C.o
+                0x0000000008000edc                mbed::Callback<void (int)>::~Callback()
+                0x0000000008000edc                mbed::Callback<void (int)>::~Callback()
  .text._ZN4mbed11InterruptInC2E7PinName
-                0x0000000008000ef0       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
-                0x0000000008000ef0                mbed::InterruptIn::InterruptIn(PinName)
-                0x0000000008000ef0                mbed::InterruptIn::InterruptIn(PinName)
+                0x0000000008000eec       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
+                0x0000000008000eec                mbed::InterruptIn::InterruptIn(PinName)
+                0x0000000008000eec                mbed::InterruptIn::InterruptIn(PinName)
  .text._ZN4mbed11InterruptIncviEv
-                0x0000000008000f54       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
-                0x0000000008000f54                mbed::InterruptIn::operator int()
+                0x0000000008000f50       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
+                0x0000000008000f50                mbed::InterruptIn::operator int()
  .text._ZN4mbed11InterruptInD2Ev
-                0x0000000008000f64       0x28 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
-                0x0000000008000f64                mbed::InterruptIn::~InterruptIn()
-                0x0000000008000f64                mbed::InterruptIn::~InterruptIn()
+                0x0000000008000f60       0x28 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
+                0x0000000008000f60                mbed::InterruptIn::~InterruptIn()
+                0x0000000008000f60                mbed::InterruptIn::~InterruptIn()
  .text._ZN4mbed11InterruptInD0Ev
-                0x0000000008000f8c       0x12 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
-                0x0000000008000f8c                mbed::InterruptIn::~InterruptIn()
+                0x0000000008000f88       0x12 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
+                0x0000000008000f88                mbed::InterruptIn::~InterruptIn()
  .text._ZN4mbed11InterruptIn4riseENS_8CallbackIFvvEEE
-                0x0000000008000f9e       0x4c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
-                0x0000000008000f9e                mbed::InterruptIn::rise(mbed::Callback<void ()>)
+                0x0000000008000f9a       0x4c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
+                0x0000000008000f9a                mbed::InterruptIn::rise(mbed::Callback<void ()>)
  .text._ZN4mbed11InterruptIn4fallENS_8CallbackIFvvEEE
-                0x0000000008000fea       0x4c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
-                0x0000000008000fea                mbed::InterruptIn::fall(mbed::Callback<void ()>)
- *fill*         0x0000000008001036        0x2 
+                0x0000000008000fe6       0x4c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
+                0x0000000008000fe6                mbed::InterruptIn::fall(mbed::Callback<void ()>)
+ *fill*         0x0000000008001032        0x2 
  .text._ZNK4mbed8CallbackIFvvEE4callEv
-                0x0000000008001038       0x28 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
-                0x0000000008001038                mbed::Callback<void ()>::call() const
+                0x0000000008001034       0x28 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
+                0x0000000008001034                mbed::Callback<void ()>::call() const
  .text._ZN4mbed11InterruptIn12_irq_handlerEm14gpio_irq_event
-                0x0000000008001060       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
-                0x0000000008001060                mbed::InterruptIn::_irq_handler(unsigned long, gpio_irq_event)
+                0x000000000800105c       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/InterruptIn.o
+                0x000000000800105c                mbed::InterruptIn::_irq_handler(unsigned long, gpio_irq_event)
  .text._ZN4mbed9RawSerial4lockEv
-                0x0000000008001084        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/RawSerial.o
-                0x0000000008001084                mbed::RawSerial::unlock()
-                0x0000000008001084                mbed::RawSerial::lock()
- *fill*         0x0000000008001086        0x2 
+                0x0000000008001080        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/RawSerial.o
+                0x0000000008001080                mbed::RawSerial::unlock()
+                0x0000000008001080                mbed::RawSerial::lock()
+ *fill*         0x0000000008001082        0x2 
  .text._ZN4mbed9RawSerialC2E7PinNameS1_i
-                0x0000000008001088       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/RawSerial.o
-                0x0000000008001088                mbed::RawSerial::RawSerial(PinName, PinName, int)
-                0x0000000008001088                mbed::RawSerial::RawSerial(PinName, PinName, int)
+                0x0000000008001084       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/RawSerial.o
+                0x0000000008001084                mbed::RawSerial::RawSerial(PinName, PinName, int)
+                0x0000000008001084                mbed::RawSerial::RawSerial(PinName, PinName, int)
  .text._ZN4mbed9RawSerial4getcEv
-                0x000000000800109c       0x1e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/RawSerial.o
-                0x000000000800109c                mbed::RawSerial::getc()
+                0x0000000008001098       0x1e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/RawSerial.o
+                0x0000000008001098                mbed::RawSerial::getc()
  .text._ZN4mbed9RawSerial4putcEi
-                0x00000000080010ba       0x22 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/RawSerial.o
-                0x00000000080010ba                mbed::RawSerial::putc(int)
+                0x00000000080010b6       0x22 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/RawSerial.o
+                0x00000000080010b6                mbed::RawSerial::putc(int)
  .text._ZN4mbed9RawSerial4putsEPKc
-                0x00000000080010dc       0x2a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/RawSerial.o
-                0x00000000080010dc                mbed::RawSerial::puts(char const*)
+                0x00000000080010d8       0x2a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/RawSerial.o
+                0x00000000080010d8                mbed::RawSerial::puts(char const*)
  .text._ZN4mbed9RawSerial6printfEPKcz
-                0x0000000008001106       0x72 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/RawSerial.o
-                0x0000000008001106                mbed::RawSerial::printf(char const*, ...)
+                0x0000000008001102       0x72 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/RawSerial.o
+                0x0000000008001102                mbed::RawSerial::printf(char const*, ...)
  .text._ZN4mbed14CircularBufferINS_11TransactionINS_3SPIEEELm2EmED2Ev
-                0x0000000008001178       0x1e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SPI.o
-                0x0000000008001178                mbed::CircularBuffer<mbed::Transaction<mbed::SPI>, 2ul, unsigned long>::~CircularBuffer()
-                0x0000000008001178                mbed::CircularBuffer<mbed::Transaction<mbed::SPI>, 2ul, unsigned long>::~CircularBuffer()
+                0x0000000008001174       0x1e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SPI.o
+                0x0000000008001174                mbed::CircularBuffer<mbed::Transaction<mbed::SPI>, 2ul, unsigned long>::~CircularBuffer()
+                0x0000000008001174                mbed::CircularBuffer<mbed::Transaction<mbed::SPI>, 2ul, unsigned long>::~CircularBuffer()
  .text._ZN4mbed11TransactionINS_3SPIEEC2Ev
-                0x0000000008001196       0x22 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SPI.o
-                0x0000000008001196                mbed::Transaction<mbed::SPI>::Transaction()
-                0x0000000008001196                mbed::Transaction<mbed::SPI>::Transaction()
+                0x0000000008001192       0x22 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SPI.o
+                0x0000000008001192                mbed::Transaction<mbed::SPI>::Transaction()
+                0x0000000008001192                mbed::Transaction<mbed::SPI>::Transaction()
  .text.startup._GLOBAL__sub_I__ZN4mbed3SPI19_transaction_bufferE
-                0x00000000080011b8       0x38 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SPI.o
+                0x00000000080011b4       0x38 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SPI.o
  .text._ZN4mbed10SerialBase4lockEv
-                0x00000000080011f0        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
-                0x00000000080011f0                mbed::SerialBase::unlock()
-                0x00000000080011f0                mbed::SerialBase::lock()
- *fill*         0x00000000080011f2        0x2 
+                0x00000000080011ec        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
+                0x00000000080011ec                mbed::SerialBase::unlock()
+                0x00000000080011ec                mbed::SerialBase::lock()
+ *fill*         0x00000000080011ee        0x2 
  .text._ZN4mbed10SerialBase12_irq_handlerEm9SerialIrq
-                0x00000000080011f4       0x38 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
-                0x00000000080011f4                mbed::SerialBase::_irq_handler(unsigned long, SerialIrq)
+                0x00000000080011f0       0x38 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
+                0x00000000080011f0                mbed::SerialBase::_irq_handler(unsigned long, SerialIrq)
  .text._ZN4mbed10SerialBase10_base_getcEv
-                0x000000000800122c        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
-                0x000000000800122c                mbed::SerialBase::_base_getc()
+                0x0000000008001228        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
+                0x0000000008001228                mbed::SerialBase::_base_getc()
  .text._ZN4mbed10SerialBase10_base_putcEi
-                0x0000000008001232        0xe ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
-                0x0000000008001232                mbed::SerialBase::_base_putc(int)
+                0x000000000800122e        0xe ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
+                0x000000000800122e                mbed::SerialBase::_base_putc(int)
  .text._ZN4mbed10SerialBaseC2E7PinNameS1_i
-                0x0000000008001240       0x9c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
-                0x0000000008001240                mbed::SerialBase::SerialBase(PinName, PinName, int)
-                0x0000000008001240                mbed::SerialBase::SerialBase(PinName, PinName, int)
+                0x000000000800123c       0x9c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
+                0x000000000800123c                mbed::SerialBase::SerialBase(PinName, PinName, int)
+                0x000000000800123c                mbed::SerialBase::SerialBase(PinName, PinName, int)
  .text._ZN4mbed10SerialBase6attachENS_8CallbackIFvvEEENS0_7IrqTypeE
-                0x00000000080012dc       0x70 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
-                0x00000000080012dc                mbed::SerialBase::attach(mbed::Callback<void ()>, mbed::SerialBase::IrqType)
+                0x00000000080012d8       0x70 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
+                0x00000000080012d8                mbed::SerialBase::attach(mbed::Callback<void ()>, mbed::SerialBase::IrqType)
  .text._ZN4mbed10SerialBaseD2Ev
-                0x000000000800134c       0x60 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
-                0x000000000800134c                mbed::SerialBase::~SerialBase()
-                0x000000000800134c                mbed::SerialBase::~SerialBase()
+                0x0000000008001348       0x60 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
+                0x0000000008001348                mbed::SerialBase::~SerialBase()
+                0x0000000008001348                mbed::SerialBase::~SerialBase()
  .text._ZN4mbed10SerialBaseD0Ev
-                0x00000000080013ac       0x12 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
-                0x00000000080013ac                mbed::SerialBase::~SerialBase()
+                0x00000000080013a8       0x12 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/SerialBase.o
+                0x00000000080013a8                mbed::SerialBase::~SerialBase()
  .text._ZN4mbed6Ticker7handlerEv
-                0x00000000080013be       0x2e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/Ticker.o
-                0x00000000080013be                mbed::Ticker::handler()
+                0x00000000080013ba       0x2e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/Ticker.o
+                0x00000000080013ba                mbed::Ticker::handler()
  .text._ZN4mbed6Ticker5setupEy
-                0x00000000080013ec       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/Ticker.o
-                0x00000000080013ec                mbed::Ticker::setup(unsigned long long)
+                0x00000000080013e8       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/Ticker.o
+                0x00000000080013e8                mbed::Ticker::setup(unsigned long long)
  .text._ZN4mbed6Ticker6detachEv
-                0x000000000800141c       0x52 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/Ticker.o
-                0x000000000800141c                mbed::Ticker::detach()
- *fill*         0x000000000800146e        0x2 
+                0x0000000008001418       0x52 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/Ticker.o
+                0x0000000008001418                mbed::Ticker::detach()
+ *fill*         0x000000000800146a        0x2 
  .text._ZN4mbed6TickerD2Ev
-                0x0000000008001470       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/Ticker.o
-                0x0000000008001470                mbed::Ticker::~Ticker()
-                0x0000000008001470                mbed::Ticker::~Ticker()
+                0x000000000800146c       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/Ticker.o
+                0x000000000800146c                mbed::Ticker::~Ticker()
+                0x000000000800146c                mbed::Ticker::~Ticker()
  .text._ZN4mbed6TickerD0Ev
-                0x0000000008001494       0x12 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/Ticker.o
-                0x0000000008001494                mbed::Ticker::~Ticker()
+                0x0000000008001490       0x12 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/Ticker.o
+                0x0000000008001490                mbed::Ticker::~Ticker()
  .text._ZN4mbed10TimerEvent3irqEm
-                0x00000000080014a6        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/TimerEvent.o
-                0x00000000080014a6                mbed::TimerEvent::irq(unsigned long)
+                0x00000000080014a2        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/TimerEvent.o
+                0x00000000080014a2                mbed::TimerEvent::irq(unsigned long)
  .text._ZN4mbed10TimerEventC2Ev
-                0x00000000080014ac       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/TimerEvent.o
-                0x00000000080014ac                mbed::TimerEvent::TimerEvent()
-                0x00000000080014ac                mbed::TimerEvent::TimerEvent()
+                0x00000000080014a8       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/TimerEvent.o
+                0x00000000080014a8                mbed::TimerEvent::TimerEvent()
+                0x00000000080014a8                mbed::TimerEvent::TimerEvent()
  .text._ZN4mbed10TimerEvent15insert_absoluteEy
-                0x00000000080014dc       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/TimerEvent.o
-                0x00000000080014dc                mbed::TimerEvent::insert_absolute(unsigned long long)
+                0x00000000080014d8       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/TimerEvent.o
+                0x00000000080014d8                mbed::TimerEvent::insert_absolute(unsigned long long)
  .text._ZN4mbed10TimerEvent6removeEv
-                0x00000000080014f0        0xa ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/TimerEvent.o
-                0x00000000080014f0                mbed::TimerEvent::remove()
- *fill*         0x00000000080014fa        0x2 
+                0x00000000080014ec        0xa ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/TimerEvent.o
+                0x00000000080014ec                mbed::TimerEvent::remove()
+ *fill*         0x00000000080014f6        0x2 
  .text._ZN4mbed10TimerEventD2Ev
-                0x00000000080014fc       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/TimerEvent.o
-                0x00000000080014fc                mbed::TimerEvent::~TimerEvent()
-                0x00000000080014fc                mbed::TimerEvent::~TimerEvent()
+                0x00000000080014f8       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/drivers/TimerEvent.o
+                0x00000000080014f8                mbed::TimerEvent::~TimerEvent()
+                0x00000000080014f8                mbed::TimerEvent::~TimerEvent()
  .text._gpio_init_in
-                0x0000000008001510       0x26 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_gpio.o
+                0x000000000800150c       0x26 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_gpio.o
  .text._gpio_init_out.part.1
-                0x0000000008001536       0x26 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_gpio.o
+                0x0000000008001532       0x26 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_gpio.o
  .text.gpio_init_in
-                0x000000000800155c        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_gpio.o
-                0x000000000800155c                gpio_init_in
+                0x0000000008001558        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_gpio.o
+                0x0000000008001558                gpio_init_in
  .text.gpio_init_out_ex
-                0x0000000008001562       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_gpio.o
-                0x0000000008001562                gpio_init_out_ex
+                0x000000000800155e       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_gpio.o
+                0x000000000800155e                gpio_init_out_ex
  .text.gpio_init_out
-                0x0000000008001582        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_gpio.o
-                0x0000000008001582                gpio_init_out
+                0x000000000800157e        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_gpio.o
+                0x000000000800157e                gpio_init_out
  .text.pinmap_pinout
-                0x0000000008001588       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_pinmap_common.o
-                0x0000000008001588                pinmap_pinout
+                0x0000000008001584       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_pinmap_common.o
+                0x0000000008001584                pinmap_pinout
  .text.pinmap_merge
-                0x00000000080015c4       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_pinmap_common.o
-                0x00000000080015c4                pinmap_merge
+                0x00000000080015c0       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_pinmap_common.o
+                0x00000000080015c0                pinmap_merge
  .text.pinmap_find_peripheral
-                0x00000000080015e8       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_pinmap_common.o
-                0x00000000080015e8                pinmap_find_peripheral
+                0x00000000080015e4       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_pinmap_common.o
+                0x00000000080015e4                pinmap_find_peripheral
  .text.pinmap_peripheral
-                0x0000000008001600       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_pinmap_common.o
-                0x0000000008001600                pinmap_peripheral
+                0x00000000080015fc       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_pinmap_common.o
+                0x00000000080015fc                pinmap_peripheral
  .text.pinmap_find_function
-                0x0000000008001620       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_pinmap_common.o
-                0x0000000008001620                pinmap_find_function
+                0x000000000800161c       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_pinmap_common.o
+                0x000000000800161c                pinmap_find_function
  .text.pinmap_function
-                0x0000000008001638       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_pinmap_common.o
-                0x0000000008001638                pinmap_function
+                0x0000000008001634       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_pinmap_common.o
+                0x0000000008001634                pinmap_function
  .text.sleep_manager_lock_deep_sleep
-                0x0000000008001658       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_sleep_manager.o
-                0x0000000008001658                sleep_manager_lock_deep_sleep
+                0x0000000008001654       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_sleep_manager.o
+                0x0000000008001654                sleep_manager_lock_deep_sleep
  .text.sleep_manager_unlock_deep_sleep
-                0x000000000800168c       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_sleep_manager.o
-                0x000000000800168c                sleep_manager_unlock_deep_sleep
+                0x0000000008001688       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_sleep_manager.o
+                0x0000000008001688                sleep_manager_unlock_deep_sleep
  .text.update_present_time
-                0x00000000080016bc       0xd0 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
+                0x00000000080016b8       0xd0 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
  .text._ticker_match_interval_passed
-                0x000000000800178c       0x28 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
-                0x000000000800178c                _ticker_match_interval_passed
+                0x0000000008001788       0x28 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
+                0x0000000008001788                _ticker_match_interval_passed
  .text.schedule_interrupt
-                0x00000000080017b4       0xe4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
+                0x00000000080017b0       0xe4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
  .text.initialize
-                0x0000000008001898       0xcc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
+                0x0000000008001894       0xcc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
  .text.ticker_set_handler
-                0x0000000008001964       0x1a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
-                0x0000000008001964                ticker_set_handler
+                0x0000000008001960       0x1a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
+                0x0000000008001960                ticker_set_handler
  .text.ticker_irq_handler
-                0x000000000800197e       0x4c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
-                0x000000000800197e                ticker_irq_handler
+                0x000000000800197a       0x4c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
+                0x000000000800197a                ticker_irq_handler
  .text.ticker_insert_event_us
-                0x00000000080019ca       0x54 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
-                0x00000000080019ca                ticker_insert_event_us
+                0x00000000080019c6       0x54 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
+                0x00000000080019c6                ticker_insert_event_us
  .text.ticker_remove_event
-                0x0000000008001a1e       0x36 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
-                0x0000000008001a1e                ticker_remove_event
+                0x0000000008001a1a       0x36 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
+                0x0000000008001a1a                ticker_remove_event
  .text.ticker_read_us
-                0x0000000008001a54       0x1e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
-                0x0000000008001a54                ticker_read_us
+                0x0000000008001a50       0x1e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
+                0x0000000008001a50                ticker_read_us
  .text.ticker_read
-                0x0000000008001a72        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
-                0x0000000008001a72                ticker_read
- *fill*         0x0000000008001a7a        0x2 
+                0x0000000008001a6e        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_ticker_api.o
+                0x0000000008001a6e                ticker_read
+ *fill*         0x0000000008001a76        0x2 
  .text.get_us_ticker_data
-                0x0000000008001a7c        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_us_ticker_api.o
-                0x0000000008001a7c                get_us_ticker_data
+                0x0000000008001a78        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_us_ticker_api.o
+                0x0000000008001a78                get_us_ticker_data
  .text.us_ticker_irq_handler
-                0x0000000008001a84       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_us_ticker_api.o
-                0x0000000008001a84                us_ticker_irq_handler
+                0x0000000008001a80       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/hal/mbed_us_ticker_api.o
+                0x0000000008001a80                us_ticker_irq_handler
  .text._ZN4mbed8CallbackIFvvEEC2ERKS2_
-                0x0000000008001a98       0x16 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/CallChain.o
-                0x0000000008001a98                mbed::Callback<void ()>::Callback(mbed::Callback<void ()> const&)
-                0x0000000008001a98                mbed::Callback<void ()>::Callback(mbed::Callback<void ()> const&)
+                0x0000000008001a94       0x16 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/CallChain.o
+                0x0000000008001a94                mbed::Callback<void ()>::Callback(mbed::Callback<void ()> const&)
+                0x0000000008001a94                mbed::Callback<void ()>::Callback(mbed::Callback<void ()> const&)
  .text.__wrap__malloc_r
-                0x0000000008001aae        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_alloc_wrappers.o
-                0x0000000008001aae                __wrap__malloc_r
+                0x0000000008001aaa        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_alloc_wrappers.o
+                0x0000000008001aaa                __wrap__malloc_r
  .text.__wrap__realloc_r
-                0x0000000008001ab2        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_alloc_wrappers.o
-                0x0000000008001ab2                __wrap__realloc_r
+                0x0000000008001aae        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_alloc_wrappers.o
+                0x0000000008001aae                __wrap__realloc_r
  .text.__wrap__free_r
-                0x0000000008001ab6        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_alloc_wrappers.o
-                0x0000000008001ab6                __wrap__free_r
+                0x0000000008001ab2        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_alloc_wrappers.o
+                0x0000000008001ab2                __wrap__free_r
  .text.__wrap__calloc_r
-                0x0000000008001aba        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_alloc_wrappers.o
-                0x0000000008001aba                __wrap__calloc_r
- *fill*         0x0000000008001abe        0x2 
+                0x0000000008001ab6        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_alloc_wrappers.o
+                0x0000000008001ab6                __wrap__calloc_r
+ *fill*         0x0000000008001aba        0x2 
  .text.mbed_assert_internal
-                0x0000000008001ac0       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_assert.o
-                0x0000000008001ac0                mbed_assert_internal
+                0x0000000008001abc       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_assert.o
+                0x0000000008001abc                mbed_assert_internal
  .text.mbed_die
-                0x0000000008001ae4       0x52 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_board.o
-                0x0000000008001ae4                mbed_die
- *fill*         0x0000000008001b36        0x2 
+                0x0000000008001ae0       0x52 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_board.o
+                0x0000000008001ae0                mbed_die
+ *fill*         0x0000000008001b32        0x2 
  .text.mbed_error_vfprintf
-                0x0000000008001b38       0x50 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_board.o
-                0x0000000008001b38                mbed_error_vfprintf
+                0x0000000008001b34       0x50 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_board.o
+                0x0000000008001b34                mbed_error_vfprintf
  .text.mbed_error_printf
-                0x0000000008001b88       0x1a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_board.o
-                0x0000000008001b88                mbed_error_printf
+                0x0000000008001b84       0x1a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_board.o
+                0x0000000008001b84                mbed_error_printf
  .text.core_util_are_interrupts_enabled
-                0x0000000008001ba2        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_critical.o
-                0x0000000008001ba2                core_util_are_interrupts_enabled
- *fill*         0x0000000008001bae        0x2 
+                0x0000000008001b9e        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_critical.o
+                0x0000000008001b9e                core_util_are_interrupts_enabled
+ *fill*         0x0000000008001baa        0x2 
  .text.core_util_critical_section_enter
-                0x0000000008001bb0       0x58 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_critical.o
-                0x0000000008001bb0                core_util_critical_section_enter
+                0x0000000008001bac       0x58 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_critical.o
+                0x0000000008001bac                core_util_critical_section_enter
  .text.core_util_critical_section_exit
-                0x0000000008001c08       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_critical.o
-                0x0000000008001c08                core_util_critical_section_exit
+                0x0000000008001c04       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_critical.o
+                0x0000000008001c04                core_util_critical_section_exit
  .text.core_util_atomic_incr_u16
-                0x0000000008001c44       0x1a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_critical.o
-                0x0000000008001c44                core_util_atomic_incr_u16
+                0x0000000008001c40       0x1a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_critical.o
+                0x0000000008001c40                core_util_atomic_incr_u16
  .text.core_util_atomic_decr_u16
-                0x0000000008001c5e       0x1a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_critical.o
-                0x0000000008001c5e                core_util_atomic_decr_u16
- .text.error    0x0000000008001c78       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_error.o
-                0x0000000008001c78                error
+                0x0000000008001c5a       0x1a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_critical.o
+                0x0000000008001c5a                core_util_atomic_decr_u16
+ .text.error    0x0000000008001c74       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_error.o
+                0x0000000008001c74                error
  .text._ZL11init_serialv
-                0x0000000008001ca4       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
- .text._close   0x0000000008001cd0       0x40 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001cd0                _close
- .text._write   0x0000000008001d10       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001d10                _write
- .text._read    0x0000000008001d74       0x58 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001d74                _read
- .text._isatty  0x0000000008001dcc       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001dcc                _isatty
- .text._lseek   0x0000000008001e08       0x40 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001e08                _lseek
- .text._fstat   0x0000000008001e48       0x50 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001e48                _fstat
+                0x0000000008001ca0       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+ .text._close   0x0000000008001ccc       0x40 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001ccc                _close
+ .text._write   0x0000000008001d0c       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001d0c                _write
+ .text._read    0x0000000008001d70       0x58 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001d70                _read
+ .text._isatty  0x0000000008001dc8       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001dc8                _isatty
+ .text._lseek   0x0000000008001e04       0x40 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001e04                _lseek
+ .text._fstat   0x0000000008001e44       0x50 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001e44                _fstat
  .text.__cxa_pure_virtual
-                0x0000000008001e98        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001e98                __cxa_pure_virtual
- .text._sbrk    0x0000000008001ea0       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001ea0                _sbrk
- .text._exit    0x0000000008001ee4       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001ee4                _exit
+                0x0000000008001e94        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001e94                __cxa_pure_virtual
+ .text._sbrk    0x0000000008001e9c       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001e9c                _sbrk
+ .text._exit    0x0000000008001ee0       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001ee0                _exit
  .text.__aeabi_atexit
-                0x0000000008001f08        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001f08                __aeabi_atexit
+                0x0000000008001f04        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001f04                __aeabi_atexit
  .text.__wrap_exit
-                0x0000000008001f0c        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001f0c                __wrap_exit
+                0x0000000008001f08        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001f08                __wrap_exit
  .text.__wrap_atexit
-                0x0000000008001f12        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001f12                __wrap_atexit
+                0x0000000008001f0e        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001f0e                __wrap_atexit
  .text.__malloc_lock
-                0x0000000008001f16        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001f16                __malloc_lock
+                0x0000000008001f12        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001f12                __malloc_lock
  .text.__malloc_unlock
-                0x0000000008001f1e        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001f1e                __malloc_unlock
- *fill*         0x0000000008001f26        0x2 
- .text._Znaj    0x0000000008001f28       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001f28                operator new[](unsigned int)
- .text._ZdlPv   0x0000000008001f40        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001f40                operator delete(void*)
- .text._ZdaPv   0x0000000008001f44        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001f44                operator delete[](void*)
+                0x0000000008001f1a        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001f1a                __malloc_unlock
+ *fill*         0x0000000008001f22        0x2 
+ .text._Znaj    0x0000000008001f24       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001f24                operator new[](unsigned int)
+ .text._ZdlPv   0x0000000008001f3c        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001f3c                operator delete(void*)
+ .text._ZdaPv   0x0000000008001f40        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001f40                operator delete[](void*)
  .text.us_ticker_get_info
-                0x0000000008001f48        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
-                0x0000000008001f48                us_ticker_get_info
+                0x0000000008001f44        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_retarget.o
+                0x0000000008001f44                us_ticker_get_info
  .text.mbed_main
-                0x0000000008001f50        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_sdk_boot.o
-                0x0000000008001f50                mbed_main
- *fill*         0x0000000008001f52        0x2 
+                0x0000000008001f4c        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_sdk_boot.o
+                0x0000000008001f4c                mbed_main
+ *fill*         0x0000000008001f4e        0x2 
  .text.mbed_copy_nvic
-                0x0000000008001f54       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_sdk_boot.o
-                0x0000000008001f54                mbed_copy_nvic
+                0x0000000008001f50       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_sdk_boot.o
+                0x0000000008001f50                mbed_copy_nvic
  .text.software_init_hook
-                0x0000000008001f80       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_sdk_boot.o
-                0x0000000008001f80                software_init_hook
+                0x0000000008001f7c       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_sdk_boot.o
+                0x0000000008001f7c                software_init_hook
  .text.__wrap_main
-                0x0000000008001f90        0xe ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_sdk_boot.o
-                0x0000000008001f90                __wrap_main
- .text.wait_us  0x0000000008001f9e       0x1e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_wait_api_no_rtos.o
-                0x0000000008001f9e                wait_us
- .text.wait     0x0000000008001fbc       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_wait_api_no_rtos.o
-                0x0000000008001fbc                wait
- .text.wait_ms  0x0000000008001fd8        0xa ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_wait_api_no_rtos.o
-                0x0000000008001fd8                wait_ms
- *fill*         0x0000000008001fe2        0x2 
+                0x0000000008001f8c        0xe ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_sdk_boot.o
+                0x0000000008001f8c                __wrap_main
+ .text.wait_us  0x0000000008001f9a       0x1e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_wait_api_no_rtos.o
+                0x0000000008001f9a                wait_us
+ .text.wait     0x0000000008001fb8       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_wait_api_no_rtos.o
+                0x0000000008001fb8                wait
+ .text.wait_ms  0x0000000008001fd4        0xa ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/platform/mbed_wait_api_no_rtos.o
+                0x0000000008001fd4                wait_ms
+ *fill*         0x0000000008001fde        0x2 
  .text.SystemInit
-                0x0000000008001fe4       0x68 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/TARGET_NUCLEO_F303K8/system_clock.o
-                0x0000000008001fe4                SystemInit
+                0x0000000008001fe0       0x68 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/TARGET_NUCLEO_F303K8/system_clock.o
+                0x0000000008001fe0                SystemInit
  .text.SetSysClock_PLL_HSI
-                0x000000000800204c       0x4e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/TARGET_NUCLEO_F303K8/system_clock.o
-                0x000000000800204c                SetSysClock_PLL_HSI
+                0x0000000008002048       0x4e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/TARGET_NUCLEO_F303K8/system_clock.o
+                0x0000000008002048                SetSysClock_PLL_HSI
  .text.SetSysClock
-                0x000000000800209a        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/TARGET_NUCLEO_F303K8/system_clock.o
-                0x000000000800209a                SetSysClock
- *fill*         0x00000000080020a6        0x2 
+                0x0000000008002096        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/TARGET_NUCLEO_F303K8/system_clock.o
+                0x0000000008002096                SetSysClock
+ *fill*         0x00000000080020a2        0x2 
  .text.Reset_Handler
-                0x00000000080020a8       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/TOOLCHAIN_GCC_ARM/startup_stm32f303x8.o
-                0x00000000080020a8                Reset_Handler
+                0x00000000080020a4       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/TOOLCHAIN_GCC_ARM/startup_stm32f303x8.o
+                0x00000000080020a4                Reset_Handler
  .text.Default_Handler
-                0x00000000080020dc        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/TOOLCHAIN_GCC_ARM/startup_stm32f303x8.o
-                0x00000000080020dc                RTC_Alarm_IRQHandler
-                0x00000000080020dc                DebugMon_Handler
-                0x00000000080020dc                TIM1_CC_IRQHandler
-                0x00000000080020dc                HardFault_Handler
-                0x00000000080020dc                PVD_IRQHandler
-                0x00000000080020dc                TAMP_STAMP_IRQHandler
-                0x00000000080020dc                NMI_Handler
-                0x00000000080020dc                EXTI3_IRQHandler
-                0x00000000080020dc                EXTI0_IRQHandler
-                0x00000000080020dc                FPU_IRQHandler
-                0x00000000080020dc                TIM1_UP_TIM16_IRQHandler
-                0x00000000080020dc                UsageFault_Handler
-                0x00000000080020dc                ADC1_2_IRQHandler
-                0x00000000080020dc                SPI1_IRQHandler
-                0x00000000080020dc                DMA1_Channel4_IRQHandler
-                0x00000000080020dc                USART3_IRQHandler
-                0x00000000080020dc                DMA1_Channel7_IRQHandler
-                0x00000000080020dc                TIM7_DAC2_IRQHandler
-                0x00000000080020dc                CAN_RX1_IRQHandler
-                0x00000000080020dc                I2C1_EV_IRQHandler
-                0x00000000080020dc                DMA1_Channel6_IRQHandler
-                0x00000000080020dc                TIM3_IRQHandler
-                0x00000000080020dc                RCC_IRQHandler
-                0x00000000080020dc                DMA1_Channel1_IRQHandler
-                0x00000000080020dc                Default_Handler
-                0x00000000080020dc                EXTI15_10_IRQHandler
-                0x00000000080020dc                COMP2_IRQHandler
-                0x00000000080020dc                TIM6_DAC1_IRQHandler
-                0x00000000080020dc                EXTI9_5_IRQHandler
-                0x00000000080020dc                RTC_WKUP_IRQHandler
-                0x00000000080020dc                MemManage_Handler
-                0x00000000080020dc                DMA1_Channel5_IRQHandler
-                0x00000000080020dc                EXTI4_IRQHandler
-                0x00000000080020dc                TIM1_TRG_COM_TIM17_IRQHandler
-                0x00000000080020dc                DMA1_Channel3_IRQHandler
-                0x00000000080020dc                WWDG_IRQHandler
-                0x00000000080020dc                TIM2_IRQHandler
-                0x00000000080020dc                EXTI1_IRQHandler
-                0x00000000080020dc                COMP4_6_IRQHandler
-                0x00000000080020dc                USART2_IRQHandler
-                0x00000000080020dc                DMA1_Channel2_IRQHandler
-                0x00000000080020dc                FLASH_IRQHandler
-                0x00000000080020dc                BusFault_Handler
-                0x00000000080020dc                USART1_IRQHandler
-                0x00000000080020dc                I2C1_ER_IRQHandler
-                0x00000000080020dc                EXTI2_TSC_IRQHandler
-                0x00000000080020dc                TIM1_BRK_TIM15_IRQHandler
+                0x00000000080020d8        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/TARGET_STM32F303x8/device/TOOLCHAIN_GCC_ARM/startup_stm32f303x8.o
+                0x00000000080020d8                RTC_Alarm_IRQHandler
+                0x00000000080020d8                DebugMon_Handler
+                0x00000000080020d8                TIM1_CC_IRQHandler
+                0x00000000080020d8                HardFault_Handler
+                0x00000000080020d8                PVD_IRQHandler
+                0x00000000080020d8                TAMP_STAMP_IRQHandler
+                0x00000000080020d8                NMI_Handler
+                0x00000000080020d8                EXTI3_IRQHandler
+                0x00000000080020d8                EXTI0_IRQHandler
+                0x00000000080020d8                FPU_IRQHandler
+                0x00000000080020d8                TIM1_UP_TIM16_IRQHandler
+                0x00000000080020d8                UsageFault_Handler
+                0x00000000080020d8                ADC1_2_IRQHandler
+                0x00000000080020d8                SPI1_IRQHandler
+                0x00000000080020d8                DMA1_Channel4_IRQHandler
+                0x00000000080020d8                USART3_IRQHandler
+                0x00000000080020d8                DMA1_Channel7_IRQHandler
+                0x00000000080020d8                TIM7_DAC2_IRQHandler
+                0x00000000080020d8                CAN_RX1_IRQHandler
+                0x00000000080020d8                I2C1_EV_IRQHandler
+                0x00000000080020d8                DMA1_Channel6_IRQHandler
+                0x00000000080020d8                TIM3_IRQHandler
+                0x00000000080020d8                RCC_IRQHandler
+                0x00000000080020d8                DMA1_Channel1_IRQHandler
+                0x00000000080020d8                Default_Handler
+                0x00000000080020d8                EXTI15_10_IRQHandler
+                0x00000000080020d8                COMP2_IRQHandler
+                0x00000000080020d8                TIM6_DAC1_IRQHandler
+                0x00000000080020d8                EXTI9_5_IRQHandler
+                0x00000000080020d8                RTC_WKUP_IRQHandler
+                0x00000000080020d8                MemManage_Handler
+                0x00000000080020d8                DMA1_Channel5_IRQHandler
+                0x00000000080020d8                EXTI4_IRQHandler
+                0x00000000080020d8                TIM1_TRG_COM_TIM17_IRQHandler
+                0x00000000080020d8                DMA1_Channel3_IRQHandler
+                0x00000000080020d8                WWDG_IRQHandler
+                0x00000000080020d8                TIM2_IRQHandler
+                0x00000000080020d8                EXTI1_IRQHandler
+                0x00000000080020d8                COMP4_6_IRQHandler
+                0x00000000080020d8                USART2_IRQHandler
+                0x00000000080020d8                DMA1_Channel2_IRQHandler
+                0x00000000080020d8                FLASH_IRQHandler
+                0x00000000080020d8                BusFault_Handler
+                0x00000000080020d8                USART1_IRQHandler
+                0x00000000080020d8                I2C1_ER_IRQHandler
+                0x00000000080020d8                EXTI2_TSC_IRQHandler
+                0x00000000080020d8                TIM1_BRK_TIM15_IRQHandler
  .text.HAL_MspInit
-                0x00000000080020de        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal.o
-                0x00000000080020de                HAL_MspInit
+                0x00000000080020da        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal.o
+                0x00000000080020da                HAL_MspInit
  .text.HAL_Init
-                0x00000000080020e0       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal.o
-                0x00000000080020e0                HAL_Init
+                0x00000000080020dc       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal.o
+                0x00000000080020dc                HAL_Init
  .text.HAL_IncTick
-                0x0000000008002104       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal.o
-                0x0000000008002104                HAL_IncTick
+                0x0000000008002100       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal.o
+                0x0000000008002100                HAL_IncTick
  .text.HAL_GetTick
-                0x0000000008002114        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal.o
-                0x0000000008002114                HAL_GetTick
+                0x0000000008002110        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal.o
+                0x0000000008002110                HAL_GetTick
  .text.HAL_NVIC_SetPriorityGrouping
-                0x0000000008002120       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_cortex.o
-                0x0000000008002120                HAL_NVIC_SetPriorityGrouping
+                0x000000000800211c       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_cortex.o
+                0x000000000800211c                HAL_NVIC_SetPriorityGrouping
  .text.HAL_RCC_OscConfig
-                0x0000000008002144      0x4e4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc.o
-                0x0000000008002144                HAL_RCC_OscConfig
+                0x0000000008002140      0x4e4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc.o
+                0x0000000008002140                HAL_RCC_OscConfig
  .text.HAL_RCC_GetSysClockFreq
-                0x0000000008002628       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc.o
-                0x0000000008002628                HAL_RCC_GetSysClockFreq
+                0x0000000008002624       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc.o
+                0x0000000008002624                HAL_RCC_GetSysClockFreq
  .text.HAL_RCC_ClockConfig
-                0x000000000800268c      0x180 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc.o
-                0x000000000800268c                HAL_RCC_ClockConfig
+                0x0000000008002688      0x180 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc.o
+                0x0000000008002688                HAL_RCC_ClockConfig
  .text.HAL_RCC_GetPCLK1Freq
-                0x000000000800280c       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc.o
-                0x000000000800280c                HAL_RCC_GetPCLK1Freq
+                0x0000000008002808       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc.o
+                0x0000000008002808                HAL_RCC_GetPCLK1Freq
  .text.HAL_RCC_GetPCLK2Freq
-                0x000000000800283c       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc.o
-                0x000000000800283c                HAL_RCC_GetPCLK2Freq
+                0x0000000008002838       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc.o
+                0x0000000008002838                HAL_RCC_GetPCLK2Freq
  .text.HAL_RCC_GetClockConfig
-                0x000000000800286c       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc.o
-                0x000000000800286c                HAL_RCC_GetClockConfig
+                0x0000000008002868       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_rcc.o
+                0x0000000008002868                HAL_RCC_GetClockConfig
  .text.HAL_TIM_OC_MspInit
-                0x00000000080028a8        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
-                0x00000000080028a8                HAL_TIM_OC_MspInit
+                0x00000000080028a4        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
+                0x00000000080028a4                HAL_TIM_OC_MspInit
  .text.HAL_TIM_PWM_MspInit
-                0x00000000080028aa        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
-                0x00000000080028aa                HAL_TIM_PWM_MspInit
+                0x00000000080028a6        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
+                0x00000000080028a6                HAL_TIM_PWM_MspInit
  .text.TIM_Base_SetConfig
-                0x00000000080028ac       0x94 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
-                0x00000000080028ac                TIM_Base_SetConfig
+                0x00000000080028a8       0x94 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
+                0x00000000080028a8                TIM_Base_SetConfig
  .text.HAL_TIM_OC_Init
-                0x0000000008002940       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
-                0x0000000008002940                HAL_TIM_OC_Init
+                0x000000000800293c       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
+                0x000000000800293c                HAL_TIM_OC_Init
  .text.HAL_TIM_PWM_Init
-                0x0000000008002974       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
-                0x0000000008002974                HAL_TIM_PWM_Init
+                0x0000000008002970       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
+                0x0000000008002970                HAL_TIM_PWM_Init
  .text.TIM_OC1_SetConfig
-                0x00000000080029a8       0x88 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
-                0x00000000080029a8                TIM_OC1_SetConfig
+                0x00000000080029a4       0x88 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
+                0x00000000080029a4                TIM_OC1_SetConfig
  .text.TIM_OC2_SetConfig
-                0x0000000008002a30       0x78 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
-                0x0000000008002a30                TIM_OC2_SetConfig
+                0x0000000008002a2c       0x78 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
+                0x0000000008002a2c                TIM_OC2_SetConfig
  .text.TIM_OC3_SetConfig
-                0x0000000008002aa8       0x78 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
-                0x0000000008002aa8                TIM_OC3_SetConfig
+                0x0000000008002aa4       0x78 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
+                0x0000000008002aa4                TIM_OC3_SetConfig
  .text.TIM_OC4_SetConfig
-                0x0000000008002b20       0x60 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
-                0x0000000008002b20                TIM_OC4_SetConfig
+                0x0000000008002b1c       0x60 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
+                0x0000000008002b1c                TIM_OC4_SetConfig
  .text.TIM_CCxChannelCmd
-                0x0000000008002b80       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
-                0x0000000008002b80                TIM_CCxChannelCmd
+                0x0000000008002b7c       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
+                0x0000000008002b7c                TIM_CCxChannelCmd
  .text.HAL_TIM_OC_Start
-                0x0000000008002b98       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
-                0x0000000008002b98                HAL_TIM_OC_Start
+                0x0000000008002b94       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
+                0x0000000008002b94                HAL_TIM_OC_Start
  .text.HAL_TIM_PWM_Start
-                0x0000000008002bdc        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
-                0x0000000008002bdc                HAL_TIM_PWM_Start
+                0x0000000008002bd8        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim.o
+                0x0000000008002bd8                HAL_TIM_PWM_Start
  .text.TIM_CCxNChannelCmd
-                0x0000000008002be0       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim_ex.o
+                0x0000000008002bdc       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim_ex.o
  .text.TIM_OC5_SetConfig
-                0x0000000008002bf8       0x60 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim_ex.o
+                0x0000000008002bf4       0x60 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim_ex.o
  .text.TIM_OC6_SetConfig
-                0x0000000008002c58       0x60 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim_ex.o
+                0x0000000008002c54       0x60 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim_ex.o
  .text.HAL_TIMEx_OCN_Start
-                0x0000000008002cb8       0x22 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim_ex.o
-                0x0000000008002cb8                HAL_TIMEx_OCN_Start
+                0x0000000008002cb4       0x22 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim_ex.o
+                0x0000000008002cb4                HAL_TIMEx_OCN_Start
  .text.HAL_TIMEx_PWMN_Start
-                0x0000000008002cda        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim_ex.o
-                0x0000000008002cda                HAL_TIMEx_PWMN_Start
+                0x0000000008002cd6        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim_ex.o
+                0x0000000008002cd6                HAL_TIMEx_PWMN_Start
  .text.HAL_TIM_PWM_ConfigChannel
-                0x0000000008002cde      0x10e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim_ex.o
-                0x0000000008002cde                HAL_TIM_PWM_ConfigChannel
+                0x0000000008002cda      0x10e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_tim_ex.o
+                0x0000000008002cda                HAL_TIM_PWM_ConfigChannel
  .text.HAL_UART_MspInit
-                0x0000000008002dec        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart.o
-                0x0000000008002dec                HAL_UART_MspInit
- *fill*         0x0000000008002dee        0x2 
+                0x0000000008002de8        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart.o
+                0x0000000008002de8                HAL_UART_MspInit
+ *fill*         0x0000000008002dea        0x2 
  .text.UART_SetConfig
-                0x0000000008002df0      0x140 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart.o
-                0x0000000008002df0                UART_SetConfig
+                0x0000000008002dec      0x140 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart.o
+                0x0000000008002dec                UART_SetConfig
  .text.UART_AdvFeatureConfig
-                0x0000000008002f30       0xa8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart.o
-                0x0000000008002f30                UART_AdvFeatureConfig
+                0x0000000008002f2c       0xa8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart.o
+                0x0000000008002f2c                UART_AdvFeatureConfig
  .text.UART_WaitOnFlagUntilTimeout
-                0x0000000008002fd8       0x60 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart.o
-                0x0000000008002fd8                UART_WaitOnFlagUntilTimeout
+                0x0000000008002fd4       0x60 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart.o
+                0x0000000008002fd4                UART_WaitOnFlagUntilTimeout
  .text.UART_CheckIdleState
-                0x0000000008003038       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart.o
-                0x0000000008003038                UART_CheckIdleState
+                0x0000000008003034       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart.o
+                0x0000000008003034                UART_CheckIdleState
  .text.HAL_UART_Init
-                0x000000000800309c       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart.o
-                0x000000000800309c                HAL_UART_Init
+                0x0000000008003098       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/stm32f3xx_hal_uart.o
+                0x0000000008003098                HAL_UART_Init
  .text.SystemCoreClockUpdate
-                0x0000000008003100       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/system_stm32f3xx.o
-                0x0000000008003100                SystemCoreClockUpdate
+                0x00000000080030fc       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/device/system_stm32f3xx.o
+                0x00000000080030fc                SystemCoreClockUpdate
  .text.uart_irq
-                0x0000000008003164       0x74 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
+                0x0000000008003160       0x74 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
  .text.uart3_irq
-                0x00000000080031d8        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
+                0x00000000080031d4        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
  .text.uart2_irq
-                0x00000000080031e4        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
+                0x00000000080031e0        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
  .text.uart1_irq
-                0x00000000080031f0        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
+                0x00000000080031ec        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
  .text.serial_irq_handler
-                0x00000000080031fc       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
-                0x00000000080031fc                serial_irq_handler
+                0x00000000080031f8       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
+                0x00000000080031f8                serial_irq_handler
  .text.serial_irq_set
-                0x0000000008003214       0xc4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
-                0x0000000008003214                serial_irq_set
+                0x0000000008003210       0xc4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
+                0x0000000008003210                serial_irq_set
  .text.serial_getc
-                0x00000000080032d8       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
-                0x00000000080032d8                serial_getc
+                0x00000000080032d4       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
+                0x00000000080032d4                serial_getc
  .text.serial_putc
-                0x0000000008003304       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
-                0x0000000008003304                serial_putc
+                0x0000000008003300       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/TARGET_STM32F3/serial_device.o
+                0x0000000008003300                serial_putc
  .text.CAN_RX0_IRQHandler
-                0x0000000008003334       0xf0 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/can_api.o
-                0x0000000008003334                CAN_RX0_IRQHandler
+                0x0000000008003330       0xf0 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/can_api.o
+                0x0000000008003330                CAN_RX0_IRQHandler
  .text.CAN_TX_IRQHandler
-                0x0000000008003424        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/can_api.o
-                0x0000000008003424                CAN_TX_IRQHandler
+                0x0000000008003420        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/can_api.o
+                0x0000000008003420                CAN_TX_IRQHandler
  .text.CAN_SCE_IRQHandler
-                0x0000000008003428        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/can_api.o
-                0x0000000008003428                CAN_SCE_IRQHandler
+                0x0000000008003424        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/can_api.o
+                0x0000000008003424                CAN_SCE_IRQHandler
  .text.Set_GPIO_Clock
-                0x000000000800342c       0xb0 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_api.o
-                0x000000000800342c                Set_GPIO_Clock
+                0x0000000008003428       0xb0 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_api.o
+                0x0000000008003428                Set_GPIO_Clock
  .text.gpio_set
-                0x00000000080034dc       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_api.o
-                0x00000000080034dc                gpio_set
+                0x00000000080034d8       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_api.o
+                0x00000000080034d8                gpio_set
  .text.gpio_init
-                0x0000000008003508       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_api.o
-                0x0000000008003508                gpio_init
+                0x0000000008003504       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_api.o
+                0x0000000008003504                gpio_init
  .text.gpio_mode
-                0x000000000800354c        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_api.o
-                0x000000000800354c                gpio_mode
+                0x0000000008003548        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_api.o
+                0x0000000008003548                gpio_mode
  .text.gpio_dir
-                0x0000000008003554       0x52 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_api.o
-                0x0000000008003554                gpio_dir
- *fill*         0x00000000080035a6        0x2 
+                0x0000000008003550       0x52 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_api.o
+                0x0000000008003550                gpio_dir
+ *fill*         0x00000000080035a2        0x2 
  .text.handle_interrupt_in
-                0x00000000080035a8       0x7c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
+                0x00000000080035a4       0x7c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
  .text.gpio_irq6
-                0x0000000008003624        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
+                0x0000000008003620        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
  .text.gpio_irq5
-                0x000000000800362c        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
+                0x0000000008003628        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
  .text.gpio_irq4
-                0x0000000008003634        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
+                0x0000000008003630        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
  .text.gpio_irq3
-                0x000000000800363c        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
+                0x0000000008003638        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
  .text.gpio_irq2
-                0x0000000008003644        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
+                0x0000000008003640        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
  .text.gpio_irq1
-                0x000000000800364c        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
+                0x0000000008003648        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
  .text.gpio_irq0
-                0x0000000008003654        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
+                0x0000000008003650        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
  .text.gpio_irq_set
-                0x000000000800365c       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
-                0x000000000800365c                gpio_irq_set
+                0x0000000008003658       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
+                0x0000000008003658                gpio_irq_set
  .text.gpio_irq_enable
-                0x00000000080036c0       0x78 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
-                0x00000000080036c0                gpio_irq_enable
+                0x00000000080036bc       0x78 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
+                0x00000000080036bc                gpio_irq_enable
  .text.gpio_irq_init
-                0x0000000008003738      0x114 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
-                0x0000000008003738                gpio_irq_init
+                0x0000000008003734      0x114 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
+                0x0000000008003734                gpio_irq_init
  .text.gpio_irq_disable
-                0x000000000800384c       0x6c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
-                0x000000000800384c                gpio_irq_disable
+                0x0000000008003848       0x6c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
+                0x0000000008003848                gpio_irq_disable
  .text.gpio_irq_free
-                0x00000000080038b8       0x54 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
-                0x00000000080038b8                gpio_irq_free
+                0x00000000080038b4       0x54 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/gpio_irq_api.o
+                0x00000000080038b4                gpio_irq_free
  .text.timer_irq_handler
-                0x000000000800390c       0x58 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/hal_tick_32b.o
-                0x000000000800390c                timer_irq_handler
+                0x0000000008003908       0x58 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/hal_tick_32b.o
+                0x0000000008003908                timer_irq_handler
  .text.HAL_InitTick
-                0x0000000008003964       0xc4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/hal_tick_32b.o
-                0x0000000008003964                HAL_InitTick
+                0x0000000008003960       0xc4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/hal_tick_32b.o
+                0x0000000008003960                HAL_InitTick
  .text.mbed_sdk_init
-                0x0000000008003a28       0x16 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/mbed_overrides.o
-                0x0000000008003a28                mbed_sdk_init
+                0x0000000008003a24       0x16 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/mbed_overrides.o
+                0x0000000008003a24                mbed_sdk_init
  .text.LL_GPIO_SetPinPull
-                0x0000000008003a3e       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pinmap.o
+                0x0000000008003a3a       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pinmap.o
  .text.stm_pin_PullConfig
-                0x0000000008003a6a        0xe ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pinmap.o
+                0x0000000008003a66        0xe ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pinmap.o
  .text.pin_function
-                0x0000000008003a78      0x130 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pinmap.o
-                0x0000000008003a78                pin_function
+                0x0000000008003a74      0x130 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pinmap.o
+                0x0000000008003a74                pin_function
  .text.pin_mode
-                0x0000000008003ba8       0x94 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pinmap.o
-                0x0000000008003ba8                pin_mode
+                0x0000000008003ba4       0x94 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pinmap.o
+                0x0000000008003ba4                pin_mode
  .text.pwmout_write
-                0x0000000008003c3c       0xb4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pwmout_api.o
-                0x0000000008003c3c                pwmout_write
+                0x0000000008003c38       0xb4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pwmout_api.o
+                0x0000000008003c38                pwmout_write
  .text.pwmout_read
-                0x0000000008003cf0       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pwmout_api.o
-                0x0000000008003cf0                pwmout_read
+                0x0000000008003cec       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pwmout_api.o
+                0x0000000008003cec                pwmout_read
  .text.pwmout_period_us
-                0x0000000008003d2c      0x144 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pwmout_api.o
-                0x0000000008003d2c                pwmout_period_us
+                0x0000000008003d28      0x144 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pwmout_api.o
+                0x0000000008003d28                pwmout_period_us
  .text.pwmout_init
-                0x0000000008003e70      0x138 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pwmout_api.o
-                0x0000000008003e70                pwmout_init
+                0x0000000008003e6c      0x138 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pwmout_api.o
+                0x0000000008003e6c                pwmout_init
  .text.pwmout_pulsewidth_us
-                0x0000000008003fa8       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pwmout_api.o
-                0x0000000008003fa8                pwmout_pulsewidth_us
+                0x0000000008003fa4       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/pwmout_api.o
+                0x0000000008003fa4                pwmout_pulsewidth_us
  .text.debug.constprop.1
-                0x0000000008003fc4       0x28 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/serial_api.o
+                0x0000000008003fc0       0x28 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/serial_api.o
  .text.serial_readable
-                0x0000000008003fec       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/serial_api.o
-                0x0000000008003fec                serial_readable
+                0x0000000008003fe8       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/serial_api.o
+                0x0000000008003fe8                serial_readable
  .text.serial_writable
-                0x000000000800400c       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/serial_api.o
-                0x000000000800400c                serial_writable
+                0x0000000008004008       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/serial_api.o
+                0x0000000008004008                serial_writable
  .text.init_uart
-                0x0000000008004024       0x60 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/serial_api.o
-                0x0000000008004024                init_uart
+                0x0000000008004020       0x60 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/serial_api.o
+                0x0000000008004020                init_uart
  .text.serial_baud
-                0x0000000008004084       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/serial_api.o
-                0x0000000008004084                serial_baud
+                0x0000000008004080       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/serial_api.o
+                0x0000000008004080                serial_baud
  .text.get_uart_index
-                0x00000000080040a4       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/serial_api.o
-                0x00000000080040a4                get_uart_index
+                0x00000000080040a0       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/serial_api.o
+                0x00000000080040a0                get_uart_index
  .text.serial_init
-                0x00000000080040d0      0x180 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/serial_api.o
-                0x00000000080040d0                serial_init
+                0x00000000080040cc      0x180 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/serial_api.o
+                0x00000000080040cc                serial_init
  .text.us_ticker_init
-                0x0000000008004250        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/us_ticker_32b.o
-                0x0000000008004250                us_ticker_init
+                0x000000000800424c        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/us_ticker_32b.o
+                0x000000000800424c                us_ticker_init
  .text.us_ticker_read
-                0x0000000008004252        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/us_ticker_32b.o
-                0x0000000008004252                us_ticker_read
- *fill*         0x000000000800425a        0x2 
+                0x000000000800424e        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/us_ticker_32b.o
+                0x000000000800424e                us_ticker_read
+ *fill*         0x0000000008004256        0x2 
  .text.us_ticker_set_interrupt
-                0x000000000800425c       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/us_ticker_32b.o
-                0x000000000800425c                us_ticker_set_interrupt
+                0x0000000008004258       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/us_ticker_32b.o
+                0x0000000008004258                us_ticker_set_interrupt
  .text.us_ticker_fire_interrupt
-                0x0000000008004278       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/us_ticker_32b.o
-                0x0000000008004278                us_ticker_fire_interrupt
+                0x0000000008004274       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/us_ticker_32b.o
+                0x0000000008004274                us_ticker_fire_interrupt
  .text.us_ticker_disable_interrupt
-                0x000000000800428c       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/us_ticker_32b.o
-                0x000000000800428c                us_ticker_disable_interrupt
+                0x0000000008004288       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/us_ticker_32b.o
+                0x0000000008004288                us_ticker_disable_interrupt
  .text.us_ticker_clear_interrupt
-                0x00000000080042a0       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/us_ticker_32b.o
-                0x00000000080042a0                us_ticker_clear_interrupt
+                0x000000000800429c       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-dev/targets/TARGET_STM/us_ticker_32b.o
+                0x000000000800429c                us_ticker_clear_interrupt
  .text._ZN4rtos5MutexC2Ev
-                0x00000000080042b0       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Mutex.o
-                0x00000000080042b0                rtos::Mutex::Mutex()
-                0x00000000080042b0                rtos::Mutex::Mutex()
+                0x00000000080042ac       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Mutex.o
+                0x00000000080042ac                rtos::Mutex::Mutex()
+                0x00000000080042ac                rtos::Mutex::Mutex()
  .text._ZN4rtos5Mutex4lockEm
-                0x00000000080042e0        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Mutex.o
-                0x00000000080042e0                rtos::Mutex::lock(unsigned long)
+                0x00000000080042dc        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Mutex.o
+                0x00000000080042dc                rtos::Mutex::lock(unsigned long)
  .text._ZN4rtos5Mutex6unlockEv
-                0x00000000080042e6        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Mutex.o
-                0x00000000080042e6                rtos::Mutex::unlock()
+                0x00000000080042e2        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Mutex.o
+                0x00000000080042e2                rtos::Mutex::unlock()
  .text._ZN4rtos5MutexD2Ev
-                0x00000000080042ec        0xe ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Mutex.o
-                0x00000000080042ec                rtos::Mutex::~Mutex()
-                0x00000000080042ec                rtos::Mutex::~Mutex()
+                0x00000000080042e8        0xe ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Mutex.o
+                0x00000000080042e8                rtos::Mutex::~Mutex()
+                0x00000000080042e8                rtos::Mutex::~Mutex()
  .text._ZN4rtos9SemaphoreC2El
-                0x00000000080042fa       0x26 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Semaphore.o
-                0x00000000080042fa                rtos::Semaphore::Semaphore(long)
-                0x00000000080042fa                rtos::Semaphore::Semaphore(long)
+                0x00000000080042f6       0x26 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Semaphore.o
+                0x00000000080042f6                rtos::Semaphore::Semaphore(long)
+                0x00000000080042f6                rtos::Semaphore::Semaphore(long)
  .text._ZN4rtos9Semaphore7releaseEv
-                0x0000000008004320        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Semaphore.o
-                0x0000000008004320                rtos::Semaphore::release()
+                0x000000000800431c        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Semaphore.o
+                0x000000000800431c                rtos::Semaphore::release()
  .text._ZN4rtos9SemaphoreD2Ev
-                0x0000000008004326        0xe ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Semaphore.o
-                0x0000000008004326                rtos::Semaphore::~Semaphore()
-                0x0000000008004326                rtos::Semaphore::~Semaphore()
+                0x0000000008004322        0xe ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Semaphore.o
+                0x0000000008004322                rtos::Semaphore::~Semaphore()
+                0x0000000008004322                rtos::Semaphore::~Semaphore()
  .text._ZN4rtos6Thread6_thunkEPKv
-                0x0000000008004334       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
-                0x0000000008004334                rtos::Thread::_thunk(void const*)
+                0x0000000008004330       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
+                0x0000000008004330                rtos::Thread::_thunk(void const*)
  .text.thread_terminate_hook
-                0x0000000008004378       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
-                0x0000000008004378                thread_terminate_hook
+                0x0000000008004374       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
+                0x0000000008004374                thread_terminate_hook
  .text._ZN4rtos6Thread11constructorE10osPrioritymPh
-                0x0000000008004388       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
-                0x0000000008004388                rtos::Thread::constructor(osPriority, unsigned long, unsigned char*)
+                0x0000000008004384       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
+                0x0000000008004384                rtos::Thread::constructor(osPriority, unsigned long, unsigned char*)
  .text._ZN4rtos6Thread9terminateEv
-                0x00000000080043a0       0x32 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
-                0x00000000080043a0                rtos::Thread::terminate()
+                0x000000000800439c       0x32 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
+                0x000000000800439c                rtos::Thread::terminate()
  .text._ZN4rtos6Thread10signal_setEl
-                0x00000000080043d2        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
-                0x00000000080043d2                rtos::Thread::signal_set(long)
+                0x00000000080043ce        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
+                0x00000000080043ce                rtos::Thread::signal_set(long)
  .text._ZN4rtos6Thread11signal_waitElm
-                0x00000000080043d8        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
-                0x00000000080043d8                rtos::Thread::signal_wait(long, unsigned long)
+                0x00000000080043d4        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
+                0x00000000080043d4                rtos::Thread::signal_wait(long, unsigned long)
  .text._ZN4rtos6ThreadD2Ev
-                0x00000000080043e4       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
-                0x00000000080043e4                rtos::Thread::~Thread()
-                0x00000000080043e4                rtos::Thread::~Thread()
+                0x00000000080043e0       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
+                0x00000000080043e0                rtos::Thread::~Thread()
+                0x00000000080043e0                rtos::Thread::~Thread()
  .text._ZN4rtos6ThreadD0Ev
-                0x0000000008004420       0x12 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
-                0x0000000008004420                rtos::Thread::~Thread()
- *fill*         0x0000000008004432        0x2 
+                0x000000000800441c       0x12 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
+                0x000000000800441c                rtos::Thread::~Thread()
+ *fill*         0x000000000800442e        0x2 
  .text._ZN4rtos6Thread5startEN4mbed8CallbackIFvvEEE
-                0x0000000008004434       0xc8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
-                0x0000000008004434                rtos::Thread::start(mbed::Callback<void ()>)
+                0x0000000008004430       0xc8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/Thread.o
+                0x0000000008004430                rtos::Thread::start(mbed::Callback<void ()>)
  .text.default_idle_hook
-                0x00000000080044fc        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/rtos_idle.o
- *fill*         0x00000000080044fe        0x2 
+                0x00000000080044f8        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/rtos_idle.o
+ *fill*         0x00000000080044fa        0x2 
  .text.rtos_idle_loop
-                0x0000000008004500       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/rtos_idle.o
-                0x0000000008004500                rtos_idle_loop
+                0x00000000080044fc       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtos/rtos_idle.o
+                0x00000000080044fc                rtos_idle_loop
  .text.rt_init_stack
-                0x0000000008004510       0x9c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/HAL_CM.o
-                0x0000000008004510                rt_init_stack
+                0x000000000800450c       0x9c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/HAL_CM.o
+                0x000000000800450c                rt_init_stack
  .text.rt_ret_val
-                0x00000000080045ac       0x12 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/HAL_CM.o
-                0x00000000080045ac                rt_ret_val
+                0x00000000080045a8       0x12 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/HAL_CM.o
+                0x00000000080045a8                rt_ret_val
  .text.rt_ret_val2
-                0x00000000080045be       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/HAL_CM.o
-                0x00000000080045be                rt_ret_val2
- *fill*         0x00000000080045d2        0x2 
+                0x00000000080045ba       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/HAL_CM.o
+                0x00000000080045ba                rt_ret_val2
+ *fill*         0x00000000080045ce        0x2 
  .text.pre_main
-                0x00000000080045d4       0x48 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
-                0x00000000080045d4                pre_main
+                0x00000000080045d0       0x48 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
+                0x00000000080045d0                pre_main
  .text.os_idle_demon
-                0x000000000800461c        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
-                0x000000000800461c                os_idle_demon
+                0x0000000008004618        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
+                0x0000000008004618                os_idle_demon
  .text.os_error
-                0x0000000008004620       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
-                0x0000000008004620                os_error
+                0x000000000800461c       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
+                0x000000000800461c                os_error
  .text.sysThreadTerminate
-                0x000000000800463c        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
-                0x000000000800463c                sysThreadTerminate
+                0x0000000008004638        0x4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
+                0x0000000008004638                sysThreadTerminate
  .text.set_main_stack
-                0x0000000008004640       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
-                0x0000000008004640                set_main_stack
+                0x000000000800463c       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
+                0x000000000800463c                set_main_stack
  .text.software_init_hook_rtos
-                0x000000000800465c       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
-                0x000000000800465c                software_init_hook_rtos
+                0x0000000008004658       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
+                0x0000000008004658                software_init_hook_rtos
  .text.__rtos_malloc_lock
-                0x0000000008004678       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
-                0x0000000008004678                __rtos_malloc_lock
+                0x0000000008004674       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
+                0x0000000008004674                __rtos_malloc_lock
  .text.__rtos_malloc_unlock
-                0x0000000008004688        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
-                0x0000000008004688                __rtos_malloc_unlock
- .text          0x0000000008004694      0x198 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_GCC/HAL_CM4.o
-                0x0000000008004694                rt_set_PSP
-                0x000000000800469a                rt_get_PSP
-                0x00000000080046a0                os_set_env
-                0x00000000080046b8                _alloc_box
-                0x00000000080046d4                _free_box
-                0x00000000080046f0                SVC_Handler
-                0x0000000008004796                PendSV_Handler
-                0x000000000800479c                Sys_Switch
-                0x00000000080047f6                SysTick_Handler
-                0x0000000008004800                OS_Tick_Handler
+                0x0000000008004684        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.o
+                0x0000000008004684                __rtos_malloc_unlock
+ .text          0x0000000008004690      0x198 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_GCC/HAL_CM4.o
+                0x0000000008004690                rt_set_PSP
+                0x0000000008004696                rt_get_PSP
+                0x000000000800469c                os_set_env
+                0x00000000080046b4                _alloc_box
+                0x00000000080046d0                _free_box
+                0x00000000080046ec                SVC_Handler
+                0x0000000008004792                PendSV_Handler
+                0x0000000008004798                Sys_Switch
+                0x00000000080047f2                SysTick_Handler
+                0x00000000080047fc                OS_Tick_Handler
  .text.rt_timer_insert
-                0x000000000800482c       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004828       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
  .text.rt_ms2tick
-                0x0000000008004860       0x40 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x000000000800485c       0x40 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
  .text.rt_tid2ptcb
-                0x00000000080048a0       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x00000000080048a0                rt_tid2ptcb
+                0x000000000800489c       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x000000000800489c                rt_tid2ptcb
  .text.svcKernelStart
-                0x00000000080048b4       0x40 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x00000000080048b4                svcKernelStart
+                0x00000000080048b0       0x40 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x00000000080048b0                svcKernelStart
  .text.svcKernelRunning
-                0x00000000080048f4        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x00000000080048f4                svcKernelRunning
+                0x00000000080048f0        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x00000000080048f0                svcKernelRunning
  .text.osKernelRunning
-                0x0000000008004900       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004900                osKernelRunning
+                0x00000000080048fc       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x00000000080048fc                osKernelRunning
  .text.osKernelStart
-                0x000000000800492c       0x88 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x000000000800492c                osKernelStart
+                0x0000000008004928       0x88 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004928                osKernelStart
  .text.svcThreadCreate
-                0x00000000080049b4       0x6c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x00000000080049b4                svcThreadCreate
+                0x00000000080049b0       0x6c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x00000000080049b0                svcThreadCreate
  .text.svcThreadGetId
-                0x0000000008004a20       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004a20                svcThreadGetId
+                0x0000000008004a1c       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004a1c                svcThreadGetId
  .text.svcThreadTerminate
-                0x0000000008004a38       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004a38                svcThreadTerminate
+                0x0000000008004a34       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004a34                svcThreadTerminate
  .text.svcTimerCall
-                0x0000000008004a68       0x1a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004a68                svcTimerCall
- *fill*         0x0000000008004a82        0x2 
+                0x0000000008004a64       0x1a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004a64                svcTimerCall
+ *fill*         0x0000000008004a7e        0x2 
  .text.osTimerCall
-                0x0000000008004a84       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004a84                osTimerCall
+                0x0000000008004a80       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004a80                osTimerCall
  .text.svcSignalSet
-                0x0000000008004a9c       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004a9c                svcSignalSet
+                0x0000000008004a98       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004a98                svcSignalSet
  .text.svcSignalWait
-                0x0000000008004ac0       0x78 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004ac0                svcSignalWait
+                0x0000000008004abc       0x78 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004abc                svcSignalWait
  .text.isrSignalSet
-                0x0000000008004b38       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004b38                isrSignalSet
+                0x0000000008004b34       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004b34                isrSignalSet
  .text.osSignalSet
-                0x0000000008004b5c       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004b5c                osSignalSet
+                0x0000000008004b58       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004b58                osSignalSet
  .text.osSignalWait
-                0x0000000008004b88       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004b88                osSignalWait
+                0x0000000008004b84       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004b84                osSignalWait
  .text.svcMutexCreate
-                0x0000000008004bb8       0x1a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004bb8                svcMutexCreate
+                0x0000000008004bb4       0x1a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004bb4                svcMutexCreate
  .text.svcMutexWait
-                0x0000000008004bd2       0x38 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004bd2                svcMutexWait
+                0x0000000008004bce       0x38 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004bce                svcMutexWait
  .text.svcMutexRelease
-                0x0000000008004c0a       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004c0a                svcMutexRelease
+                0x0000000008004c06       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004c06                svcMutexRelease
  .text.svcMutexDelete
-                0x0000000008004c2a       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004c2a                svcMutexDelete
- *fill*         0x0000000008004c46        0x2 
+                0x0000000008004c26       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004c26                svcMutexDelete
+ *fill*         0x0000000008004c42        0x2 
  .text.osMutexCreate
-                0x0000000008004c48       0x40 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004c48                osMutexCreate
+                0x0000000008004c44       0x40 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004c44                osMutexCreate
  .text.osMutexWait
-                0x0000000008004c88       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004c88                osMutexWait
+                0x0000000008004c84       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004c84                osMutexWait
  .text.osThreadExit
-                0x0000000008004ca8       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004ca8                osThreadExit
+                0x0000000008004ca4       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004ca4                osThreadExit
  .text.osMutexRelease
-                0x0000000008004cd8       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004cd8                osMutexRelease
+                0x0000000008004cd4       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004cd4                osMutexRelease
  .text.osThreadContextCreate
-                0x0000000008004cf8       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004cf8                osThreadContextCreate
+                0x0000000008004cf4       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004cf4                osThreadContextCreate
  .text.osThreadCreate
-                0x0000000008004d5c        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004d5c                osThreadCreate
- *fill*         0x0000000008004d62        0x2 
+                0x0000000008004d58        0x6 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004d58                osThreadCreate
+ *fill*         0x0000000008004d5e        0x2 
  .text.osThreadTerminate
-                0x0000000008004d64       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004d64                osThreadTerminate
+                0x0000000008004d60       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004d60                osThreadTerminate
  .text.osMutexDelete
-                0x0000000008004da8       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004da8                osMutexDelete
+                0x0000000008004da4       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004da4                osMutexDelete
  .text.svcSemaphoreCreate
-                0x0000000008004dc8       0x26 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004dc8                svcSemaphoreCreate
+                0x0000000008004dc4       0x26 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004dc4                svcSemaphoreCreate
  .text.svcSemaphoreRelease
-                0x0000000008004dee       0x2a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004dee                svcSemaphoreRelease
+                0x0000000008004dea       0x2a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004dea                svcSemaphoreRelease
  .text.svcSemaphoreDelete
-                0x0000000008004e18       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004e18                svcSemaphoreDelete
+                0x0000000008004e14       0x1c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004e14                svcSemaphoreDelete
  .text.isrSemaphoreRelease
-                0x0000000008004e34       0x2a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004e34                isrSemaphoreRelease
- *fill*         0x0000000008004e5e        0x2 
+                0x0000000008004e30       0x2a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004e30                isrSemaphoreRelease
+ *fill*         0x0000000008004e5a        0x2 
  .text.osSemaphoreCreate
-                0x0000000008004e60       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004e60                osSemaphoreCreate
+                0x0000000008004e5c       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004e5c                osSemaphoreCreate
  .text.osSemaphoreRelease
-                0x0000000008004ea4       0x28 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004ea4                osSemaphoreRelease
+                0x0000000008004ea0       0x28 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004ea0                osSemaphoreRelease
  .text.osSemaphoreDelete
-                0x0000000008004ecc       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004ecc                osSemaphoreDelete
+                0x0000000008004ec8       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004ec8                osSemaphoreDelete
  .text.svcMessageCreate
-                0x0000000008004eec       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004eec                svcMessageCreate
+                0x0000000008004ee8       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004ee8                svcMessageCreate
  .text.svcKernelInitialize
-                0x0000000008004f10       0x6c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004f10                svcKernelInitialize
+                0x0000000008004f0c       0x6c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004f0c                svcKernelInitialize
  .text.osKernelInitialize
-                0x0000000008004f7c       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004f7c                osKernelInitialize
+                0x0000000008004f78       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004f78                osKernelInitialize
  .text.svcMessagePut
-                0x0000000008004fac       0x36 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004fac                svcMessagePut
+                0x0000000008004fa8       0x36 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004fa8                svcMessagePut
  .text.svcMessageGet
-                0x0000000008004fe2       0x66 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008004fe2                svcMessageGet
+                0x0000000008004fde       0x66 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008004fde                svcMessageGet
  .text.isrMessagePut
-                0x0000000008005048       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008005048                isrMessagePut
+                0x0000000008005044       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008005044                isrMessagePut
  .text.sysTimerTick
-                0x0000000008005074       0x50 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008005074                sysTimerTick
+                0x0000000008005070       0x50 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008005070                sysTimerTick
  .text.isrMessageGet
-                0x00000000080050c4       0x3a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x00000000080050c4                isrMessageGet
- *fill*         0x00000000080050fe        0x2 
+                0x00000000080050c0       0x3a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x00000000080050c0                isrMessageGet
+ *fill*         0x00000000080050fa        0x2 
  .text.osMessageCreate
-                0x0000000008005100       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008005100                osMessageCreate
+                0x00000000080050fc       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x00000000080050fc                osMessageCreate
  .text.osMessagePut
-                0x0000000008005144       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008005144                osMessagePut
+                0x0000000008005140       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008005140                osMessagePut
  .text.osMessageGet
-                0x0000000008005174       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008005174                osMessageGet
+                0x0000000008005170       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008005170                osMessageGet
  .text.osTimerThread
-                0x00000000080051a8       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x00000000080051a8                osTimerThread
+                0x00000000080051a4       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x00000000080051a4                osTimerThread
  .text.svcMailCreate
-                0x00000000080051d8       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x00000000080051d8                svcMailCreate
+                0x00000000080051d4       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x00000000080051d4                svcMailCreate
  .text.sysMailAlloc
-                0x000000000800521c       0x58 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x000000000800521c                sysMailAlloc
+                0x0000000008005218       0x58 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008005218                sysMailAlloc
  .text.sysMailFree
-                0x0000000008005274       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008005274                sysMailFree
+                0x0000000008005270       0x64 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008005270                sysMailFree
  .text.osMailCreate
-                0x00000000080052d8       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x00000000080052d8                osMailCreate
+                0x00000000080052d4       0x44 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x00000000080052d4                osMailCreate
  .text.osMailAlloc
-                0x000000000800531c       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x000000000800531c                osMailAlloc
+                0x0000000008005318       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008005318                osMailAlloc
  .text.osMailFree
-                0x0000000008005348       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008005348                osMailFree
+                0x0000000008005344       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008005344                osMailFree
  .text.osMailPut
-                0x0000000008005374       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008005374                osMailPut
+                0x0000000008005370       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008005370                osMailPut
  .text.osMailGet
-                0x0000000008005388       0x1e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
-                0x0000000008005388                osMailGet
- *fill*         0x00000000080053a6        0x2 
+                0x0000000008005384       0x1e ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.o
+                0x0000000008005384                osMailGet
+ *fill*         0x00000000080053a2        0x2 
  .text.rt_evt_wait
-                0x00000000080053a8       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Event.o
-                0x00000000080053a8                rt_evt_wait
+                0x00000000080053a4       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Event.o
+                0x00000000080053a4                rt_evt_wait
  .text.rt_evt_set
-                0x00000000080053e4       0x58 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Event.o
-                0x00000000080053e4                rt_evt_set
+                0x00000000080053e0       0x58 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Event.o
+                0x00000000080053e0                rt_evt_set
  .text.isr_evt_set
-                0x000000000800543c       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Event.o
-                0x000000000800543c                isr_evt_set
+                0x0000000008005438       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Event.o
+                0x0000000008005438                isr_evt_set
  .text.rt_evt_psh
-                0x0000000008005460       0x54 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Event.o
-                0x0000000008005460                rt_evt_psh
+                0x000000000800545c       0x54 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Event.o
+                0x000000000800545c                rt_evt_psh
  .text.rt_put_prio
-                0x00000000080054b4       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
-                0x00000000080054b4                rt_put_prio
+                0x00000000080054b0       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
+                0x00000000080054b0                rt_put_prio
  .text.rt_get_first
-                0x00000000080054e4       0x22 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
-                0x00000000080054e4                rt_get_first
- *fill*         0x0000000008005506        0x2 
+                0x00000000080054e0       0x22 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
+                0x00000000080054e0                rt_get_first
+ *fill*         0x0000000008005502        0x2 
  .text.rt_put_rdy_first
-                0x0000000008005508       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
-                0x0000000008005508                rt_put_rdy_first
+                0x0000000008005504       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
+                0x0000000008005504                rt_put_rdy_first
  .text.rt_put_dly
-                0x000000000800551c       0x48 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
-                0x000000000800551c                rt_put_dly
+                0x0000000008005518       0x48 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
+                0x0000000008005518                rt_put_dly
  .text.rt_dec_dly
-                0x0000000008005564       0x70 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
-                0x0000000008005564                rt_dec_dly
+                0x0000000008005560       0x70 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
+                0x0000000008005560                rt_dec_dly
  .text.rt_rmv_list
-                0x00000000080055d4       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
-                0x00000000080055d4                rt_rmv_list
+                0x00000000080055d0       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
+                0x00000000080055d0                rt_rmv_list
  .text.rt_resort_prio
-                0x0000000008005600       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
-                0x0000000008005600                rt_resort_prio
+                0x00000000080055fc       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
+                0x00000000080055fc                rt_resort_prio
  .text.rt_rmv_dly
-                0x0000000008005630       0x26 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
-                0x0000000008005630                rt_rmv_dly
- *fill*         0x0000000008005656        0x2 
+                0x000000000800562c       0x26 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
+                0x000000000800562c                rt_rmv_dly
+ *fill*         0x0000000008005652        0x2 
  .text.rt_psq_enq
-                0x0000000008005658       0x48 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
-                0x0000000008005658                rt_psq_enq
+                0x0000000008005654       0x48 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.o
+                0x0000000008005654                rt_psq_enq
  .text.rt_mbx_init
-                0x00000000080056a0       0x16 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.o
-                0x00000000080056a0                rt_mbx_init
- *fill*         0x00000000080056b6        0x2 
+                0x000000000800569c       0x16 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.o
+                0x000000000800569c                rt_mbx_init
+ *fill*         0x00000000080056b2        0x2 
  .text.rt_mbx_send
-                0x00000000080056b8       0x98 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.o
-                0x00000000080056b8                rt_mbx_send
+                0x00000000080056b4       0x98 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.o
+                0x00000000080056b4                rt_mbx_send
  .text.rt_mbx_wait
-                0x0000000008005750       0xac ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.o
-                0x0000000008005750                rt_mbx_wait
+                0x000000000800574c       0xac ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.o
+                0x000000000800574c                rt_mbx_wait
  .text.rt_mbx_check
-                0x00000000080057fc        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.o
-                0x00000000080057fc                rt_mbx_check
+                0x00000000080057f8        0x8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.o
+                0x00000000080057f8                rt_mbx_check
  .text.isr_mbx_send
-                0x0000000008005804        0xe ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.o
-                0x0000000008005804                isr_mbx_send
+                0x0000000008005800        0xe ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.o
+                0x0000000008005800                isr_mbx_send
  .text.isr_mbx_receive
-                0x0000000008005812       0x50 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.o
-                0x0000000008005812                isr_mbx_receive
- *fill*         0x0000000008005862        0x2 
+                0x000000000800580e       0x50 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.o
+                0x000000000800580e                isr_mbx_receive
+ *fill*         0x000000000800585e        0x2 
  .text.rt_mbx_psh
-                0x0000000008005864       0xec ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.o
-                0x0000000008005864                rt_mbx_psh
+                0x0000000008005860       0xec ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.o
+                0x0000000008005860                rt_mbx_psh
  .text._init_box
-                0x0000000008005950       0x4a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_MemBox.o
-                0x0000000008005950                _init_box
+                0x000000000800594c       0x4a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_MemBox.o
+                0x000000000800594c                _init_box
  .text.rt_alloc_box
-                0x000000000800599a       0x1a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_MemBox.o
-                0x000000000800599a                rt_alloc_box
+                0x0000000008005996       0x1a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_MemBox.o
+                0x0000000008005996                rt_alloc_box
  .text.rt_free_box
-                0x00000000080059b4       0x28 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_MemBox.o
-                0x00000000080059b4                rt_free_box
+                0x00000000080059b0       0x28 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_MemBox.o
+                0x00000000080059b0                rt_free_box
  .text.rt_mut_init
-                0x00000000080059dc       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mutex.o
-                0x00000000080059dc                rt_mut_init
+                0x00000000080059d8       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mutex.o
+                0x00000000080059d8                rt_mut_init
  .text.rt_mut_delete
-                0x00000000080059ec       0xac ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mutex.o
-                0x00000000080059ec                rt_mut_delete
+                0x00000000080059e8       0xac ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mutex.o
+                0x00000000080059e8                rt_mut_delete
  .text.rt_mut_release
-                0x0000000008005a98       0xe0 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mutex.o
-                0x0000000008005a98                rt_mut_release
+                0x0000000008005a94       0xe0 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mutex.o
+                0x0000000008005a94                rt_mut_release
  .text.rt_mut_wait
-                0x0000000008005b78       0x58 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mutex.o
-                0x0000000008005b78                rt_mut_wait
+                0x0000000008005b74       0x58 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mutex.o
+                0x0000000008005b74                rt_mut_wait
  .text.rt_init_robin
-                0x0000000008005bd0       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Robin.o
-                0x0000000008005bd0                rt_init_robin
+                0x0000000008005bcc       0x18 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Robin.o
+                0x0000000008005bcc                rt_init_robin
  .text.rt_chk_robin
-                0x0000000008005be8       0x48 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Robin.o
-                0x0000000008005be8                rt_chk_robin
+                0x0000000008005be4       0x48 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Robin.o
+                0x0000000008005be4                rt_chk_robin
  .text.rt_sem_init
-                0x0000000008005c30        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.o
-                0x0000000008005c30                rt_sem_init
+                0x0000000008005c2c        0xc ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.o
+                0x0000000008005c2c                rt_sem_init
  .text.rt_sem_delete
-                0x0000000008005c3c       0x5c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.o
-                0x0000000008005c3c                rt_sem_delete
+                0x0000000008005c38       0x5c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.o
+                0x0000000008005c38                rt_sem_delete
  .text.rt_sem_send
-                0x0000000008005c98       0x2a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.o
-                0x0000000008005c98                rt_sem_send
+                0x0000000008005c94       0x2a ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.o
+                0x0000000008005c94                rt_sem_send
  .text.isr_sem_send
-                0x0000000008005cc2       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.o
-                0x0000000008005cc2                isr_sem_send
- *fill*         0x0000000008005cd2        0x2 
+                0x0000000008005cbe       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.o
+                0x0000000008005cbe                isr_sem_send
+ *fill*         0x0000000008005cce        0x2 
  .text.rt_sem_psh
-                0x0000000008005cd4       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.o
-                0x0000000008005cd4                rt_sem_psh
+                0x0000000008005cd0       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.o
+                0x0000000008005cd0                rt_sem_psh
  .text.rt_psh_req
-                0x0000000008005d08       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.o
-                0x0000000008005d08                rt_psh_req
+                0x0000000008005d04       0x24 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.o
+                0x0000000008005d04                rt_psh_req
  .text.rt_pop_req
-                0x0000000008005d2c       0x78 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.o
-                0x0000000008005d2c                rt_pop_req
+                0x0000000008005d28       0x78 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.o
+                0x0000000008005d28                rt_pop_req
  .text.os_tick_init
-                0x0000000008005da4       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.o
-                0x0000000008005da4                os_tick_init
+                0x0000000008005da0       0x30 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.o
+                0x0000000008005da0                os_tick_init
  .text.os_tick_irqack
-                0x0000000008005dd4        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.o
-                0x0000000008005dd4                os_tick_irqack
- *fill*         0x0000000008005dd6        0x2 
+                0x0000000008005dd0        0x2 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.o
+                0x0000000008005dd0                os_tick_irqack
+ *fill*         0x0000000008005dd2        0x2 
  .text.rt_systick
-                0x0000000008005dd8       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.o
-                0x0000000008005dd8                rt_systick
+                0x0000000008005dd4       0x3c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.o
+                0x0000000008005dd4                rt_systick
  .text.rt_stk_check
-                0x0000000008005e14       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.o
-                0x0000000008005e14                rt_stk_check
+                0x0000000008005e10       0x2c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.o
+                0x0000000008005e10                rt_stk_check
  .text.rt_switch_req
-                0x0000000008005e40       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
-                0x0000000008005e40                rt_switch_req
+                0x0000000008005e3c       0x20 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
+                0x0000000008005e3c                rt_switch_req
  .text.rt_dispatch.part.0
-                0x0000000008005e60       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
+                0x0000000008005e5c       0x14 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
  .text.rt_dispatch
-                0x0000000008005e74       0x48 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
-                0x0000000008005e74                rt_dispatch
+                0x0000000008005e70       0x48 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
+                0x0000000008005e70                rt_dispatch
  .text.rt_block
-                0x0000000008005ebc       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
-                0x0000000008005ebc                rt_block
+                0x0000000008005eb8       0x34 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
+                0x0000000008005eb8                rt_block
  .text.rt_tsk_self
-                0x0000000008005ef0       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
-                0x0000000008005ef0                rt_tsk_self
+                0x0000000008005eec       0x10 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
+                0x0000000008005eec                rt_tsk_self
  .text.rt_tsk_prio
-                0x0000000008005f00       0x7c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
-                0x0000000008005f00                rt_tsk_prio
+                0x0000000008005efc       0x7c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
+                0x0000000008005efc                rt_tsk_prio
  .text.rt_tsk_create
-                0x0000000008005f7c       0xa8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
-                0x0000000008005f7c                rt_tsk_create
+                0x0000000008005f78       0xa8 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
+                0x0000000008005f78                rt_tsk_create
  .text.rt_tsk_delete
-                0x0000000008006024      0x154 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
-                0x0000000008006024                rt_tsk_delete
+                0x0000000008006020      0x154 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
+                0x0000000008006020                rt_tsk_delete
  .text.rt_sys_init
-                0x0000000008006178       0xe4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
-                0x0000000008006178                rt_sys_init
+                0x0000000008006174       0xe4 ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
+                0x0000000008006174                rt_sys_init
  .text.rt_sys_start
-                0x000000000800625c       0x8c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
-                0x000000000800625c                rt_sys_start
- .text.__errno  0x00000000080062e8        0xc /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-errno.o)
-                0x00000000080062e8                __errno
+                0x0000000008006258       0x8c ./BUILD/NUCLEO_F303K8/GCC_ARM/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.o
+                0x0000000008006258                rt_sys_start
+ .text.__errno  0x00000000080062e4        0xc /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-errno.o)
+                0x00000000080062e4                __errno
  .text.__sflush_r
-                0x00000000080062f4      0x10c /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-fflush.o)
-                0x00000000080062f4                __sflush_r
+                0x00000000080062f0      0x10c /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-fflush.o)
+                0x00000000080062f0                __sflush_r
  .text._fflush_r
-                0x0000000008006400       0x54 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-fflush.o)
-                0x0000000008006400                _fflush_r
- .text.fflush   0x0000000008006454       0x24 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-fflush.o)
-                0x0000000008006454                fflush
- .text.std      0x0000000008006478       0x48 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-findfp.o)
+                0x00000000080063fc       0x54 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-fflush.o)
+                0x00000000080063fc                _fflush_r
+ .text.fflush   0x0000000008006450       0x24 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-fflush.o)
+                0x0000000008006450                fflush
+ .text.std      0x0000000008006474       0x48 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-findfp.o)
  .text._cleanup_r
-                0x00000000080064c0        0xc /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-findfp.o)
-                0x00000000080064c0                _cleanup_r
+                0x00000000080064bc        0xc /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-findfp.o)
+                0x00000000080064bc                _cleanup_r
  .text.__sfmoreglue
-                0x00000000080064cc       0x2c /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-findfp.o)
-                0x00000000080064cc                __sfmoreglue
- .text.__sinit  0x00000000080064f8       0x60 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-findfp.o)
-                0x00000000080064f8                __sinit
- .text.__sfp    0x0000000008006558       0x78 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-findfp.o)
-                0x0000000008006558                __sfp
+                0x00000000080064c8       0x2c /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-findfp.o)
+                0x00000000080064c8                __sfmoreglue
+ .text.__sinit  0x00000000080064f4       0x60 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-findfp.o)
+                0x00000000080064f4                __sinit
+ .text.__sfp    0x0000000008006554       0x78 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-findfp.o)
+                0x0000000008006554                __sfp
  .text._fwalk_reent
-                0x00000000080065d0       0x3c /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-fwalk.o)
-                0x00000000080065d0                _fwalk_reent
+                0x00000000080065cc       0x3c /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-fwalk.o)
+                0x00000000080065cc                _fwalk_reent
  .text.__libc_init_array
-                0x000000000800660c       0x48 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-init.o)
-                0x000000000800660c                __libc_init_array
+                0x0000000008006608       0x48 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-init.o)
+                0x0000000008006608                __libc_init_array
  .text.__swhatbuf_r
-                0x0000000008006654       0x48 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-makebuf.o)
-                0x0000000008006654                __swhatbuf_r
+                0x0000000008006650       0x48 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-makebuf.o)
+                0x0000000008006650                __swhatbuf_r
  .text.__smakebuf_r
-                0x000000000800669c       0x80 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-makebuf.o)
-                0x000000000800669c                __smakebuf_r
- .text.malloc   0x000000000800671c       0x10 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-malloc.o)
-                0x000000000800671c                malloc
- .text.free     0x000000000800672c       0x10 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-malloc.o)
-                0x000000000800672c                free
- *fill*         0x000000000800673c        0x4 
+                0x0000000008006698       0x80 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-makebuf.o)
+                0x0000000008006698                __smakebuf_r
+ .text.malloc   0x0000000008006718       0x10 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-malloc.o)
+                0x0000000008006718                malloc
+ .text.free     0x0000000008006728       0x10 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-malloc.o)
+                0x0000000008006728                free
+ *fill*         0x0000000008006738        0x8 
  .text          0x0000000008006740       0xa0 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-memchr.o)
                 0x0000000008006740                memchr
  .text.memcpy   0x00000000080067e0       0x16 /usr/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp/libc_nano.a(lib_a-memcpy-stub.o)

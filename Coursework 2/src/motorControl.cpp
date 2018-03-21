@@ -110,7 +110,12 @@ void motorISR(){
         led1 = !led1;
         static int8_t oldRotorState;
         int8_t rotorState = readRotorState();
-        motorOut((rotorState - orState + lead + 6)%6,motorPWM);
+        // Avoid doing a modulo divide
+        int8_t tmpDriveState = (rotorState - orState + lead + 6);
+        while(tmpDriveState >= 6){
+          tmpDriveState -= 6;
+        }
+        motorOut(tmpDriveState,motorPWM);
         if(rotorState - oldRotorState == 5) motorPosition--;
         else if (rotorState - oldRotorState == -5) motorPosition++;
         else motorPosition += (rotorState - oldRotorState);
@@ -133,11 +138,15 @@ void motorCtrlFn(){
                 act_velocity = (motorPosition - oldMotorPosition); // Calculate the velocity of the motor.
                 act_rotations = motorPosition;
 
-
                 if(act_velocity==0 && (tar_velocity || tar_rotations))
                 {
                   int8_t rotorState = readRotorState();
-                  motorOut((rotorState - orState + lead + 6)%6,motorPWM);
+                  // Avoid doing a modulo divide
+                  int8_t tmpDriveState = (rotorState - orState + lead + 6);
+                  while(tmpDriveState >= 6){
+                    tmpDriveState -= 6;
+                  }
+                  motorOut(tmpDriveState,motorPWM);
                 }
 
                 //only veloctity controller
@@ -228,7 +237,6 @@ uint32_t motorRotationController(){
         prevRotationError = rotationError;
 
         y_r = PROPORTIONAL_ROT_CONST*(rotationError) - DIFFERENTIAL_ROT_CONST*(rotationError - prevRotationError); // Need to divide by time
-
 
         //changes direction if overshoots
         lead = (y_r > 0) ?  2 : -2;
