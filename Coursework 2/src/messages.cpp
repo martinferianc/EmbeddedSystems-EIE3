@@ -72,6 +72,9 @@ void commOutFn(){
                 case (TORQUE_TEST):
                         pc.printf("Torque SET: %d rev/s\r\n", pMessage->data);
                         break;
+                case (HEX_TEST):
+                        pc.printf("HEX TEST: %x\r\n", pMessage->data);
+                        break;
                 default:
                         pc.printf("Unknown code, data: %d \r\n", pMessage->data);
                         break;

@@ -17,6 +17,7 @@
 #define TAR_VELOCITY_SET  18
 #define TAR_ROTATION_SET  19
 #define TORQUE_TEST       20
+#define HEX_TEST          21
 #define ERROR      99
 
 extern RawSerial pc;
