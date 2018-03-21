@@ -67,5 +67,6 @@ uint32_t motorRotationController();
 
 extern Thread motorCtrlT;
 
+extern volatile int32_t motorPosition;
 
 #endif

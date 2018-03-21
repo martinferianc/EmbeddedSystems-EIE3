@@ -17,11 +17,11 @@ float act_rotations   = 0.0;
 volatile int32_t motorPosition   = 0;
 uint32_t orState = 0;
 
-int32_t integralVelocityError = 0;
-int32_t prevVelocityError = 0;
+float integralVelocityError = 0;
+float prevVelocityError = 0;
 
-int32_t integralRotationsError = 0;
-int32_t prevRotationError = 0;
+float integralRotationsError = 0;
+float prevRotationError = 0;
 
 // MOTOR VELOCITY VARIABLES
 int8_t count= 0;
@@ -111,11 +111,12 @@ void motorISR(){
         static int8_t oldRotorState;
         int8_t rotorState = readRotorState();
         // Avoid doing a modulo divide
-        int8_t tmpDriveState = (rotorState - orState + lead + 6);
-        while(tmpDriveState >= 6){
-          tmpDriveState -= 6;
-        }
-        motorOut(tmpDriveState,motorPWM);
+        //int8_t tmpDriveState = (rotorState - orState + lead + 6);
+        //while(tmpDriveState >= 6){
+        //  tmpDriveState -= 6;
+        //}
+        //motorOut(tmpDriveState,motorPWM);
+        motorOut((rotorState - orState + lead + 6)%6,motorPWM);
         if(rotorState - oldRotorState == 5) motorPosition--;
         else if (rotorState - oldRotorState == -5) motorPosition++;
         else motorPosition += (rotorState - oldRotorState);
@@ -127,16 +128,16 @@ void motorISR(){
 void motorCtrlFn(){
         motorHome();      // Home the motor
         Ticker motorCtrlTicker; // Used to control how often motor control thread runs
-        int32_t oldMotorPosition = 0;
+        float oldMotorPosition = 0;
         uint32_t motorPWM_rot;
         uint32_t motorPWM_vel;
         motorCtrlTicker.attach_us(&motorCtrlTick, 100000);
         //motorPWM = 500;
         while(1) {
-                oldMotorPosition = motorPosition; // Update the motor position
+                oldMotorPosition = ((float)motorPosition)/6; // Update the motor position
                 motorCtrlT.signal_wait(0x1); // Suspend until signal occurs.
-                act_velocity = (motorPosition - oldMotorPosition); // Calculate the velocity of the motor.
-                act_rotations = motorPosition;
+                act_velocity = 10*(((float)motorPosition)/6 - oldMotorPosition); // Calculate the velocity of the motor.
+                act_rotations = ((float)motorPosition)/6;
 
                 if(act_velocity==0 && (tar_velocity || tar_rotations))
                 {
@@ -197,16 +198,16 @@ void motorCtrlTick(){
 uint32_t motorVelocityController()
 {
         // y_s = k_p(s-|v|)
-        int32_t y_s;
+        float y_s;
 
         //If the target velocity is 0 reverse the directon
         lead = (tar_velocity<0) ? -2 : 2;
 
         //velocity error term
-        int32_t velocityError = tar_velocity - act_velocity;
+        float velocityError = abs(tar_velocity) - abs(act_velocity);
 
         //calculating differential error
-        int32_t differentialVelocityError = velocityError - prevVelocityError;
+        float differentialVelocityError = velocityError - prevVelocityError;
         prevVelocityError = velocityError;
 
         //calculating integral error (with bounds)
@@ -214,7 +215,7 @@ uint32_t motorVelocityController()
         if(integralVelocityError > INTEGRAL_VEL_ERR_MAX) integralVelocityError = INTEGRAL_VEL_ERR_MAX;
         if(integralVelocityError < (-INTEGRAL_VEL_ERR_MAX)) integralVelocityError =-INTEGRAL_VEL_ERR_MAX;
 
-        y_s = PROPORTIONAL_VEL_CONST*(abs(tar_velocity) - abs(act_velocity)) + DIFFERENTIAL_VEL_CONST*differentialVelocityError + integralVelocityError;
+        y_s = PROPORTIONAL_VEL_CONST*(abs(tar_velocity) - abs(act_velocity));// + DIFFERENTIAL_VEL_CONST*differentialVelocityError + integralVelocityError;
 
         //TODO: I think y needs to have modulus taken
         y_s = (y_s>0) ? y_s : 0;
@@ -231,9 +232,9 @@ uint32_t motorVelocityController()
 
 // Implement the proportional speed control
 uint32_t motorRotationController(){
-        int32_t y_r;
+        float y_r;
         //Error term
-        int32_t rotationError = tar_rotations - act_rotations;
+        float rotationError = tar_rotations - act_rotations;
         prevRotationError = rotationError;
 
         y_r = PROPORTIONAL_ROT_CONST*(rotationError) - DIFFERENTIAL_ROT_CONST*(rotationError - prevRotationError); // Need to divide by time

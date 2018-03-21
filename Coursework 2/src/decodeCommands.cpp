@@ -10,8 +10,6 @@ int charBufferCounter = 0;
 // Key for testing the motor torque
 volatile uint32_t motorPWM = 0;
 
-volatile uint32_t err = 0;
-
 //Motor control variables
 volatile float tar_velocity = 0.0;
 volatile float tar_rotations = 0.0;
@@ -50,7 +48,7 @@ void decode(){
                                 //rotations_mutex.lock();
                                 sscanf(charBuffer, "R%f", &tar_rotations_tmp);
                                 putMessage(TAR_ROTATION_SET,*(int32_t*)&tar_rotations_tmp);
-                                tar_rotations += 6*tar_rotations_tmp;
+                                tar_rotations = ((float)motorPosition)/6 + tar_rotations_tmp;
                                 //rotations_mutex.unlock();
                                 break;
                         case 'V':

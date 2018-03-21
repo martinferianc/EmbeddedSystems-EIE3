@@ -3,6 +3,7 @@
 
 #include "rtos.h"
 #include "messages.h"
+#include "motorControl.h"
 
 extern volatile uint64_t* key;
 extern volatile float tar_velocity;
