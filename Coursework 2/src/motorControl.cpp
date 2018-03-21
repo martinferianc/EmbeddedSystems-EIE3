@@ -108,7 +108,7 @@ void setISRPhotoSensors(){
 // ISR to handle the updating of the motor position
 void motorISR(){
         led1 = !led1;
-        static int8_t oldRotorState;
+        static int8_t oldRotorState = 0;
         int8_t rotorState = readRotorState();
         // Avoid doing a modulo divide
         //int8_t tmpDriveState = (rotorState - orState + lead + 6);
@@ -128,7 +128,7 @@ void motorISR(){
 void motorCtrlFn(){
         motorHome();      // Home the motor
         Ticker motorCtrlTicker; // Used to control how often motor control thread runs
-        float oldMotorPosition = 0;
+        float oldMotorPosition = 0.0;
         uint32_t motorPWM_rot;
         uint32_t motorPWM_vel;
         motorCtrlTicker.attach_us(&motorCtrlTick, 100000);
@@ -136,8 +136,8 @@ void motorCtrlFn(){
         while(1) {
                 oldMotorPosition = ((float)motorPosition)/6; // Update the motor position
                 motorCtrlT.signal_wait(0x1); // Suspend until signal occurs.
-                act_velocity = 10*(((float)motorPosition)/6 - oldMotorPosition); // Calculate the velocity of the motor.
-                act_rotations = ((float)motorPosition)/6;
+                act_velocity  =   10*(((float)motorPosition)/6 - oldMotorPosition); // Calculate the velocity of the motor.
+                act_rotations =       ((float)motorPosition)/6;
 
                 if(act_velocity==0 && (tar_velocity || tar_rotations))
                 {
@@ -215,12 +215,12 @@ uint32_t motorVelocityController()
         if(integralVelocityError > INTEGRAL_VEL_ERR_MAX) integralVelocityError = INTEGRAL_VEL_ERR_MAX;
         if(integralVelocityError < (-INTEGRAL_VEL_ERR_MAX)) integralVelocityError =-INTEGRAL_VEL_ERR_MAX;
 
-        y_s = PROPORTIONAL_VEL_CONST*(abs(tar_velocity) - abs(act_velocity));// + DIFFERENTIAL_VEL_CONST*differentialVelocityError + integralVelocityError;
+        y_s = PROPORTIONAL_VEL_CONST*(abs(tar_velocity) - abs(act_velocity)) + DIFFERENTIAL_VEL_CONST*differentialVelocityError + integralVelocityError;
 
         //TODO: I think y needs to have modulus taken
         y_s = (y_s>0) ? y_s : 0;
 
-        y_s = (y_s > PWM_LIMIT) ? PWM_LIMIT :
+        y_s = (y_s > (float)PWM_LIMIT) ? (float)PWM_LIMIT :
               y_s;
 
         //TODO: deadband motorPWM
@@ -237,18 +237,26 @@ uint32_t motorRotationController(){
         float rotationError = tar_rotations - act_rotations;
         prevRotationError = rotationError;
 
-        y_r = PROPORTIONAL_ROT_CONST*(rotationError) - DIFFERENTIAL_ROT_CONST*(rotationError - prevRotationError); // Need to divide by time
+        float differentialRotationError = rotationError - prevRotationError;
+        if(differentialRotationError>  DIFF_ROT_MAX) differentialRotationError = DIFF_ROT_MAX;
+        if(differentialRotationError< -DIFF_ROT_MAX) differentialRotationError =-DIFF_ROT_MAX;
+
+        integralRotationsError = rotationError*INTEGRAL_ROT_CONST;
+        if(integralRotationsError > INTEGRAL_ROT_ERR_MAX) integralRotationsError    = INTEGRAL_ROT_ERR_MAX;
+        if(integralRotationsError < (-INTEGRAL_ROT_ERR_MAX)) integralRotationsError =-INTEGRAL_ROT_ERR_MAX;
+
+        y_r = PROPORTIONAL_ROT_CONST*(rotationError) - DIFFERENTIAL_ROT_CONST*differentialRotationError;// + integralRotationsError; // Need to divide by time
 
         //changes direction if overshoots
         lead = (y_r > 0) ?  2 : -2;
 
         //sets y to within max/min limits
 
-        y_r = (y_r>0) ? y_r : 0;
+        y_r = abs(y_r);
 
         y_r = (y_r > PWM_LIMIT) ? PWM_LIMIT : y_r;
 
         //stops rotating of no more (integral) error
         //if(rotationIntegralError==0) lead = 0;
-        return (uint32_t)y_r;
+        return (y_r) ? (uint32_t)y_r : (uint32_t)DEAD_BAND_ROT;
 }

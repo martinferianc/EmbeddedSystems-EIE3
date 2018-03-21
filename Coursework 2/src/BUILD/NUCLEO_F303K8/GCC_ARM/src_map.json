@@ -3,8 +3,8 @@
         "module": "[fill]", 
         "size": {
             ".data": 3, 
-            ".bss": 19, 
-            ".text": 120
+            ".bss": 23, 
+            ".text": 116
         }
     }, 
     {
@@ -115,14 +115,14 @@
         "module": "motorControl.o", 
         "size": {
             ".data": 5, 
-            ".bss": 466, 
-            ".text": 1942
+            ".bss": 470, 
+            ".text": 2058
         }
     }, 
     {
         "summary": {
-            "static_ram": 5616, 
-            "total_flash": 52916
+            "static_ram": 5624, 
+            "total_flash": 53028
         }
     }
 ]

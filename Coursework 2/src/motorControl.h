@@ -28,18 +28,19 @@
 // Parameters for proportional control
 #define PWM_LIMIT 1000
 
-#define PROPORTIONAL_VEL_CONST 50
-#define DIFFERENTIAL_VEL_CONST 1
-#define INTEGRAL_VEL_CONST     5 
-#define DEAD_BAND_VEL          20
-#define INTEGRAL_VEL_ERR_MAX   500 
+#define PROPORTIONAL_VEL_CONST 40
+#define DIFFERENTIAL_VEL_CONST 5
+#define INTEGRAL_VEL_CONST     10
+#define DEAD_BAND_VEL          50
+#define INTEGRAL_VEL_ERR_MAX   600
 
 
-#define PROPORTIONAL_ROT_CONST 5 
+#define PROPORTIONAL_ROT_CONST 10
 #define DIFFERENTIAL_ROT_CONST 30
-#define INTEGRAL_ROT_CONST     5
-#define DEAD_BAND_ROT 20
-#define INTEGRAL_ROT_ERR_MAX   100
+#define INTEGRAL_ROT_CONST     1
+#define DEAD_BAND_ROT          20
+#define INTEGRAL_ROT_ERR_MAX   20
+#define DIFF_ROT_MAX           30
 
 //Set a given drive state
 void motorOut(int8_t driveState, uint32_t torque);
