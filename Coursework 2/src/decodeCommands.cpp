@@ -57,8 +57,9 @@ void decode(){
                                 //pc.printf("VELOCITY");
                                 //velocity_mutex.lock();
                                 sscanf(charBuffer, "V%d", &tar_velocity);
+                                //pc.printf("%f",tar_velocity);
                                 putMessage(TAR_VELOCITY_SET, tar_velocity);
-                                tar_velocity = (tar_velocity == 0) ? 2000 : 6*tar_velocity;
+                                tar_velocity = (tar_velocity == 0) ? 2000 : tar_velocity;
                                 //velocity_mutex.unlock();
                                 break;
                         case 'K':

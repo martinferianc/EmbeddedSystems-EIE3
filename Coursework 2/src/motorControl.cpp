@@ -107,7 +107,7 @@ void setISRPhotoSensors(){
 
 // ISR to handle the updating of the motor position
 void motorISR(){
-        led1 = !led1; 
+        led1 = !led1;
         static int8_t oldRotorState;
         int8_t rotorState = readRotorState();
         motorOut((rotorState - orState + lead + 6)%6,motorPWM);
@@ -128,18 +128,18 @@ void motorCtrlFn(){
         motorCtrlTicker.attach_us(&motorCtrlTick, 100000);
         //motorPWM = 500;
         while(1) {
-                oldMotorPosition  = motorPosition; // Update the motor position
+                oldMotorPosition = motorPosition; // Update the motor position
                 motorCtrlT.signal_wait(0x1); // Suspend until signal occurs.
                 act_velocity = (motorPosition - oldMotorPosition); // Calculate the velocity of the motor.
-                act_rotations     = motorPosition;
+                act_rotations = motorPosition;
 
-                
+
                 if(act_velocity==0 && (tar_velocity || tar_rotations))
                 {
                   int8_t rotorState = readRotorState();
                   motorOut((rotorState - orState + lead + 6)%6,motorPWM);
                 }
-                
+
                 //only veloctity controller
                 if(tar_velocity && !tar_rotations) {
                         motorPWM_vel = motorVelocityController();
@@ -201,11 +201,11 @@ uint32_t motorVelocityController()
         prevVelocityError = velocityError;
 
         //calculating integral error (with bounds)
-        integralVelocityError += (velocityError > 0) ? velocityError*INTEGRAL_VEL_POS_CONST :
-        if(integralVelocityError> INTEGRAL_VEL_ERR_MAX) integralVelocityError = INTEGRAL_VEL_ERR_MAX;
-        if(integralVelocityError<-INTEGRAL_VEL_ERR_MAX) integralVelocityError =-INTEGRAL_VEL_ERR_MAX;
+        integralVelocityError +=  velocityError*INTEGRAL_VEL_CONST;
+        if(integralVelocityError > INTEGRAL_VEL_ERR_MAX) integralVelocityError = INTEGRAL_VEL_ERR_MAX;
+        if(integralVelocityError < (-INTEGRAL_VEL_ERR_MAX)) integralVelocityError =-INTEGRAL_VEL_ERR_MAX;
 
-        y_s = PROPORTIONAL_VEL_CONST*(abs(tar_velocity) - abs(act_velocity)) + DIFFERENTIAL_VEL_CONST*differentialVelocityError + integralVelocityError; 
+        y_s = PROPORTIONAL_VEL_CONST*(abs(tar_velocity) - abs(act_velocity)) + DIFFERENTIAL_VEL_CONST*differentialVelocityError + integralVelocityError;
 
         //TODO: I think y needs to have modulus taken
         y_s = (y_s>0) ? y_s : 0;
@@ -214,7 +214,7 @@ uint32_t motorVelocityController()
               y_s;
 
         //TODO: deadband motorPWM
-        return (y_s) ? (uint32_t)y_s : (uint32_t)DEAD_BAND_VEL; 
+        return (y_s) ? (uint32_t)y_s : (uint32_t)DEAD_BAND_VEL;
         //motorPWM = (y_s) ? (uint32_t)y_s : (uint32_t)DEAD_BAND_VEL;
         //return;
 }
