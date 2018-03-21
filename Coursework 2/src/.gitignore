@@ -1,10 +1,14 @@
-BUILD/
+
 *.pyc
+__pycache__
+*.cpy
+.DC_Store
+#ignore all of the mbed libs
 mbed/
-mbed-dev/
 mbed-rtos/
+mbed-dev/
 Crypto/
-*.lib
+BUILD/
 .temp/
-*.swp
-*.o
+*.lib
+*.bld

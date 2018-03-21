@@ -8,9 +8,9 @@
 #define DEBUG 1
 
 // THREADS
-Thread decodeThread(osPriorityNormal,1024);
+Thread decodeThread(osPriorityNormal,1536);
 Thread commOutT(osPriorityNormal,1024);
-Thread motorCtrlT (osPriorityHigh,1536); // Thread to hold task running every 100ms
+Thread motorCtrlT (osPriorityHigh,1024); // Thread to hold task running every 100ms
 
 int main() {
         // Set the constants and everything
