@@ -4,7 +4,7 @@
         "size": {
             ".data": 3, 
             ".bss": 19, 
-            ".text": 106
+            ".text": 94
         }
     }, 
     {
@@ -43,8 +43,8 @@
         "module": "decodeCommands.o", 
         "size": {
             ".data": 4, 
-            ".bss": 165, 
-            ".text": 599
+            ".bss": 169, 
+            ".text": 587
         }
     }, 
     {
@@ -115,14 +115,14 @@
         "module": "motorControl.o", 
         "size": {
             ".data": 5, 
-            ".bss": 446, 
-            ".text": 1710
+            ".bss": 466, 
+            ".text": 1686
         }
     }, 
     {
         "summary": {
-            "static_ram": 5592, 
-            "total_flash": 37075
+            "static_ram": 5616, 
+            "total_flash": 37027
         }
     }
 ]
