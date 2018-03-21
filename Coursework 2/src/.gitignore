@@ -8,4 +8,3 @@ Crypto/
 .temp/
 *.swp
 *.o
-*.h.gch
