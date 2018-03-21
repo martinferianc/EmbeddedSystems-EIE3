@@ -9,7 +9,7 @@
 
 // THREADS
 Thread decodeThread(osPriorityNormal,1536);
-Thread commOutT(osPriorityNormal,1024);
+Thread commOutT(osPriorityNormal,1536);
 Thread motorCtrlT (osPriorityHigh,1024); // Thread to hold task running every 100ms
 
 int main() {

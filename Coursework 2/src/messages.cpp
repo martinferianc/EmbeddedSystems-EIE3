@@ -29,6 +29,7 @@ void commOutFn(){
         while(1) {
                 osEvent newEvent = outMessages.get();
                 message_t *pMessage = (message_t*)newEvent.value.p;
+                float floating_data = *(float*)pMessage->data;
                 switch(pMessage->code) {
                 case (STARTUP):
                         pc.printf("STARTUP COMPLETE %d, %d \r\n", pMessage->code, pMessage->data);
@@ -40,7 +41,7 @@ void commOutFn(){
                         pc.printf("State for %d with data 0x%016x\r\n", pMessage->code, pMessage->data);
                         break;
                 case (VELOCITY):
-                        pc.printf("Motor Velocity: %d rev/s\r\n", pMessage->data);
+                        pc.printf("Motor Velocity: %f rev/s\r\n", *(float*)&(pMessage->data));
                         break;
                 case (HASH):
                         pc.printf("Bitcoin Hashes per second: %d\r\n", pMessage->data);
@@ -52,22 +53,22 @@ void commOutFn(){
                         pc.printf("New Key: 0x%016x\r\n", pMessage->data);
                         break;
                 case (TAR_VELOCITY):
-                        pc.printf("Target Velocity: %d rev/s\r\n", pMessage->data);
+                        pc.printf("Target Velocity: %f rev/s\r\n", *(float*)&(pMessage->data));
                         break;
                 case (TEST_MSG):
                         pc.printf("Test: %d \r\n", pMessage->data);
                         break;
                 case (ROTATION):
-                        pc.printf("Rotation: %d \r\n", pMessage->data);
+                        pc.printf("Rotation: %f \r\n", *(float*)&(pMessage->data));
                         break;
                 case (TAR_ROTATION):
-                        pc.printf("Target Rotation: %d \r\n", pMessage->data);
+                        pc.printf("Target Rotation: %f \r\n", *(float*)&(pMessage->data));
                         break;
                 case (TAR_ROTATION_SET):
-                        pc.printf("Target Rotation SET: %d \r\n", pMessage->data);
+                        pc.printf("Target Rotation SET: %f \r\n", *(float*)&(pMessage->data));
                         break;
                 case (TAR_VELOCITY_SET):
-                        pc.printf("Target Velocity SET: %d rev/s\r\n", pMessage->data);
+                        pc.printf("Target Velocity SET: %f rev/s\r\n", *(float*)&(pMessage->data));
                         break;
                 case (TORQUE_TEST):
                         pc.printf("Torque SET: %d rev/s\r\n", pMessage->data);

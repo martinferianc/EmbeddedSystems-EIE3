@@ -12,8 +12,8 @@ volatile int8_t state;
 // MOTOR TORQUE VARIABLES
 volatile int8_t lead = 2;  //2 for forwards, -2 for backwards
 
-int32_t act_velocity    = 0;
-int32_t act_rotations   = 0;
+float act_velocity    = 0.0;
+float act_rotations   = 0.0;
 volatile int32_t motorPosition   = 0;
 uint32_t orState = 0;
 
@@ -145,8 +145,8 @@ void motorCtrlFn(){
                         motorPWM_vel = motorVelocityController();
                         motorPWM = motorPWM_vel;
                         if (count==0) {
-                                putMessage(VELOCITY,act_velocity);
-                                putMessage(TAR_VELOCITY,tar_velocity);
+                                putMessage(VELOCITY,*(int32_t*)&act_velocity);
+                                putMessage(TAR_VELOCITY,*(int32_t*)&tar_velocity);
                         }
 
                 }
@@ -155,8 +155,8 @@ void motorCtrlFn(){
                         motorPWM_rot = motorRotationController();
                         motorPWM = motorPWM_rot;
                         if (count==0) {
-                                putMessage(ROTATION,act_rotations);
-                                putMessage(TAR_ROTATION,tar_rotations);
+                                putMessage(ROTATION,*(int32_t*)&act_rotations);
+                                putMessage(TAR_ROTATION,*(int32_t*)&tar_rotations);
                         }
                 }
 
@@ -168,8 +168,8 @@ void motorCtrlFn(){
                         if(lead<0)  motorPWM = (motorPWM_vel>motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
                         else        motorPWM = (motorPWM_vel<motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
                         if (count==0) {
-                                putMessage(VELOCITY,act_velocity);
-                                putMessage(TAR_VELOCITY,tar_velocity);
+                                putMessage(VELOCITY,*(int32_t*)&act_velocity);
+                                putMessage(TAR_VELOCITY,*(int32_t*)&tar_velocity);
                         }
                 }
                 count = (count==0) ? PRINT_FREQUENCY : count;
