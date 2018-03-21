@@ -42,7 +42,7 @@
 #define INTEGRAL_ROT_ERR_MAX   100
 
 //Set a given drive state
-extern void motorOut(int8_t driveState);
+void motorOut(int8_t driveState, uint32_t torque);
 
 extern inline void updateState();
 

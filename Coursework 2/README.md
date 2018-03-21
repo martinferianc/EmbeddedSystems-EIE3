@@ -30,7 +30,7 @@ mbed add https://os.mbed.com/users/feb11/code/Crypto/
 
 # Compile project
 ```
-mbed compile -t GCC_ARM -m NUCLEO_F303K8
+mbed compile -t GCC_ARM -m NUCLEO_F303K8 --profile=build_profile1.json
 ```
 
 ## Installation Instructions- Mac

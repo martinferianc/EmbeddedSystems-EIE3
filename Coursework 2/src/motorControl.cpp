@@ -39,7 +39,7 @@ PwmOut L3L(L3Lpin);
 DigitalOut L3H(L3Hpin);
 
 //Set a given drive stats
-void motorOut(int8_t driveState){
+void motorOut(int8_t driveState, uint32_t torque){
 
         //Lookup the output byte from the drive state.
         int8_t driveOut = driveTable[driveState & 0x07];
@@ -53,11 +53,11 @@ void motorOut(int8_t driveState){
         if (~driveOut & 0x20) L3H = 1;
 
         //Then turn on
-        if (driveOut & 0x01) L1L.pulsewidth_us(motorPWM);
+        if (driveOut & 0x01) L1L.pulsewidth_us(torque);
         if (driveOut & 0x02) L1H = 0;
-        if (driveOut & 0x04) L2L.pulsewidth_us(motorPWM);
+        if (driveOut & 0x04) L2L.pulsewidth_us(torque);
         if (driveOut & 0x08) L2H = 0;
-        if (driveOut & 0x10) L3L.pulsewidth_us(motorPWM);
+        if (driveOut & 0x10) L3L.pulsewidth_us(torque);
         if (driveOut & 0x20) L3H = 0;
 }
 
@@ -73,12 +73,9 @@ inline int8_t readRotorState(){
 
 void motorHome() {
         //Put the motor in drive state 0 and wait for it to stabilise
-        motorPWM = 1000;
-        motorOut(0);
-        motorPWM = 0;
+        motorOut(0,1000);
         wait(2);
         orState = readRotorState(); //initialises oldRotorState
-        motorOut((lead + 6)%6);
         return;
 }
 
@@ -110,7 +107,7 @@ void setISRPhotoSensors(){
 void motorISR(){
         static int8_t oldRotorState = 0;
         int8_t rotorState = readRotorState();
-        motorOut((rotorState - orState + lead + 6)%6);
+        motorOut((rotorState - orState + lead + 6)%6,motorPWM);
         if(rotorState - oldRotorState == 5) motorPosition--;
         else if (rotorState - oldRotorState == -5) motorPosition++;
         else motorPosition += (rotorState - oldRotorState);
@@ -138,7 +135,7 @@ void motorCtrlFn(){
                 if(act_velocity==0 && (tar_velocity || tar_rotations))
                 {
                   int8_t rotorState = readRotorState();
-                  motorOut((rotorState - orState + lead + 6)%6);
+                  motorOut((rotorState - orState + lead + 6)%6,motorPWM);
                 } 
 
                 //only veloctity controller
@@ -162,9 +159,12 @@ void motorCtrlFn(){
                 }
                 
                 if (tar_velocity && tar_rotations) {
-                
-                        if(lead<0) motorPWM = (motorPWM_vel>motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
-                        else motorPWM = (motorPWM_vel<motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
+
+                        motorPWM_vel = motorVelocityController();
+                        motorPWM_rot = motorRotationController(); 
+
+                        if(lead<0)  motorPWM = (motorPWM_vel>motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
+                        else        motorPWM = (motorPWM_vel<motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
                         if (count==0) {
                                 putMessage(VELOCITY,act_velocity);
                                 putMessage(TAR_VELOCITY,tar_velocity);
