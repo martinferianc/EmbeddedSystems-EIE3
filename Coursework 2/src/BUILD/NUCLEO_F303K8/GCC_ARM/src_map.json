@@ -2,9 +2,9 @@
     {
         "module": "[fill]", 
         "size": {
-            ".data": 0, 
-            ".bss": 17, 
-            ".text": 101
+            ".data": 3, 
+            ".bss": 19, 
+            ".text": 112
         }
     }, 
     {
@@ -12,7 +12,7 @@
         "size": {
             ".data": 464, 
             ".bss": 12, 
-            ".text": 7826
+            ".text": 20781
         }
     }, 
     {
@@ -20,7 +20,7 @@
         "size": {
             ".data": 0, 
             ".bss": 0, 
-            ".text": 768
+            ".text": 3336
         }
     }, 
     {
@@ -32,19 +32,27 @@
         }
     }, 
     {
+        "module": "bitcoinMine.o", 
+        "size": {
+            ".data": 68, 
+            ".bss": 0, 
+            ".text": 0
+        }
+    }, 
+    {
         "module": "decodeCommands.o", 
         "size": {
             ".data": 4, 
-            ".bss": 113, 
-            ".text": 379
+            ".bss": 169, 
+            ".text": 644
         }
     }, 
     {
         "module": "main.o", 
         "size": {
             ".data": 4, 
-            ".bss": 352, 
-            ".text": 381
+            ".bss": 264, 
+            ".text": 344
         }
     }, 
     {
@@ -52,7 +60,7 @@
         "size": {
             ".data": 4, 
             ".bss": 100, 
-            ".text": 1516
+            ".text": 1786
         }
     }, 
     {
@@ -68,7 +76,7 @@
         "size": {
             ".data": 4, 
             ".bss": 270, 
-            ".text": 1472
+            ".text": 1526
         }
     }, 
     {
@@ -76,7 +84,7 @@
         "size": {
             ".data": 4, 
             ".bss": 1072, 
-            ".text": 10561
+            ".text": 10689
         }
     }, 
     {
@@ -84,7 +92,7 @@
         "size": {
             ".data": 4, 
             ".bss": 4, 
-            ".text": 750
+            ".text": 768
         }
     }, 
     {
@@ -92,29 +100,29 @@
         "size": {
             ".data": 20, 
             ".bss": 2222, 
-            ".text": 7259
+            ".text": 7727
         }
     }, 
     {
         "module": "messages.o", 
         "size": {
             ".data": 4, 
-            ".bss": 256, 
-            ".text": 284
+            ".bss": 320, 
+            ".text": 799
         }
     }, 
     {
         "module": "motorControl.o", 
         "size": {
-            ".data": 4, 
-            ".bss": 564, 
-            ".text": 512
+            ".data": 5, 
+            ".bss": 466, 
+            ".text": 1818
         }
     }, 
     {
         "summary": {
-            "static_ram": 5608, 
-            "total_flash": 34203
+            "static_ram": 5616, 
+            "total_flash": 52796
         }
     }
 ]

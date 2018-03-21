@@ -14,27 +14,72 @@ RawSerial pc(SERIAL_TX, SERIAL_RX);
 // putMessage() takes a message and a unique code, allocates the memory
 // for the message and places the message in the FIFO mail queue
 
-void putMessage(uint8_t code, uint32_t data){
-  message_t *pMessage = outMessages.alloc();
-  pMessage->code = code;
-  pMessage->data = data;
-  outMessages.put(pMessage);
+void putMessage(uint8_t code, int32_t data){
+        message_t *pMessage = outMessages.alloc();
+        pMessage->code = code;
+        pMessage->data = data;
+        outMessages.put(pMessage);
 }
-
 
 // commOutFn() checks to see if there is a new message in the queue. If there is
 // it fetches the pointer to it, prints its code and the data stored and then frees
 // the memory allocated to it.
 
 void commOutFn(){
+        while(1) {
+                osEvent newEvent = outMessages.get();
+                message_t *pMessage = (message_t*)newEvent.value.p;
+                switch(pMessage->code) {
+                case (STARTUP):
+                        pc.printf("STARTUP COMPLETE %d, %d \r\n", pMessage->code, pMessage->data);
+                        break;
+                case (ROTATE):
+                        pc.printf("R 0x%016x\r\n", pMessage->code, pMessage->data);
+                        break;
+                case (ROTOR_STATE):
+                        pc.printf("State for %d with data 0x%016x\r\n", pMessage->code, pMessage->data);
+                        break;
+                case (VELOCITY):
+                        pc.printf("Motor Velocity: %d rev/s\r\n", pMessage->data);
+                        break;
+                case (HASH):
+                        pc.printf("Bitcoin Hashes per second: %d\r\n", pMessage->data);
+                        break;
+                case (NONCE):
+                        pc.printf("Bitcoin Nonce: 0x%016x\r\n", pMessage->data);
+                        break;
+                case (KEY):
+                        pc.printf("New Key: 0x%016x\r\n", pMessage->data);
+                        break;
+                case (TAR_VELOCITY):
+                        pc.printf("Target Velocity: %d rev/s\r\n", pMessage->data);
+                        break;
+                case (TEST_MSG):
+                        pc.printf("Test: %d \r\n", pMessage->data);
+                        break;
+                case (ROTATION):
+                        pc.printf("Rotation: %d \r\n", pMessage->data);
+                        break;
+                case (TAR_ROTATION):
+                        pc.printf("Target Rotation: %d \r\n", pMessage->data);
+                        break;
+                case (TAR_ROTATION_SET):
+                        pc.printf("Target Rotation SET: %d \r\n", pMessage->data);
+                        break;
+                case (TAR_VELOCITY_SET):
+                        pc.printf("Target Velocity SET: %d rev/s\r\n", pMessage->data);
+                        break;
+                case (TORQUE_TEST):
+                        pc.printf("Torque SET: %d rev/s\r\n", pMessage->data);
+                        break;
+                case (HEX_TEST):
+                        pc.printf("HEX TEST: %x\r\n", pMessage->data);
+                        break;
+                default:
+                        pc.printf("Unknown code, data: %d \r\n", pMessage->data);
+                        break;
 
-  //allocate memory for outgoing messages
-  outMessages.alloc(); //is this needed?
-
-  while(1){
-    osEvent newEvent = outMessages.get();
-    message_t *pMessage = (message_t*)newEvent.value.p;
-    pc.printf("Message %d with data 0x%016x\n", pMessage->code, pMessage->data);
-    outMessages.free(pMessage);
-  }
+                }
+                outMessages.free(pMessage);
+        }
 }

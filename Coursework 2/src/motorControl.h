@@ -4,6 +4,7 @@
 #include "mbed.h"
 #include "rtos.h"
 #include "messages.h"
+#include "decodeCommands.h"
 
 //Photointerrupter input pins
 #define I1pin D2
@@ -22,32 +23,49 @@
 #define L3Lpin D9           //0x10
 #define L3Hpin D10          //0x20
 
-// MOTOR STATE VARIABLES
-//Drive state to output table
-extern const int8_t driveTable[];
-//Mapping from interrupter inputs to sequential rotor states. 0x00 and 0x07 are not valid
-extern const int8_t stateMap[];
-extern volatile int8_t state;
-//const int8_t stateMap[] = {0x07,0x01,0x03,0x02,0x05,0x00,0x04,0x07}; //Alternative if phase order of input or drive is reversed
+#define PRINT_FREQUENCY 10    // How often motor velocity is printed
 
-//MOTOR TORQUE VARIABLES
-extern const int8_t lead;  //2 for forwards, -2 for backwards
+// Parameters for proportional control
+#define PWM_LIMIT 1000
 
-//MOTOR POSITION VARIABLES;
-extern volatile int32_t rotations;
+#define PROPORTIONAL_VEL_CONST 50
+#define DIFFERENTIAL_VEL_CONST 1
+#define INTEGRAL_VEL_CONST     5 
+#define DEAD_BAND_VEL          20
+#define INTEGRAL_VEL_ERR_MAX   500 
+
+
+#define PROPORTIONAL_ROT_CONST 5 
+#define DIFFERENTIAL_ROT_CONST 30
+#define INTEGRAL_ROT_CONST     5
+#define DEAD_BAND_ROT 20
+#define INTEGRAL_ROT_ERR_MAX   100
 
 //Set a given drive state
-extern void motorOut(int8_t driveState, uint32_t scale);
+void motorOut(int8_t driveState, uint32_t torque);
 
 extern inline void updateState();
 
 //Basic synchronisation routine
 extern void motorHome();
 
+extern void setISRPhotoSensors();
+
 extern void setPWMPeriod(int period);
 
-extern void pinInit();
-
 extern void motorRun();
+
+extern void motorISR();
+
+extern void motorCtrlFn();
+
+extern void motorCtrlTick();
+
+uint32_t motorVelocityController();
+
+uint32_t motorRotationController();
+
+extern Thread motorCtrlT;
+
 
 #endif

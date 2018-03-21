@@ -1,33 +1,31 @@
 #include "motorControl.h"
 
+DigitalOut led1(LED1);
+
 // MOTOR STATE VARIABLES
 //Drive state to output table
 const int8_t driveTable[] = {0x12,0x18,0x09,0x21,0x24,0x06,0x00,0x00};
 //Mapping from interrupter inputs to sequential rotor states. 0x00 and 0x07 are not valid
 const int8_t stateMap[] = {0x07,0x05,0x03,0x04,0x01,0x00,0x02,0x07};
 volatile int8_t state;
-//const int8_t stateMap[] = {0x07,0x01,0x03,0x02,0x05,0x00,0x04,0x07}; //Alternative if phase order of input or drive is reversed
 
 // MOTOR TORQUE VARIABLES
-const int8_t lead = 2;  //2 for forwards, -2 for backwards
+volatile int8_t lead = 2;  //2 for forwards, -2 for backwards
 
-// MOTOR POSITION VARIABLES
-volatile int32_t rotations;
-uint8_t direction = 1; // 1: forward, 2: backward
-volatile int32_t rotations_curr = 0;
-volatile int32_t rotations_prev = 0;
+int32_t act_velocity    = 0;
+int32_t act_rotations   = 0;
+volatile int32_t motorPosition   = 0;
+uint32_t orState = 0;
 
+int32_t integralVelocityError = 0;
+int32_t prevVelocityError = 0;
+
+int32_t integralRotationsError = 0;
+int32_t prevRotationError = 0;
 
 // MOTOR VELOCITY VARIABLES
-volatile int32_t velocity = 0;
-volatile int8_t vel_count = 0;
+int8_t count= 0;
 
-// TIMER INITIALISATIONS
-Ticker motorDrive;
-Ticker velocityT;
-
-//Status LED
-DigitalOut led1(LED1);
 
 //Photointerrupter inputs
 InterruptIn I1(I1pin);
@@ -35,16 +33,15 @@ InterruptIn I2(I2pin);
 InterruptIn I3(I3pin);
 
 //Motor Drive outputs
-PwmOut      L1L(L1Lpin);
-DigitalOut  L1H(L1Hpin);
-PwmOut      L2L(L2Lpin);
-DigitalOut  L2H(L2Hpin);
-PwmOut      L3L(L3Lpin);
-DigitalOut  L3H(L3Hpin);
-
+PwmOut L1L(L1Lpin);
+DigitalOut L1H(L1Hpin);
+PwmOut L2L(L2Lpin);
+DigitalOut L2H(L2Hpin);
+PwmOut L3L(L3Lpin);
+DigitalOut L3H(L3Hpin);
 
 //Set a given drive stats
-void motorOut(int8_t driveState, uint32_t scale){
+void motorOut(int8_t driveState, uint32_t torque){
 
         //Lookup the output byte from the drive state.
         int8_t driveOut = driveTable[driveState & 0x07];
@@ -58,80 +55,191 @@ void motorOut(int8_t driveState, uint32_t scale){
         if (~driveOut & 0x20) L3H = 1;
 
         //Then turn on
-        if (driveOut & 0x01) L1L.pulsewidth_us(scale);
+        if (driveOut & 0x01) L1L.pulsewidth_us(torque);
         if (driveOut & 0x02) L1H = 0;
-        if (driveOut & 0x04) L2L.pulsewidth_us(scale);
+        if (driveOut & 0x04) L2L.pulsewidth_us(torque);
         if (driveOut & 0x08) L2H = 0;
-        if (driveOut & 0x10) L3L.pulsewidth_us(scale);
+        if (driveOut & 0x10) L3L.pulsewidth_us(torque);
         if (driveOut & 0x20) L3H = 0;
 }
 
-inline void updateState(){
-        state = stateMap[I1 + 2*I2 + 4*I3];
-        if(direction) rotations++;
-        else          rotations--;
+// Returns the state of the motor when called
+
+inline int8_t readRotorState(){
+        return stateMap[I1 + 2*I2 + 4*I3];
 }
-//Basic synchronisation routine
+
+// Basic synchronisation routine
+// Drives the motor to a deafult position, waits for it to arrive and updates
+// the motor state.
 void motorHome() {
         //Put the motor in drive state 0 and wait for it to stabilise
-        motorOut(0,1.0);
-        wait(2.0);
-        updateState();
+        motorOut(0,1000);
+        wait(2);
+        orState = readRotorState(); //initialises oldRotorState
         return;
 }
 
+// Function to update the actual rotations variable to the motor position
+int32_t calculateActualRotations(){
+        act_rotations = motorPosition;
+}
+
+// Set the PWM period
+// NOTE: Due to a hardware fault on the board, this should be set to a maximum
+// of 2000 uS.
 void setPWMPeriod(int period) {
-  L1L.period_us(period);
-  L2L.period_us(period);
-  L3L.period_us(period);
-  return;
+        L1L.period_us(period);
+        L2L.period_us(period);
+        L3L.period_us(period);
+        return;
 }
 
-void pinInit() {
-    I3.rise(&updateState);
-    I2.rise(&updateState);
-    I1.rise(&updateState);
-    I3.fall(&updateState);
-    I2.fall(&updateState);
-    I1.fall(&updateState);
-    return;
+void setISRPhotoSensors(){
+        I3.rise(&motorISR);
+        I2.rise(&motorISR);
+        I1.rise(&motorISR);
+        I3.fall(&motorISR);
+        I2.fall(&motorISR);
+        I1.fall(&motorISR);
+        return;
 }
 
-void velocityCalc() {
-  rotations_curr = rotations;
-  velocity = (rotations_curr-rotations_prev)*10;
-  rotations_prev = rotations_curr;
-  vel_count++;
-  if(vel_count>=10) {
-    vel_count = 0;
-    putMessage(VELOCITY_CODE, velocity);
-  }
+// ISR to handle the updating of the motor position
+void motorISR(){
+        led1 = !led1;
+        static int8_t oldRotorState;
+        int8_t rotorState = readRotorState();
+        motorOut((rotorState - orState + lead + 6)%6,motorPWM);
+        if(rotorState - oldRotorState == 5) motorPosition--;
+        else if (rotorState - oldRotorState == -5) motorPosition++;
+        else motorPosition += (rotorState - oldRotorState);
+        oldRotorState = rotorState;
 }
 
-void measureInit() {
-  velocityT.attach(&velocityCalc,0.1);
+// Function to instantiate thread which will run every 100ms to calcualte
+// the velocity at this time.
+void motorCtrlFn(){
+        motorHome();      // Home the motor
+        Ticker motorCtrlTicker; // Used to control how often motor control thread runs
+        int32_t oldMotorPosition = 0;
+        uint32_t motorPWM_rot;
+        uint32_t motorPWM_vel;
+        motorCtrlTicker.attach_us(&motorCtrlTick, 100000);
+        //motorPWM = 500;
+        while(1) {
+                oldMotorPosition = motorPosition; // Update the motor position
+                motorCtrlT.signal_wait(0x1); // Suspend until signal occurs.
+                act_velocity = (motorPosition - oldMotorPosition); // Calculate the velocity of the motor.
+                act_rotations = motorPosition;
+
+
+                if(act_velocity==0 && (tar_velocity || tar_rotations))
+                {
+                  int8_t rotorState = readRotorState();
+                  motorOut((rotorState - orState + lead + 6)%6,motorPWM);
+                }
+
+                //only veloctity controller
+                if(tar_velocity && !tar_rotations) {
+                        motorPWM_vel = motorVelocityController();
+                        motorPWM = motorPWM_vel;
+                        if (count==0) {
+                                putMessage(VELOCITY,act_velocity);
+                                putMessage(TAR_VELOCITY,tar_velocity);
+                        }
+
+                }
+                //only target rotation
+                if(!tar_velocity && tar_rotations) {
+                        motorPWM_rot = motorRotationController();
+                        motorPWM = motorPWM_rot;
+                        if (count==0) {
+                                putMessage(ROTATION,act_rotations);
+                                putMessage(TAR_ROTATION,tar_rotations);
+                        }
+                }
+
+                if (tar_velocity && tar_rotations) {
+
+                        motorPWM_vel = motorVelocityController();
+                        motorPWM_rot = motorRotationController();
+
+                        if(lead<0)  motorPWM = (motorPWM_vel>motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
+                        else        motorPWM = (motorPWM_vel<motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
+                        if (count==0) {
+                                putMessage(VELOCITY,act_velocity);
+                                putMessage(TAR_VELOCITY,tar_velocity);
+                        }
+                }
+                count = (count==0) ? PRINT_FREQUENCY : count;
+                count-= 1;
+
+        }
 }
 
-void motorRun() {
+// ISR which will be called each time 100ms has passed. Performs no computation
+// so Photointerrupter is not blocked.
+void motorCtrlTick(){
+        motorCtrlT.signal_set(0x1); // Set signal to calculate velocity
+}
 
-  pinInit();
-  measureInit();
+//Controller for motor velocity
+uint32_t motorVelocityController()
+{
+        // y_s = k_p(s-|v|)
+        int32_t y_s;
 
-  int8_t orState = 0;
-  int8_t intState = 0;
-  int8_t intStateOld = 0;
+        //If the target velocity is 0 reverse the directon
+        lead = (tar_velocity<0) ? -2 : 2;
 
-  //Run the motor synchronisation
-  motorHome();
-  orState = state;
+        //velocity error term
+        int32_t velocityError = tar_velocity - act_velocity;
 
-  pc.printf("Rotor origin: %x\n\r",orState);
+        //calculating differential error
+        int32_t differentialVelocityError = velocityError - prevVelocityError;
+        prevVelocityError = velocityError;
 
-  while (1) {
-      intState = state;
-      if (intState != intStateOld) {
-          intStateOld = intState;
-          motorOut((intState-orState+lead+6)%6,1.0); //+6 to make sure the remainder is positive
-      }
-  }
+        //calculating integral error (with bounds)
+        integralVelocityError +=  velocityError*INTEGRAL_VEL_CONST;
+        if(integralVelocityError > INTEGRAL_VEL_ERR_MAX) integralVelocityError = INTEGRAL_VEL_ERR_MAX;
+        if(integralVelocityError < (-INTEGRAL_VEL_ERR_MAX)) integralVelocityError =-INTEGRAL_VEL_ERR_MAX;
+
+        y_s = PROPORTIONAL_VEL_CONST*(abs(tar_velocity) - abs(act_velocity)) + DIFFERENTIAL_VEL_CONST*differentialVelocityError + integralVelocityError;
+
+        //TODO: I think y needs to have modulus taken
+        y_s = (y_s>0) ? y_s : 0;
+
+        y_s = (y_s > PWM_LIMIT) ? PWM_LIMIT :
+              y_s;
+
+        //TODO: deadband motorPWM
+        return (y_s) ? (uint32_t)y_s : (uint32_t)DEAD_BAND_VEL;
+        //motorPWM = (y_s) ? (uint32_t)y_s : (uint32_t)DEAD_BAND_VEL;
+        //return;
+}
+
+
+// Implement the proportional speed control
+uint32_t motorRotationController(){
+        int32_t y_r;
+        //Error term
+        int32_t rotationError = tar_rotations - act_rotations;
+        prevRotationError = rotationError;
+
+        y_r = PROPORTIONAL_ROT_CONST*(rotationError) - DIFFERENTIAL_ROT_CONST*(rotationError - prevRotationError); // Need to divide by time
+
+
+        //changes direction if overshoots
+        lead = (y_r > 0) ?  2 : -2;
+
+        //sets y to within max/min limits
+
+        y_r = (y_r>0) ? y_r : 0;
+
+        y_r = (y_r > PWM_LIMIT) ? PWM_LIMIT : y_r;
+
+        //stops rotating of no more (integral) error
+        //if(rotationIntegralError==0) lead = 0;
+        return (uint32_t)y_r;
 }
