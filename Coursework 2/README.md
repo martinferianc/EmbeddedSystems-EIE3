@@ -25,7 +25,7 @@ The objective of this task was to implement a controller which would enable us t
 
 ## Building & Running
 
-If you would like to only run the code, copy the executable inside `FINAL_BUILD`.
+If you would like to only run the code, copy the executable inside `FINAL_BUILD/`.
 
 ### Building on Linux
 #### Install mbed

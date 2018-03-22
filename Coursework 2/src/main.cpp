@@ -13,19 +13,20 @@ Thread commOutT(osPriorityNormal,1536);
 Thread motorCtrlT (osPriorityHigh,1024); // Thread to hold task running every 100ms
 
 int main() {
-        // Set the constants and everything
+        // Set the constants
         putMessage(STARTUP, 13);
 
+        // Set the constraints
         setPWMPeriod(2000);
         setISRPhotoSensors();
 
-        // THREADS
+        // Initialize threads
         decodeThread.start(decode);
         commOutT.start(commOutFn);
         motorCtrlT.start(motorCtrlFn);
 
-        //PROFILING
-        if (DEBUG!=1) {
+        // Profiling
+        if (!DEBUG) {
                 Ticker t;
                 t.attach(&countHash, 1.0);
                 while (1) {

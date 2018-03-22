@@ -25,16 +25,16 @@
 
 #define PRINT_FREQUENCY 10    // How often motor velocity is printed
 
-// Parameters for proportional control
 #define PWM_LIMIT 1000
 
+// Parameters for VELOCITY CONTROL
 #define PROPORTIONAL_VEL_CONST 40
 #define DIFFERENTIAL_VEL_CONST 5
 #define INTEGRAL_VEL_CONST     10
 #define DEAD_BAND_VEL          50
 #define INTEGRAL_VEL_ERR_MAX   600
 
-
+// Parameters for ROTATIONAL CONTROL
 #define PROPORTIONAL_ROT_CONST 10
 #define DIFFERENTIAL_ROT_CONST 30
 #define INTEGRAL_ROT_CONST     1

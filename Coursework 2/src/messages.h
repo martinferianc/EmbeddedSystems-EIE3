@@ -2,6 +2,7 @@
 #define  _messages_h_
 
 #include "rtos.h"
+
 // Define Output Codes
 #define ROTATE        0
 #define ROTOR_STATE   1
@@ -28,11 +29,9 @@ typedef struct {
         int32_t data;
 } message_t;
 
-//////// /C SERIAL FUNCTION PROTOTYPES //////////
 
 void commOutFn();
 
 extern void putMessage(uint8_t code, int32_t data);
-//////// /E SERIAL FUNCTION PROTOTYPES //////////
 
 #endif

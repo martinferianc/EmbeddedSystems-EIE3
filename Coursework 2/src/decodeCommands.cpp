@@ -2,23 +2,23 @@
 
 // Global Queueing variable
 Queue<void, 8> inCharQ;
+
 // Buffer for holding chars to decode
 char charBuffer[17];
-// buffer index
+
+// Buffer index
 int charBufferCounter = 0;
 
 // Key for testing the motor torque
 volatile uint32_t motorPWM = 0;
 
-//Motor control variables
+// Motor control variables
 volatile float tar_velocity = 0.0;
 volatile float tar_rotations = 0.0;
 volatile float tar_rotations_tmp = 0.0;
 
-// mutex for the new key
+// Mutex for the new key
 Mutex key_mutex;
-Mutex velocity_mutex;
-Mutex rotations_mutex;
 
 void serialISR(){
         uint8_t newChar = pc.getc();
@@ -31,39 +31,42 @@ void decode(){
         while(1) {
                 osEvent newEvent = inCharQ.get();
                 uint8_t newChar = (uint8_t)newEvent.value.p;
-                // check for the buffer index, prevent overflow
+
+                // Check for the buffer index, prevent overflow
                 if(charBufferCounter > 18) {
                         charBufferCounter = 0;
                 }
                 else{
                         charBuffer[charBufferCounter] = newChar;
                 }
+                // Start decoding
                 if(newChar == '\r') {
                         charBuffer[charBufferCounter] = '\0';
-                        // reset to read next command
+                        // Reset for the next command
+
                         charBufferCounter = 0;
-                        // test the first character
+
+                        // Test for the first character
                         switch(charBuffer[0]) {
+                        // ROTATIONS
                         case 'R':
-                                //rotations_mutex.lock();
                                 sscanf(charBuffer, "R%f", &tar_rotations_tmp);
                                 putMessage(TAR_ROTATION_SET,*(int32_t*)&tar_rotations_tmp);
                                 tar_rotations = ((float)motorPosition)/6 + tar_rotations_tmp;
-                                //rotations_mutex.unlock();
                                 break;
+                        // VELOCITY
                         case 'V':
-                                //pc.printf("VELOCITY");
-                                //velocity_mutex.lock();
                                 sscanf(charBuffer, "V%f", &tar_velocity);
                                 putMessage(TAR_VELOCITY_SET,*(int32_t*)&tar_velocity);
-                                tar_velocity = (tar_velocity == 0) ? 2000 : tar_velocity;
-                                //velocity_mutex.unlock();
+                                tar_velocity = (tar_velocity == 0) ? PWM_LIMIT : tar_velocity;
                                 break;
+                        // KEY
                         case 'K':
                                 key_mutex.lock();
                                 sscanf(charBuffer,"K%x",&key);
                                 key_mutex.unlock();
                                 break;
+                        //TORQUE
                         case 'T':
                                 sscanf(charBuffer, "T%d", &motorPWM);
                                 putMessage(TORQUE_TEST, motorPWM);

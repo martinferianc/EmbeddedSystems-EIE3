@@ -1,32 +1,34 @@
 #include "motorControl.h"
 
-DigitalOut led1(LED1);
 
-// MOTOR STATE VARIABLES
+//           MOTOR STATE VARIABLES
 //Drive state to output table
 const int8_t driveTable[] = {0x12,0x18,0x09,0x21,0x24,0x06,0x00,0x00};
+
 //Mapping from interrupter inputs to sequential rotor states. 0x00 and 0x07 are not valid
 const int8_t stateMap[] = {0x07,0x05,0x03,0x04,0x01,0x00,0x02,0x07};
 volatile int8_t state;
 
-// MOTOR TORQUE VARIABLES
+//            MOTOR TORQUE VARIABLES
 volatile int8_t lead = 2;  //2 for forwards, -2 for backwards
 
+
+//            VELOCITY AND ROTATION VARIABLES
 float act_velocity    = 0.0;
 float act_rotations   = 0.0;
+
+
+//            MOTOR POSITION VARIABLES
 volatile int32_t motorPosition   = 0;
 uint32_t orState = 0;
 
+//            ERROR VARIABLES
 float integralVelocityError = 0;
 float prevVelocityError = 0;
-
 float integralRotationsError = 0;
 float prevRotationError = 0;
 
-// MOTOR VELOCITY VARIABLES
-int8_t count= 0;
-
-
+//            I/O CONNECTIONS
 //Photointerrupter inputs
 InterruptIn I1(I1pin);
 InterruptIn I2(I2pin);
@@ -39,6 +41,9 @@ PwmOut L2L(L2Lpin);
 DigitalOut L2H(L2Hpin);
 PwmOut L3L(L3Lpin);
 DigitalOut L3H(L3Hpin);
+
+//Led
+DigitalOut led1(LED1);
 
 //Set a given drive stats
 void motorOut(int8_t driveState, uint32_t torque){
@@ -64,7 +69,6 @@ void motorOut(int8_t driveState, uint32_t torque){
 }
 
 // Returns the state of the motor when called
-
 inline int8_t readRotorState(){
         return stateMap[I1 + 2*I2 + 4*I3];
 }
@@ -77,22 +81,13 @@ void motorHome() {
         motorOut(0,1000);
         wait(2);
         orState = readRotorState(); //initialises oldRotorState
-        return;
-}
-
-// Function to update the actual rotations variable to the motor position
-int32_t calculateActualRotations(){
-        act_rotations = motorPosition;
 }
 
 // Set the PWM period
-// NOTE: Due to a hardware fault on the board, this should be set to a maximum
-// of 2000 uS.
 void setPWMPeriod(int period) {
         L1L.period_us(period);
         L2L.period_us(period);
         L3L.period_us(period);
-        return;
 }
 
 void setISRPhotoSensors(){
@@ -102,7 +97,6 @@ void setISRPhotoSensors(){
         I3.fall(&motorISR);
         I2.fall(&motorISR);
         I1.fall(&motorISR);
-        return;
 }
 
 // ISR to handle the updating of the motor position
@@ -126,64 +120,74 @@ void motorISR(){
 // Function to instantiate thread which will run every 100ms to calcualte
 // the velocity at this time.
 void motorCtrlFn(){
-        motorHome();      // Home the motor
-        Ticker motorCtrlTicker; // Used to control how often motor control thread runs
+        // Set the motor to home position
+        motorHome();
+
+        // Ticker used to control how often motor control thread runs
+        Ticker motorCtrlTicker;
+        motorCtrlTicker.attach_us(&motorCtrlTick, 100000);
+
+        // Control variables & Printing variable
         float oldMotorPosition = 0.0;
         uint32_t motorPWM_rot;
         uint32_t motorPWM_vel;
-        motorCtrlTicker.attach_us(&motorCtrlTick, 100000);
-        //motorPWM = 500;
+        int8_t print_count= 0;
+
         while(1) {
-                oldMotorPosition = ((float)motorPosition)/6; // Update the motor position
-                motorCtrlT.signal_wait(0x1); // Suspend until signal occurs.
-                act_velocity  =   10*(((float)motorPosition)/6 - oldMotorPosition); // Calculate the velocity of the motor.
+                // Update the motor position
+                oldMotorPosition = ((float)motorPosition)/6;
+
+                // Suspend until signal occurs.
+                motorCtrlT.signal_wait(0x1);
+
+                // Calculate actual velocity and number of rotations
+                act_velocity  =   10*(((float)motorPosition)/6 - oldMotorPosition);
                 act_rotations =       ((float)motorPosition)/6;
 
+                // Start up the motor if the avtual speed is zero and it needs to move
                 if(act_velocity==0 && (tar_velocity || tar_rotations))
                 {
-                  int8_t rotorState = readRotorState();
-                  // Avoid doing a modulo divide
-                  int8_t tmpDriveState = (rotorState - orState + lead + 6);
-                  while(tmpDriveState >= 6){
-                    tmpDriveState -= 6;
-                  }
-                  motorOut(tmpDriveState,motorPWM);
+                        int8_t rotorState = readRotorState();
+                        // Avoid doing a modulo divide
+                        int8_t tmpDriveState = (rotorState - orState + lead + 6);
+                        while(tmpDriveState >= 6) {
+                                tmpDriveState -= 6;
+                        }
+                        motorOut(tmpDriveState,motorPWM);
                 }
 
-                //only veloctity controller
+                // Velocity is set
                 if(tar_velocity && !tar_rotations) {
-                        motorPWM_vel = motorVelocityController();
-                        motorPWM = motorPWM_vel;
-                        if (count==0) {
+                        motorPWM = motorVelocityController();
+                        if (print_count==0) {
                                 putMessage(VELOCITY,*(int32_t*)&act_velocity);
                                 putMessage(TAR_VELOCITY,*(int32_t*)&tar_velocity);
                         }
 
                 }
-                //only target rotation
-                if(!tar_velocity && tar_rotations) {
-                        motorPWM_rot = motorRotationController();
-                        motorPWM = motorPWM_rot;
-                        if (count==0) {
+                // Rotation is set
+                else if(!tar_velocity && tar_rotations) {
+                        motorPWM = motorRotationController();
+                        if (print_count==0) {
                                 putMessage(ROTATION,*(int32_t*)&act_rotations);
                                 putMessage(TAR_ROTATION,*(int32_t*)&tar_rotations);
                         }
                 }
-
-                if (tar_velocity && tar_rotations) {
-
+                // Rotations are set and velocity is set
+                else if (tar_velocity && tar_rotations) {
                         motorPWM_vel = motorVelocityController();
                         motorPWM_rot = motorRotationController();
+                        if(lead<0) motorPWM = (motorPWM_vel>motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
+                        else motorPWM = (motorPWM_vel<motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
 
-                        if(lead<0)  motorPWM = (motorPWM_vel>motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
-                        else        motorPWM = (motorPWM_vel<motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
-                        if (count==0) {
+                        if (print_count==0) {
                                 putMessage(VELOCITY,*(int32_t*)&act_velocity);
                                 putMessage(TAR_VELOCITY,*(int32_t*)&tar_velocity);
                         }
                 }
-                count = (count==0) ? PRINT_FREQUENCY : count;
-                count-= 1;
+                // Reset printing
+                print_count = (print_count==0) ? PRINT_FREQUENCY : print_count;
+                print_count-= 1;
 
         }
 }
@@ -200,28 +204,28 @@ uint32_t motorVelocityController()
         // y_s = k_p(s-|v|)
         float y_s;
 
-        //If the target velocity is 0 reverse the directon
+        // If the target velocity is 0 reverse the directon
         lead = (tar_velocity<0) ? -2 : 2;
 
-        //velocity error term
+        // Error term
         float velocityError = abs(tar_velocity) - abs(act_velocity);
 
-        //calculating differential error
+        // Differential error term
         float differentialVelocityError = velocityError - prevVelocityError;
         prevVelocityError = velocityError;
 
-        //calculating integral error (with bounds)
+        // Integral error
         integralVelocityError +=  velocityError*INTEGRAL_VEL_CONST;
         if(integralVelocityError > INTEGRAL_VEL_ERR_MAX) integralVelocityError = INTEGRAL_VEL_ERR_MAX;
         if(integralVelocityError < (-INTEGRAL_VEL_ERR_MAX)) integralVelocityError =-INTEGRAL_VEL_ERR_MAX;
 
         y_s = PROPORTIONAL_VEL_CONST*(abs(tar_velocity) - abs(act_velocity)) + DIFFERENTIAL_VEL_CONST*differentialVelocityError + integralVelocityError;
 
-        //TODO: I think y needs to have modulus taken
+        // Set y to positive
         y_s = (y_s>0) ? y_s : 0;
 
-        y_s = (y_s > (float)PWM_LIMIT) ? (float)PWM_LIMIT :
-              y_s;
+        // Check if we are not going over the hardware limit
+        y_s = (y_s > (float)PWM_LIMIT) ? (float)PWM_LIMIT : y_s;
 
         //TODO: deadband motorPWM
         return (y_s) ? (uint32_t)y_s : (uint32_t)DEAD_BAND_VEL;
@@ -233,25 +237,25 @@ uint32_t motorVelocityController()
 // Implement the proportional speed control
 uint32_t motorRotationController(){
         float y_r;
-        //Error term
+
+        // Error term
         float rotationError = tar_rotations - act_rotations;
         prevRotationError = rotationError;
 
+        // Differential error term
         float differentialRotationError = rotationError - prevRotationError;
         if(differentialRotationError>  DIFF_ROT_MAX) differentialRotationError = DIFF_ROT_MAX;
         if(differentialRotationError< -DIFF_ROT_MAX) differentialRotationError =-DIFF_ROT_MAX;
 
+        // Integral error term
         integralRotationsError = rotationError*INTEGRAL_ROT_CONST;
         if(integralRotationsError > INTEGRAL_ROT_ERR_MAX) integralRotationsError    = INTEGRAL_ROT_ERR_MAX;
         if(integralRotationsError < (-INTEGRAL_ROT_ERR_MAX)) integralRotationsError =-INTEGRAL_ROT_ERR_MAX;
 
         y_r = PROPORTIONAL_ROT_CONST*(rotationError) - DIFFERENTIAL_ROT_CONST*differentialRotationError;// + integralRotationsError; // Need to divide by time
 
-        //changes direction if overshoots
+        // In case the rotations were overshot change the direction back
         lead = (y_r > 0) ?  2 : -2;
-
-        //sets y to within max/min limits
-
         y_r = abs(y_r);
 
         y_r = (y_r > PWM_LIMIT) ? PWM_LIMIT : y_r;
