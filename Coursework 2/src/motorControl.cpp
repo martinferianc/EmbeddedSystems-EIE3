@@ -13,6 +13,8 @@ volatile int8_t lead = 2;  //2 for forwards, -2 for backwards
 //            VELOCITY AND ROTATION VARIABLES
 float act_velocity    = 0.0;
 float act_rotations   = 0.0;
+float prev_tar_rotations  = 0.0;
+float prev_tar_velocity   = 0.0;
 
 //            MOTOR POSITION VARIABLES
 volatile int32_t motorPosition   = 0;
@@ -135,6 +137,15 @@ void motorCtrlFn(){
         int8_t print_count= 0;
 
         while(1) {
+                if (tar_rotations != prev_tar_rotations){
+                    integralRotationsError = 0;
+                    prev_tar_rotations = tar_rotations;
+                }
+                else if (tar_velocity  != prev_tar_velocity ){
+                      integralVelocityError  = 0;
+                      prev_tar_velocity  = tar_velocity ;
+                }
+
                 // Update the motor position
                 oldMotorPosition = ((float)motorPosition)/6;
 
