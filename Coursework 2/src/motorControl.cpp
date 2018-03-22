@@ -112,7 +112,6 @@ void motorISR(){
                 tmpDriveState -= 6;
         }
 
-        //motorOut((rotorState - orState + lead + 6)%6,motorPWM);
         motorOut(tmpDriveState,motorPWM);
         if(rotorState - oldRotorState == 5) motorPosition--;
         else if (rotorState - oldRotorState == -5) motorPosition++;
@@ -260,8 +259,6 @@ uint32_t motorRotationController(){
 
         // Differential error term
         float differentialRotationError = rotationError - prevRotationError;
-        //if(differentialRotationError>  DIFF_ROT_MAX) differentialRotationError = DIFF_ROT_MAX;
-        //if(differentialRotationError< -DIFF_ROT_MAX) differentialRotationError =-DIFF_ROT_MAX;
 
         // Integral error term
         integralRotationsError = rotationError*INTEGRAL_ROT_CONST;
