@@ -281,5 +281,6 @@ uint32_t motorRotationController(){
 
         //stops rotating of no more (integral) error
         //if(rotationIntegralError==0) lead = 0;
-        return (y_r) ? (uint32_t)y_r : (uint32_t)DEAD_BAND_ROT;
+        //return (y_r) ? (uint32_t)y_r : (uint32_t)DEAD_BAND_ROT;
+        return (uint32_t)y_r;
 }

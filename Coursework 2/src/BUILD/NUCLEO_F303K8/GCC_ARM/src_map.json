@@ -116,13 +116,13 @@
         "size": {
             ".data": 5, 
             ".bss": 481, 
-            ".text": 2122
+            ".text": 2106
         }
     }, 
     {
         "summary": {
             "static_ram": 5584, 
-            "total_flash": 53060
+            "total_flash": 53044
         }
     }
 ]
