@@ -5,6 +5,7 @@ The objective of this task was to implement a controller which would enable us t
 ```
 .
 ├── FINAL_BUILD
+│   └── final.bin
 ├── bitcoinMine.cpp
 ├── bitcoinMine.h
 ├── build_profile1.json
