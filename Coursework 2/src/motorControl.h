@@ -29,19 +29,20 @@
 
 // Parameters for VELOCITY CONTROL
 #define PROPORTIONAL_VEL_CONST 40
-#define DIFFERENTIAL_VEL_CONST 5
+#define DIFFERENTIAL_VEL_CONST 0
 #define INTEGRAL_VEL_CONST     10
 #define DEAD_BAND_VEL          50
 #define INTEGRAL_VEL_ERR_MAX   600
 
 // Parameters for ROTATIONAL CONTROL
-#define PROPORTIONAL_ROT_CONST 10
-#define DIFFERENTIAL_ROT_CONST 30
+#define PROPORTIONAL_ROT_CONST 25
+#define DIFFERENTIAL_ROT_CONST 20
 #define INTEGRAL_ROT_CONST     1
 #define DEAD_BAND_ROT          20
 #define INTEGRAL_ROT_ERR_MAX   20
 #define DIFF_ROT_MAX           30
-#define DIFF_ROT_VELOCITY_MAX  30
+#define DIFF_ROT_VELOCITY_MAX  100
+#define DIFF_ROT_VELOCITY_CONST  10
 
 //Set a given drive state
 void motorOut(int8_t driveState, uint32_t torque);

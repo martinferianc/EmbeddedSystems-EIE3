@@ -4,20 +4,15 @@
 //           MOTOR STATE VARIABLES
 //Drive state to output table
 const int8_t driveTable[] = {0x12,0x18,0x09,0x21,0x24,0x06,0x00,0x00};
-
 //Mapping from interrupter inputs to sequential rotor states. 0x00 and 0x07 are not valid
 const int8_t stateMap[] = {0x07,0x05,0x03,0x04,0x01,0x00,0x02,0x07};
-volatile int8_t state;
 
 //            MOTOR TORQUE VARIABLES
 volatile int8_t lead = 2;  //2 for forwards, -2 for backwards
 
-
 //            VELOCITY AND ROTATION VARIABLES
 float act_velocity    = 0.0;
 float act_rotations   = 0.0;
-float previous_rotations   = 0.0;
-float previous_velocity   = 0.0;
 
 //            MOTOR POSITION VARIABLES
 volatile int32_t motorPosition   = 0;
@@ -28,6 +23,9 @@ float integralVelocityError = 0;
 float prevVelocityError = 0;
 float integralRotationsError = 0;
 float prevRotationError = 0;
+
+float previous_rot_velocity     = 0.0;
+float previous_vel_velocity     = 0.0;
 
 //            I/O CONNECTIONS
 //Photointerrupter inputs
@@ -105,13 +103,15 @@ void motorISR(){
         led1 = !led1;
         static int8_t oldRotorState = 0;
         int8_t rotorState = readRotorState();
+
         // Avoid doing a modulo divide
-        //int8_t tmpDriveState = (rotorState - orState + lead + 6);
-        //while(tmpDriveState >= 6){
-        //  tmpDriveState -= 6;
-        //}
-        //motorOut(tmpDriveState,motorPWM);
-        motorOut((rotorState - orState + lead + 6)%6,motorPWM);
+        int8_t tmpDriveState = (rotorState - orState + lead + 6);
+        while(tmpDriveState >= 6){
+          tmpDriveState -= 6;
+        }
+
+        //motorOut((rotorState - orState + lead + 6)%6,motorPWM);
+        motorOut(tmpDriveState,motorPWM);
         if(rotorState - oldRotorState == 5) motorPosition--;
         else if (rotorState - oldRotorState == -5) motorPosition++;
         else motorPosition += (rotorState - oldRotorState);
@@ -178,13 +178,13 @@ void motorCtrlFn(){
                 else if (tar_velocity && tar_rotations) {
                         motorPWM_vel = motorVelocityController();
                         motorPWM_rot = motorRotationController();
-                        if(lead<0) motorPWM = (motorPWM_vel>motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
-                        else motorPWM = (motorPWM_vel<motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
+                        motorPWM = (motorPWM_vel<motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
 
                         if (print_count==0) {
-                                putMessage(VELOCITY,*(int32_t*)&act_velocity);
-                                putMessage(TAR_VELOCITY,*(int32_t*)&tar_velocity);
-                                putMessage(ROTATION,*(int32_t*)&act_rotations);
+                                putMessage(VELOCITY     ,*(int32_t*)&act_velocity);
+                                putMessage(TAR_VELOCITY ,*(int32_t*)&tar_velocity);
+                                putMessage(ROTATION     ,*(int32_t*)&act_rotations);
+                                putMessage(TAR_ROTATION ,*(int32_t*)&tar_rotations);
                         }
                 }
                 // Reset printing
@@ -244,17 +244,23 @@ uint32_t motorRotationController(){
         float rotationError = tar_rotations - act_rotations;
         prevRotationError = rotationError;
 
+        float differentialVelocity = act_velocity - previous_rot_velocity;
+        if(differentialVelocity> DIFF_ROT_VELOCITY_MAX) differentialVelocity =  DIFF_ROT_VELOCITY_MAX;
+        if(differentialVelocity<-DIFF_ROT_VELOCITY_MAX) differentialVelocity = -DIFF_ROT_VELOCITY_MAX;
+        previous_rot_velocity = act_velocity;
+
+
         // Differential error term
         float differentialRotationError = rotationError - prevRotationError;
-        if(differentialRotationError>  DIFF_ROT_MAX) differentialRotationError = DIFF_ROT_MAX;
-        if(differentialRotationError< -DIFF_ROT_MAX) differentialRotationError =-DIFF_ROT_MAX;
+        //if(differentialRotationError>  DIFF_ROT_MAX) differentialRotationError = DIFF_ROT_MAX;
+        //if(differentialRotationError< -DIFF_ROT_MAX) differentialRotationError =-DIFF_ROT_MAX;
 
         // Integral error term
         integralRotationsError = rotationError*INTEGRAL_ROT_CONST;
         if(integralRotationsError > INTEGRAL_ROT_ERR_MAX) integralRotationsError    = INTEGRAL_ROT_ERR_MAX;
         if(integralRotationsError < (-INTEGRAL_ROT_ERR_MAX)) integralRotationsError =-INTEGRAL_ROT_ERR_MAX;
 
-        y_r = PROPORTIONAL_ROT_CONST*(rotationError) - DIFFERENTIAL_ROT_CONST*differentialRotationError;// + integralRotationsError; // Need to divide by time
+        y_r = PROPORTIONAL_ROT_CONST*(rotationError) + DIFFERENTIAL_ROT_CONST*differentialRotationError + integralRotationsError; // Need to divide by time
 
         // In case the rotations were overshot change the direction back
         lead = (y_r > 0) ?  2 : -2;
