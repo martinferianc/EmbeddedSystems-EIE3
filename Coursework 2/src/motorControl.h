@@ -25,26 +25,27 @@
 
 #define PRINT_FREQUENCY 10    // How often motor velocity is printed
 
-// Parameters for proportional control
 #define PWM_LIMIT 1000
 
-#define PROPORTIONAL_VEL_CONST 50
-#define DIFFERENTIAL_VEL_CONST 1
-#define INTEGRAL_VEL_CONST     5 
-#define DEAD_BAND_VEL          20
-#define INTEGRAL_VEL_ERR_MAX   500 
+// Parameters for VELOCITY CONTROL
+#define PROPORTIONAL_VEL_CONST 40
+#define DIFFERENTIAL_VEL_CONST 0
+#define INTEGRAL_VEL_CONST     10
+#define DEAD_BAND_VEL          50
+#define INTEGRAL_VEL_ERR_MAX   600
 
-
-#define PROPORTIONAL_ROT_CONST 5 
-#define DIFFERENTIAL_ROT_CONST 30
+// Parameters for ROTATIONAL CONTROL
+#define PROPORTIONAL_ROT_CONST 15
+#define DIFFERENTIAL_ROT_CONST 10
 #define INTEGRAL_ROT_CONST     5
-#define DEAD_BAND_ROT 20
-#define INTEGRAL_ROT_ERR_MAX   100
+#define DEAD_BAND_ROT          20
+#define INTEGRAL_ROT_ERR_MAX   20
+#define DIFF_ROT_MAX           30
+#define DIFF_ROT_VELOCITY_MAX  100
+#define DIFF_ROT_VELOCITY_CONST  10
 
 //Set a given drive state
 void motorOut(int8_t driveState, uint32_t torque);
-
-extern inline void updateState();
 
 //Basic synchronisation routine
 extern void motorHome();
@@ -67,5 +68,6 @@ uint32_t motorRotationController();
 
 extern Thread motorCtrlT;
 
+extern volatile int32_t motorPosition;
 
 #endif
