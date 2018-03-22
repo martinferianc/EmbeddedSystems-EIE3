@@ -108,8 +108,8 @@ void motorISR(){
 
         // Avoid doing a modulo divide
         int8_t tmpDriveState = (rotorState - orState + lead + 6);
-        while(tmpDriveState >= 6){
-          tmpDriveState -= 6;
+        while(tmpDriveState >= 6) {
+                tmpDriveState -= 6;
         }
 
         //motorOut((rotorState - orState + lead + 6)%6,motorPWM);
@@ -137,13 +137,13 @@ void motorCtrlFn(){
         int8_t print_count= 0;
 
         while(1) {
-                if (tar_rotations != prev_tar_rotations){
-                    integralRotationsError = 0;
-                    prev_tar_rotations = tar_rotations;
+                if (tar_rotations != prev_tar_rotations) {
+                        integralRotationsError = 0;
+                        prev_tar_rotations = tar_rotations;
                 }
-                else if (tar_velocity  != prev_tar_velocity ){
-                      integralVelocityError  = 0;
-                      prev_tar_velocity  = tar_velocity ;
+                else if (tar_velocity  != prev_tar_velocity ) {
+                        integralVelocityError  = 0;
+                        prev_tar_velocity  = tar_velocity;
                 }
 
                 // Update the motor position
@@ -192,10 +192,10 @@ void motorCtrlFn(){
                         motorPWM = (motorPWM_vel<motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
 
                         if (print_count==0) {
-                                putMessage(VELOCITY     ,*(int32_t*)&act_velocity);
-                                putMessage(TAR_VELOCITY ,*(int32_t*)&tar_velocity);
-                                putMessage(ROTATION     ,*(int32_t*)&act_rotations);
-                                putMessage(TAR_ROTATION ,*(int32_t*)&tar_rotations);
+                                putMessage(VELOCITY,*(int32_t*)&act_velocity);
+                                putMessage(TAR_VELOCITY,*(int32_t*)&tar_velocity);
+                                putMessage(ROTATION,*(int32_t*)&act_rotations);
+                                putMessage(TAR_ROTATION,*(int32_t*)&tar_rotations);
                         }
                 }
                 // Reset printing
@@ -240,10 +240,7 @@ uint32_t motorVelocityController()
         // Check if we are not going over the hardware limit
         y_s = (y_s > (float)PWM_LIMIT) ? (float)PWM_LIMIT : y_s;
 
-        //TODO: deadband motorPWM
         return (y_s) ? (uint32_t)y_s : (uint32_t)DEAD_BAND_VEL;
-        //motorPWM = (y_s) ? (uint32_t)y_s : (uint32_t)DEAD_BAND_VEL;
-        //return;
 }
 
 
@@ -276,11 +273,7 @@ uint32_t motorRotationController(){
         // In case the rotations were overshot change the direction back
         lead = (y_r > 0) ?  2 : -2;
         y_r = abs(y_r);
-
         y_r = (y_r > PWM_LIMIT) ? PWM_LIMIT : y_r;
 
-        //stops rotating of no more (integral) error
-        //if(rotationIntegralError==0) lead = 0;
-        //return (y_r) ? (uint32_t)y_r : (uint32_t)DEAD_BAND_ROT;
         return (uint32_t)y_r;
 }

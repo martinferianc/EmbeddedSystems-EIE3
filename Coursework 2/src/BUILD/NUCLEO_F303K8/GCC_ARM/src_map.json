@@ -1,10 +1,18 @@
 [
     {
+        "module": "BUILD/NUCLEO_F303K8", 
+        "size": {
+            ".data": 109, 
+            ".bss": 3412, 
+            ".text": 12379
+        }
+    }, 
+    {
         "module": "[fill]", 
         "size": {
             ".data": 3, 
-            ".bss": 20, 
-            ".text": 112
+            ".bss": 16, 
+            ".text": 118
         }
     }, 
     {
@@ -12,7 +20,7 @@
         "size": {
             ".data": 464, 
             ".bss": 12, 
-            ".text": 20781
+            ".text": 20777
         }
     }, 
     {
@@ -20,7 +28,15 @@
         "size": {
             ".data": 0, 
             ".bss": 0, 
-            ".text": 3336
+            ".text": 3360
+        }
+    }, 
+    {
+        "module": "[lib]/mbed.a", 
+        "size": {
+            ".data": 4, 
+            ".bss": 72, 
+            ".text": 4098
         }
     }, 
     {
@@ -32,97 +48,17 @@
         }
     }, 
     {
-        "module": "bitcoinMine.o", 
+        "module": "mbed/aa5281ff4a02", 
         "size": {
-            ".data": 68, 
-            ".bss": 0, 
-            ".text": 0
-        }
-    }, 
-    {
-        "module": "decodeCommands.o", 
-        "size": {
-            ".data": 4, 
-            ".bss": 121, 
-            ".text": 575
-        }
-    }, 
-    {
-        "module": "main.o", 
-        "size": {
-            ".data": 4, 
-            ".bss": 264, 
-            ".text": 344
-        }
-    }, 
-    {
-        "module": "mbed-dev/drivers", 
-        "size": {
-            ".data": 4, 
-            ".bss": 100, 
-            ".text": 1786
-        }
-    }, 
-    {
-        "module": "mbed-dev/hal", 
-        "size": {
-            ".data": 4, 
-            ".bss": 66, 
-            ".text": 1654
-        }
-    }, 
-    {
-        "module": "mbed-dev/platform", 
-        "size": {
-            ".data": 4, 
-            ".bss": 270, 
-            ".text": 1526
-        }
-    }, 
-    {
-        "module": "mbed-dev/targets", 
-        "size": {
-            ".data": 4, 
-            ".bss": 1072, 
-            ".text": 10689
-        }
-    }, 
-    {
-        "module": "mbed-rtos/rtos", 
-        "size": {
-            ".data": 4, 
-            ".bss": 4, 
-            ".text": 768
-        }
-    }, 
-    {
-        "module": "mbed-rtos/rtx", 
-        "size": {
-            ".data": 20, 
-            ".bss": 2222, 
-            ".text": 7727
-        }
-    }, 
-    {
-        "module": "messages.o", 
-        "size": {
-            ".data": 4, 
-            ".bss": 320, 
-            ".text": 828
-        }
-    }, 
-    {
-        "module": "motorControl.o", 
-        "size": {
-            ".data": 5, 
-            ".bss": 481, 
-            ".text": 2106
+            ".data": 8, 
+            ".bss": 1336, 
+            ".text": 11928
         }
     }, 
     {
         "summary": {
-            "static_ram": 5584, 
-            "total_flash": 53044
+            "static_ram": 5476, 
+            "total_flash": 53468
         }
     }
 ]

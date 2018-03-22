@@ -47,8 +47,6 @@
 //Set a given drive state
 void motorOut(int8_t driveState, uint32_t torque);
 
-extern inline void updateState();
-
 //Basic synchronisation routine
 extern void motorHome();
 
