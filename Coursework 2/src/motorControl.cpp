@@ -16,7 +16,8 @@ volatile int8_t lead = 2;  //2 for forwards, -2 for backwards
 //            VELOCITY AND ROTATION VARIABLES
 float act_velocity    = 0.0;
 float act_rotations   = 0.0;
-
+float previous_rotations   = 0.0;
+float previous_velocity   = 0.0;
 
 //            MOTOR POSITION VARIABLES
 volatile int32_t motorPosition   = 0;
@@ -183,6 +184,7 @@ void motorCtrlFn(){
                         if (print_count==0) {
                                 putMessage(VELOCITY,*(int32_t*)&act_velocity);
                                 putMessage(TAR_VELOCITY,*(int32_t*)&tar_velocity);
+                                putMessage(ROTATION,*(int32_t*)&act_rotations);
                         }
                 }
                 // Reset printing

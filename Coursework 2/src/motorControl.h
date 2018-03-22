@@ -41,6 +41,7 @@
 #define DEAD_BAND_ROT          20
 #define INTEGRAL_ROT_ERR_MAX   20
 #define DIFF_ROT_MAX           30
+#define DIFF_ROT_VELOCITY_MAX  30
 
 //Set a given drive state
 void motorOut(int8_t driveState, uint32_t torque);
