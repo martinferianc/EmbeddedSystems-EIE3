@@ -1,6 +1,10 @@
 ## Specification
 The objective of this task was to implement a controller which would enable us to drive a brush-less direct current (DC) motor. The controller should allow us to perform functions you would expect from a standard motor controller, such as spin at a fixed velocity and rotate for a set number of rotations.
 
+## Running
+
+[![IMAGE ALT TEXT HERE](Figures/Placeholder.png)](https://www.youtube.com/watch?v=UjPTtO37sXU&feature=youtu.be)
+
 ## Structure
 ```
 .
