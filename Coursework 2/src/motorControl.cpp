@@ -196,8 +196,11 @@ void motorCtrlFn(){
                 else if (tar_velocity && tar_rotations) {
                         motorPWM_vel = motorVelocityController();
                         motorPWM_rot = motorRotationController();
-                        motorPWM = (motorPWM_vel<motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
-
+                        if (act_velocity<0) {
+                                motorPWM = (motorPWM_vel>motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
+                        } else {
+                                motorPWM = (motorPWM_vel<motorPWM_rot) ? motorPWM_vel : motorPWM_rot;
+                        }
                         if (print_count==0) {
                                 putMessage(VELOCITY,*(int32_t*)&act_velocity);
                                 putMessage(TAR_VELOCITY,*(int32_t*)&tar_velocity);
@@ -259,12 +262,6 @@ uint32_t motorRotationController(){
         float rotationError = tar_rotations - act_rotations;
         prevRotationError = rotationError;
 
-        float differentialVelocity = act_velocity - previous_rot_velocity;
-        if(differentialVelocity> DIFF_ROT_VELOCITY_MAX) differentialVelocity =  DIFF_ROT_VELOCITY_MAX;
-        if(differentialVelocity<-DIFF_ROT_VELOCITY_MAX) differentialVelocity = -DIFF_ROT_VELOCITY_MAX;
-        previous_rot_velocity = act_velocity;
-
-
         // Differential error term
         float differentialRotationError = rotationError - prevRotationError;
 
@@ -278,7 +275,7 @@ uint32_t motorRotationController(){
         // In case the rotations were overshot change the direction back
         lead = (y_r > 0) ?  2 : -2;
         y_r = abs(y_r);
-        y_r = (y_r > PWM_LIMIT) ? PWM_LIMIT : y_r;
+        y_r = (y_r > ROT_LIMIT) ? ROT_LIMIT : y_r;
 
         return (uint32_t)y_r;
 }

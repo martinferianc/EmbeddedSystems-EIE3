@@ -35,14 +35,12 @@
 #define INTEGRAL_VEL_ERR_MAX   600
 
 // Parameters for ROTATIONAL CONTROL
-#define PROPORTIONAL_ROT_CONST 15
-#define DIFFERENTIAL_ROT_CONST 10
-#define INTEGRAL_ROT_CONST     5
-#define DEAD_BAND_ROT          20
-#define INTEGRAL_ROT_ERR_MAX   20
-#define DIFF_ROT_MAX           30
-#define DIFF_ROT_VELOCITY_MAX  100
-#define DIFF_ROT_VELOCITY_CONST  10
+#define PROPORTIONAL_ROT_CONST 6
+#define DIFFERENTIAL_ROT_CONST 55
+#define INTEGRAL_ROT_CONST     2
+#define DEAD_BAND_ROT          2
+#define INTEGRAL_ROT_ERR_MAX   15
+#define ROT_LIMIT              100
 
 //Set a given drive state
 void motorOut(int8_t driveState, uint32_t torque);
