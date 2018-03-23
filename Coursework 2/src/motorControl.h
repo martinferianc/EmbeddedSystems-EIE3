@@ -28,10 +28,10 @@
 #define PWM_LIMIT 1000
 
 // Parameters for VELOCITY CONTROL
-#define PROPORTIONAL_VEL_CONST 40
+#define PROPORTIONAL_VEL_CONST 30
 #define DIFFERENTIAL_VEL_CONST 0
 #define INTEGRAL_VEL_CONST     10
-#define DEAD_BAND_VEL          50
+#define DEAD_BAND_VEL          10
 #define INTEGRAL_VEL_ERR_MAX   600
 
 // Parameters for ROTATIONAL CONTROL
