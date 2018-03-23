@@ -17,6 +17,11 @@ volatile float tar_velocity = 0.0;
 volatile float tar_rotations = 0.0;
 volatile float tar_rotations_tmp = 0.0;
 
+//Key
+volatile uint64_t new_key;
+volatile bool new_key_set = false;
+
+
 // Mutex for the new key
 Mutex key_mutex;
 
@@ -63,7 +68,10 @@ void decode(){
                         // KEY
                         case 'K':
                                 key_mutex.lock();
-                                sscanf(charBuffer,"K%x",&key);
+                                sscanf(charBuffer,"K%x",&new_key);
+                                putMessage(KEY_UPPER, (uint32_t)((new_key>>32)&0xFFFFFFFF));
+                                putMessage(KEY_LOW, (uint32_t)(new_key&0xFFFFFFFF));
+                                new_key_set = true;
                                 key_mutex.unlock();
                                 break;
                         //TORQUE
