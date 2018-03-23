@@ -4,8 +4,8 @@
 #include "rtos.h"
 #include "messages.h"
 #include "motorControl.h"
+#include "bitcoinMine.h"
 
-extern volatile uint64_t* key;
 extern volatile float tar_velocity;
 extern volatile float tar_rotations;
 extern volatile uint32_t motorPWM;

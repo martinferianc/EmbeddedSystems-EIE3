@@ -8,7 +8,8 @@
 #define ROTOR_STATE   1
 #define VELOCITY      2
 #define HASH          3
-#define NONCE         4
+#define NONCE_LOW     4
+#define NONCE_UPPER   6
 #define KEY           5
 #define STARTUP       13
 #define TAR_VELOCITY  14

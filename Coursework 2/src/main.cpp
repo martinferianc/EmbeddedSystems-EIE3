@@ -5,7 +5,7 @@
 #include "messages.h"
 #include "decodeCommands.h"
 
-#define DEBUG 1
+#define DEBUG 0
 
 // THREADS
 Thread decodeThread(osPriorityNormal,1536);
