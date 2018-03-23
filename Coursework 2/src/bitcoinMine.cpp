@@ -23,7 +23,7 @@ void computeHash(){
                 putMessage(NONCE_UPPER, (uint32_t)((*nonce>>32)&0xFFFFFFFF));
                 putMessage(NONCE_LOW, (uint32_t)(*nonce&0xFFFFFFFF));
         }
-        *nonce++;
+        *nonce+=1;
         hash_counter++;
 
 }
