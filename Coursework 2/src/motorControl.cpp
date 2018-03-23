@@ -166,9 +166,17 @@ void motorCtrlFn(){
                         }
                         motorOut(tmpDriveState,motorPWM);
                 }
-
                 // Velocity is set
-                if(tar_velocity && !tar_rotations) {
+                if(tar_velocity == 2000) {
+                        motorPWM = motorVelocityController();
+                        if (print_count==0) {
+                                putMessage(VELOCITY,*(int32_t*)&act_velocity);
+                                putMessage(TAR_VELOCITY,*(int32_t*)&tar_velocity);
+                        }
+
+                }
+                // Velocity is set
+                else if(tar_velocity && !tar_rotations) {
                         motorPWM = motorVelocityController();
                         if (print_count==0) {
                                 putMessage(VELOCITY,*(int32_t*)&act_velocity);

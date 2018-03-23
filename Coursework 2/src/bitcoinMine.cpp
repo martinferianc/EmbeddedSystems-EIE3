@@ -20,11 +20,10 @@ void computeHash(){
         }
         SHA256::computeHash(hash, sequence, 64);
         if ((hash[0]==0) && (hash[1]==0)) {
-                *nonce+=1;
-                putMessage(TEST_MSG, 1);
                 putMessage(NONCE_UPPER, (uint32_t)((*nonce>>32)&0xFFFFFFFF));
                 putMessage(NONCE_LOW, (uint32_t)(*nonce&0xFFFFFFFF));
         }
-        hash_counter+=1;
+        *nonce++;
+        hash_counter++;
 
 }

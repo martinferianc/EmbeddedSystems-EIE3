@@ -63,16 +63,16 @@ void decode(){
                         case 'V':
                                 sscanf(charBuffer, "V%f", &tar_velocity);
                                 putMessage(TAR_VELOCITY_SET,*(int32_t*)&tar_velocity);
-                                tar_velocity = (tar_velocity == 0) ? PWM_LIMIT : tar_velocity;
+                                tar_velocity = (tar_velocity == 0) ? 2000 : tar_velocity;
                                 break;
                         // KEY
                         case 'K':
                                 key_mutex.lock();
                                 sscanf(charBuffer,"K%x",&new_key);
+                                key_mutex.unlock();
                                 putMessage(KEY_UPPER, (uint32_t)((new_key>>32)&0xFFFFFFFF));
                                 putMessage(KEY_LOW, (uint32_t)(new_key&0xFFFFFFFF));
                                 new_key_set = true;
-                                key_mutex.unlock();
                                 break;
                         //TORQUE
                         case 'T':
