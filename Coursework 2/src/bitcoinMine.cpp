@@ -13,7 +13,7 @@ void countHash(){
 
 void computeHash(){
         SHA256::computeHash(hash, sequence, 64);
-        if ((hash[0]==0) || (hash[1]==0)) {
+        if ((hash[0]==0) && (hash[1]==0)) {
                 *nonce+=1;
                 putMessage(TEST_MSG, 1);
                 putMessage(NONCE_UPPER, (uint32_t)((*nonce>>32)&0xFFFFFFFF));

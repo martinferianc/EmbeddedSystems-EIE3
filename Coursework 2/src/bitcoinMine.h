@@ -12,7 +12,7 @@ extern volatile uint64_t* nonce;
 extern volatile uint8_t hash[32];
 extern volatile uint32_t hash_counter;
 
-//extern void countHash();
-//extern void computeHash();
+extern void countHash();
+extern void computeHash();
 
 #endif

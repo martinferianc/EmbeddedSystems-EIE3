@@ -41,10 +41,10 @@ void commOutFn(){
                         pc.printf("Bitcoin Hashes per second: %d\r\n", pMessage->data);
                         break;
                 case (NONCE_LOW):
-                        pc.printf("0x%016x\r\n", pMessage->data);
+                        pc.printf("%x\r\n", pMessage->data);
                         break;
                 case (NONCE_UPPER):
-                        pc.printf("Bitcoin Nonce: 0x%016x", pMessage->data);
+                        pc.printf("Bitcoin Nonce: 0x%x", pMessage->data);
                         break;
                 case (KEY):
                         pc.printf("New Key: 0x%016x\r\n", pMessage->data);
