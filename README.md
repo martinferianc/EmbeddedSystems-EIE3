@@ -1,7 +1,17 @@
 # Embedded Systems
 
 ## Specification
-Embedded systems course at Imperial College London looking into the development and operation of small scale systems.
+Repository that holds the code for the embedded systems course (EE3-24) at Imperial College London looking into the development and operation of small scale systems.
+
+## Structure
+
+```
+.
+├── Coursework 1
+└── Coursework 2
+```
+
+Each folder holds the code and the specification for each respective Coursework. 
 
 ## Coursework 1
 
@@ -15,5 +25,5 @@ Coursework two was to implement an embedded motor controller which would enable 
 
 Due to the embedded nature the aim was for the code to be as efficient as possible and this would be tested by how fast we could run a bitcoin mining procedure at the same time.
 
-## Authors
+## Credits
 Alexander Montgomerie-Corcoran, Alexander Thomas Luisi, Owen Harcombe and Martin Ferianc at Imperial College London 2018
